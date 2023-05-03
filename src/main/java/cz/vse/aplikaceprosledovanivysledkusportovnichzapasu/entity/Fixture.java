@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Match {
+public class Fixture {
     private @Id @GeneratedValue Long id;
     private String sport;
     @ManyToOne

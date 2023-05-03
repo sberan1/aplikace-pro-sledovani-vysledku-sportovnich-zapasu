@@ -1,15 +1,15 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 @Entity
 public class User {
     @Id @GeneratedValue private Long id;
@@ -19,7 +19,9 @@ public class User {
     @Column(unique = true)
     private String email;
     @ManyToMany
+    @ToString.Exclude
     private List<Team> favouriteTeams;
     @ManyToMany
-    private List<Match> favouriteMatches;
+    @ToString.Exclude
+    private List<Fixture> favouriteFixtures;
 }

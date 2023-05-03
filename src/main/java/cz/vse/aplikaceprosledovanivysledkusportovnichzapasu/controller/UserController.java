@@ -2,25 +2,32 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepository;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping(value = "/user")
+@CrossOrigin
 public class UserController {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    @PostMapping("/add")
+    public User createUser(@RequestBody User user) {
+        return userService.saveUser(user);
     }
-
     @GetMapping("/{id}")
     public User getUser(@PathVariable Long id) {
-        return userRepository.findById(id).orElseThrow(RuntimeException::new);
+       return userService.getUserById(id);
     }
-    @GetMapping("/users")
+    @GetMapping("/getAll")
     public List<User> getUsers() {
-        return userRepository.findAll();
+        return userService.getAllUsers();
     }
 }
