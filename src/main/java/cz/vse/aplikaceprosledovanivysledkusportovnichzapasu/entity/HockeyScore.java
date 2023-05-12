@@ -1,15 +1,13 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity;
 
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity @Data
+@Entity
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 public class HockeyScore extends Score{
     private int firstPeriodAwayScore;
     private int firstPeriodHomeScore;

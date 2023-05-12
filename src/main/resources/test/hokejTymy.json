@@ -1,0 +1,1 @@
+{"response":[],"get":"teams","parameters":{"league":"1","season":"2021-2022"},"results":0,"errors":{"season":"The Season field must contain an integer."}}

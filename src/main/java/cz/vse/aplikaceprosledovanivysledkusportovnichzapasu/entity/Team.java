@@ -1,16 +1,14 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Blob;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 public class Team {
     @Id @GeneratedValue

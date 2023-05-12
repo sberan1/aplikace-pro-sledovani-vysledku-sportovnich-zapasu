@@ -2,11 +2,13 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity @Data @AllArgsConstructor @NoArgsConstructor
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Score {
     @Id @GeneratedValue
