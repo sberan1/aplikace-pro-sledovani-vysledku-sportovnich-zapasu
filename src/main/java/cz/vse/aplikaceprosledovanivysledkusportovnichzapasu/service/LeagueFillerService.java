@@ -6,7 +6,7 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.LeagueRep
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 @Service
 public class LeagueFillerService {
