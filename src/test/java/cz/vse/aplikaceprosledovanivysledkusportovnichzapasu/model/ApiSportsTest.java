@@ -1,6 +1,5 @@
-package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu;
+package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model;
 
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.ApiSports;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
