@@ -23,16 +23,23 @@ public class LeagueFillerService implements LeagueService{
         JSONObject parentFile = apiSports.basketbalLigy();
         JSONArray ligy = parentFile.getJSONArray("response");
         ligy.forEach(o -> {
-            JSONObject liga = (JSONObject) o;
-            League ligaEnt = new League();
-            ligaEnt.setType(liga.getString("type"));
-            ligaEnt.setExternalId(liga.getInt("id"));
-            ligaEnt.setName(liga.getString("name"));
-            ligaEnt.setSport("Basketball");
-            ligaEnt.setFlag(liga.getString("logo"));
-            leagueRepository.save(ligaEnt);
-            });
+            pridatLigy((JSONObject) o);
+        });
         }
+
+    private void pridatLigy(JSONObject o) {
+        League ligaEnt = new League();
+        ligaEnt.setType(o.getString("type"));
+        ligaEnt.setExternalId(o.getInt("id"));
+        ligaEnt.setName(o.getString("name"));
+        ligaEnt.setSport("Basketball");
+        ligaEnt.setLogo(o.getString("logo"));
+
+        if(!leagueRepository.findByExternalIdandSport(o.getInt("id"), "Basketball").isPresent()){
+            leagueRepository.save(ligaEnt);
+        }
+
+    }
 
     public List<League> getLeagues() {
         return leagueRepository.findAll();

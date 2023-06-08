@@ -4,7 +4,6 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
-import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -39,7 +38,6 @@ public class ApiSports {
     public JSONObject basketbalZeme(){
         return new JSONObject(authentikace(API_HOST_BASKETBAL, "countries").getBody());
     }
-
     public JSONObject fotbalLigy(String idZeme){
         return new JSONObject(authentikace(API_HOST_FOTBAL, "leagues?country="+idZeme).getBody());
     }
