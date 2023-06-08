@@ -15,5 +15,7 @@ public class League {
     private String type;
     private String sport;
     private int externalId;
-    private String flag;
+    private String logo;
+    @ManyToOne
+    private Country country;
 }
