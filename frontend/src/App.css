@@ -2,6 +2,26 @@
   text-align: center;
 }
 
+@font-face {
+  font-family: 'AktivGrotesk-Medium';
+  src: local('AktivGrotesk-Medium'), url(./fonts/aktivGrotesk/AktivGrotesk-Medium.ttf) format('opentype');
+}
+
+@font-face {
+  font-family: 'AktivGrotesk-Thin';
+  src: local('AktivGrotesk-Thin'), url(./fonts/aktivGrotesk/AktivGrotesk-Thin.ttf) format('opentype');
+}
+
+@font-face {
+  font-family: 'AktivGrotesk-Bold';
+  src: local('AktivGrotesk-Bold'), url(./fonts/aktivGrotesk/AktivGrotesk-Bold.ttf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Staatliches-Regular';
+  src: local('Staatliches-Regular'), url(./fonts/Staatliches-Regular.ttf) format('opentype');
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
