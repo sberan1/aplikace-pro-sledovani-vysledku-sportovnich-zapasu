@@ -3,8 +3,6 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Blob;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -16,9 +14,7 @@ public class Team {
     private String sport;
     private String name;
     private int externalId;
-    @Lob
-    private Blob flag;
-    private String country;
-    @Lob
-    private Blob logo;
+    @ManyToOne
+    private Country country;
+    private String logo;
 }
