@@ -10,7 +10,7 @@ public class Country {
     @Column(name = "id", nullable = false)
     private Long id;
     private String name;
-    private Long externalId;
+    private int externalId;
     private String flag;
     private String sport;
 }
