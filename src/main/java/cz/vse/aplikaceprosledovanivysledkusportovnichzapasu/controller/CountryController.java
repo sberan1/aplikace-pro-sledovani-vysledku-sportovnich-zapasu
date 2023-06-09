@@ -1,21 +1,31 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.CountryRepository;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Country;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController @RequestMapping(value = "/country")
 public class CountryController {
     @Autowired
-    CountryRepository countryRepository;
-    @Autowired
     CountryService countryService;
 
-    @PostMapping("/fillCountries")
+    @PostMapping("/fillCountriesBasketball")
     public void fillCountries() {
-        countryService.fillCountries();
+        countryService.fillCountriesBasketball();
     }
+
+    @PostMapping("/fillCountriesHockey")
+    public void fillCountriesHockey() {
+        countryService.fillCountriesHockey();
+    }
+
+    @GetMapping("/getCountries")
+    public List<Country> getCountries(@RequestParam String sport) {
+        return countryService.findAllBySport(sport);
+    }
+
 }
+
