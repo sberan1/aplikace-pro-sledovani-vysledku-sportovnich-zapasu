@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Long> {
+    Country findCountryByExternalIdAndSport(int externalId, String sport);
     @Query("select c from Country c where c.externalId = ?1 and c.sport = ?2")
     Optional<Country> findByExternalIdAndSport(int externalId, String sport);
     @Query("select c from Country c where c.externalId = ?1")

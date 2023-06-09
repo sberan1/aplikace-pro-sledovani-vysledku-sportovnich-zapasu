@@ -1,16 +1,17 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
 
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Country;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.ApiSports;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.CountryRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.LeagueRepository;
+import lombok.Getter;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,6 +21,7 @@ public class LeagueServiceImpl implements LeagueService{
     private LeagueRepository leagueRepository;
     @Autowired
     private CountryRepository countryRepository;
+
     private ApiSports apiSports = ApiSports.getInstance();
 
 
@@ -27,11 +29,29 @@ public class LeagueServiceImpl implements LeagueService{
         JSONObject parentFile = apiSports.basketbalLigy();
         JSONArray ligy = parentFile.getJSONArray("response");
         ligy.forEach(o -> {
-            pridatLigy((JSONObject) o);
+            pridatLigyBasketbal((JSONObject) o);
         });
-        }
+    }
 
-    private void pridatLigy(JSONObject o) {
+    public void fillHockeyLeagues() {
+        JSONArray ligy = apiSports.hokejLigy().getJSONArray("response");
+        ligy.forEach(o -> {
+            League ligaEnt = new League();
+            JSONObject liga = (JSONObject) o;
+            if (!leagueRepository.findByExternalIdandSport(liga.getInt("id"), "Hockey").isPresent()) {
+                ligaEnt.setName(liga.getString("name"));
+                ligaEnt.setType(liga.getString("type"));
+                ligaEnt.setSport("Hockey");
+                ligaEnt.setExternalId(liga.getInt("id"));
+                ligaEnt.setLogo(liga.getString("logo"));
+                ligaEnt.setCountry(countryRepository.findCountryByExternalIdAndSport(liga.getJSONObject("country").getInt("id"), ligaEnt.getSport()));
+                leagueRepository.save(ligaEnt);
+            }
+        });
+
+    }
+
+    private void pridatLigyBasketbal(JSONObject o) {
         League ligaEnt = new League();
         ligaEnt.setType(o.getString("type"));
         ligaEnt.setExternalId(o.getInt("id"));
@@ -48,6 +68,11 @@ public class LeagueServiceImpl implements LeagueService{
 
     public List<League> getLeagues() {
         return leagueRepository.findAll();
+    }
+
+    @Override
+    public List<League> getLeaguesBySport(String sport) {
+        return leagueRepository.findBySport(sport);
     }
 
 

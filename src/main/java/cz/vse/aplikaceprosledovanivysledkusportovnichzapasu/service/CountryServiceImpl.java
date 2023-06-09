@@ -5,16 +5,15 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.CountryRe
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.ApiSports;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CountryServiceImpl implements CountryService{
     ApiSports apiSports = ApiSports.getInstance();
-    private final CountryRepository countryRepository;
+    @Autowired
+    private CountryRepository countryRepository;
 
-    public CountryServiceImpl(CountryRepository countryRepository) {
-        this.countryRepository = countryRepository;
-    }
 
     public void fillCountries() {
         JSONArray zeme = apiSports.basketbalZeme().getJSONArray("response");
