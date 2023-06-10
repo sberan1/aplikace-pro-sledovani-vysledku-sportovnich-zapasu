@@ -19,7 +19,7 @@ const LeagueList = () => {
 
     return (
         <div>
-            <h1>Leagues</h1>
+            <h1 className="text-5xl">Leagues</h1>
             <ul>
                 {leagues.map(league => (
                     <li key={league.id}>{league.name} {league.type}</li>

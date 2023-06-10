@@ -4,7 +4,7 @@ import slavia from '../../assets/slavia.png';
 
 function Match(){
     return(
-        <div className={styles.match}>
+        <div className="">
             <p className={styles.text1Thin}>13.04.2023</p>
             <p className={styles.text1Bold}>16:15</p>
             <img src={sparta} alt="Team" className={styles.imgTeam}></img>
