@@ -5,7 +5,15 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'nase-cerna': '#1C2227',
+        'nase-tmave-seda': '#2A2F37',
+        'nase-svetle-seda': '#818181',
+        'nase-zluta': '#D3FC01',
+        'nase-bila': '#FFFFFF',
+      }
+    },
   },
   plugins: [],
 }
