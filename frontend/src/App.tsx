@@ -1,11 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Match from './components/match/Match';
+import LeagueList from './components/LeagueList';
 
 function App() {
   return (
-    <Match></Match>
+    <LeagueList />
   );
 }
 

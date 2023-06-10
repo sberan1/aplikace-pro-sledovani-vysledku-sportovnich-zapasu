@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController @RequestMapping(value = "/country")
+@RestController
+@CrossOrigin
+@RequestMapping(value = "/country")
 public class CountryController {
     @Autowired
     CountryService countryService;
