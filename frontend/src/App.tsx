@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Match from './components/Match';
+import Match from './components/match/Match';
 
 function App() {
   return (

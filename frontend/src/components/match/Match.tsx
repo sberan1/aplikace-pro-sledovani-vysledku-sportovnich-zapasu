@@ -1,6 +1,6 @@
 import styles from './Match.module.css';
-import sparta from '../assets/sparta.png';
-import slavia from '../assets/slavia.png';
+import sparta from '../../assets/sparta.png';
+import slavia from '../../assets/slavia.png';
 
 function Match(){
     return(
