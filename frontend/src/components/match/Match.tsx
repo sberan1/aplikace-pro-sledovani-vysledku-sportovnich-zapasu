@@ -1,6 +1,7 @@
 import styles from './Match.module.css';
 import sparta from '../../assets/sparta.png';
 import slavia from '../../assets/slavia.png';
+import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
 
     function Match({date, time, team1, team2, score1, score2, imgSource1, imgSource2} : {
         date: string,
@@ -43,8 +44,8 @@ import slavia from '../../assets/slavia.png';
                             </div>
                         </div>
                     </div>
-                    <div className={styles.block3}>
-
+                    <div className={`flex pl-10`}>
+                        <ZobrazitVice className={`justify-self-end`}></ZobrazitVice>
                     </div>
                 </div>
             )
@@ -80,8 +81,8 @@ import slavia from '../../assets/slavia.png';
                             </div>
                         </div>
                     </div>
-                    <div className={styles.block3}>
-
+                    <div className={`flex pl-10`}>
+                        <ZobrazitVice className={`justify-self-end`}></ZobrazitVice>
                     </div>
                 </div>
             )
@@ -119,8 +120,8 @@ import slavia from '../../assets/slavia.png';
                             </div>
                         </div>
                     </div>
-                    <div className={styles.block3}>
-
+                    <div className={`flex pl-10`}>
+                        <ZobrazitVice className={`justify-self-end`}></ZobrazitVice>
                     </div>
                 </div>
             )
@@ -158,8 +159,8 @@ import slavia from '../../assets/slavia.png';
                             </div>
                         </div>
                     </div>
-                    <div className={styles.block3}>
-
+                    <div className={`flex pl-10`}>
+                            <ZobrazitVice className={`justify-self-end`}></ZobrazitVice>
                     </div>
                 </div>
             )
