@@ -22,6 +22,10 @@
   src: local('Staatliches-Regular'), url(./fonts/Staatliches-Regular.ttf) format('opentype');
 }
 
+*{
+  font-family: AktivGrotesk-Regular, serif !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
