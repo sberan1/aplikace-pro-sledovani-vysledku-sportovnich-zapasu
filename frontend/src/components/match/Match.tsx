@@ -3,13 +3,14 @@ import sparta from '../../assets/sparta.png';
 import slavia from '../../assets/slavia.png';
 import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
 
-    function Match({date, time, team1, team2, score1, score2, imgSource1, imgSource2} : {
-        date: string,
-        time: string,
+    function Match({id, date, time, team1, team2, score1, score2, imgSource1, imgSource2} : {
+        id: bigint,
+        date: any,
+        time: any,
         team1: string,
         team2: string,
-        score1: number,
-        score2: number,
+        score1: number | null,
+        score2: number | null,
         imgSource1: string | null,
         imgSource2: string | null
     }) {
