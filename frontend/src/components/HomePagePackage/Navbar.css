@@ -5,7 +5,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     background: #2A2F37;
-    padding: 1rem;
+    padding: 1rem 5rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .logo h1 {
@@ -51,7 +52,11 @@ nav a {
 }
 
 .buttons button{
-    margin: 0px 20px;
+    margin-left: 20px;
+}
+
+.button:hover{
+    box-shadow: #D3FC01 0px 1px 2px;
 }
 
 nav input {

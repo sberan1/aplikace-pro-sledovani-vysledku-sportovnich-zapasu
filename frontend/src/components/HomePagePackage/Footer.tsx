@@ -1,10 +1,13 @@
 import React from 'react';
+import './HomePage.css'
 
 const Footer = () => {
     return (
-        <footer>
-            <p>© 2023, Softwarové inženýrství</p>
-            <p>4IT115</p>
+        <footer className="footer">
+            <div>
+                <p>© 2023, Softwarové inženýrství</p>
+                <p>4IT115</p>
+            </div>
         </footer>
     );
 };
