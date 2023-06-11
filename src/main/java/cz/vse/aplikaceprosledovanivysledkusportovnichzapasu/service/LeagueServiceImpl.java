@@ -5,16 +5,16 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.ApiSports;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.CountryRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.LeagueRepository;
-import lombok.Getter;
+
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service @Primary
 public class LeagueServiceImpl implements LeagueService{
 
     @Autowired
@@ -28,9 +28,7 @@ public class LeagueServiceImpl implements LeagueService{
     public void fillBasketballLeagues() {
         JSONObject parentFile = apiSports.basketbalLigy();
         JSONArray ligy = parentFile.getJSONArray("response");
-        ligy.forEach(o -> {
-            pridatLigyBasketbal((JSONObject) o);
-        });
+        ligy.forEach(o -> pridatLigyBasketbal((JSONObject) o));
     }
 
     public void fillHockeyLeagues() {
@@ -38,7 +36,7 @@ public class LeagueServiceImpl implements LeagueService{
         ligy.forEach(o -> {
             League ligaEnt = new League();
             JSONObject liga = (JSONObject) o;
-            if (!leagueRepository.findByExternalIdandSport(liga.getInt("id"), "Hockey").isPresent()) {
+            if (leagueRepository.findByExternalIdandSport(liga.getInt("id"), "Hockey").isEmpty()) {
                 ligaEnt.setName(liga.getString("name"));
                 ligaEnt.setType(liga.getString("type"));
                 ligaEnt.setSport("Hockey");
@@ -60,7 +58,7 @@ public class LeagueServiceImpl implements LeagueService{
         ligaEnt.setLogo(o.getString("logo"));
         ligaEnt.setCountry(countryRepository.findByExternalId(o.getJSONObject("country").getInt("id")));
 
-        if(!leagueRepository.findByExternalIdandSport(o.getInt("id"), "Basketball").isPresent()){
+        if(leagueRepository.findByExternalIdandSport(o.getInt("id"), "Basketball").isEmpty()){
             leagueRepository.save(ligaEnt);
         }
 

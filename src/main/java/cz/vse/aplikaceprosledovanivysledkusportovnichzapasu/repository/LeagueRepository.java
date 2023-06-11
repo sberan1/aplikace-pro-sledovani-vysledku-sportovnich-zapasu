@@ -13,6 +13,5 @@ public interface LeagueRepository extends JpaRepository<League, Long>{
     List<League> findBySport(String sport);
     @Query("select l from League l where l.externalId = ?1 and l.sport = ?2")
     Optional<League> findByExternalIdandSport(int externalId, String sport);
-    @Query("select l from League l where l.externalId = ?1")
-    Optional<League> findByExternalId(int externalId);
+    League findLeagueByExternalIdAndSport(int anInt, String sport);
 }
