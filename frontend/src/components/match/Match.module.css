@@ -1,9 +1,6 @@
 .match {
-    position: absolute;
+
     width: 900px;
-    height: 84px;
-    left: 20px;
-    top: 23px;
 
     /* Paleta/Tmavě šedá */
 
@@ -11,12 +8,14 @@
     border-radius: 20px;
 }
 
+.block1 {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
 .text1Thin {
-    position: absolute;
-    width: 103px;
-    height: 24px;
-    left: 32px;
-    top: 20px;
 
     /* Text1 - Thin */
 
@@ -31,9 +30,6 @@
 
     /* identical to box height, or 24px */
 
-    /*display: flex;*/
-    align-items: center;
-    text-align: center;
 
     /* Paleta/Bílá */
 
@@ -41,11 +37,6 @@
 }
 
 .text1Bold{
-    position: absolute;
-    width: 53px;
-    height: 24px;
-    left: 32px;
-    top: 42px;
 
     /* Text1 - Bold */
 
@@ -56,10 +47,7 @@
     line-height: 120%;
     /* identical to box height, or 24px */
 
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 0;
+
 
     /* Paleta/Bílá */
 
@@ -67,27 +55,20 @@
 }
 
 .imgTeam{
-    position: absolute;
+
     width: 30px;
     height: 40px;
-    left: calc(50% - 30px/2 - 122px);
-    top: 5px;
+
 }
 
 .imgTeam2{
-    position: absolute;
+
     width: 34px;
     height: 34px;
-    left: calc(50% - 34px/2 + 119px);
-    top: 11px;
+
 }
 
-.team1 {
-    position: absolute;
-    width: 63px;
-    height: 24px;
-    left: calc(50% - 63px/2 - 62.5px);
-    top: 18px;
+.team {
 
     /* Text1 */
 
@@ -98,24 +79,15 @@
     line-height: 120%;
     /* identical to box height, or 24px */
 
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 0;
+
 
     /* Paleta/Bílá */
 
     color: #FFFFFF;
 }
 
-.team2 {
-    position: absolute;
-    width: 56px;
-    height: 24px;
-    left: calc(50% - 56px/2 + 60px);
-    top: 18px;
-
-    /* Text1 */
+.teamOnHover {
+    /* Text1 - Underline */
 
     font-family: 'AktivGrotesk-Medium';
     font-style: normal;
@@ -124,10 +96,8 @@
     line-height: 120%;
     /* identical to box height, or 24px */
 
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 0;
+
+    text-decoration-line: underline;
 
     /* Paleta/Bílá */
 
@@ -135,11 +105,6 @@
 }
 
 .dash {
-    position: absolute;
-    width: 8px;
-    height: 24px;
-    left: calc(50% - 8px/2);
-    top: 18px;
 
     /* Text1 */
 
@@ -150,10 +115,7 @@
     line-height: 120%;
     /* identical to box height, or 24px */
 
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 0;
+
 
     /* Paleta/Bílá */
 
@@ -161,11 +123,7 @@
 }
 
 .score {
-    position: absolute;
-    width: 93px;
-    height: 28px;
-    left: calc(50% - 93px/2 - 0.5px);
-    top: 50px;
+
 
     /* Paleta/Bílá */
 
@@ -174,11 +132,7 @@
 }
 
 .score1 {
-    position: absolute;
-    width: 11.15px;
-    height: 22.31px;
-    left: calc(50% - 11.15px/2 - 19.42px);
-    top: 54px;
+
 
     font-family: 'AktivGrotesk-Bold';
     font-style: normal;
@@ -187,20 +141,14 @@
     line-height: 120%;
     /* or 24px */
 
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 0;
+
+
 
     color: #000000;
 }
 
 .score2 {
-    position: absolute;
-    width: 11.15px;
-    height: 22.31px;
-    left: calc(50% - 11.15px/2 + 19.58px);
-    top: 54px;
+
 
     /* Text1 - Bold */
 
@@ -211,20 +159,14 @@
     line-height: 120%;
     /* or 24px */
 
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 0;
+
+
 
     color: #000000;
 }
 
 .colon {
-    position: absolute;
-    width: 4.46px;
-    height: 22.31px;
-    left: calc(50% - 4.46px/2 - 0.15px);
-    top: 53.46px;
+
 
     font-family: 'AktivGrotesk-Bold';
     font-style: normal;
@@ -233,10 +175,8 @@
     line-height: 120%;
     /* or 24px */
 
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 0;
+
+
 
     color: #000000;
 }
