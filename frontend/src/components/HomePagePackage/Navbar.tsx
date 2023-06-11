@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FormEvent, useState} from 'react';
 // @ts-ignore
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './Navbar.css';
@@ -12,13 +12,32 @@ interface NavbarProps {
 }
 
 const Navbar = ({ HomePage, PrihlaseniPage, RegistracePage }: NavbarProps) => {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleSubmit = (event: FormEvent) => {
+        event.preventDefault();
+        console.log('Submitted search term:', searchTerm);
+    };
+
     return (
         <nav>
             <div className="logo">
                 <span className="navbar-logo"></span>
             </div>
 
-            <input type="text" placeholder="Vyhledejte konkrétní tým nebo zápas"/>
+            <form onSubmit={handleSubmit} className="SearchForm">
+                <input
+                    type="text"
+                    placeholder="Vyhledejte konkrétní tým nebo zápas"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+                <button type="submit" value="hledej">Hledej</button>
+            </form>
 
             <div className="buttons">
                 <Link to="/registrace">
