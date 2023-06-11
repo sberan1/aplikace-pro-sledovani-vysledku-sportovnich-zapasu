@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App HomePage="" PrihlaseniPage="" RegistracePage="" navbarPrihlaseniPage="" navbarRegistracePage=""/>
+    <App />
   </React.StrictMode>
 );
 
