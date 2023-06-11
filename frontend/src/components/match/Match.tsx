@@ -13,6 +13,13 @@ import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
         imgSource1: string | null,
         imgSource2: string | null
     }) {
+
+        const teamOnClicked = (team: string): React.MouseEventHandler<HTMLButtonElement> => {
+            return (event) => {
+                // Obsluha kliknutí na tlačítko pro tým
+            };
+        };
+
         if((score1 === null || score2 === null) && (imgSource1 === null || imgSource2 === null)){
             return(
                 <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match}`}>
@@ -27,14 +34,14 @@ import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
                     <div className="columns-1 grid-flow-col auto-cols-max">
                         <div className='inline-grid grid-cols-3'>
                             <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
-                                <div className={styles.imgTeam}></div>
-                                <p className={`pl-3 content-center ${styles.team}`}>{team1}</p>
+                                <div  className={styles.imgTeam}></div>
+                                <button onClick={teamOnClicked(team1)} className={`pl-3 content-center ${styles.team}`}>{team1}</button>
                             </div>
                             <div className='grid justify-items-center items-center'>
                                 <p className={`${styles.dash} pt-3`}>-</p>
                             </div>
                             <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
-                                <p className={`pl-3 content-center ${styles.team}`}>{team2}</p>
+                                <button onClick={teamOnClicked(team2)} className={`pl-3 content-center ${styles.team}`}>{team2}</button>
                                 <div className={styles.imgTeam}></div>
                             </div>
                         </div>
@@ -65,14 +72,14 @@ import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
                         <div className='inline-grid grid-cols-3'>
                             <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
                                 <img src={imgSource1} alt="Team" className={`content-center ${styles.imgTeam}`}></img>
-                                <p className={`pl-3 content-center ${styles.team}`}>{team1}</p>
+                                <button onClick={teamOnClicked(team1)} className={`pl-3 content-center ${styles.team}`}>{team1}</button>
                             </div>
                             <div className='grid justify-items-center items-center'>
                                 <p className={`${styles.dash} pt-3`}>-</p>
                             </div>
                             <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
                                 <img src={imgSource2} alt="Team" className={`content-center ${styles.imgTeam2}`}></img>
-                                <p className={`pl-3 content-center ${styles.team}`}>{team2}</p>
+                                <button onClick={teamOnClicked(team2)} className={`pl-3 content-center ${styles.team}`}>{team2}</button>
                             </div>
                         </div>
                         <div className={`flex justify-center mb-3`}>
@@ -102,13 +109,13 @@ import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
                         <div className='inline-grid grid-cols-3'>
                             <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
                                 <div className={styles.imgTeam}></div>
-                                <p className={`pl-3 content-center ${styles.team}`}>{team1}</p>
+                                <button onClick={teamOnClicked(team1)} className={`pl-3 content-center ${styles.team}`}>{team1}</button>
                             </div>
                             <div className='grid justify-items-center items-center'>
                                 <p className={`${styles.dash} pt-3`}>-</p>
                             </div>
                             <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
-                                <p className={`pl-3 content-center ${styles.team}`}>{team2}</p>
+                                <button onClick={teamOnClicked(team2)} className={`pl-3 content-center ${styles.team}`}>{team2}</button>
                                 <div className={styles.imgTeam}></div>
                             </div>
                         </div>
@@ -141,14 +148,14 @@ import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
                         <div className='inline-grid grid-cols-3'>
                             <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
                                 <img src={imgSource1} alt="Team" className={`content-center ${styles.imgTeam}`}></img>
-                                <p className={`pl-3 content-center ${styles.team}`}>{team1}</p>
+                                <button onClick={teamOnClicked(team1)} className={`pl-3 content-center ${styles.team}`}>{team1}</button>
                             </div>
                             <div className='grid justify-items-center items-center'>
                                 <p className={`${styles.dash} pt-3`}>-</p>
                             </div>
                             <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
                                 <img src={imgSource2} alt="Team" className={`content-center ${styles.imgTeam2}`}></img>
-                                <p className={`pl-3 content-center ${styles.team}`}>{team2}</p>
+                                <button onClick={teamOnClicked(team2)} className={`pl-3 content-center ${styles.team}`}>{team2}</button>
                             </div>
                         </div>
                         <div className={`flex justify-center mb-3`}>
@@ -165,5 +172,6 @@ import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
                 </div>
             )
         }
+
     }
     export default Match;

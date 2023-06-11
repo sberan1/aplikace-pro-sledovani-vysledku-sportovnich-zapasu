@@ -86,7 +86,7 @@
     color: #FFFFFF;
 }
 
-.teamOnHover {
+.team:hover {
     /* Text1 - Underline */
 
     font-family: 'AktivGrotesk-Medium';
@@ -96,12 +96,22 @@
     line-height: 120%;
     /* identical to box height, or 24px */
 
+    text-decoration-line: underline;
+}
+
+.team:focus {
+    /* Text1 - Underline */
+
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
 
     text-decoration-line: underline;
 
-    /* Paleta/Bílá */
-
-    color: #FFFFFF;
+    color: #EAEAEB;
 }
 
 .dash {
