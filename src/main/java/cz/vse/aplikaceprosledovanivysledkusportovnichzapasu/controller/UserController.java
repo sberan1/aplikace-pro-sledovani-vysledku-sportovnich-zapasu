@@ -1,5 +1,7 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.LoginRespDTO;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.UserLoginDTO;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,10 @@ public class UserController {
     @GetMapping("/{id}")
     public User getUser(@PathVariable Long id) {
        return userService.getUserById(id);
+    }
+    @PostMapping("/login")
+    public LoginRespDTO loginUser(@RequestBody UserLoginDTO user) {
+        return userService.loginUser(user);
     }
     @GetMapping("/getAll")
     public List<User> getUsers() {

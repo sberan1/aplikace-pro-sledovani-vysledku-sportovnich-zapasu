@@ -1,5 +1,7 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.LoginRespDTO;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.UserLoginDTO;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepository;
@@ -35,5 +37,19 @@ public class UserServiceImpl implements UserService{
     @Override
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow();
+    }
+
+    @Override
+    public LoginRespDTO loginUser(UserLoginDTO user) {
+        LoginRespDTO loginRespDTO = new LoginRespDTO();
+        User uzivatel = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        if(uzivatel == null) {
+            loginRespDTO.setSuccess(false);
+            loginRespDTO.setUser(null);
+            return loginRespDTO;
+        }
+        loginRespDTO.setSuccess(true);
+        loginRespDTO.setUser(uzivatel);
+        return loginRespDTO;
     }
 }
