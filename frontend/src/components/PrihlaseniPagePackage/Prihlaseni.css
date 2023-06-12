@@ -77,6 +77,10 @@
     box-shadow: #D3FC01 3px 3px 8px 0;
 }
 
+.InputContainer input:focus{
+    outline: none;
+}
+
 .InputContainer p{
     font-family: AktivGrotesk-Thin, serif;
     font-size: 1.3rem;
@@ -115,7 +119,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 .NemamUcet p{

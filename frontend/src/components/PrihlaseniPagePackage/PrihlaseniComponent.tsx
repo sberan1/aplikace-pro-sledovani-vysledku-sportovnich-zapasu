@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import axios from 'axios';
 import {sha256} from 'js-sha256';
+import { UserContext } from './UserContext';
 import './Prihlaseni.css';
 import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 
@@ -8,6 +9,7 @@ const PrihlaseniComponent = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginStatus, setLoginStatus] = useState('');
+    const { loginUser } = useContext(UserContext);
 
     const handleLogin = async () => {
         try {
@@ -17,6 +19,8 @@ const PrihlaseniComponent = () => {
                 password: hashedPassword
             });
             setLoginStatus(response.data.message);
+            await loginUser(email, password);
+            setLoginStatus('Přihlášení bylo úspěšné.');
         } catch (error) {
             console.error('Oj, něco se pokazilo:', error);
             setLoginStatus('Něco se pokazilo při přihlašování. Zkuste to prosím znovu.');
