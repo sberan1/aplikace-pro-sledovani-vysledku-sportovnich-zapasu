@@ -66,3 +66,73 @@ nav a {
     color: white;
     letter-spacing: 3px;
 }
+
+
+.UserIco{
+    width: 50px;
+    height: 50px;
+    background-image: url("../../assets/User.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.UserPrihlasen .DropdownMenu {
+    display: none;
+}
+
+.UserPrihlasen .UserIco:focus + .DropdownMenu {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 5.8rem;
+    width: 180px;
+    background-color: #2A2F37;
+    border: 1px solid #2A2F37;
+    border-radius: 5px;
+}
+
+.UserPrihlasen .UserIco:focus + .DropdownMenu ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.UserPrihlasen .UserIco:focus + .DropdownMenu ul li{
+    padding: 0.5rem 1rem;
+    color: white;
+    cursor: pointer;
+}
+
+.UserPrihlasen .UserIco:focus + .DropdownMenu ul li:hover{
+    background-color: #D3FC01;
+    color: #1C2227;
+}
+
+.UserPrihlasen .UserIco:focus{
+    filter: drop-shadow(0 0 5px #D3FC01);
+}
+
+.UserPrihlasen .DropdownMenu {
+    transition: display 0.3s ease;
+}
+
+.menu-item .NavbarLink.active p{
+    color: #D3FC01;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

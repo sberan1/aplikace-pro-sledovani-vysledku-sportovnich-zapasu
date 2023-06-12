@@ -1,6 +1,6 @@
 import React, {FormEvent, useContext, useState} from 'react';
 // @ts-ignore
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Link, NavLink} from 'react-router-dom';
 import './NavBar.css';
 import '../../App.css';
 import AppProps from "../../App";
@@ -22,27 +22,28 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
 
             <div className="menu-items">
                 <div className="menu-item">
-                    <Link to="/hokej">
+                    <NavLink to="/hokej" className="NavbarLink">
                         <p>Hokej</p>
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className="menu-item">
-                    <Link to="/basketbal">
+                    <NavLink to="/basketbal" className="NavbarLink">
                         <p>Basketbal</p>
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className="menu-item">
-                    <Link to="/fotbal">
+                    <NavLink to="/fotbal" className="NavbarLink">
                         <p>Fotbal</p>
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className="menu-item">
-                    <Link to="/volejbal">
+                    <NavLink to="/volejbal" className="NavbarLink">
                         <p>Volejbal</p>
-                    </Link>
+                    </NavLink>
                 </div>
             </div>
 
+            {/*
             {isLoggedIn ? (
                 <div className="UserPrihlasen">
                     <div className="btn">
@@ -59,7 +60,19 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
                         <button className="button prihlaseni">Přihlásit se</button>
                     </Link>
                 </div>
-            )}
+            )}*/}
+
+            <div className="UserPrihlasen">
+                <button className="UserIco">
+                </button>
+                <div className="DropdownMenu">
+                    <ul>
+                        <li>Změna hesla</li>
+                        <li>Zrušit účet</li>
+                        <li>Odhlásit se</li>
+                    </ul>
+                </div>
+            </div>
 
         </nav>
     );

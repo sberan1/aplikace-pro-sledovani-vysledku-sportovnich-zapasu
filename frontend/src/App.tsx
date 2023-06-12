@@ -8,6 +8,7 @@ import HomePage from './components/HomePagePackage/HomePage';
 import PrihlaseniPage from './components/PrihlaseniPagePackage/PrihlaseniPage';
 import {UserProvider} from "./components/PrihlaseniPagePackage/UserContext";
 //import RegistracePage from './components/RegistracePagePackage/RegistracePage';
+import FotbalPage from './components/ZkusebniPageFotbalu/FotbalPage';
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                     <Route path="/" element={<HomePage HomePage="" PrihlaseniPage="" RegistracePage=""/>}/>
                     <Route path="/prihlaseni" element={<PrihlaseniPage PrihlaseniPage="" RegistracePage=""/>}/>
                     {/*  <Route path="/registrace" element={<RegistracePage />} />*/}
+                    <Route path="/fotbal" element={<FotbalPage />}></Route>
                 </Routes>
             </Router>
         </UserProvider>
