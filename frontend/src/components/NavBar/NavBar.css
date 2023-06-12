@@ -7,18 +7,6 @@ nav {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-.logo h1 {
-    font-size: 1.5rem;
-}
-
-nav input[type="text"] {
-    margin-right: 1rem;
-}
-
-nav button {
-    margin-left: 0.5rem;
-}
-
 nav a {
     color: white;
     text-decoration: none;
@@ -43,39 +31,12 @@ nav a {
     background-repeat: no-repeat;
 }
 
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .buttons button{
     margin-left: 20px;
 }
 
 .button:hover{
     box-shadow: #D3FC01 0px 1px 2px;
-}
-
-nav input {
-    padding: 0.5rem 1rem;
-    border-radius: 5px 0 0 5px;
-    border: none;
-    outline: none;
-    background-color: #4E5259;
-    width: 35rem;
-}
-
-nav input[type="text"] {
-    color: white;
-}
-
-.SearchForm button{
-    border: 1px solid #1d1f28;
-    padding: 0.5rem 1.2rem;
-    border-radius: 0 5px 5px 0;
-    background-color: #1d1f28;
-    margin-left: -15px;
 }
 
 .button{
@@ -85,12 +46,23 @@ nav input[type="text"] {
     font-size: 1rem;
 }
 
-.registrace{
-    border: 1px solid #D3FC01;
-}
-
 .prihlaseni{
     background-color: #D3FC01;
     color: #1C2227;
     border: none;
+}
+
+.menu-items{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-item p {
+    font-variant: all-petite-caps;
+    font-size: 2.5rem;
+    font-family: Staatliches-Regular, serif;
+    color: white;
+    letter-spacing: 3px;
 }
