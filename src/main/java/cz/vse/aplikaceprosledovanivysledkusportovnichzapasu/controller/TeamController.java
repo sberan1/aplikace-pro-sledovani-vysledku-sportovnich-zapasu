@@ -1,15 +1,17 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.TeamService;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/team")
+@CrossOrigin
 public class TeamController {
 
     @Autowired
@@ -18,5 +20,10 @@ public class TeamController {
     @PostMapping("/fillTeamsBasketball")
     public void fillTeamsBasketball(@RequestParam int leagueExternalId, @RequestParam String season) {
         teamService.fillBasketballTeamsByLeagueExternalIdAndSeason(leagueExternalId, season);
+    }
+
+    @GetMapping("/getTeamsBySport")
+    public List<Team> getTeamsBySport(@RequestParam String sport) {
+        return teamService.getTeamsBySport(sport);
     }
 }

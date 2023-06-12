@@ -10,6 +10,8 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TeamServiceImpl implements TeamService {
 
@@ -28,20 +30,34 @@ public class TeamServiceImpl implements TeamService {
         teams.forEach(o -> pridatTymy((JSONObject) o, "Basketball", resp));
     }
 
+    @Override
+    public List<Team> getTeamsBySport(String sport) {
+        return teamRepository.findTeamsBySport(sport);
+    }
+
     private void pridatTymy(JSONObject o, String sport, JSONObject resp) {
-            Team tymEnt = new Team();
-            tymEnt.setExternalId(o.getInt("id"));
+        Team tymEnt;
+        if (teamRepository.findByExternalIdAndSport(o.getInt("id"), sport).isPresent()){
+            tymEnt = teamRepository.findTeamByExternalIdAndSport(o.getInt("id"), sport);
+        }
+        else {
+            tymEnt = new Team();
+        }
+
+        tymEnt.setExternalId(o.getInt("id"));
             tymEnt.setName(o.getString("name"));
             tymEnt.setLogo(o.getString("logo"));
             tymEnt.setSport(sport);
             tymEnt.getLeagues().add(leagueRepository.findLeagueByExternalIdAndSport(resp.getJSONObject("parameters").getInt("league"), sport));
             if (o.getJSONObject("country").get("id") != JSONObject.NULL){
                 tymEnt.setCountry(countryRepository.findCountryByExternalIdAndSport(o.getJSONObject("country").getInt("id"), sport));
+                teamRepository.save(tymEnt);
             }
             else {
                 tymEnt.setCountry(countryRepository.findCountryByFlagAndSport(o.getJSONObject("country").getString("flag"), sport));
+                teamRepository.save(tymEnt);
             }
 
-            teamRepository.save(tymEnt);
+
     }
 }
