@@ -9,6 +9,9 @@ import PrihlaseniPage from './components/PrihlaseniPagePackage/PrihlaseniPage';
 import {UserProvider} from "./components/PrihlaseniPagePackage/UserContext";
 //import RegistracePage from './components/RegistracePagePackage/RegistracePage';
 import FotbalPage from './components/ZkusebniPageFotbalu/FotbalPage';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 const App = () => {
     return (
