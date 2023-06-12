@@ -14,14 +14,14 @@ import java.time.LocalDateTime;
 public class Fixture {
     private @Id @GeneratedValue Long id;
     private String sport;
+    private int externalId;
     @ManyToOne
     private Team homeTeam;
     @ManyToOne
     private Team awayTeam;
     private LocalDateTime date;
-    @Lob
-    private Blob vlajka;
-    private String country;
+    @ManyToOne
+    private Country country;
     @ManyToOne
     private League league;
     @OneToOne

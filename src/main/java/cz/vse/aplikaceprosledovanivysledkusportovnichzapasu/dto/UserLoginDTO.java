@@ -3,6 +3,7 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto;
 import lombok.Data;
 
 @Data
-public class MatchDTO {
-
+public class UserLoginDTO {
+    String name;
+    String password;
 }
