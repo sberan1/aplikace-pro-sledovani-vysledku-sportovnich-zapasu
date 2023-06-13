@@ -4,7 +4,7 @@ nav {
     align-items: center;
     background: #2A2F37;
     padding: 1rem 5rem;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
 .logo h1 {
@@ -87,10 +87,25 @@ nav input[type="text"] {
 
 .registrace{
     border: 1px solid #D3FC01;
+    color: white;
 }
 
 .prihlaseni{
     background-color: #D3FC01;
     color: #1C2227;
     border: none;
+}
+
+.NavBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    padding: 1rem 5rem;
+    box-shadow: none;
+}
+
+.NavBar .SearchForm{
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+
 }
