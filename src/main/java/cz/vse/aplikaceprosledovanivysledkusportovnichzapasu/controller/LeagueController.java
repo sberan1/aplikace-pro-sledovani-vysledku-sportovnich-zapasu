@@ -3,7 +3,6 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

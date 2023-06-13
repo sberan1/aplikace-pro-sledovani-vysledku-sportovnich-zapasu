@@ -3,7 +3,9 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,8 +21,8 @@ public class User {
     private String email;
     @ManyToMany
     @ToString.Exclude
-    private List<Team> favouriteTeams;
+    private Set<Team> favouriteTeams = new HashSet<>();
     @ManyToMany
     @ToString.Exclude
-    private List<Fixture> favouriteFixtures;
+    private Set<Fixture> favouriteFixtures = new HashSet<>();
 }

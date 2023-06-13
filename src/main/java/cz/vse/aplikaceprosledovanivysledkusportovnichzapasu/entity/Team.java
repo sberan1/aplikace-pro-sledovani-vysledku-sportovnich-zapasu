@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +20,7 @@ public class Team {
     private String name;
     private int externalId;
     @ManyToMany
-    private List<League> leagues = new ArrayList<>();
+    private Set<League> leagues = new HashSet<>();
     @ManyToOne
     private Country country;
     private String logo;
