@@ -1,9 +1,7 @@
-import React, {FormEvent, useState} from 'react';
-// @ts-ignore
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import React, {FormEvent, useState, useEffect} from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './Navbar.css';
 import '../../App.css';
-import AppProps from "../../App";
 
 interface NavbarProps {
     HomePage: unknown,
@@ -13,6 +11,7 @@ interface NavbarProps {
 
 const Navbar = ({ HomePage, PrihlaseniPage, RegistracePage }: NavbarProps) => {
     const [searchTerm, setSearchTerm] = useState('');
+    const [results, setResults] = useState<any[]>([]);
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
@@ -22,6 +21,16 @@ const Navbar = ({ HomePage, PrihlaseniPage, RegistracePage }: NavbarProps) => {
         event.preventDefault();
         console.log('Submitted search term:', searchTerm);
     };
+
+    useEffect(() => {
+        if (searchTerm !== '') {
+            fetch(`/api/search?term=${encodeURIComponent(searchTerm)}`)
+                .then(response => response.json())
+                .then(data => setResults(data.results));
+        } else {
+            setResults([]);
+        }
+    }, [searchTerm]);
 
     return (
         <nav>

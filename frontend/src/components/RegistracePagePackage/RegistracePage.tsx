@@ -4,7 +4,6 @@ import Footer from '../HomePagePackage/Footer';
 import '../PrihlaseniPagePackage/Prihlaseni.css';
 import './Registrace.css';
 import RegistraceComponent from "./RegistraceComponent";
-import {UserProvider} from "../PrihlaseniPagePackage/UserContext";
 
 interface AppProps {
     PrihlaseniPage: unknown,

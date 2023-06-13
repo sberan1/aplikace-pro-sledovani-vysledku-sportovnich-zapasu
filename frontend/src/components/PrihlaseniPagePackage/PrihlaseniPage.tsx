@@ -3,7 +3,6 @@ import NavBar from '../NavBar/NavBar';
 import Footer from '../HomePagePackage/Footer';
 import './Prihlaseni.css';
 import PrihlaseniComponent from "./PrihlaseniComponent";
-import {UserProvider} from "./UserContext";
 
 interface AppProps {
     PrihlaseniPage: unknown,
