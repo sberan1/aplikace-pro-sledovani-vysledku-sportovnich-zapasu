@@ -1,23 +1,30 @@
 import React, {FormEvent, useContext, useState} from 'react';
 // @ts-ignore
-import {BrowserRouter as Router, Switch, Route, Link, NavLink} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Link, NavLink, useNavigate} from 'react-router-dom';
 import Modal from 'react-modal';
 import './NavBar.css';
 import '../../App.css';
 import './Modal.css'
-import AppProps from "../../App";
 import {UserContext} from "../PrihlaseniPagePackage/UserContext";
+import axios from 'axios';
+import {sha256} from "js-sha256";
 
 interface NavbarProps {
     PrihlaseniPage: unknown
 }
 
 const NavBar = ({PrihlaseniPage}: NavbarProps) => {
-    const {isLoggedIn} = useContext(UserContext);
+    const {isLoggedIn, user, logoutUser} = useContext(UserContext);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [passwordModalIsOpen, setPasswordModalIsOpen] = useState(false);
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-
+    const [oldPassword, setOldPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const navigate = useNavigate();
+    const logout = () => {
+        logoutUser();
+        navigate("/");
+    };
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
     };
@@ -36,6 +43,44 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
 
     const closeDeleteModal = () => {
         setDeleteModalIsOpen(false);
+    };
+
+    const changePassword = async () => {
+
+        if (oldPassword === newPassword) {
+            alert("Vymysli nové heslo, ty lopato.");
+            return;
+        }
+
+        try {
+            const response = await axios.put(`/api/changePassword/${user.id}`, {
+                oldPassword: sha256(oldPassword),
+                newPassword: sha256(newPassword)
+            });
+
+            if (response.data.success) {
+                console.log("Heslo bylo úspěšně změněno.");
+                closePasswordModal();
+            } else if (response.data.error) {
+                console.log(response.data.error);
+                alert(response.data.error);
+            }
+        } catch (error) {
+            console.error('Nastala chyba při změně hesla:', error);
+        }
+    };
+
+
+    const deleteAccount = async () => {
+        try {
+            const response = await axios.delete(`/deleteAccount/${user.id}`);  // Předpokládám, že ID uživatele je dostupné jako 'user.id'
+            console.log(response.data);
+            setDeleteModalIsOpen(false);  // Zavřít modální okno po úspěšném smazání
+            logoutUser(); // odhlaseni
+            navigate("/"); // presmerovani na homepage
+        } catch (error) {
+            console.error('Nastala chyba při mazání účtu:', error);
+        }
     };
 
     return (
@@ -75,8 +120,9 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
                         <ul>
                             <li onClick={openPasswordModal}>Změna hesla</li>
                             <li onClick={openDeleteModal}>Zrušit účet</li>
-                            <li>Odhlásit se</li>
+                            <li onClick={logout}>Odhlásit se</li>
                         </ul>
+
                         <Modal
                             isOpen={passwordModalIsOpen}
                             onRequestClose={closePasswordModal}
@@ -84,10 +130,33 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
                             className="Modal"
                             overlayClassName="Overlay"
                         >
-                            <h2>Změna hesla</h2>
-                            <p>Toto je obsah modálního okna pro změnu hesla.</p>
-                            <button onClick={closePasswordModal}>Zavřít</button>
+                            <div className="ModalContainer ZmenaHeslaModal">
+                                <h2>Pro změnu hesla vyplňte pole níže</h2>
+
+                                <div className="InputContainer">
+                                    <label>
+                                        <p>Staré heslo</p>
+                                        <input type='password'
+                                               placeholder="**********"
+                                               value={oldPassword}
+                                               onChange={e => setOldPassword(e.target.value)}/>
+                                    </label>
+                                    <label>
+                                        <p>Nové heslo</p>
+                                        <input type='password'
+                                               placeholder="**********"
+                                               value={newPassword}
+                                               onChange={e => setNewPassword(e.target.value)}/>
+                                    </label>
+                                </div>
+
+                                <div className="btnsContainer">
+                                    <button onClick={closePasswordModal} className="btnZrusit">ZRUŠIT</button>
+                                    <button onClick={changePassword} className="btnSubmit">Změnit heslo</button>
+                                </div>
+                            </div>
                         </Modal>
+
                         <Modal
                             isOpen={deleteModalIsOpen}
                             onRequestClose={closeDeleteModal}
@@ -98,8 +167,8 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
                             <div className="ModalContainer ZruseniUctuModal">
                                 <h2>Opravdu chcete zrušit svůj účet?</h2>
                                 <div className="btnsContainer">
-                                    <button className="btnZrusitUcet">ZRUŠIT ÚČET</button>
-                                    <button onClick={closeDeleteModal} className="btnStorno">STORNO</button>
+                                    <button onClick={deleteAccount} className="btnZrusit">ZRUŠIT ÚČET</button>
+                                    <button onClick={closeDeleteModal} className="btnSubmit">STORNO</button>
                                 </div>
                             </div>
                         </Modal>

@@ -19,7 +19,6 @@
 
 .ModalContainer {
     width: 560px;
-    height: 200px;
     background-color: #1C2227;
     border: 1px solid #1C2227;
     border-radius: 25px;
@@ -27,9 +26,17 @@
     color: white;
 }
 
+.ZruseniUctuModal{
+    height: 200px;
+}
+
+.ZmenaHeslaModal{
+    height: 435px;
+}
+
 .ModalContainer h2 {
     font-size: 1.5rem;
-    margin: 2.5rem auto 0 auto;
+    margin: 2.5rem auto 20px auto;
     text-align: center;
 }
 
@@ -44,18 +51,18 @@
     margin: 0 1rem;
 }
 
-.btnZrusitUcet{
+.btnZrusit{
     font-size: 1rem;
     cursor: pointer;
     padding: 9px 25px;
 }
 
-.btnZrusitUcet:hover{
+.btnZrusit:hover{
     color: #D3FC01;
     text-decoration: underline;
 }
 
-.btnStorno{
+.btnSubmit{
     padding: 10px 25px 9px 25px;
     border-radius: 25px;
     cursor: pointer;
@@ -65,6 +72,6 @@
     border: 1px solid #D3FC01;
 }
 
-.btnStorno:hover{
+.btnSubmit:hover{
     box-shadow: #D3FC01 0 1px 2px;
 }
