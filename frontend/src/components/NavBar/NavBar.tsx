@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route, Link, NavLink} from 'react-route
 import Modal from 'react-modal';
 import './NavBar.css';
 import '../../App.css';
+import './Modal.css'
 import AppProps from "../../App";
 import {UserContext} from "../PrihlaseniPagePackage/UserContext";
 
@@ -12,7 +13,7 @@ interface NavbarProps {
 }
 
 const NavBar = ({PrihlaseniPage}: NavbarProps) => {
-    const { isLoggedIn } = useContext(UserContext);
+    const {isLoggedIn} = useContext(UserContext);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [passwordModalIsOpen, setPasswordModalIsOpen] = useState(false);
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
@@ -66,27 +67,6 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
                 </div>
             </div>
 
-            {/*
-            {isLoggedIn ? (
-               <div className="UserPrihlasen">
-                <button className="UserIco">
-                </button>
-                <div className="DropdownMenu">
-                    <ul>
-                        <li>Změna hesla</li>
-                        <li>Zrušit účet</li>
-                        <li>Odhlásit se</li>
-                    </ul>
-                </div>
-            </div>
-            ) : (
-                <div className="buttons UserNeprihlasen">
-                    <Link to="/prihlaseni">
-                        <button className="button prihlaseni">Přihlásit se</button>
-                    </Link>
-                </div>
-            )}*/}
-
             <div className="UserPrihlasen">
                 <button className="UserIco" onClick={toggleDropdown}>
                 </button>
@@ -115,9 +95,13 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
                             className="Modal"
                             overlayClassName="Overlay"
                         >
-                            <h2>Zrušit účet</h2>
-                            <p>Toto je obsah modálního okna pro zrušení účtu.</p>
-                            <button onClick={closeDeleteModal}>Zavřít</button>
+                            <div className="ModalContainer ZruseniUctuModal">
+                                <h2>Opravdu chcete zrušit svůj účet?</h2>
+                                <div className="btnsContainer">
+                                    <button className="btnZrusitUcet">ZRUŠIT ÚČET</button>
+                                    <button onClick={closeDeleteModal} className="btnStorno">STORNO</button>
+                                </div>
+                            </div>
                         </Modal>
                     </div>
                 )}

@@ -147,6 +147,13 @@ nav a {
     color: #1C2227;
 }
 
+.DropdownMenu {
+    transition: display 0.3s ease;
+}
+
+.UserPrihlasen .UserIco:focus{
+    filter: drop-shadow(0 0 5px #D3FC01);
+}
 
 .menu-item .NavbarLink.active p{
     color: #D3FC01;
@@ -159,47 +166,9 @@ nav a {
 
 
 
-.Modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-}
-
-.Overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-}
 
 
 
-
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
 
 
 
