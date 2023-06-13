@@ -86,7 +86,9 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
     return (
         <nav>
             <div className="logo">
-                <span className="navbar-logo"></span>
+                <Link to="/" className="NavbarLink">
+                    <span className="navbar-logo"></span>
+                </Link>
             </div>
 
             <div className="menu-items">
@@ -111,70 +113,77 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
                     </NavLink>
                 </div>
             </div>
+            {isLoggedIn ? (
+                <div className="UserPrihlasen">
+                    <button className="UserIco" onClick={toggleDropdown}>
+                    </button>
+                    {dropdownOpen && (
+                        <div className="DropdownMenu">
+                            <ul>
+                                <li onClick={openPasswordModal}>Změna hesla</li>
+                                <li onClick={openDeleteModal}>Zrušit účet</li>
+                                <li onClick={logout}>Odhlásit se</li>
+                            </ul>
 
-            <div className="UserPrihlasen">
-                <button className="UserIco" onClick={toggleDropdown}>
-                </button>
-                {dropdownOpen && (
-                    <div className="DropdownMenu">
-                        <ul>
-                            <li onClick={openPasswordModal}>Změna hesla</li>
-                            <li onClick={openDeleteModal}>Zrušit účet</li>
-                            <li onClick={logout}>Odhlásit se</li>
-                        </ul>
+                            <Modal
+                                isOpen={passwordModalIsOpen}
+                                onRequestClose={closePasswordModal}
+                                contentLabel="Změna hesla"
+                                className="Modal"
+                                overlayClassName="Overlay"
+                            >
+                                <div className="ModalContainer ZmenaHeslaModal">
+                                    <h2>Pro změnu hesla vyplňte pole níže</h2>
 
-                        <Modal
-                            isOpen={passwordModalIsOpen}
-                            onRequestClose={closePasswordModal}
-                            contentLabel="Změna hesla"
-                            className="Modal"
-                            overlayClassName="Overlay"
-                        >
-                            <div className="ModalContainer ZmenaHeslaModal">
-                                <h2>Pro změnu hesla vyplňte pole níže</h2>
+                                    <div className="InputContainer">
+                                        <label>
+                                            <p>Staré heslo</p>
+                                            <input type='password'
+                                                   placeholder="**********"
+                                                   value={oldPassword}
+                                                   onChange={e => setOldPassword(e.target.value)}/>
+                                        </label>
+                                        <label>
+                                            <p>Nové heslo</p>
+                                            <input type='password'
+                                                   placeholder="**********"
+                                                   value={newPassword}
+                                                   onChange={e => setNewPassword(e.target.value)}/>
+                                        </label>
+                                    </div>
 
-                                <div className="InputContainer">
-                                    <label>
-                                        <p>Staré heslo</p>
-                                        <input type='password'
-                                               placeholder="**********"
-                                               value={oldPassword}
-                                               onChange={e => setOldPassword(e.target.value)}/>
-                                    </label>
-                                    <label>
-                                        <p>Nové heslo</p>
-                                        <input type='password'
-                                               placeholder="**********"
-                                               value={newPassword}
-                                               onChange={e => setNewPassword(e.target.value)}/>
-                                    </label>
+                                    <div className="btnsContainer">
+                                        <button onClick={closePasswordModal} className="btnZrusit">ZRUŠIT</button>
+                                        <button onClick={changePassword} className="btnSubmit">Změnit heslo</button>
+                                    </div>
                                 </div>
+                            </Modal>
 
-                                <div className="btnsContainer">
-                                    <button onClick={closePasswordModal} className="btnZrusit">ZRUŠIT</button>
-                                    <button onClick={changePassword} className="btnSubmit">Změnit heslo</button>
+                            <Modal
+                                isOpen={deleteModalIsOpen}
+                                onRequestClose={closeDeleteModal}
+                                contentLabel="Zrušit účet"
+                                className="Modal"
+                                overlayClassName="Overlay"
+                            >
+                                <div className="ModalContainer ZruseniUctuModal">
+                                    <h2>Opravdu chcete zrušit svůj účet?</h2>
+                                    <div className="btnsContainer">
+                                        <button onClick={deleteAccount} className="btnZrusit">ZRUŠIT ÚČET</button>
+                                        <button onClick={closeDeleteModal} className="btnSubmit">STORNO</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </Modal>
-
-                        <Modal
-                            isOpen={deleteModalIsOpen}
-                            onRequestClose={closeDeleteModal}
-                            contentLabel="Zrušit účet"
-                            className="Modal"
-                            overlayClassName="Overlay"
-                        >
-                            <div className="ModalContainer ZruseniUctuModal">
-                                <h2>Opravdu chcete zrušit svůj účet?</h2>
-                                <div className="btnsContainer">
-                                    <button onClick={deleteAccount} className="btnZrusit">ZRUŠIT ÚČET</button>
-                                    <button onClick={closeDeleteModal} className="btnSubmit">STORNO</button>
-                                </div>
-                            </div>
-                        </Modal>
-                    </div>
-                )}
-            </div>
+                            </Modal>
+                        </div>
+                    )}
+                </div>
+            ) : (
+                <div className="buttons UserNeprihlasen">
+                    <Link to="/prihlaseni">
+                        <button className="button prihlaseni">Přihlásit se</button>
+                    </Link>
+                </div>
+            )}
         </nav>
     );
 };
