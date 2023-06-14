@@ -8,6 +8,7 @@ import slavia from './assets/slavia.png';
 import LeagueList from './components/LeagueList';
 import Navbar from './components/HomePagePackage/Navbar';
 import HomePage from './components/HomePagePackage/HomePage';
+import League from "./components/league/League";
 //import PrihlaseniPage from './components/PrihlaseniPagePackage/PrihlaseniPage';
 //import RegistracePage from './components/RegistracePagePackage/RegistracePage';
 
@@ -23,17 +24,33 @@ const App = () => {
     //     </Router>
     // );
 
+    let matchListT: any[] = [
+        {
+            id: 1,
+            date: "12.2.2020",
+            time: "13:14",
+            team1: "Sparta",
+            team2: "Slavia",
+            score1: 1,
+            score2: 0,
+            imgSource1: sparta,
+            imgSource2: slavia
+        },
+        {
+            id: 2,
+            date: "12.2.2020",
+            time: "13:14",
+            team1: "Sparta",
+            team2: "Slavia",
+            score1: 1,
+            score2: 0,
+            imgSource1: sparta,
+            imgSource2: slavia
+        }
+    ];
+
     return (
-        <Match
-            date="12.2.2020"
-            time="13:14"
-            team1="Sparta"
-            team2="Slavia"
-            score1={1}
-            score2={0}
-            imgSource1={sparta}
-            imgSource2={slavia}
-        />
+        <League id={1} name={"Testovací liga"} matchList={matchListT}></League>
     )
 };
 

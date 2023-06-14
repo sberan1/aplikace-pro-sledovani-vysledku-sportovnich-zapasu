@@ -17,16 +17,24 @@ const LeagueList = () => {
         fetchLeagues();
     }, []);
 
-    return (
-        <div>
-            <h1 className="text-5xl">Leagues</h1>
-            <ul>
-                {leagues.map(league => (
-                    <li key={league.id}>{league.name} {league.type}</li>
-                ))}
-            </ul>
-        </div>
-    );
+    type league = {
+        id: bigint,
+        name: string,
+        type: any,
+    }
+
+
+
+    let leagueList : Array<league> = [];
+
+    for (let i = 0; i < leagues.length; i++) {
+        leagueList.push(leagues[i].id, leagues[i].name,leagues[i].type);
+    }
+
+
+
+   return leagueList;
+
 };
 
 export default LeagueList;

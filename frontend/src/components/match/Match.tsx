@@ -4,7 +4,7 @@ import slavia from '../../assets/slavia.png';
 import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
 
     function Match({id, date, time, team1, team2, score1, score2, imgSource1, imgSource2} : {
-        id: bigint,
+        id: any,
         date: any,
         time: any,
         team1: string,
@@ -23,7 +23,7 @@ import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
 
         if((score1 === null || score2 === null) && (imgSource1 === null || imgSource2 === null)){
             return(
-                <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match}`}>
+                <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match} m-1`}>
                     <div className='columns-1 flex-initial w-64 inline-grid grid-rows-2 pl-6'>
                         <div className='flex items-end'>
                             <p className={`${styles.text1Thin}`}>{date}</p>
@@ -60,7 +60,7 @@ import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
         }
         else if(score1 === null || score2 === null){
             return(
-                <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match}`}>
+                <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match} m-1`}>
                     <div className='columns-1 flex-initial w-64 inline-grid grid-rows-2 pl-6'>
                         <div className='flex items-end'>
                             <p className={`${styles.text1Thin} `}>{date}</p>
@@ -97,7 +97,7 @@ import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
         }
         else if((score1 !== null || score2 !== null) && (imgSource1 === null || imgSource2 === null)) {
             return (
-                <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match}`}>
+                <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match} m-1`}>
                     <div className='columns-1 flex-initial w-64 inline-grid grid-rows-2 pl-6'>
                         <div className='flex items-end'>
                             <p className={`${styles.text1Thin} `}>{date}</p>
@@ -136,7 +136,7 @@ import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
         }
         else{
             return(
-                <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match}`}>
+                <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match} m-1`}>
                     <div className='columns-1 flex-initial w-64 inline-grid grid-rows-2 pl-6'>
                         <div className='flex items-end'>
                             <p className={`${styles.text1Thin} `}>{date}</p>

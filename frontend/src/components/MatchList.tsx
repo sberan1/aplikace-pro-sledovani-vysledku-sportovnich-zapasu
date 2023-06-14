@@ -37,7 +37,7 @@ const MatchList = (type : Type, item : String) => {
     }
 
     type match = {
-        id: bigint,
+        id: any,
         date: any,
         time: any,
         team1: string,
@@ -48,11 +48,15 @@ const MatchList = (type : Type, item : String) => {
         imgSource2: string
     }
 
-    let matchList : match[] = [];
+    let matchList : Array<match> = [];
 
-    matches.map(individualMatch => (
+    for (let i = 0; i < matches.length; i++) {
+        matchList.push(matches[i].id, matches[i].date,matches[i].time,matches[i].team1,matches[i].team2,matches[i].score1,matches[i].score2,matches[i].imgSource1,matches[i].imgSource2);
+    }
+
+   /* matches.map(individualMatch => (
         matchList.push(individualMatch.id, individualMatch.date,individualMatch.time,individualMatch.team1,individualMatch.team2,individualMatch.score1,individualMatch.score2,individualMatch.imgSource1,individualMatch.imgSource2)
-    ));
+    ));*/
 
     return matchList;
 };
