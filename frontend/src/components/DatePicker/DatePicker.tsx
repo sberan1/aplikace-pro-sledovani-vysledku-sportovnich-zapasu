@@ -7,11 +7,19 @@ import "./DatePicker.css";
 const DatePickerComponent = () => {
     const DatePickerComponent = DatePicker as any;
     const [startDate, setStartDate] = useState(new Date());
+    const [items, setItems] = useState([]); // pole se všemi položkami
+    const [filteredItems, setFilteredItems] = useState([]); // pole s filtrovanými položkami
 
     const handleChange = date => {
         setStartDate(date);
         sendDate(date);
+        filterItems(date);
     }
+
+    const filterItems = date => {
+        const filtered = items.filter(item => new Date(item.date).setHours(0,0,0,0) === date.setHours(0,0,0,0));
+        setFilteredItems(filtered);
+    }// Pak byste místo 'items' zobrazovali 'filteredItems' v render metode.
 
     const sendDate = date => {
         const formattedDate = date.toISOString().substring(0,10);
