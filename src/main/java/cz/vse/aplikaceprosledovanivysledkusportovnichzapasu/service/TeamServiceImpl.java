@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +29,13 @@ public class TeamServiceImpl implements TeamService {
         JSONObject resp = apiSports.basketbalTymy(leagueExternalId, seasonExternalId);
         JSONArray teams = resp.getJSONArray("response");
         teams.forEach(o -> pridatTymy((JSONObject) o, "Basketball", resp));
+    }
+
+    @Override
+    public void fillHockeyTeamsByLeagueExternalIdAndSeason(int leagueExternalId, String seasonExternalId) {
+        JSONObject resp = apiSports.hokejTymy(leagueExternalId, seasonExternalId);
+        JSONArray teams = resp.getJSONArray("response");
+        teams.forEach(o -> pridatTymy((JSONObject) o, "Hockey", resp));
     }
 
     @Override

@@ -25,10 +25,14 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/fixture/getFixturesBySportAndDate",
+                .requestMatchers(
+                        "/fixture/getFixturesBySportAndDate",
                         "/user/register",
                         "/user/authenticate",
-                        "/league/getLeaguesByFixturePlayedAtDateInSport")
+                        "/league/getLeaguesByFixturePlayedAtDateInSport",
+                        "/team/fillTeamsHockey",
+                        "/fixture/fillFixturesHockey",
+                        "/fixture/fillFixturesBasketball")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

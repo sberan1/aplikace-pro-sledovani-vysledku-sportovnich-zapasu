@@ -17,12 +17,16 @@ public class TeamController {
     @Autowired
     TeamService teamService;
 
-    @PostMapping("/fillTeamsBasketball")
+    @PostMapping(value="/fillTeamsBasketball")
     public void fillTeamsBasketball(@RequestParam int leagueExternalId, @RequestParam String season) {
         teamService.fillBasketballTeamsByLeagueExternalIdAndSeason(leagueExternalId, season);
     }
+    @PostMapping(value= "/fillTeamsHockey")
+    public void fillTeamsHockey(@RequestParam int leagueExternalId, @RequestParam String season) {
+         teamService.fillHockeyTeamsByLeagueExternalIdAndSeason(leagueExternalId, season);
+    }
 
-    @GetMapping("/getTeamsBySport")
+    @GetMapping(value="/getTeamsBySport")
     public List<Team> getTeamsBySport(@RequestParam String sport) {
         return teamService.getTeamsBySport(sport);
     }

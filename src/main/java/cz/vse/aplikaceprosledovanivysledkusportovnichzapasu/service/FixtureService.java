@@ -9,5 +9,6 @@ public interface FixtureService {
     List<MatchListDateDto> getFixturesBySportAndDate(String sport, String date, long league);
 
     void fillBasketballFixture(int leagueExternalId, String season);
+    void fillHockeyFixture(int leagueExternalId, String season);
 
 }

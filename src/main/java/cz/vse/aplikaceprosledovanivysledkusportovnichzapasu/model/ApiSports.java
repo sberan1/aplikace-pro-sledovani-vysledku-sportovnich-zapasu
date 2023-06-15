@@ -69,7 +69,7 @@ public class ApiSports {
         return new JSONObject(authentikace(API_HOST_HOKEJ, "games?date=" + datum.format(formatter)).getBody());
     }
     public JSONObject hokejZapasy(int ExternalIdLigy, String seasonString){
-        return new JSONObject(authentikace(API_HOST_HOKEJ, "fixtures?league="+ ExternalIdLigy +"&season=" + seasonString).getBody());
+        return new JSONObject(authentikace(API_HOST_HOKEJ, "games?league="+ ExternalIdLigy +"&season=" + seasonString).getBody());
     }
     public JSONObject hokejTymy(int idLigy, String seasonString){
         return new JSONObject(authentikace(API_HOST_HOKEJ, "teams?league="+ idLigy +"&season=" + seasonString).getBody());

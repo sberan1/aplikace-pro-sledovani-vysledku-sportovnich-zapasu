@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CountryServiceImpl implements CountryService{
+public class CountryServiceImpl implements CountryService {
     ApiSports apiSports = ApiSports.getInstance();
     @Autowired
     private CountryRepository countryRepository;
@@ -44,11 +44,14 @@ public class CountryServiceImpl implements CountryService{
     public void fillCountriesFootball() {
         JSONArray zemeFotbal = apiSports.fotbalZeme().getJSONArray("response");
         zemeFotbal.forEach(o -> {
-            if (!countryRepository.findCountryByNameAndSport(((JSONObject) o).getString("name"), "Football").isPresent()); {
+            if (!countryRepository.findCountryByNameAndSport(((JSONObject) o).getString("name"), "Football").isPresent())
+                ;
+            {
                 pridatZemiFotbal((JSONObject) o, "Football");
             }
         });
-        @Override
+    }
+    @Override
     public void fillCountriesVolleyball() {
         JSONArray zemeVolleyball = apiSports.basketbalZeme().getJSONArray("response");
         zemeVolleyball.forEach(o -> {
@@ -58,10 +61,12 @@ public class CountryServiceImpl implements CountryService{
         });
     }
 
+
+
     @Override
     public List<Country> findAllBySport(String sport) {
         return countryRepository.findBySport(sport);
-    }
+}
 
 
 

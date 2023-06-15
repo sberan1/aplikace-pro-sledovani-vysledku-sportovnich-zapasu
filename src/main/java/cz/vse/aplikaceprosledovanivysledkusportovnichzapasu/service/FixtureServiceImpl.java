@@ -3,8 +3,10 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.BasketballScore;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.HockeyScore;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.ApiSports;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.*;
+import org.apache.catalina.Store;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +32,10 @@ public class FixtureServiceImpl implements FixtureService {
     CountryRepository countryRepository;
     @Autowired
     BasketballScoreRepository basketballScoreRepository;
+    @Autowired
+    private HockeyScoreRepository hockeyScoreRepository;
     ApiSports apiSports = ApiSports.getInstance();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
 
     @Override
     public List<MatchListDateDto> getFixturesBySportAndDate(String sport, String date, long league) {
@@ -62,6 +66,13 @@ public class FixtureServiceImpl implements FixtureService {
 
     }
 
+    @Override
+    public void fillHockeyFixture(int leagueExternalId, String season) {
+        JSONObject resp = apiSports.hokejZapasy(leagueExternalId, season);
+        JSONArray fixtures = resp.getJSONArray("response");
+        fixtures.forEach(o -> pridatZapasy((JSONObject) (o),"Hockey", resp));
+    }
+
 
     private void pridatZapasy(JSONObject zapas, String sport, JSONObject resp) {
         Fixture fixtureEnt;
@@ -81,7 +92,16 @@ public class FixtureServiceImpl implements FixtureService {
             fixtureEnt.setAwayTeam(teamRepository.findTeamByExternalIdAndSport(zapas.getJSONObject("teams").getJSONObject("away").getInt("id"), sport));
         }
         else {
-            teamService.fillBasketballTeamsByLeagueExternalIdAndSeason(zapas.getJSONObject("league").getInt("id"), zapas.getJSONObject("league").get("season").toString());
+            switch (sport) {
+                case "Basketball":
+                    teamService.fillBasketballTeamsByLeagueExternalIdAndSeason(zapas.getJSONObject("league").getInt("id"), zapas.getJSONObject("league").get("season").toString());
+                case "Hockey":
+                    teamService.fillHockeyTeamsByLeagueExternalIdAndSeason(zapas.getJSONObject("league").getInt("id"), zapas.getJSONObject("league").get("season").toString());
+                case "Football":
+                    //teamService.fillFootballTeamsByLeagueExternalIdAndSeason(zapas.getJSONObject("league").getInt("id"), zapas.getJSONObject("league").get("season").toString());
+                case "Volleyball":
+                    //teamService.fillVolleyballTeamsByLeagueExternalIdAndSeason(zapas.getJSONObject("league").getInt("id"), zapas.getJSONObject("league").get("season").toString());
+            }
             fixtureEnt.setHomeTeam(teamRepository.findTeamByExternalIdAndSport(zapas.getJSONObject("teams").getJSONObject("home").getInt("id"), sport));
             fixtureEnt.setAwayTeam(teamRepository.findTeamByExternalIdAndSport(zapas.getJSONObject("teams").getJSONObject("away").getInt("id"), sport));
         }
@@ -134,13 +154,69 @@ public class FixtureServiceImpl implements FixtureService {
                     basketballScore.setOvertimeHomeScore(0);
                     basketballScore.setOvertimeAwayScore(0);
                 }
-
-                fixtureEnt.setScore(basketballScore);
                 basketballScoreRepository.save(basketballScore);
+                fixtureEnt.setScore(basketballScore);
                 break;
             case "Football":
                 break;
             case "Hockey":
+                HockeyScore hockeyScore;
+                if (fixtureEnt.getScore() == null){
+                    hockeyScore = new HockeyScore();}
+                else {
+                    hockeyScore = (HockeyScore) fixtureEnt.getScore();
+                }
+                if (zapas.getJSONObject("periods").get("first") != JSONObject.NULL) {
+                    try {
+                        hockeyScore.setFirstPeriodHomeScore(Integer.parseInt(zapas.getJSONObject("periods").getString("first").split("-")[0]));
+                        hockeyScore.setSecondPeriodHomeScore(Integer.parseInt(zapas.getJSONObject("periods").getString("second").split("-")[0]));
+                        hockeyScore.setThirdPeriodHomeScore(Integer.parseInt(zapas.getJSONObject("periods").getString("third").split("-")[0]));
+                        hockeyScore.setFinalHomeScore(zapas.getJSONObject("scores").getInt("home"));
+
+                        hockeyScore.setFirstPeriodAwayScore(Integer.parseInt(zapas.getJSONObject("periods").getString("first").split("-")[1]));
+                        hockeyScore.setSecondPeriodAwayScore(Integer.parseInt(zapas.getJSONObject("periods").getString("second").split("-")[1]));
+                        hockeyScore.setThirdPeriodAwayScore(Integer.parseInt(zapas.getJSONObject("periods").getString("third").split("-")[1]));
+                        hockeyScore.setFinalAwayScore(zapas.getJSONObject("scores").getInt("away"));
+
+                        if (zapas.getJSONObject("periods").get("penalties") != JSONObject.NULL) {
+                            hockeyScore.setOvertimeHomeScore(Integer.parseInt(zapas.getJSONObject("periods").getString("overtime").split("-")[0]));
+                            hockeyScore.setShootoutHomeScore(Integer.parseInt(zapas.getJSONObject("periods").getString("penalties").split("-")[0]));
+                            hockeyScore.setOvertimeAwayScore(Integer.parseInt(zapas.getJSONObject("periods").getString("overtime").split("-")[1]));
+                            hockeyScore.setShootoutAwayScore(Integer.parseInt(zapas.getJSONObject("periods").getString("penalties").split("-")[1]));
+                        }
+                        else {
+                            hockeyScore.setOvertimeHomeScore(0);
+                            hockeyScore.setShootoutHomeScore(0);
+                            hockeyScore.setOvertimeAwayScore(0);
+                            hockeyScore.setShootoutAwayScore(0);
+                        }
+                    }
+                    catch (Exception e){
+                        hockeyScore.setFirstPeriodHomeScore(0);
+                        hockeyScore.setSecondPeriodHomeScore(0);
+                        hockeyScore.setThirdPeriodHomeScore(0);
+                        hockeyScore.setFinalHomeScore(0);
+
+                        hockeyScore.setFirstPeriodAwayScore(0);
+                        hockeyScore.setSecondPeriodAwayScore(0);
+                        hockeyScore.setThirdPeriodAwayScore(0);
+                        hockeyScore.setFinalAwayScore(0);
+                    }
+                }
+                else
+                {
+                    hockeyScore.setFirstPeriodHomeScore(0);
+                    hockeyScore.setSecondPeriodHomeScore(0);
+                    hockeyScore.setThirdPeriodHomeScore(0);
+                    hockeyScore.setFinalHomeScore(0);
+
+                    hockeyScore.setFirstPeriodAwayScore(0);
+                    hockeyScore.setSecondPeriodAwayScore(0);
+                    hockeyScore.setThirdPeriodAwayScore(0);
+                    hockeyScore.setFinalAwayScore(0);
+                }
+                hockeyScoreRepository.save(hockeyScore);
+                fixtureEnt.setScore(hockeyScore);
                 break;
             case "Volleyball":
                 break;
