@@ -1,24 +1,32 @@
 import React, {ReactNode} from 'react';
-// @ts-ignore
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // import 'Routes' instead of 'Switch'
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
 import Match from './components/match/Match';
+import sparta from './assets/sparta.png';
+import slavia from './assets/slavia.png';
 import LeagueList from './components/LeagueList';
 import Navbar from './components/HomePagePackage/Navbar';
 import HomePage from './components/HomePagePackage/HomePage';
-//import PrihlaseniPage from './components/PrihlaseniPagePackage/PrihlaseniPage';
-//import RegistracePage from './components/RegistracePagePackage/RegistracePage';
+import PrihlaseniPage from './components/PrihlaseniPagePackage/PrihlaseniPage';
+import {UserProvider} from "./components/PrihlaseniPagePackage/UserContext";
+import RegistracePage from './components/RegistracePagePackage/RegistracePage';
+import FotbalPage from './components/ZkusebniPageFotbalu/FotbalPage';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 const App = () => {
-    // @ts-ignore
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<HomePage  HomePage="" PrihlaseniPage="" RegistracePage=""/>} />
-                {/* <Route path="/prihlaseni" element={<PrihlaseniPage />} />
-                <Route path="/registrace" element={<RegistracePage />} />*/}
-            </Routes>
-        </Router>
+        <UserProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<HomePage HomePage="" PrihlaseniPage="" RegistracePage=""/>}/>
+                    <Route path="/prihlaseni" element={<PrihlaseniPage PrihlaseniPage="" RegistracePage=""/>}/>
+                    <Route path="/registrace" element={<RegistracePage  PrihlaseniPage="" RegistracePage=""/>} />
+                    <Route path="/fotbal" element={<FotbalPage />}></Route>
+                </Routes>
+            </Router>
+        </UserProvider>
     );
 };
 

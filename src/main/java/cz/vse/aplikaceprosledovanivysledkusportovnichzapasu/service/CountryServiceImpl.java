@@ -48,12 +48,22 @@ public class CountryServiceImpl implements CountryService{
                 pridatZemiFotbal((JSONObject) o, "Football");
             }
         });
+        @Override
+    public void fillCountriesVolleyball() {
+        JSONArray zemeVolleyball = apiSports.basketbalZeme().getJSONArray("response");
+        zemeVolleyball.forEach(o -> {
+            if (!countryRepository.findByExternalIdAndSport(((JSONObject) o).getInt("id"), "Volleyball").isPresent()) {
+                pridatZemi((JSONObject) o, "Volleyball");
+            }
+        });
     }
 
     @Override
     public List<Country> findAllBySport(String sport) {
         return countryRepository.findBySport(sport);
     }
+
+
 
     private void pridatZemi(JSONObject o, String sport) {
         Country country = new Country();

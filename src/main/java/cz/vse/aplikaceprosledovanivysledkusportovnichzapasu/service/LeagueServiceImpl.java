@@ -1,9 +1,12 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.LeagueRespDto;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.ApiSports;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.CountryRepository;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.FixtureRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.LeagueRepository;
 
 import org.json.JSONArray;
@@ -12,7 +15,12 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service @Primary
 public class LeagueServiceImpl implements LeagueService{
@@ -21,6 +29,8 @@ public class LeagueServiceImpl implements LeagueService{
     private LeagueRepository leagueRepository;
     @Autowired
     private CountryRepository countryRepository;
+    @Autowired
+    private FixtureRepository fixtureRepository;
 
     private ApiSports apiSports = ApiSports.getInstance();
 
@@ -71,6 +81,22 @@ public class LeagueServiceImpl implements LeagueService{
     @Override
     public List<League> getLeaguesBySport(String sport) {
         return leagueRepository.findBySport(sport);
+    }
+
+    public List<LeagueRespDto> getLeagueMatchesByDateAndSport(String date, String sport) {
+        int [] datumString = Arrays.stream(date.split("-")).mapToInt(Integer::parseInt).toArray();
+        Set<League> ligy = new HashSet<>(leagueRepository.findAllByDateAndSport(LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0), LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0).plusDays(1), sport));
+        Set<LeagueRespDto> ligyDto = new HashSet<>();
+        for (League liga : ligy){
+            LeagueRespDto ligaDto = new LeagueRespDto();
+            ligaDto.builder()
+                    .id(liga.getId())
+                    .name(liga.getName())
+                    .flag(liga.getCountry().getFlag())
+                    .build();
+            ligyDto.add(ligaDto);
+        }
+        return ligyDto.stream().toList();
     }
 
 
