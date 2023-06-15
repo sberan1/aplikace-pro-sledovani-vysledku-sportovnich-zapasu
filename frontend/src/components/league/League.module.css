@@ -1,0 +1,25 @@
+.league {
+    background: #1C2227;
+    border-radius: 8px;
+    width: 932px;
+}
+.leagueName {
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* or 24px */
+
+    uppercase: true;
+
+    color: #FFFFFF;
+}
+
+.button {
+    fill: #FFFFFF;
+}
+
+.button:hover {
+    fill: #EAEAEB;
+}
