@@ -23,6 +23,11 @@ public class CountryController {
     public void fillCountriesHockey() {
         countryService.fillCountriesHockey();
     }
+    
+    @PostMapping("/fillCountriesFootball")
+    public void fillCountriesFootball() {
+        countryService.fillCountriesFootball();
+    }
 
     @PostMapping("/fillCountriesVolleyball")
     public void fillCountriesVolleyball(){countryService.fillCountriesVolleyball();}
