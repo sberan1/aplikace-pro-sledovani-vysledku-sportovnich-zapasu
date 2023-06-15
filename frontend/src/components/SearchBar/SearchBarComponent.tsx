@@ -1,15 +1,8 @@
 import React, {FormEvent, useState, useEffect} from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import './Navbar.css';
+import '../HomePagePackage/Navbar.css';
 import '../../App.css';
 
-interface NavbarProps {
-    HomePage: unknown,
-    PrihlaseniPage: unknown,
-    RegistracePage: unknown
-}
-
-const Navbar = ({ HomePage, PrihlaseniPage, RegistracePage }: NavbarProps) => {
+const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [results, setResults] = useState<any[]>([]);
 
@@ -33,11 +26,7 @@ const Navbar = ({ HomePage, PrihlaseniPage, RegistracePage }: NavbarProps) => {
     }, [searchTerm]);
 
     return (
-        <nav>
-            <div className="logo">
-                <span className="navbar-logo"></span>
-            </div>
-
+        <nav className="NavBar">
             <form onSubmit={handleSubmit} className="SearchForm">
                 <input
                     type="text"
@@ -48,18 +37,17 @@ const Navbar = ({ HomePage, PrihlaseniPage, RegistracePage }: NavbarProps) => {
                 <button type="submit" value="hledej">VYHLEDAT</button>
             </form>
 
-            <div className="buttons">
-                <Link to="/registrace">
-                    <button className="button registrace">Registrace</button>
-                </Link>
-                <Link to="/prihlaseni">
-                    <button className="button prihlaseni">Přihlásit se</button>
-                </Link>
+            <div className="SearchResults">
+                {results.map((result, index) => (
+                    <div key={index}>
+                        {/* Sem pak vlozit komponenty zapasu nebo tymu nebo neceho co vrati BE */}
+                        {result}
+                    </div>
+                ))}
             </div>
-
         </nav>
     );
 };
 
-export default Navbar;
+export default SearchBar;
 

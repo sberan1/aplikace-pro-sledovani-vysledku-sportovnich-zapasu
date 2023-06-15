@@ -16,4 +16,5 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
     Optional<Country> findByExternalIdAndSport(int externalId, String sport);
     @Query("select c from Country c where c.externalId = ?1")
     Country findByExternalId(int externalId);
+    Country findCountryByFlagAndSport(String flag, String sport);
 }

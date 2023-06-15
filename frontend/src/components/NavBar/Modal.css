@@ -1,0 +1,77 @@
+.Modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 0 solid #1C2227;
+    border-radius: 28px;
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ModalContainer {
+    width: 560px;
+    background-color: #1C2227;
+    border: 1px solid #1C2227;
+    border-radius: 25px;
+    box-shadow: #D3FC01 3px 3px 8px 0;
+    color: white;
+}
+
+.ZruseniUctuModal{
+    height: 200px;
+}
+
+.ZmenaHeslaModal{
+    height: 435px;
+}
+
+.ModalContainer h2 {
+    font-size: 1.5rem;
+    margin: 2.5rem auto 20px auto;
+    text-align: center;
+}
+
+.btnsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.btnsContainer button{
+    margin: 0 1rem;
+}
+
+.btnZrusit{
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 9px 25px;
+}
+
+.btnZrusit:hover{
+    color: #D3FC01;
+    text-decoration: underline;
+}
+
+.btnSubmit{
+    padding: 10px 25px 9px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: #D3FC01;
+    color: #1C2227;
+    border: 1px solid #D3FC01;
+}
+
+.btnSubmit:hover{
+    box-shadow: #D3FC01 0 1px 2px;
+}
