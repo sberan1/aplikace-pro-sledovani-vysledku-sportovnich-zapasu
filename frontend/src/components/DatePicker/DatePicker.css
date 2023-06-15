@@ -96,15 +96,14 @@
 }
 
 .react-datepicker-wrapper::before {
-    content: url('../../assets/CalendarW.png'); /* cesta k vaší ikoně */
+    content: url('../../assets/CalendarW.png');
     position: absolute;
-    left: 10px; /* posunutí ikony od levého okraje */
-    top: 55%;  /* centruje ikonu vertikálně */
-    transform: translateY(-50%); /* finální centrování ikony */
+    left: 10px;
+    top: 55%;
+    transform: translateY(-50%);
     z-index: 1;
 }
 
 .react-datepicker__input-container input {
-    padding-left: 35px; /* posunutí textu vpravo, aby nebyl překryt ikonou */
-    /* ostatní styly pro input... */
+    padding-left: 35px;
 }
