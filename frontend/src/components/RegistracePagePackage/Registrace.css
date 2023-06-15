@@ -1,0 +1,23 @@
+.RegistraceComponent{
+    width: 575px;
+    height: 580px;
+    margin: auto;
+}
+
+.RegistraceComponent h2{
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.RegistraceForm .InputContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.RegistraceForm .InputContainer input{
+    width: 200px;
+}
