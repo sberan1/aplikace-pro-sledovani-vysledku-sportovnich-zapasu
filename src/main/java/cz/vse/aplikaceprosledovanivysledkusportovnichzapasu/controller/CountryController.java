@@ -24,6 +24,11 @@ public class CountryController {
         countryService.fillCountriesHockey();
     }
 
+    @PostMapping("/fillCountriesFootball")
+    public void fillCountriesFootball() {
+        countryService.fillCountriesFootball();
+    }
+
     @GetMapping("/getCountries")
     public List<Country> getCountries(@RequestParam String sport) {
         return countryService.findAllBySport(sport);
