@@ -3,11 +3,11 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
 import Match from './components/match/Match';
 import LeagueList from './components/LeagueList';
-import Navbar from './components/HomePagePackage/Navbar';
-import HomePage from './components/HomePagePackage/HomePage';
-import PrihlaseniPage from './components/PrihlaseniPagePackage/PrihlaseniPage';
-import {UserProvider} from "./components/PrihlaseniPagePackage/UserContext";
-import RegistracePage from './components/RegistracePagePackage/RegistracePage';
+import Navbar from './pages/HomePagePackage/Navbar';
+import HomePage from './pages/HomePagePackage/HomePage';
+import PrihlaseniPage from './pages/PrihlaseniPagePackage/PrihlaseniPage';
+import {UserProvider} from "./pages/PrihlaseniPagePackage/UserContext";
+import RegistracePage from './pages/RegistracePagePackage/RegistracePage';
 import FotbalPage from './components/ZkusebniPageFotbalu/FotbalPage';
 import Modal from 'react-modal';
 

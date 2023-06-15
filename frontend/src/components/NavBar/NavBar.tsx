@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import './NavBar.css';
 import '../../App.css';
 import './Modal.css'
-import {UserContext} from "../PrihlaseniPagePackage/UserContext";
+import {UserContext} from "../../pages/PrihlaseniPagePackage/UserContext";
 import axios from 'axios';
 import {sha256} from "js-sha256";
 
