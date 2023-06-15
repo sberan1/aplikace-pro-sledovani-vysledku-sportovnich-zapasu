@@ -1,0 +1,30 @@
+.team-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.team-logo {
+    width: 100%;
+}
+
+.team-origin {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.team-flag {
+    width: 20px;
+}
+
+.favourite-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}

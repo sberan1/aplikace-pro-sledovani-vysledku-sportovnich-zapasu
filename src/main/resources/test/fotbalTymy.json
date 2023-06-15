@@ -1,1 +1,435 @@
-{"response":[{"venue":{"image":"https:\/\/media-3.api-sports.io\/football\/venues\/2440.png","address":"Calle del Estadio","surface":"grass","city":"Chimaltenango","name":"Estadio Municipal de Chimaltenango","id":2440,"capacity":1500},"team":{"country":"Guatemala","code":null,"name":"Chimaltenango","founded":null,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/3639.png","id":3639}},{"venue":{"image":"https:\/\/media-3.api-sports.io\/football\/venues\/2441.png","address":"15 Avenida 28-00, Zona 6, La Pedrera","surface":"grass","city":"Ciudad de Guatemala","name":"Estadio Cementos Progreso","id":2441,"capacity":17000},"team":{"country":"Guatemala","code":null,"name":"Comunicaciones II","founded":null,"national":false,"logo":"https:\/\/media-3.api-sports.io\/football\/teams\/3640.png","id":3640}},{"venue":{"image":"https:\/\/media-3.api-sports.io\/football\/venues\/2444.png","address":"Highway 12N","surface":"grass","city":"San Marcos","name":"Estadio Marquesa de la Ensenada","id":2444,"capacity":11000},"team":{"country":"Guatemala","code":"MAR","name":"Marquense","founded":1958,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/3643.png","id":3643}},{"venue":{"image":"https:\/\/media-1.api-sports.io\/football\/venues\/2445.png","address":null,"surface":"grass","city":"Asunción Mita","name":"Estadio La Asunción","id":2445,"capacity":8000},"team":{"country":"Guatemala","code":"MIC","name":"Mictlán","founded":1960,"national":false,"logo":"https:\/\/media-3.api-sports.io\/football\/teams\/3644.png","id":3644}},{"venue":{"image":"https:\/\/media-1.api-sports.io\/football\/venues\/2447.png","address":"Barrio seis de Noviembre","surface":"grass","city":"Nueva Concepción","name":"Estadio José Luis Ibarra","id":2447,"capacity":3000},"team":{"country":"Guatemala","code":null,"name":"Nueva Concepción","founded":null,"national":false,"logo":"https:\/\/media-3.api-sports.io\/football\/teams\/3646.png","id":3646}},{"venue":{"image":"https:\/\/media-3.api-sports.io\/football\/venues\/2448.png","address":null,"surface":"grass","city":"Santa Cruz del Quiché","name":"Estadio Municipal de Santa Cruz del Quiché","id":2448,"capacity":3000},"team":{"country":"Guatemala","code":null,"name":"Quiché","founded":null,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/3647.png","id":3647}},{"venue":{"image":"https:\/\/media-3.api-sports.io\/football\/venues\/2449.png","address":null,"surface":"artificial turf","city":"San Pedro Sacatepéquez","name":"Estadio Municipal de San Pedro Sacatepéquez","id":2449,"capacity":4000},"team":{"country":"Guatemala","code":null,"name":"San Pedro","founded":1992,"national":false,"logo":"https:\/\/media-2.api-sports.io\/football\/teams\/3649.png","id":3649}},{"venue":{"image":"https:\/\/media-2.api-sports.io\/football\/venues\/2452.png","address":null,"surface":"grass","city":"Sololá","name":"Estadio Xambá","id":2452,"capacity":6000},"team":{"country":"Guatemala","code":null,"name":"Sololá","founded":null,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/3652.png","id":3652}},{"venue":{"image":"https:\/\/media-2.api-sports.io\/football\/venues\/2453.png","address":"8a. Calle 2-60, Zona 2","surface":"grass","city":"Mazatenango","name":"Estadio Municipal Carlos Salazar Hijo","id":2453,"capacity":12000},"team":{"country":"Guatemala","code":"SUC","name":"Suchitepéquez","founded":1960,"national":false,"logo":"https:\/\/media-2.api-sports.io\/football\/teams\/3653.png","id":3653}},{"venue":{"image":"https:\/\/media-1.api-sports.io\/football\/venues\/2455.png","address":null,"surface":"grass","city":"Chiquimula","name":"Estadio Las Victorias","id":2455,"capacity":9000},"team":{"country":"Guatemala","code":null,"name":"Sacachispas","founded":1949,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/3655.png","id":3655}},{"venue":{"image":"https:\/\/media-3.api-sports.io\/football\/venues\/2459.png","address":null,"surface":"grass","city":"Sanarate","name":"Estadio Municipal de Sanarate","id":2459,"capacity":8765},"team":{"country":"Guatemala","code":null,"name":"Deportivo Sanarate","founded":1958,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/3661.png","id":3661}},{"venue":{"image":"https:\/\/media-2.api-sports.io\/football\/venues\/6935.png","address":"Avenida Sancho el Fuerte","surface":"artificial turf","city":"Pamplona","name":"Estadio San Juan","id":6935,"capacity":1250},"team":{"country":"Spain","code":null,"name":"San Juan","founded":1962,"national":false,"logo":"https:\/\/media-2.api-sports.io\/football\/teams\/9855.png","id":9855}},{"venue":{"image":"https:\/\/media-2.api-sports.io\/football\/venues\/7048.png","address":"Rivera de la Vega, Zone 6","surface":"grass","city":"Coatepeque","name":"Estadio Israel Barrios","id":7048,"capacity":20000},"team":{"country":"Guatemala","code":null,"name":"Coatepecano IB","founded":null,"national":false,"logo":"https:\/\/media-2.api-sports.io\/football\/teams\/10008.png","id":10008}},{"venue":{"image":"https:\/\/media-2.api-sports.io\/football\/venues\/7141.png","address":"13 Avenida","surface":"grass","city":"Ciudad de Guatemala","name":"Estadio del Ejército","id":7141,"capacity":12453},"team":{"country":"Guatemala","code":null,"name":"Aurora","founded":1945,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/10154.png","id":10154}},{"venue":{"image":"https:\/\/media-1.api-sports.io\/football\/venues\/8600.png","address":"18 Avenida 3-37, Zona 3","surface":"grass","city":"Zacapa","name":"Estadio David Ordóñez Bardales","id":8600,"capacity":8000},"team":{"country":"Guatemala","code":null,"name":"Zacapa","founded":1951,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/13897.png","id":13897}},{"venue":{"image":"https:\/\/media-2.api-sports.io\/football\/venues\/8605.png","address":null,"surface":"grass","city":"Puerto San José","name":"Estadio Vicente Arévalo","id":8605,"capacity":1500},"team":{"country":"Guatemala","code":null,"name":"Puerto San José","founded":null,"national":false,"logo":"https:\/\/media-3.api-sports.io\/football\/teams\/13904.png","id":13904}},{"venue":{"image":null,"address":null,"surface":null,"city":null,"name":null,"id":null,"capacity":null},"team":{"country":"Guatemala","code":null,"name":"Zacapa Tellioz","founded":2020,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/15293.png","id":15293}},{"venue":{"image":null,"address":null,"surface":null,"city":null,"name":null,"id":null,"capacity":null},"team":{"country":"Guatemala","code":null,"name":"Juventud Pinulteca","founded":null,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/17243.png","id":17243}},{"venue":{"image":null,"address":null,"surface":null,"city":null,"name":null,"id":null,"capacity":null},"team":{"country":"Guatemala","code":null,"name":"Catarina","founded":null,"national":false,"logo":"https:\/\/media-3.api-sports.io\/football\/teams\/19162.png","id":19162}},{"venue":{"image":null,"address":null,"surface":null,"city":null,"name":null,"id":null,"capacity":null},"team":{"country":"Guatemala","code":null,"name":"Deportivo Barberena","founded":null,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/19163.png","id":19163}},{"venue":{"image":"https:\/\/media-1.api-sports.io\/football\/venues\/18610.png","address":null,"surface":"grass","city":null,"name":"Marco Antonio Fión Castellanos","id":18610,"capacity":2000},"team":{"country":"Guatemala","code":null,"name":"San Benito","founded":null,"national":false,"logo":"https:\/\/media-1.api-sports.io\/football\/teams\/19164.png","id":19164}}],"get":"teams","paging":{"current":1,"total":1},"parameters":{"league":"338","season":"2022"},"results":21,"errors":[]}
+{
+  "response": [
+    {
+      "venue": {
+        "image": "https:\/\/media-3.api-sports.io\/football\/venues\/2440.png",
+        "address": "Calle del Estadio",
+        "surface": "grass",
+        "city": "Chimaltenango",
+        "name": "Estadio Municipal de Chimaltenango",
+        "id": 2440,
+        "capacity": 1500
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Chimaltenango",
+        "founded": null,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/3639.png",
+        "id": 3639
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-3.api-sports.io\/football\/venues\/2441.png",
+        "address": "15 Avenida 28-00, Zona 6, La Pedrera",
+        "surface": "grass",
+        "city": "Ciudad de Guatemala",
+        "name": "Estadio Cementos Progreso",
+        "id": 2441,
+        "capacity": 17000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Comunicaciones II",
+        "founded": null,
+        "national": false,
+        "logo": "https:\/\/media-3.api-sports.io\/football\/teams\/3640.png",
+        "id": 3640
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-3.api-sports.io\/football\/venues\/2444.png",
+        "address": "Highway 12N",
+        "surface": "grass",
+        "city": "San Marcos",
+        "name": "Estadio Marquesa de la Ensenada",
+        "id": 2444,
+        "capacity": 11000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": "MAR",
+        "name": "Marquense",
+        "founded": 1958,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/3643.png",
+        "id": 3643
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-1.api-sports.io\/football\/venues\/2445.png",
+        "address": null,
+        "surface": "grass",
+        "city": "Asunción Mita",
+        "name": "Estadio La Asunción",
+        "id": 2445,
+        "capacity": 8000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": "MIC",
+        "name": "Mictlán",
+        "founded": 1960,
+        "national": false,
+        "logo": "https:\/\/media-3.api-sports.io\/football\/teams\/3644.png",
+        "id": 3644
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-1.api-sports.io\/football\/venues\/2447.png",
+        "address": "Barrio seis de Noviembre",
+        "surface": "grass",
+        "city": "Nueva Concepción",
+        "name": "Estadio José Luis Ibarra",
+        "id": 2447,
+        "capacity": 3000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Nueva Concepción",
+        "founded": null,
+        "national": false,
+        "logo": "https:\/\/media-3.api-sports.io\/football\/teams\/3646.png",
+        "id": 3646
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-3.api-sports.io\/football\/venues\/2448.png",
+        "address": null,
+        "surface": "grass",
+        "city": "Santa Cruz del Quiché",
+        "name": "Estadio Municipal de Santa Cruz del Quiché",
+        "id": 2448,
+        "capacity": 3000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Quiché",
+        "founded": null,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/3647.png",
+        "id": 3647
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-3.api-sports.io\/football\/venues\/2449.png",
+        "address": null,
+        "surface": "artificial turf",
+        "city": "San Pedro Sacatepéquez",
+        "name": "Estadio Municipal de San Pedro Sacatepéquez",
+        "id": 2449,
+        "capacity": 4000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "San Pedro",
+        "founded": 1992,
+        "national": false,
+        "logo": "https:\/\/media-2.api-sports.io\/football\/teams\/3649.png",
+        "id": 3649
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-2.api-sports.io\/football\/venues\/2452.png",
+        "address": null,
+        "surface": "grass",
+        "city": "Sololá",
+        "name": "Estadio Xambá",
+        "id": 2452,
+        "capacity": 6000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Sololá",
+        "founded": null,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/3652.png",
+        "id": 3652
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-2.api-sports.io\/football\/venues\/2453.png",
+        "address": "8a. Calle 2-60, Zona 2",
+        "surface": "grass",
+        "city": "Mazatenango",
+        "name": "Estadio Municipal Carlos Salazar Hijo",
+        "id": 2453,
+        "capacity": 12000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": "SUC",
+        "name": "Suchitepéquez",
+        "founded": 1960,
+        "national": false,
+        "logo": "https:\/\/media-2.api-sports.io\/football\/teams\/3653.png",
+        "id": 3653
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-1.api-sports.io\/football\/venues\/2455.png",
+        "address": null,
+        "surface": "grass",
+        "city": "Chiquimula",
+        "name": "Estadio Las Victorias",
+        "id": 2455,
+        "capacity": 9000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Sacachispas",
+        "founded": 1949,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/3655.png",
+        "id": 3655
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-3.api-sports.io\/football\/venues\/2459.png",
+        "address": null,
+        "surface": "grass",
+        "city": "Sanarate",
+        "name": "Estadio Municipal de Sanarate",
+        "id": 2459,
+        "capacity": 8765
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Deportivo Sanarate",
+        "founded": 1958,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/3661.png",
+        "id": 3661
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-2.api-sports.io\/football\/venues\/6935.png",
+        "address": "Avenida Sancho el Fuerte",
+        "surface": "artificial turf",
+        "city": "Pamplona",
+        "name": "Estadio San Juan",
+        "id": 6935,
+        "capacity": 1250
+      },
+      "team": {
+        "country": "Spain",
+        "code": null,
+        "name": "San Juan",
+        "founded": 1962,
+        "national": false,
+        "logo": "https:\/\/media-2.api-sports.io\/football\/teams\/9855.png",
+        "id": 9855
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-2.api-sports.io\/football\/venues\/7048.png",
+        "address": "Rivera de la Vega, Zone 6",
+        "surface": "grass",
+        "city": "Coatepeque",
+        "name": "Estadio Israel Barrios",
+        "id": 7048,
+        "capacity": 20000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Coatepecano IB",
+        "founded": null,
+        "national": false,
+        "logo": "https:\/\/media-2.api-sports.io\/football\/teams\/10008.png",
+        "id": 10008
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-2.api-sports.io\/football\/venues\/7141.png",
+        "address": "13 Avenida",
+        "surface": "grass",
+        "city": "Ciudad de Guatemala",
+        "name": "Estadio del Ejército",
+        "id": 7141,
+        "capacity": 12453
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Aurora",
+        "founded": 1945,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/10154.png",
+        "id": 10154
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-1.api-sports.io\/football\/venues\/8600.png",
+        "address": "18 Avenida 3-37, Zona 3",
+        "surface": "grass",
+        "city": "Zacapa",
+        "name": "Estadio David Ordóñez Bardales",
+        "id": 8600,
+        "capacity": 8000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Zacapa",
+        "founded": 1951,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/13897.png",
+        "id": 13897
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-2.api-sports.io\/football\/venues\/8605.png",
+        "address": null,
+        "surface": "grass",
+        "city": "Puerto San José",
+        "name": "Estadio Vicente Arévalo",
+        "id": 8605,
+        "capacity": 1500
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Puerto San José",
+        "founded": null,
+        "national": false,
+        "logo": "https:\/\/media-3.api-sports.io\/football\/teams\/13904.png",
+        "id": 13904
+      }
+    },
+    {
+      "venue": {
+        "image": null,
+        "address": null,
+        "surface": null,
+        "city": null,
+        "name": null,
+        "id": null,
+        "capacity": null
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Zacapa Tellioz",
+        "founded": 2020,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/15293.png",
+        "id": 15293
+      }
+    },
+    {
+      "venue": {
+        "image": null,
+        "address": null,
+        "surface": null,
+        "city": null,
+        "name": null,
+        "id": null,
+        "capacity": null
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Juventud Pinulteca",
+        "founded": null,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/17243.png",
+        "id": 17243
+      }
+    },
+    {
+      "venue": {
+        "image": null,
+        "address": null,
+        "surface": null,
+        "city": null,
+        "name": null,
+        "id": null,
+        "capacity": null
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Catarina",
+        "founded": null,
+        "national": false,
+        "logo": "https:\/\/media-3.api-sports.io\/football\/teams\/19162.png",
+        "id": 19162
+      }
+    },
+    {
+      "venue": {
+        "image": null,
+        "address": null,
+        "surface": null,
+        "city": null,
+        "name": null,
+        "id": null,
+        "capacity": null
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "Deportivo Barberena",
+        "founded": null,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/19163.png",
+        "id": 19163
+      }
+    },
+    {
+      "venue": {
+        "image": "https:\/\/media-1.api-sports.io\/football\/venues\/18610.png",
+        "address": null,
+        "surface": "grass",
+        "city": null,
+        "name": "Marco Antonio Fión Castellanos",
+        "id": 18610,
+        "capacity": 2000
+      },
+      "team": {
+        "country": "Guatemala",
+        "code": null,
+        "name": "San Benito",
+        "founded": null,
+        "national": false,
+        "logo": "https:\/\/media-1.api-sports.io\/football\/teams\/19164.png",
+        "id": 19164
+      }
+    }
+  ],
+  "get": "teams",
+  "paging": {
+    "current": 1,
+    "total": 1
+  },
+  "parameters": {
+    "league": "338",
+    "season": "2022"
+  },
+  "results": 21,
+  "errors": []
+}
