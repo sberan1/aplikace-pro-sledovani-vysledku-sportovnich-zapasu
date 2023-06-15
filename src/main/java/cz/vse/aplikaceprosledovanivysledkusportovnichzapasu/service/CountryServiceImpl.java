@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,7 +16,6 @@ public class CountryServiceImpl implements CountryService{
     ApiSports apiSports = ApiSports.getInstance();
     @Autowired
     private CountryRepository countryRepository;
-
 
     @Override
     public void fillCountriesBasketball() {
@@ -38,9 +38,22 @@ public class CountryServiceImpl implements CountryService{
     }
 
     @Override
+    public void fillCountriesVolleyball() {
+        JSONArray zemeVolleyball = apiSports.basketbalZeme().getJSONArray("response");
+        zemeVolleyball.forEach(o -> {
+            if (!countryRepository.findByExternalIdAndSport(((JSONObject) o).getInt("id"), "Volleyball").isPresent()) {
+                pridatZemi((JSONObject) o, "Volleyball");
+            }
+        });
+
+    }
+
+    @Override
     public List<Country> findAllBySport(String sport) {
         return countryRepository.findBySport(sport);
     }
+
+
 
     private void pridatZemi(JSONObject o, String sport) {
         Country country = new Country();
