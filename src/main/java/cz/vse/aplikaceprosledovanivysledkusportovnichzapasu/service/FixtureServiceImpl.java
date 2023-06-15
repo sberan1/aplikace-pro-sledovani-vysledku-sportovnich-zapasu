@@ -1,18 +1,17 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDTO;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.BasketballScore;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Score;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.ApiSports;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.format.DateTimeFormatters;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -36,15 +35,15 @@ public class FixtureServiceImpl implements FixtureService {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Override
-    public List<MatchListDateDTO> getFixturesBySportAndDate(String sport, String date) {
-        List<MatchListDateDTO> DTOList = new ArrayList<>();
+    public List<MatchListDateDto> getFixturesBySportAndDate(String sport, String date) {
+        List<MatchListDateDto> DTOList = new ArrayList<>();
         int [] datumString = Arrays.stream(date.split("-")).mapToInt(Integer::parseInt).toArray();
         List<Fixture> seznamZapasu =  fixtureRepository.findAllByDateAndSport(LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0),LocalDateTime.of(datumString[0], datumString[1], datumString[2] + 1, 0, 0),sport);
         for (Fixture fixture : seznamZapasu) {
-            MatchListDateDTO matchListDateDTO = new MatchListDateDTO();
+            MatchListDateDto matchListDateDTO = new MatchListDateDto();
             matchListDateDTO.setId(fixture.getId());
             matchListDateDTO.setDate(fixture.getDate().format(DateTimeFormatter.ISO_DATE));
-            matchListDateDTO.setTime(fixture.getDate().format(DateTimeFormatter.BASIC_ISO_DATE));
+            matchListDateDTO.setTime(fixture.getDate().format(DateTimeFormatter.ofPattern("HH:mm")));
             matchListDateDTO.setHomeTeam(fixture.getHomeTeam().getName());
             matchListDateDTO.setAwayTeam(fixture.getAwayTeam().getName());
             matchListDateDTO.setHomeTeamScore(fixture.getScore().getFinalHomeScore());
