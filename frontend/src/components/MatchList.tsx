@@ -24,7 +24,7 @@ const MatchList = (type : Type, item : String) => {
         useEffect(() => {
             const fetchMatches = async () => {
                 try {
-                    const response = await fetch('http://localhost:8080/match/getMatchesFromLeague?' + item);
+                    const response = await fetch('http://localhost:8080/fixture/getFixturesBySportAndDate' + item);
                     const data = await response.json();
                     setMatches(data);
                 } catch (error) {

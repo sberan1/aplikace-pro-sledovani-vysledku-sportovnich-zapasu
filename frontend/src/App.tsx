@@ -9,8 +9,10 @@ import LeagueList from './components/LeagueList';
 import Navbar from './components/HomePagePackage/Navbar';
 import HomePage from './components/HomePagePackage/HomePage';
 import League from "./components/league/League";
+import MatchList from "./components/MatchList";
 //import PrihlaseniPage from './components/PrihlaseniPagePackage/PrihlaseniPage';
 //import RegistracePage from './components/RegistracePagePackage/RegistracePage';
+import Type from "./components/MatchList";
 
 const App = () => {
     // @ts-ignore
@@ -25,32 +27,11 @@ const App = () => {
     // );
 
     let matchListT: any[] = [
-        {
-            id: 1,
-            date: "12.2.2020",
-            time: "13:14",
-            team1: "Sparta",
-            team2: "Slavia",
-            score1: 1,
-            score2: 0,
-            imgSource1: sparta,
-            imgSource2: slavia
-        },
-        {
-            id: 2,
-            date: "12.2.2020",
-            time: "13:14",
-            team1: "Sparta",
-            team2: "Slavia",
-            score1: 1,
-            score2: 0,
-            imgSource1: sparta,
-            imgSource2: slavia
-        }
+
     ];
 
     return (
-        <League id={1} name={"Testovací liga"} matchList={matchListT}></League>
+        <League id={1} name={"Testovací liga"} matchList={MatchList(1, '?sport=Basketball&date=2023-05-15&league=1130')}></League>
     )
 };
 
