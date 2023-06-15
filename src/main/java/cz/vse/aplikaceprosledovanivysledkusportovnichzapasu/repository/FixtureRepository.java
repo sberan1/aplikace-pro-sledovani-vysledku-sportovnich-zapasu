@@ -12,8 +12,9 @@ import java.util.Optional;
 
 @Repository
 public interface FixtureRepository extends JpaRepository<Fixture, Long> {
-    @Query("SELECT e FROM Fixture e WHERE e.date >= :startDate AND e.date < :endDate AND e.sport = :sport")
-    List<Fixture> findAllByDateAndSport(LocalDateTime startDate, LocalDateTime endDate, String sport);
+    List<Fixture> findByDateBetweenAndSport(LocalDateTime dateStart, LocalDateTime dateEnd, String sport);
+    @Query("SELECT e FROM Fixture e WHERE e.date >= :startDate AND e.date < :endDate AND e.sport = :sport AND e.league.id = :leagueId AND e.league.sport = :sport")
+    List<Fixture> findAllByDateAndSport(LocalDateTime startDate, LocalDateTime endDate, String sport, long leagueId);
 
     Optional<Object> findByExternalIdAndSport(int id, String sport);
 

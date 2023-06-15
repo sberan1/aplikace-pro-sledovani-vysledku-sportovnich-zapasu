@@ -8,7 +8,6 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.format.DateTimeFormatters;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -35,10 +34,10 @@ public class FixtureServiceImpl implements FixtureService {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Override
-    public List<MatchListDateDto> getFixturesBySportAndDate(String sport, String date) {
+    public List<MatchListDateDto> getFixturesBySportAndDate(String sport, String date, long league) {
         List<MatchListDateDto> DTOList = new ArrayList<>();
         int [] datumString = Arrays.stream(date.split("-")).mapToInt(Integer::parseInt).toArray();
-        List<Fixture> seznamZapasu =  fixtureRepository.findAllByDateAndSport(LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0),LocalDateTime.of(datumString[0], datumString[1], datumString[2] + 1, 0, 0),sport);
+        List<Fixture> seznamZapasu =  fixtureRepository.findAllByDateAndSport(LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0),LocalDateTime.of(datumString[0], datumString[1], datumString[2] + 1, 0, 0),sport, league);
         for (Fixture fixture : seznamZapasu) {
             MatchListDateDto matchListDateDTO = new MatchListDateDto();
             matchListDateDTO.setId(fixture.getId());
