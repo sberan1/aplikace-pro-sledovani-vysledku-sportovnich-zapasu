@@ -5,18 +5,7 @@ import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
 import MatchList from "./../MatchList";
 import Match from "../Match/Match";
 import { useState, useEffect, useRef } from "react";
-
-type MatchType = {
-    id: any;
-    date: any;
-    time: any;
-    team1: string;
-    team2: string;
-    score1: number;
-    score2: number;
-    imgSource1: string;
-    imgSource2: string;
-}
+import {MatchType} from "../Types";
 
 function League({ id, name, matchList }: {
     id: any;
@@ -55,12 +44,12 @@ function League({ id, name, matchList }: {
                             id={item.id}
                             date={item.date}
                             time={item.time}
-                            team1={item.team1}
-                            team2={item.team2}
-                            score1={item.score1}
-                            score2={item.score2}
-                            imgSource1={item.imgSource1}
-                            imgSource2={item.imgSource2}
+                            team1={item.homeTeam}
+                            team2={item.awayTeam}
+                            score1={item.homeTeamScore}
+                            score2={item.awayTeamScore}
+                            imgSource1={item.homeTeamLogo}
+                            imgSource2={item.awayTeamLogo}
                         />
                     ))}
                 </div>
