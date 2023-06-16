@@ -25,6 +25,12 @@ public class LeagueController {
     public void fillHockeyLeagues() {
         leagueService.fillHockeyLeagues();
     }
+
+    @PostMapping("/fillVolleyballLeagues")
+    public void fillVolleyballLeagues(){
+        leagueService.fillVolleyballLeagues();
+    }
+
     @GetMapping("/getLeagues")
     public List<League> getLeaguesBySport(@RequestParam String sport) {
         return leagueService.getLeaguesBySport(sport);
