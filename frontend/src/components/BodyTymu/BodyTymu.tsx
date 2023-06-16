@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './BodyTymu.css';
+import DatePicker from "../DatePicker/DatePicker";
 
 async function getTeamData(teamId) {
     {/*
@@ -44,8 +45,14 @@ const BodyTymu = ({teamId}) => {
 
     return (
         <div className="BodyTymuContainer">
+
+            <div className="header">
+                {/* tady bude komponenta program/vysledky */}
+                <DatePicker/>
+            </div>
+
             {/* komponenta zápasů, ale musí se tam nejak pridat filter/omezeni jen pro tenhle
-            dany tym*/}
+            dany tym */}
         </div>
     );
 }

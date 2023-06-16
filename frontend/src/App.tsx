@@ -10,6 +10,7 @@ import {UserProvider} from "./pages/PrihlaseniPagePackage/UserContext";
 import RegistracePage from './pages/RegistracePagePackage/RegistracePage';
 import FotbalPage from './components/ZkusebniPageFotbalu/FotbalPage';
 import Modal from 'react-modal';
+import ProfilTymu from "./pages/ProfilTymuPage/ProfilTymu";
 
 Modal.setAppElement('#root');
 
@@ -22,6 +23,7 @@ const App = () => {
                     <Route path="/prihlaseni" element={<PrihlaseniPage PrihlaseniPage="" RegistracePage=""/>}/>
                     <Route path="/registrace" element={<RegistracePage  PrihlaseniPage="" RegistracePage=""/>} />
                     <Route path="/fotbal" element={<FotbalPage />}></Route>
+                    <Route path={"/team/:id"} element={<ProfilTymu teamId={undefined}/>}/>
                 </Routes>
             </Router>
         </UserProvider>
