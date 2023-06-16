@@ -56,7 +56,7 @@ public class TeamServiceImpl implements TeamService {
                     .name(o.getString("name"))
                     .logo(o.getString("logo"))
                     .build();
-            tymEnt.getLeagues().add(leagueRepository.findLeagueByExternalIdAndSport(o.getInt("id"),"Football"));
+            tymEnt.getLeagues().add(leagueRepository.findLeagueByExternalIdAndSport(Integer.parseInt(resp.getJSONObject("parameters").getString("league")),"Football"));
                 tymEnt.setCountry(countryRepository.findCountryByNameAndSport(o.getString("country"),"Football").get());
                 teamRepository.save(tymEnt);
 
