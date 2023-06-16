@@ -78,6 +78,10 @@ nav input[type="text"] {
     margin-left: -15px;
 }
 
+.SearchForm button:hover{
+    color: #D3FC01;
+}
+
 .button{
     padding: 9px 25px;
     border-radius: 25px;

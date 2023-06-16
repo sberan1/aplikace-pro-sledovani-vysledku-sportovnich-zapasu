@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './HeaderTymu.css';
-import FavoriteTeamBtn from "../FavoriteTeamBtn/FavoriteTeamBtn";
+import './BodyTymu.css';
 
 async function getTeamData(teamId) {
-
     {/*
     const response = await fetch(`https://NASE_API.com/teams/${teamId}`);
     if (!response.ok) {
@@ -24,7 +22,7 @@ async function getTeamData(teamId) {
     return testovaciData;
 }
 
-const TeamComponent = ({ teamId, userId }) => {
+const BodyTymu = ({teamId}) => {
     const [team, setTeam] = useState(null);
     const [error, setError] = useState(null);
 
@@ -45,27 +43,11 @@ const TeamComponent = ({ teamId, userId }) => {
     }
 
     return (
-        <div className="team-component">
-            <div className="left">
-                <div className="team-info">
-                    <div>
-                        <h2>{team.name}</h2>
-                        <p className="team-focus">{team.focus}</p>
-                    </div>
-                    <div className="team-origin">
-                        <img src={team.flagUrl} alt={`${team.country} flag`} className="team-flag"/>
-                        <span>{team.country}</span>
-                    </div>
-                </div>
-                <div className="middle">
-                    <FavoriteTeamBtn teamId={teamId} userId={userId}/>
-                </div>
-            </div>
-            <div className="right">
-                <img src={team.logoUrl} alt={`${team.name} logo`} className="team-logo"/>
-            </div>
+        <div className="BodyTymuContainer">
+            {/* komponenta zápasů, ale musí se tam nejak pridat filter/omezeni jen pro tenhle
+            dany tym*/}
         </div>
     );
 }
 
-export default TeamComponent;
+export default BodyTymu;

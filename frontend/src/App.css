@@ -60,3 +60,11 @@
     transform: rotate(360deg);
   }
 }
+
+.BG{
+  height: 100%;
+  min-height: 100vh;
+  background-image: url("./assets/BG.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
