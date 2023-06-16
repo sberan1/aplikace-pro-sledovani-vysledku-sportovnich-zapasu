@@ -20,7 +20,7 @@ function League({ id, name, matchList }: {
 
     return (
         <div
-            className={`${styles.league} inline-grid py-5`} style={{ height: open ? 'fit-content' : '60px' }}>
+            className={`${styles.league} /*inline-grid*/ py-5`} style={{ height: open ? 'fit-content' : '60px' }}>
             <div className={`${styles.leagueHeader} uppercase px-6 pb-4 flex justify-between`}>
                 <h2 className={styles.leagueName}>{name}</h2>
                 <button onClick={toggle}>
