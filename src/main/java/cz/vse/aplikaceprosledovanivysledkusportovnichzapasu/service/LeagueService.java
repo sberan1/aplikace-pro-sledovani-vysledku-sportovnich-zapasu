@@ -12,5 +12,5 @@ public interface LeagueService {
     List<League> getLeagues();
     List<LeagueRespDto> getLeagueMatchesByDateAndSport(String date, String sport);
     List<League> getLeaguesBySport(String sport);
-
+    public void fillVolleyballLeagues();
 }

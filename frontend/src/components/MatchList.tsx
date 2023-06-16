@@ -1,62 +1,50 @@
 import React, { useEffect, useState } from 'react';
+import {MatchType} from "./Types";
+import {MatchSourceType} from "./Enums";
+import Match from "./Match/Match";
 
-enum Type { Team, League }
 
-const MatchList = (type : Type, item : String) => {
+const MatchList = (type : MatchSourceType, webParams : String) => {
     const [matches, setMatches] = useState([]);
 
-    if(type = Type.Team){
-        useEffect(() => {
-            const fetchMatches = async () => {
-                try {
-                    const response = await fetch('http://localhost:8080/match/getMatchesFromTeam?'+item);
+    useEffect(() => {
+        const fetchMatches = async () => {
+            try {
+                if(type = MatchSourceType.Team){
+                    const response = await fetch('http://localhost:8080/match/getMatchesFromTeam?' + webParams); //není dokončeno
                     const data = await response.json();
                     setMatches(data);
-                } catch (error) {
-                    console.error('Error fetching leagues:', error);
                 }
-            };
-
-            fetchMatches();
-        }, []);
-    }
-    if(type = Type.League) {
-        useEffect(() => {
-            const fetchMatches = async () => {
-                try {
-                    const response = await fetch('http://localhost:8080/fixture/getFixturesBySportAndDate' + item);
+                if(type = MatchSourceType.League) {
+                    const response = await fetch('http://localhost:8080/fixture/getFixturesBySportAndDate' + webParams);
                     const data = await response.json();
                     setMatches(data);
-                } catch (error) {
-                    console.error('Error fetching leagues:', error);
                 }
-            };
+            } catch (error) {
+                console.error('Error fetching team of league:', error);
+            }
+        };
 
-            fetchMatches();
-        }, []);
-    }
+        fetchMatches();
+    }, []);
 
-    type match = {
-        id: any,
-        date: any,
-        time: any,
-        team1: string,
-        team2: string,
-        score1: number
-        score2: number,
-        imgSource1: string,
-        imgSource2: string
-    }
-
-    let matchList : Array<match> = [];
+    let matchList: Array<JSX.Element> = [];
 
     for (let i = 0; i < matches.length; i++) {
-        matchList.push(matches[i].id, matches[i].date,matches[i].time,matches[i].team1,matches[i].team2,matches[i].score1,matches[i].score2,matches[i].imgSource1,matches[i].imgSource2);
+        matchList.push(
+            <Match
+                id={Number(matches[i].id)}
+                date={matches[i].date}
+                time={matches[i].time}
+                team1={matches[i].homeTeam}
+                team2={matches[i].awayTeam}
+                score1={matches[i].homeTeamScore}
+                score2={matches[i].awayTeamScore}
+                imgSource1={matches[i].homeTeamLogo}
+                imgSource2={matches[i].awayTeamLogo}
+            />
+        );
     }
-
-   /* matches.map(individualMatch => (
-        matchList.push(individualMatch.id, individualMatch.date,individualMatch.time,individualMatch.team1,individualMatch.team2,individualMatch.score1,individualMatch.score2,individualMatch.imgSource1,individualMatch.imgSource2)
-    ));*/
 
     return matchList;
 };

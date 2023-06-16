@@ -27,7 +27,6 @@ public class FixtureController {
     @GetMapping("/getFixturesBySportAndDate")
     public List<MatchListDateDto> getFixturesBySportAndDate(@RequestParam String sport, @RequestParam String date, @RequestParam long league)
     {
-
         return fixtureService.getFixturesBySportAndDate(sport, date, league);
     }
 }
