@@ -5,7 +5,7 @@
     font-size: 16px;
     line-height: 120%;
     /* or 19px */
-
+    cursor: pointer;
 
     color: #FFFFFF;
 }
@@ -78,7 +78,15 @@
     fill: #D3FC01;
 }
 
+.text div:hover .text{
+    color: #D3FC01;
+}
+
 .text button{
-    margin-top: 1.5px;
+    display: flex;
+}
+
+.text button div{
+    margin-left: 15px;
 }
 
