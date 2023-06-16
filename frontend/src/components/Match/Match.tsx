@@ -1,7 +1,7 @@
 import styles from './Match.module.css';
 import sparta from '../../assets/sparta.png';
 import slavia from '../../assets/slavia.png';
-import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
+import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
 
     function Match({id, date, time, team1, team2, score1, score2, imgSource1, imgSource2} : {
         id: any,

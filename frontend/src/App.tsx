@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
-import Match from './components/match/Match';
+import Match from './components/Match/Match';
 import sparta from './assets/sparta.png';
 import slavia from './assets/slavia.png';
 import LeagueList from './components/LeagueList';

@@ -1,9 +1,9 @@
 import styles from './League.module.css';
 import sparta from '../../assets/sparta.png';
 import slavia from '../../assets/slavia.png';
-import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
+import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
 import MatchList from "./../MatchList";
-import Match from "../match/Match";
+import Match from "../Match/Match";
 import { useState, useEffect, useRef } from "react";
 
 type MatchType = {
