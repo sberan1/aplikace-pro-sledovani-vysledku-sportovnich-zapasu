@@ -29,8 +29,6 @@ public class LeagueServiceImpl implements LeagueService{
     private LeagueRepository leagueRepository;
     @Autowired
     private CountryRepository countryRepository;
-    @Autowired
-    private FixtureRepository fixtureRepository;
 
     private ApiSports apiSports = ApiSports.getInstance();
 
@@ -43,21 +41,34 @@ public class LeagueServiceImpl implements LeagueService{
 
     public void fillHockeyLeagues() {
         JSONArray ligy = apiSports.hokejLigy().getJSONArray("response");
+        pridatLigy(ligy, "Hockey");
+
+    }
+
+    private void pridatLigy(JSONArray ligy, String sport) {
         ligy.forEach(o -> {
             League ligaEnt = new League();
             JSONObject liga = (JSONObject) o;
-            if (leagueRepository.findByExternalIdandSport(liga.getInt("id"), "Hockey").isEmpty()) {
+            if (leagueRepository.findByExternalIdandSport(liga.getInt("id"), sport).isEmpty()) {
                 ligaEnt.setName(liga.getString("name"));
                 ligaEnt.setType(liga.getString("type"));
-                ligaEnt.setSport("Hockey");
+                ligaEnt.setSport(sport);
                 ligaEnt.setExternalId(liga.getInt("id"));
                 ligaEnt.setLogo(liga.getString("logo"));
                 ligaEnt.setCountry(countryRepository.findCountryByExternalIdAndSport(liga.getJSONObject("country").getInt("id"), ligaEnt.getSport()));
                 leagueRepository.save(ligaEnt);
             }
         });
-
     }
+
+    public void fillVolleyballLeagues(){
+        JSONArray ligy = apiSports.volejbalLigy().getJSONArray("response");
+        pridatLigy(ligy, "Volleyball");
+    }
+
+
+
+
 
     private void pridatLigyBasketbal(JSONObject o) {
         League ligaEnt = new League();
@@ -71,8 +82,10 @@ public class LeagueServiceImpl implements LeagueService{
         if(leagueRepository.findByExternalIdandSport(o.getInt("id"), "Basketball").isEmpty()){
             leagueRepository.save(ligaEnt);
         }
-
     }
+
+
+
 
     public List<League> getLeagues() {
         return leagueRepository.findAll();
