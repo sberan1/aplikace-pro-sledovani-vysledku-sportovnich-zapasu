@@ -33,7 +33,8 @@ public class SecurityConfig {
                         "/team/fillTeamsHockey",
                         "/fixture/fillFixturesHockey",
                         "/fixture/fillFixturesBasketball",
-                        "/league/fillVolleyballLeagues")
+                        "/league/fillVolleyballLeagues",
+                        "/team/getTeamsBySport")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
