@@ -7,9 +7,10 @@ import Match from "../Match/Match";
 import { useState, useEffect, useRef } from "react";
 import {MatchType} from "../Types";
 
-function League({ id, name, matchList }: {
+function League({ id, name, flagSource, matchList }: {
     id: any;
     name: string;
+    flagSource: string;
     matchList: Array<JSX.Element>;
 }) {
     const [open, setOpen] = useState(false);

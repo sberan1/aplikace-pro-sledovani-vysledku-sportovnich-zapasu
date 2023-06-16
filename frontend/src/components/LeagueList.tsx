@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import {LeagueType} from "./Types";
+import React, {useEffect, useState} from 'react';
+import League from "./League/League";
+import MatchList from "./MatchList";
+import {MatchSourceType} from "./Enums";
 
-const LeagueList = () => {
+const LeagueList = ({sport, date} :
+    {
+        sport : string,
+        date : any
+    }) => {
     const [leagues, setLeagues] = useState([]);
 
     useEffect(() => {
         const fetchLeagues = async () => {
             try {
-                const response = await fetch('http://localhost:8080/league/getLeaguesByFixturePlayedAtDateInSport?sport=Basketball&date=2023-05-15');
+                const response = await fetch(`http://localhost:8080/league/getLeaguesByFixturePlayedAtDateInSport?sport=${sport}&date=${date}`);
                 const data = await response.json();
                 setLeagues(data);
             } catch (error) {
@@ -20,10 +26,17 @@ const LeagueList = () => {
 
 
 
-    let leagueList : Array<LeagueType> = [];
+    let leagueList : Array<JSX.Element> = [];
 
     for (let i = 0; i < leagues.length; i++) {
-        leagueList.push(leagues[i].id, leagues[i].name,leagues[i].flagSource);
+        leagueList.push(
+            <League
+                id={Number(leagues[i].id)}
+                name={leagues[i].name}
+                flagSource={leagues[i].flagSource}
+                matchList={MatchList(MatchSourceType.League, `getFixturesBySportAndDate?sport=${sport}&date=${date}&league=${Number(leagues[i].id)}`)}
+            />
+        );
     }
 
 

@@ -35,7 +35,7 @@ const App = () => {
 
     const LocalMatchList : Array<JSX.Element> = MatchList(1, "?sport=Basketball&date=2023-03-19&league=1130");
 
-    return <League id={MatchSourceType.League} name={"Testovací liga"} matchList={LocalMatchList} />
+    return <League id={MatchSourceType.League} name={"Testovací liga"} flagSource={sparta} matchList={LocalMatchList} />
 };
 
 export default App;
