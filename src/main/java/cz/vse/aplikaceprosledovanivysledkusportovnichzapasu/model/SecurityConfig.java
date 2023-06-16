@@ -33,6 +33,7 @@ public class SecurityConfig {
                         "/team/fillTeamsHockey",
                         "/fixture/fillFixturesHockey",
                         "/fixture/fillFixturesBasketball",
+                        "/league/fillFootballLeagues")
                         "/league/fillVolleyballLeagues",
                         "/team/getTeamsBySport")
                 .permitAll()

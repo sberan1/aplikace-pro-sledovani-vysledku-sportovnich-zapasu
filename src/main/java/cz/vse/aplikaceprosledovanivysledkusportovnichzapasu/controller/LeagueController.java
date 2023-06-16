@@ -26,6 +26,10 @@ public class LeagueController {
         leagueService.fillHockeyLeagues();
     }
 
+    @PostMapping("/fillFootballLeagues")
+    public void fillFootballLeagues() { leagueService.fillFootballLeagues();}
+
+
     @PostMapping("/fillVolleyballLeagues")
     public void fillVolleyballLeagues(){
         leagueService.fillVolleyballLeagues();
