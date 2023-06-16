@@ -10,7 +10,7 @@ import {MatchType} from "../Types";
 function League({ id, name, matchList }: {
     id: any;
     name: string;
-    matchList: MatchType[];
+    matchList: Array<JSX.Element>;
 }) {
     const [open, setOpen] = useState(false);
 
@@ -38,20 +38,11 @@ function League({ id, name, matchList }: {
             </div>
             {open && (
                 <div className={`${styles.leagueMatches} px-3 inline-grid justify-items-center justify-center`}>
-                    {matchList.map(item => (
-                        <Match
-                            key={item.id.toString()}
-                            id={item.id}
-                            date={item.date}
-                            time={item.time}
-                            team1={item.homeTeam}
-                            team2={item.awayTeam}
-                            score1={item.homeTeamScore}
-                            score2={item.awayTeamScore}
-                            imgSource1={item.homeTeamLogo}
-                            imgSource2={item.awayTeamLogo}
-                        />
-                    ))}
+                    {
+                        matchList.map(item => (
+                            item
+                        ))
+                    }
                 </div>
             )}
         </div>
