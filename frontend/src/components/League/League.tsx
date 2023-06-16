@@ -1,27 +1,16 @@
 import styles from './League.module.css';
 import sparta from '../../assets/sparta.png';
 import slavia from '../../assets/slavia.png';
-import ZobrazitVice from "../buttons/zobrazitVice/ZobrazitVice";
+import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
 import MatchList from "./../MatchList";
-import Match from "../match/Match";
+import Match from "../Match/Match";
 import { useState, useEffect, useRef } from "react";
-
-type MatchType = {
-    id: any;
-    date: any;
-    time: any;
-    team1: string;
-    team2: string;
-    score1: number;
-    score2: number;
-    imgSource1: string;
-    imgSource2: string;
-}
+import {MatchType} from "../Types";
 
 function League({ id, name, matchList }: {
     id: any;
     name: string;
-    matchList: MatchType[];
+    matchList: Array<JSX.Element>;
 }) {
     const [open, setOpen] = useState(false);
 
@@ -31,7 +20,7 @@ function League({ id, name, matchList }: {
 
     return (
         <div
-            className={`${styles.league} inline-grid py-5`} style={{ height: open ? 'fit-content' : '60px' }}>
+            className={`${styles.league} /*inline-grid*/ py-5`} style={{ height: open ? 'fit-content' : '60px' }}>
             <div className={`${styles.leagueHeader} uppercase px-6 pb-4 flex justify-between`}>
                 <h2 className={styles.leagueName}>{name}</h2>
                 <button onClick={toggle}>
@@ -49,20 +38,11 @@ function League({ id, name, matchList }: {
             </div>
             {open && (
                 <div className={`${styles.leagueMatches} px-3 inline-grid justify-items-center justify-center`}>
-                    {matchList.map(item => (
-                        <Match
-                            key={item.id.toString()}
-                            id={item.id}
-                            date={item.date}
-                            time={item.time}
-                            team1={item.team1}
-                            team2={item.team2}
-                            score1={item.score1}
-                            score2={item.score2}
-                            imgSource1={item.imgSource1}
-                            imgSource2={item.imgSource2}
-                        />
-                    ))}
+                    {
+                        matchList.map(item => (
+                            item
+                        ))
+                    }
                 </div>
             )}
         </div>

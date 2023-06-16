@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {LeagueType} from "./Types";
 
 const LeagueList = () => {
     const [leagues, setLeagues] = useState([]);
@@ -17,15 +18,9 @@ const LeagueList = () => {
         fetchLeagues();
     }, []);
 
-    type league = {
-        id: number,
-        name: string,
-        flagSource: string
-    }
 
 
-
-    let leagueList : Array<league> = [];
+    let leagueList : Array<LeagueType> = [];
 
     for (let i = 0; i < leagues.length; i++) {
         leagueList.push(leagues[i].id, leagues[i].name,leagues[i].flagSource);
