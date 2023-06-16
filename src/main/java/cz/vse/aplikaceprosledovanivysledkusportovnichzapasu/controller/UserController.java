@@ -12,6 +12,8 @@ import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -59,8 +61,8 @@ public class UserController {
 
     @GetMapping(value = "/getUserInfo")
     public ResponseEntity<User> getUserInfo(HttpServletRequest request){
-        String token = request.getHeader("Authorization").substring(7);
-        String email = jwtService.exctractClaim(token, Claims::getSubject);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
         User user = userRepository.findByEmail(email).get();
         return ResponseEntity.ok(user);
     }
