@@ -4,6 +4,7 @@ import './App.css';
 import Match from './components/Match/Match';
 import sparta from './assets/sparta.png';
 import slavia from './assets/slavia.png';
+import testFlag from './assets/czechRepublicFlag.svg';
 import LeagueList from './components/LeagueList';
 import Navbar from './components/HomePagePackage/Navbar';
 import HomePage from './components/HomePagePackage/HomePage';
@@ -35,7 +36,7 @@ const App = () => {
 
     const LocalMatchList : Array<JSX.Element> = MatchList(1, "?sport=Basketball&date=2023-03-19&league=1130");
 
-    return <League id={MatchSourceType.League} name={"Testovací liga"} flagSource={sparta} matchList={LocalMatchList} />
+    return <League id={MatchSourceType.League} name={"Testovací liga"} flagSource={testFlag} matchList={LocalMatchList} />
 };
 
 export default App;

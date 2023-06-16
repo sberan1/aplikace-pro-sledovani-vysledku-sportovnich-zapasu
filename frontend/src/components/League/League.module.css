@@ -15,6 +15,10 @@
 
     color: #FFFFFF;
 }
+.flag {
+    width: 26px;
+    height: 18px;
+}
 
 .button {
     fill: #FFFFFF;
