@@ -32,7 +32,8 @@ public class SecurityConfig {
                         "/league/getLeaguesByFixturePlayedAtDateInSport",
                         "/team/fillTeamsHockey",
                         "/fixture/fillFixturesHockey",
-                        "/fixture/fillFixturesBasketball")
+                        "/fixture/fillFixturesBasketball",
+                        "/league/fillFootballLeagues")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

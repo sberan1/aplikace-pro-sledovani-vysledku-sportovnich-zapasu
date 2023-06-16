@@ -16,10 +16,7 @@ import org.springframework.stereotype.Service;
 import org.json.JSONObject;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service @Primary
@@ -57,6 +54,23 @@ public class LeagueServiceImpl implements LeagueService{
             }
         });
 
+    }
+
+    public void fillFootballLeagues() {
+        JSONArray ligy = apiSports.fotbalLigy().getJSONArray("response");
+        ligy.forEach(o -> {
+            League ligaEnt = new League();
+            JSONObject liga = (JSONObject) o;
+            if (leagueRepository.findByExternalIdandSport(liga.getJSONObject("league").getInt("id"), "Football").isEmpty()){
+                ligaEnt.setName(liga.getJSONObject("league").getString("name"));
+                ligaEnt.setType(liga.getJSONObject("league").getString("type"));
+                ligaEnt.setSport("Football");
+                ligaEnt.setExternalId(liga.getJSONObject("league").getInt("id"));
+                ligaEnt.setLogo(liga.getJSONObject("league").getString("logo"));
+                ligaEnt.setCountry(countryRepository.findCountryByNameAndSport(liga.getJSONObject("country").getString("name"), ligaEnt.getSport()).get());
+                leagueRepository.save(ligaEnt);
+            }
+        });
     }
 
     private void pridatLigyBasketbal(JSONObject o) {
@@ -98,6 +112,7 @@ public class LeagueServiceImpl implements LeagueService{
         }
         return ligyDto.stream().toList();
     }
+
 
 
 }
