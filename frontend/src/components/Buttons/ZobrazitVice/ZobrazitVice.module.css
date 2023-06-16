@@ -70,3 +70,15 @@
     fill: #818181;
 }
 
+.text:hover {
+    color: #D3FC01;
+}
+
+.text:hover .icon {
+    fill: #D3FC01;
+}
+
+.text button{
+    margin-top: 1.5px;
+}
+
