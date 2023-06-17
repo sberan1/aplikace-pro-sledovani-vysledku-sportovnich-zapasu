@@ -10,5 +10,6 @@ public interface FixtureService {
 
     void fillBasketballFixture(int leagueExternalId, String season);
     void fillHockeyFixture(int leagueExternalId, String season);
+    void fillFootballFixture(int leagueExternalId, String season);
 
 }
