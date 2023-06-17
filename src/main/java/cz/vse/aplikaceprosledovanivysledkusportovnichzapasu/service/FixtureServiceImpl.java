@@ -36,7 +36,7 @@ public class FixtureServiceImpl implements FixtureService {
     @Autowired
     private HockeyScoreRepository hockeyScoreRepository;
     @Autowired
-    private VoleyballScoreRepository voleyballScoreRepository;          //l ll
+    private VoleyballScoreRepository voleyballScoreRepository;
     ApiSports apiSports = ApiSports.getInstance();
 
 
