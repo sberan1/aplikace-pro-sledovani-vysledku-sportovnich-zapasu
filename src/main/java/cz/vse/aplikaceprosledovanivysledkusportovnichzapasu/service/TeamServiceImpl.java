@@ -50,12 +50,10 @@ public class TeamServiceImpl implements TeamService {
             else {
                 tymEnt = new Team();
             }
-            tymEnt.builder()
-                    .externalId(o.getInt("id"))
-                    .sport("Football")
-                    .name(o.getString("name"))
-                    .logo(o.getString("logo"))
-                    .build();
+            tymEnt.setExternalId(o.getInt("id"));
+            tymEnt.setSport("Football");
+            tymEnt.setName(o.getString("name"));
+            tymEnt.setLogo(o.getString("logo"));
             tymEnt.getLeagues().add(leagueRepository.findLeagueByExternalIdAndSport(Integer.parseInt(resp.getJSONObject("parameters").getString("league")),"Football"));
                 tymEnt.setCountry(countryRepository.findCountryByNameAndSport(o.getString("country"),"Football").get());
                 teamRepository.save(tymEnt);

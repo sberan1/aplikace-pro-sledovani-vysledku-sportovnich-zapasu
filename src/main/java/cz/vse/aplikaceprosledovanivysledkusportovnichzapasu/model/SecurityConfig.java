@@ -32,6 +32,7 @@ public class SecurityConfig {
                         "/league/getLeaguesByFixturePlayedAtDateInSport",
                         "/team/fillTeamsHockey",
                         "/fixture/fillFixturesHockey",
+                        "/fixture/fillFixturesFootball",
                         "/fixture/fillFixturesBasketball",
                         "/league/fillFootballLeagues",
                         "/league/fillVolleyballLeagues",

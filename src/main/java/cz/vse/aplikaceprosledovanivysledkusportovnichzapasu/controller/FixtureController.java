@@ -24,6 +24,11 @@ public class FixtureController {
         fixtureService.fillHockeyFixture(leagueExternalId, season);
     }
 
+    @PostMapping(value = "/fillFixturesFootball")
+    public void fillTeamsFootball(@RequestParam int leagueExternalId, @RequestParam String season) {
+        fixtureService.fillFootballFixture(leagueExternalId, season);
+    }
+
     @GetMapping("/getFixturesBySportAndDate")
     public List<MatchListDateDto> getFixturesBySportAndDate(@RequestParam String sport, @RequestParam String date, @RequestParam long league)
     {
