@@ -2,6 +2,7 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthenticationResponse;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.JwtService;
@@ -11,6 +12,7 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,10 +29,6 @@ public class UserController {
     private UserService userService;
     @Autowired
     private AuthService authService;
-    @Autowired
-    private JwtService jwtService;
-    @Autowired
-    private UserRepository userRepository;
 
     @PostMapping(value = "/add")
     public User createUser(@RequestBody User user) {
@@ -56,14 +54,23 @@ public class UserController {
     public ResponseEntity<AuthenticationResponse> authenticate
             (@RequestBody AuthRequest request) {
         return ResponseEntity.ok(authService.authenticate(request));
-
     }
 
     @GetMapping(value = "/getUserInfo")
-    public ResponseEntity<User> getUserInfo(HttpServletRequest request){
+    public ResponseEntity<User> getUserInfo(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        User user = userRepository.findByEmail(email).get();
+        return ResponseEntity.ok(userService.getUserFromToken(authentication.getName()));
+    }
+
+    @PutMapping( value = "/changePassword")
+    public ResponseEntity<Object> changePassword(@RequestBody ChangePasswordDto changePasswordDto){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = authService.changePassword(changePasswordDto, authentication.getName());
+        if (user == null){
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Old password didn't match");
+        }
         return ResponseEntity.ok(user);
     }
+
+
 }
