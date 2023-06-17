@@ -65,6 +65,13 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
+    public void fillVolleyballTeamsByLeagueExternalIdAndSeason(int leagueExternalId, String seasonExternalId) {
+        JSONObject resp = apiSports.volejbalTymy(leagueExternalId, seasonExternalId);
+        JSONArray teams = resp.getJSONArray("response");
+        teams.forEach(o -> pridatTymy((JSONObject) o, "Volleyball", resp));
+    }
+
+    @Override
     public List<Team> getTeamsBySport(String sport) {
         return teamRepository.findTeamsBySport(sport);
     }
