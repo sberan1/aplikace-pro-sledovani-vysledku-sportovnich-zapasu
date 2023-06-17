@@ -4,13 +4,13 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthenticationResponse;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.OpenAI;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.JwtService;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.AuthService;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
-import io.jsonwebtoken.Claims;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -45,10 +45,12 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-
     @PostMapping(value = "/register")
-    public ResponseEntity<AuthenticationResponse> register
+    public ResponseEntity<Object> register
             (@RequestBody RegisterRequest request) {
+        if (userService.emailExists(request.getEmail())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already taken");
+        }
         return ResponseEntity.ok(authService.register(request));
     }
 
@@ -56,14 +58,18 @@ public class UserController {
     public ResponseEntity<AuthenticationResponse> authenticate
             (@RequestBody AuthRequest request) {
         return ResponseEntity.ok(authService.authenticate(request));
-
     }
 
     @GetMapping(value = "/getUserInfo")
-    public ResponseEntity<User> getUserInfo(HttpServletRequest request){
+    public ResponseEntity<User> getUserInfo(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         User user = userRepository.findByEmail(email).get();
         return ResponseEntity.ok(user);
+    }
+
+    @GetMapping(value = "/OpenAiCall")
+    public ResponseEntity<String> OpenAiCall(){
+        return ResponseEntity.ok(OpenAI.authentikace("Sparta Praha, Slavia Praha, Detroit Pistons", "Ligue 1, NBA").getBody());
     }
 }

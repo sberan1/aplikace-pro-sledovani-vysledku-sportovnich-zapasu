@@ -33,9 +33,10 @@ public class SecurityConfig {
                         "/team/fillTeamsHockey",
                         "/fixture/fillFixturesHockey",
                         "/fixture/fillFixturesBasketball",
-                        "/league/fillFootballLeagues")
+                        "/league/fillFootballLeagues",
                         "/league/fillVolleyballLeagues",
-                        "/team/getTeamsBySport")
+                        "/team/getTeamsBySport",
+                        "/user/OpenAiCall")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

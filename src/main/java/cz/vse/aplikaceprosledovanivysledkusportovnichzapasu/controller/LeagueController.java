@@ -4,6 +4,7 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.LeagueRespDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,8 +28,7 @@ public class LeagueController {
     }
 
     @PostMapping("/fillFootballLeagues")
-    public void fillFootballLeagues() { leagueService.fillFootballLeagues();}
-
+    public ResponseEntity<List<League>> fillFootballLeagues() { leagueService.fillFootballLeagues(); return ResponseEntity.ok(leagueService.getLeaguesBySport("football"));}
 
     @PostMapping("/fillVolleyballLeagues")
     public void fillVolleyballLeagues(){
