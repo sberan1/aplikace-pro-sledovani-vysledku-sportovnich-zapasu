@@ -5,6 +5,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    fontFamily: {
+        'classic': ['AktivGrotesk-Medium']
+    },
     extend: {
       colors: {
         'nase-cerna': '#1C2227',

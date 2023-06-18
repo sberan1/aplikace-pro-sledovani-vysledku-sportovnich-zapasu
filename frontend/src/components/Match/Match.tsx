@@ -3,24 +3,25 @@ import sparta from '../../assets/sparta.png';
 import slavia from '../../assets/slavia.png';
 import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
 
-function Match({id, date, time, team1, team2, score1, score2, imgSource1, imgSource2}: {
-    id: any,
-    date: any,
-    time: any,
-    team1: string,
-    team2: string,
-    score1: number | null,
-    score2: number | null,
-    imgSource1: string | null,
-    imgSource2: string | null
-}) {
-
+    function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamName, homeTeamScore, awayTeamScore, homeTeamLogo, awayTeamLogo} : {
+        id: any,
+        date: any,
+        time: any,
+        homeTeamId: number,
+        awayTeamId: number,
+        homeTeamName: string,
+        awayTeamName: string,
+        homeTeamScore: number | null,
+        awayTeamScore: number | null,
+        homeTeamLogo: string | null,
+        awayTeamLogo: string | null
+    }) 
+    {
     const teamOnClicked = (team: string): React.MouseEventHandler<HTMLButtonElement> => {
         return (event) => {
             // Obsluha kliknutí na tlačítko pro tým
         };
     };
-
     if ((score1 === null || score2 === null) && (imgSource1 === null || imgSource2 === null)) {
         return (
             <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match} m-1`}>
@@ -48,6 +49,7 @@ function Match({id, date, time, team1, team2, score1, score2, imgSource1, imgSou
                             <div className={styles.imgTeam}></div>
                         </div>
                     </div>
+
                     <div className={`flex justify-center mb-3`}>
                         <div className={`${styles.score} flex justify-center px-4 pt-0.5`}>
                             <p className={`${styles.score1} pt-0.5 pb-0.2`}>Nadcházející</p>

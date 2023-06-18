@@ -1,7 +1,7 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.LeagueRespDto;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.ContentHolder;
 import java.util.List;
 
 

@@ -2,6 +2,8 @@
     background: #1C2227;
     border-radius: 8px;
     width: 932px;
+
+    border: 3px solid #818181;
 }
 .leagueName {
     font-family: 'AktivGrotesk-Medium';
@@ -14,6 +16,10 @@
     uppercase: true;
 
     color: #FFFFFF;
+}
+.flag {
+    width: 26px;
+    height: 18px;
 }
 
 .button {

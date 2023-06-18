@@ -23,7 +23,7 @@ public class Fixture {
     @ManyToOne
     private Country country;
     @ManyToOne
-    private League league;
+    private ContentHolder league;
     @OneToOne
     private Score score;
 }

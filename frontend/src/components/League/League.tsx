@@ -6,11 +6,14 @@ import MatchList from "./../MatchList";
 import Match from "../Match/Match";
 import { useState, useEffect, useRef } from "react";
 import {MatchType} from "../Types";
+import {MatchSourceType} from "../Enums";
 
-function League({ id, name, matchList }: {
+function League ({ id, name, flagSource, sport, date}: {
     id: any;
     name: string;
-    matchList: Array<JSX.Element>;
+    flagSource: string;
+    sport: string;
+    date: string;
 }) {
     const [open, setOpen] = useState(false);
 
@@ -18,11 +21,19 @@ function League({ id, name, matchList }: {
         setOpen(!open);
     };
 
+    let localMatchList : Array<JSX.Element> = [];
+
     return (
-        <div
-            className={`${styles.league} /*inline-grid*/ py-5`} style={{ height: open ? 'fit-content' : '60px' }}>
+        <div className={`${styles.league} /*inline-grid*/ py-4`} style={{ height: open ? 'fit-content' : '60px' }}>
             <div className={`${styles.leagueHeader} uppercase px-6 pb-4 flex justify-between`}>
-                <h2 className={styles.leagueName}>{name}</h2>
+                <div className={`flex items-center`}>
+                    <div>
+                        <img className={`${styles.flag} mr-4`} src={flagSource}/>
+                    </div>
+                    <div>
+                        <h2 className={`${styles.leagueName} pt-1`}>{name}</h2>
+                    </div>
+                </div>
                 <button onClick={toggle}>
                     {open && (
                         <svg className={styles.button} width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">
@@ -38,11 +49,9 @@ function League({ id, name, matchList }: {
             </div>
             {open && (
                 <div className={`${styles.leagueMatches} px-3 inline-grid justify-items-center justify-center`}>
-                    {
-                        matchList.map(item => (
-                            item
-                        ))
-                    }
+
+                        <MatchList type = {MatchSourceType.League} webParams = {`?sport=${sport}&date=${date}&league=${id}`} />
+
                 </div>
             )}
         </div>

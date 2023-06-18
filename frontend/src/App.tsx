@@ -4,6 +4,7 @@ import './App.css';
 import Match from './components/Match/Match';
 import sparta from './assets/sparta.png';
 import slavia from './assets/slavia.png';
+import testFlag from './assets/czechRepublicFlag.svg';
 import LeagueList from './components/LeagueList';
 import Navbar from './components/HomePagePackage/Navbar';
 import HomePage from './components/HomePagePackage/HomePage';
@@ -16,6 +17,7 @@ import League from "./components/League/League";
 import MatchList from "./components/MatchList";
 import {MatchType} from "./components/Types";
 import {MatchSourceType} from "./components/Enums";
+import ContentHolder from "./components/ContentHolder/ContentHolder";
 
 Modal.setAppElement('#root');
 
@@ -37,8 +39,11 @@ const App = () => {
 const LocalMatchList : Array<JSX.Element> = MatchList(1, "?sport=Basketball&date=2023-03-19&league=1130");
 
 return <League id={MatchSourceType.League} name={"Testovací liga"} matchList={LocalMatchList} />
+    // const LocalMatchList : Array<JSX.Element> = MatchList(1, "?sport=Basketball&date=2023-03-19&league=1130");
+    //
+    // return <League id={MatchSourceType.League} name={"Testovací liga"} flagSource={testFlag} matchList={LocalMatchList} />
 
+    return <ContentHolder sport={"Basketball"}/>;
 
-};
 
 export default App;
