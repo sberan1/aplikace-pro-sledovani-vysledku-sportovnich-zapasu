@@ -79,6 +79,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public void removeFavouriteTeam(long teamId, String jwt) {
+        User user= getUserFromToken(jwt);
+        user.getFavouriteTeams().remove(teamRepository.findById(teamId).get());
+    }
+
+    @Override
     public Set<Team> getFavouriteTeams(String jwt) {
         User user= getUserFromToken(jwt);
         return user.getFavouriteTeams();

@@ -17,6 +17,7 @@ public interface UserService {
     String getTextOfFavTeams(User user);
     User getUserFromToken(String jwt);
     void addFavouriteTeam(long teamId, String jwt);
+    void removeFavouriteTeam(long teamId, String jwt);
     Set<Team> getFavouriteTeams(String jwt);
     Set<Fixture> getFavouriteFixtures(String jwt);
     User deleteUser(Long id);
