@@ -7,7 +7,6 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.AuthService;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

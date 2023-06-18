@@ -114,8 +114,7 @@ public class LeagueServiceImpl implements LeagueService{
         Set<League> ligy = new HashSet<>(leagueRepository.findAllByDateAndSport(LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0), LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0).plusDays(1), sport));
         Set<LeagueRespDto> ligyDto = new HashSet<>();
         for (League liga : ligy){
-            LeagueRespDto ligaDto = new LeagueRespDto();
-            ligaDto.builder()
+            LeagueRespDto ligaDto = LeagueRespDto.builder()
                     .id(liga.getId())
                     .name(liga.getName())
                     .flag(liga.getCountry().getFlag())
