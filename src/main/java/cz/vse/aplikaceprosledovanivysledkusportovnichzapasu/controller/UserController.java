@@ -2,13 +2,16 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthenticationResponse;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.OpenAI;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.JwtService;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.AuthService;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -27,10 +31,6 @@ public class UserController {
     private UserService userService;
     @Autowired
     private AuthService authService;
-    @Autowired
-    private JwtService jwtService;
-    @Autowired
-    private UserRepository userRepository;
 
     @PostMapping(value = "/add")
     public User createUser(@RequestBody User user) {
@@ -61,6 +61,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/getUserInfo")
+<<<<<<< src/main/java/cz/vse/aplikaceprosledovanivysledkusportovnichzapasu/controller/UserController.java
     public ResponseEntity<User> getUserInfo(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
@@ -72,4 +73,42 @@ public class UserController {
     public ResponseEntity<String> OpenAiCall(){
         return ResponseEntity.ok("");
     }
+=======
+    public ResponseEntity<User> getUserInfo(HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        return ResponseEntity.ok(userService.getUserFromToken(jwt));
+    }
+
+    @PutMapping( value = "/changePassword")
+    public ResponseEntity<Object> changePassword(@RequestBody ChangePasswordDto changePasswordDto, HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        User user = authService.changePassword(changePasswordDto, jwt);
+        if (user == null){
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Old password didn't match");
+        }
+        return ResponseEntity.ok(user);
+    }
+    @PostMapping(value = "/addFavouriteTeam")
+    public ResponseEntity<String> addFavouriteTeam(@RequestParam long teamId, HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        userService.addFavouriteTeam(teamId, jwt);
+        return ResponseEntity.ok("Team was added");
+    }
+
+    @DeleteMapping(value = "/delete")
+    public ResponseEntity<Object> deleteUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        userService.deleteUser(userService.getUserFromToken(authentication.getName()).getId());
+        return ResponseEntity.ok("User deleted");
+    }
+
+    @GetMapping (value = "/getFavouriteTeams")
+    public ResponseEntity<Set<Team>> getFavouriteTeams(HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        return ResponseEntity.ok(userService.getFavouriteTeams(jwt));
+    }
+
+
+
+>>>>>>> src/main/java/cz/vse/aplikaceprosledovanivysledkusportovnichzapasu/controller/UserController.java
 }

@@ -11,6 +11,8 @@ public interface TeamService {
 
     void fillFootballTeamsByLeagueExternalIdAndSeason (int leagueExternalId, String seasonExternalId);
 
+    void fillVolleyballTeamsByLeagueExternalIdAndSeason (int leagueExternalId, String seasonExternalId);
+
     List<Team> getTeamsBySport(String sport);
 
 }

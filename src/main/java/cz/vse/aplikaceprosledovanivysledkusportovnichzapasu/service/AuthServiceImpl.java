@@ -2,6 +2,7 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthenticationResponse;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepository;
@@ -12,12 +13,15 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService{
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final UserService userService;
     @Override
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
@@ -49,5 +53,17 @@ public class AuthServiceImpl implements AuthService{
                 .builder()
                 .token(jwt)
                 .build();
+    }
+
+
+    @Override
+    public User changePassword(ChangePasswordDto changePasswordDto, String jwt) {
+        User user = userService.getUserFromToken(jwt);
+        if(!user.getPassword().equals( passwordEncoder.encode(changePasswordDto.getOldPassword())))
+        {
+            return null;
+        }
+            user.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
+        return user;
     }
 }

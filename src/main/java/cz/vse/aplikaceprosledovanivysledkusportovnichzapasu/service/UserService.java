@@ -1,8 +1,10 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
 
@@ -11,4 +13,8 @@ public interface UserService {
     User getUserById(Long id);
     boolean emailExists(String email);
     String getTextOfFavTeams(User user);
+    User getUserFromToken(String jwt);
+    void addFavouriteTeam(long teamId, String jwt);
+    Set<Team> getFavouriteTeams(String jwt);
+    User deleteUser(Long id);
 }
