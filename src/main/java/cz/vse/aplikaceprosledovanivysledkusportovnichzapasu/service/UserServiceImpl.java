@@ -1,6 +1,8 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.TeamRepository;
@@ -64,6 +66,12 @@ public class UserServiceImpl implements UserService{
     public Set<Team> getFavouriteTeams(String jwt) {
         User user= getUserFromToken(jwt);
         return user.getFavouriteTeams();
+    }
+
+    @Override
+    public Set<Fixture> getFavouriteFixtures(String jwt) {
+        User user= getUserFromToken(jwt);
+        return user.getFavouriteFixtures();
     }
 
     @Override

@@ -4,6 +4,7 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthenticationResponse;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.AuthService;
@@ -90,6 +91,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getFavouriteTeams(jwt));
     }
 
+    @GetMapping (value = "/getFavouriteFixtures")
+    public ResponseEntity<Set<Fixture>> getFavouriteFixtures(HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        return ResponseEntity.ok(userService.getFavouriteFixtures(jwt));
+    }
 
 
 }
