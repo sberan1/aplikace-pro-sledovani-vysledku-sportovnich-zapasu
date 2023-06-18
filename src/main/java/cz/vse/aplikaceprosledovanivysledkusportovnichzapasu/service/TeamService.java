@@ -8,6 +8,11 @@ public interface TeamService {
     void fillBasketballTeamsByLeagueExternalIdAndSeason(int leagueExternalId, String seasonExternalId);
 
     void fillHockeyTeamsByLeagueExternalIdAndSeason(int leagueExternalId, String seasonExternalId);
+
+    void fillFootballTeamsByLeagueExternalIdAndSeason (int leagueExternalId, String seasonExternalId);
+
+    void fillVolleyballTeamsByLeagueExternalIdAndSeason (int leagueExternalId, String seasonExternalId);
+
     List<Team> getTeamsBySport(String sport);
 
 }

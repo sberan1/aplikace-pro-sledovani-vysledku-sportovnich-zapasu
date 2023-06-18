@@ -13,6 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@Builder
 public class Team {
     @Id @GeneratedValue
     private Long id;

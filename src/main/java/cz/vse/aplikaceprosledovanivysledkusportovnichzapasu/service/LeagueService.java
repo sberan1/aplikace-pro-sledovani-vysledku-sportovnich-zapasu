@@ -8,7 +8,9 @@ import java.util.List;
 public interface LeagueService {
     void fillBasketballLeagues();
     void fillHockeyLeagues();
-    List<ContentHolder> getLeagues();
+    void fillFootballLeagues();
+    List<League> getLeagues();
     List<LeagueRespDto> getLeagueMatchesByDateAndSport(String date, String sport);
-    List<ContentHolder> getLeaguesBySport(String sport);
+    List<League> getLeaguesBySport(String sport);
+    public void fillVolleyballLeagues();
 }

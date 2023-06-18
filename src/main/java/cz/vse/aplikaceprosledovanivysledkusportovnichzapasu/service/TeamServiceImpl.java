@@ -37,6 +37,37 @@ public class TeamServiceImpl implements TeamService {
         JSONArray teams = resp.getJSONArray("response");
         teams.forEach(o -> pridatTymy((JSONObject) o, "Hockey", resp));
     }
+    @Override
+    public void fillFootballTeamsByLeagueExternalIdAndSeason (int leagueExternalId, String seasonExternalId){
+        JSONObject resp = apiSports.fotbalTymy(leagueExternalId, seasonExternalId);
+        JSONArray teams = resp.getJSONArray("response");
+        teams.forEach(n ->{
+            JSONObject o = ((JSONObject)n).getJSONObject("team");
+            Team tymEnt;
+            if (teamRepository.findByExternalIdAndSport(o.getInt("id"), "Football").isPresent()){
+                tymEnt = teamRepository.findTeamByExternalIdAndSport(o.getInt("id"), "Football");
+            }
+            else {
+                tymEnt = new Team();
+            }
+            tymEnt.setExternalId(o.getInt("id"));
+            tymEnt.setSport("Football");
+            tymEnt.setName(o.getString("name"));
+            tymEnt.setLogo(o.getString("logo"));
+            tymEnt.getLeagues().add(leagueRepository.findLeagueByExternalIdAndSport(Integer.parseInt(resp.getJSONObject("parameters").getString("league")),"Football"));
+                tymEnt.setCountry(countryRepository.findCountryByNameAndSport(o.getString("country"),"Football").get());
+                teamRepository.save(tymEnt);
+
+
+        } );
+    }
+
+    @Override
+    public void fillVolleyballTeamsByLeagueExternalIdAndSeason(int leagueExternalId, String seasonExternalId) {
+        JSONObject resp = apiSports.volejbalTymy(leagueExternalId, seasonExternalId);
+        JSONArray teams = resp.getJSONArray("response");
+        teams.forEach(o -> pridatTymy((JSONObject) o, "Volleyball", resp));
+    }
 
     @Override
     public List<Team> getTeamsBySport(String sport) {

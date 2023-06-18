@@ -4,6 +4,7 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.LeagueRespDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.ContentHolder;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,15 @@ public class LeagueController {
     public void fillHockeyLeagues() {
         leagueService.fillHockeyLeagues();
     }
+
+    @PostMapping("/fillFootballLeagues")
+    public ResponseEntity<List<League>> fillFootballLeagues() { leagueService.fillFootballLeagues(); return ResponseEntity.ok(leagueService.getLeaguesBySport("football"));}
+
+    @PostMapping("/fillVolleyballLeagues")
+    public void fillVolleyballLeagues(){
+        leagueService.fillVolleyballLeagues();
+    }
+
     @GetMapping("/getLeagues")
     public List<ContentHolder> getLeaguesBySport(@RequestParam String sport) {
         return leagueService.getLeaguesBySport(sport);

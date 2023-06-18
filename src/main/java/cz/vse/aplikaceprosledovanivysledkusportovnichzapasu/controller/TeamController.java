@@ -2,6 +2,7 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +26,8 @@ public class TeamController {
     public void fillTeamsHockey(@RequestParam int leagueExternalId, @RequestParam String season) {
          teamService.fillHockeyTeamsByLeagueExternalIdAndSeason(leagueExternalId, season);
     }
-
     @GetMapping(value="/getTeamsBySport")
-    public List<Team> getTeamsBySport(@RequestParam String sport) {
-        return teamService.getTeamsBySport(sport);
+    public ResponseEntity<List<Team>> getTeamsBySport(@RequestParam String sport) {
+        return ResponseEntity.ok(teamService.getTeamsBySport(sport));
     }
 }

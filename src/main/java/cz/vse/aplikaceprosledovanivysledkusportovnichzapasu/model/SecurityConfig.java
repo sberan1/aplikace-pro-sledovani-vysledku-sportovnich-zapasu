@@ -32,7 +32,13 @@ public class SecurityConfig {
                         "/league/getLeaguesByFixturePlayedAtDateInSport",
                         "/team/fillTeamsHockey",
                         "/fixture/fillFixturesHockey",
-                        "/fixture/fillFixturesBasketball")
+                        "/fixture/fillFixturesFootball",
+                        "/fixture/fillFixturesBasketball",
+                        "/league/fillFootballLeagues",
+                        "/league/fillVolleyballLeagues",
+                        "/team/getTeamsBySport",
+                        "/user/OpenAiCall",
+                        "/swagger-ui/")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

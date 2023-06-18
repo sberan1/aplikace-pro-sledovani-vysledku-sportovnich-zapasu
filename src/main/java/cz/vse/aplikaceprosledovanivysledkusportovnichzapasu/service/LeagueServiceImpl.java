@@ -16,10 +16,7 @@ import org.springframework.stereotype.Service;
 import org.json.JSONObject;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service @Primary
@@ -29,8 +26,6 @@ public class LeagueServiceImpl implements LeagueService{
     private LeagueRepository leagueRepository;
     @Autowired
     private CountryRepository countryRepository;
-    @Autowired
-    private FixtureRepository fixtureRepository;
 
     private ApiSports apiSports = ApiSports.getInstance();
 
@@ -43,21 +38,50 @@ public class LeagueServiceImpl implements LeagueService{
 
     public void fillHockeyLeagues() {
         JSONArray ligy = apiSports.hokejLigy().getJSONArray("response");
+        pridatLigy(ligy, "Hockey");
+
+    }
+
+    private void pridatLigy(JSONArray ligy, String sport) {
         ligy.forEach(o -> {
             ContentHolder ligaEnt = new ContentHolder();
             JSONObject liga = (JSONObject) o;
-            if (leagueRepository.findByExternalIdandSport(liga.getInt("id"), "Hockey").isEmpty()) {
+            if (leagueRepository.findByExternalIdandSport(liga.getInt("id"), sport).isEmpty()) {
                 ligaEnt.setName(liga.getString("name"));
                 ligaEnt.setType(liga.getString("type"));
-                ligaEnt.setSport("Hockey");
+                ligaEnt.setSport(sport);
                 ligaEnt.setExternalId(liga.getInt("id"));
                 ligaEnt.setLogo(liga.getString("logo"));
                 ligaEnt.setCountry(countryRepository.findCountryByExternalIdAndSport(liga.getJSONObject("country").getInt("id"), ligaEnt.getSport()));
                 leagueRepository.save(ligaEnt);
             }
         });
-
     }
+
+    public void fillFootballLeagues() {
+        JSONArray ligy = apiSports.fotbalLigy().getJSONArray("response");
+        ligy.forEach(o -> {
+            League ligaEnt = new League();
+            JSONObject liga = (JSONObject) o;
+            if (leagueRepository.findByExternalIdandSport(liga.getJSONObject("league").getInt("id"), "Football").isEmpty()){
+                ligaEnt.setName(liga.getJSONObject("league").getString("name"));
+                ligaEnt.setType(liga.getJSONObject("league").getString("type"));
+                ligaEnt.setSport("Football");
+                ligaEnt.setExternalId(liga.getJSONObject("league").getInt("id"));
+                ligaEnt.setLogo(liga.getJSONObject("league").getString("logo"));
+                ligaEnt.setCountry(countryRepository.findCountryByNameAndSport(liga.getJSONObject("country").getString("name"), ligaEnt.getSport()).get());
+                leagueRepository.save(ligaEnt);
+            }
+        });
+    }
+    public void fillVolleyballLeagues(){
+        JSONArray ligy = apiSports.volejbalLigy().getJSONArray("response");
+        pridatLigy(ligy, "Volleyball");
+    }
+
+
+
+
 
     private void pridatLigyBasketbal(JSONObject o) {
         ContentHolder ligaEnt = new ContentHolder();
@@ -71,10 +95,8 @@ public class LeagueServiceImpl implements LeagueService{
         if(leagueRepository.findByExternalIdandSport(o.getInt("id"), "Basketball").isEmpty()){
             leagueRepository.save(ligaEnt);
         }
-
     }
-
-    public List<ContentHolder> getLeagues() {
+    public List<League> getLeagues() {
         return leagueRepository.findAll();
     }
 
@@ -87,9 +109,8 @@ public class LeagueServiceImpl implements LeagueService{
         int [] datumString = Arrays.stream(date.split("-")).mapToInt(Integer::parseInt).toArray();
         Set<ContentHolder> ligy = new HashSet<>(leagueRepository.findAllByDateAndSport(LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0), LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0).plusDays(1), sport));
         Set<LeagueRespDto> ligyDto = new HashSet<>();
-        for (ContentHolder liga : ligy){
-            LeagueRespDto ligaDto = new LeagueRespDto();
-            ligaDto.builder()
+        for (League liga : ligy){
+            LeagueRespDto ligaDto = LeagueRespDto.builder()
                     .id(liga.getId())
                     .name(liga.getName())
                     .flag(liga.getCountry().getFlag())
@@ -98,6 +119,7 @@ public class LeagueServiceImpl implements LeagueService{
         }
         return ligyDto.stream().toList();
     }
+
 
 
 }
