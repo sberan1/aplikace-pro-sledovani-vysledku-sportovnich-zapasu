@@ -109,4 +109,12 @@ public class UserServiceImpl implements UserService{
         user.getFavouriteFixtures().add(userRepository.findById(id).get().getFavouriteFixtures().stream().findFirst().get());
     }
 
+    @Override
+    public void removeFavouriteFixture(long id, String jwt) {
+        User user= getUserFromToken(jwt);
+        user.getFavouriteFixtures().remove(userRepository.findById(id).get().getFavouriteFixtures().stream().findFirst().get());
+    }
+
+
+
 }

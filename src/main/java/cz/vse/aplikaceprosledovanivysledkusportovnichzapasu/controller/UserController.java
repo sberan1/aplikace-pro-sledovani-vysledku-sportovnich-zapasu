@@ -80,14 +80,14 @@ public class UserController {
         }
         return ResponseEntity.ok(user);
     }
-    @PostMapping(value = "/addFavouriteTeam")
+    @PutMapping(value = "/addFavouriteTeam")
     public ResponseEntity<String> addFavouriteTeam(@RequestParam long teamId, HttpServletRequest request){
         String jwt = request.getHeader("Authorization").substring(7);
         userService.addFavouriteTeam(teamId, jwt);
         return ResponseEntity.ok("Team was added");
     }
 
-    @PostMapping(value = "/removeFavouriteTeam")
+    @DeleteMapping(value = "/removeFavouriteTeam")
     public ResponseEntity<String> removeFavouriteTeam(@RequestParam long teamId, HttpServletRequest request){
         String jwt = request.getHeader("Authorization").substring(7);
         userService.removeFavouriteTeam(teamId, jwt);
@@ -113,11 +113,17 @@ public class UserController {
         return ResponseEntity.ok(userService.getFavouriteFixtures(jwt));
     }
 
-    @GetMapping (value = "/addFavouriteFixture")
+    @PutMapping (value = "/addFavouriteFixture")
     public ResponseEntity<String> addFavouriteFixture(@RequestParam long id, HttpServletRequest request){
         String jwt = request.getHeader("Authorization").substring(7);
         userService.addFavouriteFixture(id, jwt);
         return ResponseEntity.ok("Fixture was added");
     }
 
+    @DeleteMapping (value = "/removeFavouriteFixture")
+    public ResponseEntity<String> removeFavouriteFixture(@RequestParam long id, HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        userService.removeFavouriteFixture(id, jwt);
+        return ResponseEntity.ok("Fixture was removed");
+    }
 }
