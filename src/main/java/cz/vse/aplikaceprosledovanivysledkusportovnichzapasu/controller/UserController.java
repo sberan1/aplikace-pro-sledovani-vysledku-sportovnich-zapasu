@@ -113,4 +113,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getFavouriteFixtures(jwt));
     }
 
+    @GetMapping (value = "/addFavouriteFixture")
+    public ResponseEntity<String> addFavouriteFixture(@RequestParam long id, HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        userService.addFavouriteFixture(id, jwt);
+        return ResponseEntity.ok("Fixture was added");
+    }
+
 }
