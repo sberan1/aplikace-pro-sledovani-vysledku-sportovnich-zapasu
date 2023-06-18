@@ -45,12 +45,14 @@ const MatchList = ( {type, webParams} : {
                             id={Number(item.id)}
                             date={item.date}
                             time={item.time}
-                            team1={item.homeTeam}
-                            team2={item.awayTeam}
-                            score1={item.homeTeamScore}
-                            score2={item.awayTeamScore}
-                            imgSource1={item.homeTeamLogo}
-                            imgSource2={item.awayTeamLogo}
+                            homeTeamId={item.homeTeamId}
+                            awayTeamId={item.awayTeamId}
+                            homeTeamName={item.homeTeam}
+                            awayTeamName={item.awayTeam}
+                            homeTeamScore={item.homeTeamScore}
+                            awayTeamScore={item.awayTeamScore}
+                            homeTeamLogo={item.homeTeamLogo}
+                            awayTeamLogo={item.awayTeamLogo}
                         />
                 ))
             }

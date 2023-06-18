@@ -32,7 +32,7 @@ const LeagueList = ({sport, date} : { sport: string; date: string }) =>
             {
                 leagues.map(item => (
                     <League
-                        id={1130}
+                        id={Number(item.id)}
                         name={item.name}
                         flagSource={item.flagSource}
                         sport={sport}
