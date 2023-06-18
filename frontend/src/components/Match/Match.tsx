@@ -23,12 +23,14 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
         };
     };
 
+    const formateDateToCzech = date.split('-').reverse().join('.');
+
     if((homeTeamScore === null || awayTeamScore === null) && (homeTeamLogo === null || awayTeamLogo === null)){
         return(
             <div className={`inline-grid grid-flow-col gap-3 ${styles.match} m-1`}>
                 <div className='columns-1 inline-grid grid-rows-2 pl-6'>
                     <div className='flex items-end'>
-                        <p className={`${styles.text1Thin} `}>{date}</p>
+                        <p className={`${styles.text1Thin} `}>{formateDateToCzech}</p>
                     </div>
                     <div className='items-start'>
                         <p className={`${styles.text1Bold}`}>{time}</p>
@@ -70,7 +72,7 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
             <div className={`inline-grid grid-flow-col gap-3 ${styles.match} m-1`}>
                 <div className='columns-1 inline-grid grid-rows-2 pl-6'>
                     <div className='flex items-end'>
-                        <p className={`${styles.text1Thin} `}>{date}</p>
+                        <p className={`${styles.text1Thin} `}>{formateDateToCzech}</p>
                     </div>
                     <div className='items-start'>
                         <p className={`${styles.text1Bold}`}>{time}</p>
@@ -111,7 +113,7 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
             <div className={`inline-grid grid-flow-col gap-3 ${styles.match} m-1`}>
                 <div className='columns-1 inline-grid grid-rows-2 pl-6'>
                     <div className='flex items-end'>
-                        <p className={`${styles.text1Thin} `}>{date}</p>
+                        <p className={`${styles.text1Thin} `}>{formateDateToCzech}</p>
                     </div>
                     <div className='items-start'>
                         <p className={`${styles.text1Bold}`}>{time}</p>
@@ -152,7 +154,7 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
             <div className={`inline-grid grid-flow-col gap-3 ${styles.match} m-1`}>
                 <div className='columns-1 inline-grid grid-rows-2 pl-6'>
                     <div className='flex items-end'>
-                        <p className={`${styles.text1Thin} `}>{date}</p>
+                        <p className={`${styles.text1Thin} `}>{formateDateToCzech}</p>
                     </div>
                     <div className='items-start'>
                         <p className={`${styles.text1Bold}`}>{time}</p>
