@@ -5,11 +5,9 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthenticationRe
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.JwtService;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.AuthService;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
-import io.jsonwebtoken.Claims;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,19 +55,25 @@ public class UserController {
     }
 
     @GetMapping(value = "/getUserInfo")
-    public ResponseEntity<User> getUserInfo(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return ResponseEntity.ok(userService.getUserFromToken(authentication.getName()));
+    public ResponseEntity<User> getUserInfo(HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        return ResponseEntity.ok(userService.getUserFromToken(jwt));
     }
 
     @PutMapping( value = "/changePassword")
-    public ResponseEntity<Object> changePassword(@RequestBody ChangePasswordDto changePasswordDto){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = authService.changePassword(changePasswordDto, authentication.getName());
+    public ResponseEntity<Object> changePassword(@RequestBody ChangePasswordDto changePasswordDto, HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        User user = authService.changePassword(changePasswordDto, jwt);
         if (user == null){
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Old password didn't match");
         }
         return ResponseEntity.ok(user);
+    }
+    @PostMapping(value = "/addFavouriteTeam")
+    public ResponseEntity<String> addFavouriteTeam(@RequestParam long teamId, HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        userService.addFavouriteTeam(teamId, jwt);
+        return ResponseEntity.ok("Team was added");
     }
 
     @DeleteMapping(value = "/delete")
