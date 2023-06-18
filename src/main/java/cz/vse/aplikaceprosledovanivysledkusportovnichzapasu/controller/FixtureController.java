@@ -1,6 +1,7 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDto;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.FixtureRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.FixtureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ import java.util.List;
 public class FixtureController {
     @Autowired
     FixtureService fixtureService;
+
+    FixtureRepository fixtureRepository;
 
     @PostMapping(value = "/fillFixturesBasketball")
     public void fillTeamsBasketball(@RequestParam int leagueExternalId, @RequestParam String season) {
@@ -39,4 +42,19 @@ public class FixtureController {
     {
         return fixtureService.getFixturesBySportAndDate(sport, date, league);
     }
+
+    @GetMapping("/getFixturesByTeamIdAndDateBeforeToday")
+    public List<MatchListDateDto> getFixturesByTeamIdAndDateBeforeToday( @RequestParam long id)
+    {
+        return fixtureRepository.findFixturesByTeamIdAndDateBeforeToday(id);
+    }
+
+    @GetMapping("/getFixturesByTeamIdAndDateFromToday")
+    public List<MatchListDateDto> getFixturesByTeamIdAndDateFromToday( @RequestParam long id)
+    {
+        return fixtureRepository.findFixturesByTeamIdAndDateFromToday(id);
+
+    }
+
+
 }
