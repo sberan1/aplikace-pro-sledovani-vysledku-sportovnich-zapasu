@@ -70,6 +70,6 @@ public class UserController {
 
     @GetMapping(value = "/OpenAiCall")
     public ResponseEntity<String> OpenAiCall(){
-        return ResponseEntity.ok(OpenAI.authentikace("Sparta Praha, Slavia Praha, Detroit Pistons", "Ligue 1, NBA").getBody());
+        return ResponseEntity.ok("");
     }
 }

@@ -1,5 +1,7 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepository;
@@ -40,6 +42,16 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean emailExists(String email) {
         return userRepository.findByEmail(email).isEmpty();
+    }
+
+    @Override
+    public String getTextOfFavTeams(User user) {
+        StringBuilder sb = new StringBuilder();
+        for (Team f : user.getFavouriteTeams()) {
+            sb.append(f.getName());
+            sb.append(", ");
+        }
+        return sb.toString();
     }
 
 }

@@ -1,28 +1,33 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model;
 
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.http.HttpResponse;
+import com.lilittlecat.chatgpt.offical.ChatGPT;
+import com.lilittlecat.chatgpt.offical.entity.Message;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class OpenAI{
 
     private static final String API_KEY = "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";
-    private static final String API_URL = "https://api.openai.com/v1/chat/completions";
+    private static ChatGPT chatGPT = new ChatGPT(API_KEY);
+    private static UserService userService = new UserServiceImpl();
 
+    public static String useMessages(User user){
+        List<Message> messages = new ArrayList<>();
+        messages.add(Message.builder()
+                .role("system")
+                .content("You are a tool for suggesting teams to follow based on preferences of our users, our users will give you list of their favourite teams and you will just list some other teams the person might want to follow and you'll separate the team names with a ,")
+                .build());
 
-    public static HttpResponse<String> authentikace(String oblibeneTymy, String oblibeneLigy){
-        Unirest.setTimeouts(0, 0);
-        try {
-            HttpResponse<String> response =
-                    Unirest.post(API_URL)
-                    .header("Content-Type", "application/json")
-                    .header("Authorization", "Bearer " + API_KEY)
-                    .body("{\"messages/\": [{\"role\": \"system\", \"content\": \"You need to format your answer with no additional text just list the items and separate them only by ,\"}, {\"role\": \"user\", \"content\": \"Could zou show me other teams I could fllow when I follow "+ oblibeneTymy +" and " + oblibeneLigy + " ligy}],\"model\": \"gpt-3.5-turbo\"}")
-                    .asString();
-            return response;
-        } catch (UnirestException e) {
-            throw new RuntimeException(e);
-        }
+        messages.add(Message.builder()
+                .role("user")
+                .content("leagues = " + userService.getTextOfFavTeams(user))
+                .build());
+        return chatGPT.ask(messages);
     }
 }

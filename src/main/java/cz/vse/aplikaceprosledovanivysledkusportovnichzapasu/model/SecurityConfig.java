@@ -36,7 +36,8 @@ public class SecurityConfig {
                         "/league/fillFootballLeagues",
                         "/league/fillVolleyballLeagues",
                         "/team/getTeamsBySport",
-                        "/user/OpenAiCall")
+                        "/user/OpenAiCall",
+                        "/swagger-ui/")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

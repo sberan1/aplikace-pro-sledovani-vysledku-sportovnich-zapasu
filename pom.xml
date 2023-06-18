@@ -17,6 +17,11 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>com.lilittlecat</groupId>
+			<artifactId>chatgpt</artifactId>
+			<version>1.0.2</version>
+		</dependency>
 		<!-- Spring starter -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

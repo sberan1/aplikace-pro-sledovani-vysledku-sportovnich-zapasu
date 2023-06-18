@@ -47,7 +47,9 @@ public class FixtureServiceImpl implements FixtureService {
             matchListDateDTO.setId(fixture.getId());
             matchListDateDTO.setDate(fixture.getDate().format(DateTimeFormatter.ISO_DATE));
             matchListDateDTO.setTime(fixture.getDate().format(DateTimeFormatter.ofPattern("HH:mm")));
+            matchListDateDTO.setHomeTeamId(fixture.getHomeTeam().getId());
             matchListDateDTO.setHomeTeam(fixture.getHomeTeam().getName());
+            matchListDateDTO.setAwayTeamId(fixture.getAwayTeam().getId());
             matchListDateDTO.setAwayTeam(fixture.getAwayTeam().getName());
             matchListDateDTO.setHomeTeamScore(fixture.getScore().getFinalHomeScore());
             matchListDateDTO.setAwayTeamScore(fixture.getScore().getFinalAwayScore());
