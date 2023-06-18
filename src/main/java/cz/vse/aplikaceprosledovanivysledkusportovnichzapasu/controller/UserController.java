@@ -87,6 +87,13 @@ public class UserController {
         return ResponseEntity.ok("Team was added");
     }
 
+    @PostMapping(value = "/removeFavouriteTeam")
+    public ResponseEntity<String> removeFavouriteTeam(@RequestParam long teamId, HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        userService.removeFavouriteTeam(teamId, jwt);
+        return ResponseEntity.ok("Team was removed");
+    }
+
     @DeleteMapping(value = "/delete")
     public ResponseEntity<Object> deleteUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
