@@ -11,7 +11,6 @@ import HomePage from './components/HomePagePackage/HomePage';
 import PrihlaseniPage from './components/PrihlaseniPagePackage/PrihlaseniPage';
 import {UserProvider} from "./components/PrihlaseniPagePackage/UserContext";
 import RegistracePage from './components/RegistracePagePackage/RegistracePage';
-import FotbalPage from './components/ZkusebniPageFotbalu/FotbalPage';
 import Modal from 'react-modal';
 import League from "./components/League/League";
 import MatchList from "./components/MatchList";
@@ -36,14 +35,11 @@ const App = () => {
    );*/
 
 
-const LocalMatchList : Array<JSX.Element> = MatchList(1, "?sport=Basketball&date=2023-03-19&league=1130");
-
-return <League id={MatchSourceType.League} name={"Testovací liga"} matchList={LocalMatchList} />
     // const LocalMatchList : Array<JSX.Element> = MatchList(1, "?sport=Basketball&date=2023-03-19&league=1130");
     //
     // return <League id={MatchSourceType.League} name={"Testovací liga"} flagSource={testFlag} matchList={LocalMatchList} />
 
     return <ContentHolder sport={"Basketball"}/>;
-
+}
 
 export default App;

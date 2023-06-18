@@ -20,7 +20,7 @@ const LeagueList = ({sport, date} : { sport: string; date: string }) =>
 
     useEffect(() => {
         fetchLeagues();
-    }, []);
+    }, [date]);
 
 
     if(leagues.length === 0) {

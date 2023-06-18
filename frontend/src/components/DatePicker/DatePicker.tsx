@@ -40,7 +40,6 @@ const DatePickerComponent = () => {
 
     const formatDateToString = date => {
         let dateString = date.toLocaleDateString('cs-CZ'); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/
-        dateString = '21. 6. 2023';
         const formatDate = parse(dateString, 'd. M. yyyy', new Date());
         const formattedDate = format(formatDate, 'yyyy-MM-dd');
         setFormattedDateToReturn(formattedDate);
