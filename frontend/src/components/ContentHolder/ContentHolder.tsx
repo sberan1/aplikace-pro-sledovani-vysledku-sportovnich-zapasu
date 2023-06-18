@@ -30,7 +30,6 @@ function ContentHolder({ sport }: {
             </div>
             <div className={`grid grid-flow-row auto-rows-max place-items-center`}>
                 <LeagueList date={formattedDateToReturn} sport={sport} />
-                {formattedDateToReturn}
             </div>
         </div>
     )
