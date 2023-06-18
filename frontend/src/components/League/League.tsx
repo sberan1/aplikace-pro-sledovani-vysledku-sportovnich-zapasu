@@ -6,18 +6,22 @@ import MatchList from "./../MatchList";
 import Match from "../Match/Match";
 import { useState, useEffect, useRef } from "react";
 import {MatchType} from "../Types";
+import {MatchSourceType} from "../Enums";
 
-function League({ id, name, flagSource, matchList }: {
+function League ({ id, name, flagSource, sport, date}: {
     id: any;
     name: string;
     flagSource: string;
-    matchList: Array<JSX.Element>;
+    sport: string;
+    date: string;
 }) {
     const [open, setOpen] = useState(false);
 
     const toggle = () => {
         setOpen(!open);
     };
+
+    let localMatchList : Array<JSX.Element> = [];
 
     return (
         <div className={`${styles.league} /*inline-grid*/ py-4`} style={{ height: open ? 'fit-content' : '60px' }}>
@@ -45,11 +49,9 @@ function League({ id, name, flagSource, matchList }: {
             </div>
             {open && (
                 <div className={`${styles.leagueMatches} px-3 inline-grid justify-items-center justify-center`}>
-                    {
-                        matchList.map(item => (
-                            item
-                        ))
-                    }
+
+                        <MatchList type = {MatchSourceType.League} webParams = {`?sport=${sport}&date=${date}&league=${id}`} />
+
                 </div>
             )}
         </div>

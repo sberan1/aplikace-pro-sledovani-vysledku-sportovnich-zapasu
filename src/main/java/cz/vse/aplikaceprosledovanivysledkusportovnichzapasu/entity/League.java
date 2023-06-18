@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Entity @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class League {
+public class ContentHolder {
     @Id @GeneratedValue
     private Long id;
     private String name;

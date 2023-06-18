@@ -17,6 +17,7 @@ import League from "./components/League/League";
 import MatchList from "./components/MatchList";
 import {MatchType} from "./components/Types";
 import {MatchSourceType} from "./components/Enums";
+import ContentHolder from "./components/ContentHolder/ContentHolder";
 
 Modal.setAppElement('#root');
 
@@ -34,9 +35,11 @@ const App = () => {
         </UserProvider>
     );*/
 
-    const LocalMatchList : Array<JSX.Element> = MatchList(1, "?sport=Basketball&date=2023-03-19&league=1130");
+    // const LocalMatchList : Array<JSX.Element> = MatchList(1, "?sport=Basketball&date=2023-03-19&league=1130");
+    //
+    // return <League id={MatchSourceType.League} name={"Testovací liga"} flagSource={testFlag} matchList={LocalMatchList} />
 
-    return <League id={MatchSourceType.League} name={"Testovací liga"} flagSource={testFlag} matchList={LocalMatchList} />
+    return <ContentHolder sport={"Basketball"}/>;
 };
 
 export default App;

@@ -20,7 +20,7 @@ public class Team {
     private String name;
     private int externalId;
     @ManyToMany
-    private Set<League> leagues = new HashSet<>();
+    private Set<ContentHolder> leagues = new HashSet<>();
     @ManyToOne
     private Country country;
     private String logo;
