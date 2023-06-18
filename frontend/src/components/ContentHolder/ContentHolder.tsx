@@ -9,6 +9,7 @@ import {MatchType} from "../Types";
 import LeagueList from "../LeagueList";
 import League from "../League/League";
 import leagueList from "../LeagueList";
+import DatePicker from "../DatePicker/DatePicker";
 
 function ContentHolder({ sport }: {
     sport: string;
@@ -16,11 +17,14 @@ function ContentHolder({ sport }: {
 {
 
     return (
-        <div>
-            <div>
-                <h2 className={`${styles.sportName} p-4`}>{sport}</h2>
+        <div className={`${styles.placeHolder} p-4 grid grid-flow-row auto-rows-max`}>
+            <div className={`flex justify-between`}>
+                <h2 className={`${styles.sportName} pl-8 pt-9 pb-11`}>{sport}</h2>
+                <div className={`pr-8 pt-9 pb-11`}>
+                    <DatePicker />
+                </div>
             </div>
-            <div>
+            <div className={`grid grid-flow-row auto-rows-max place-items-center`}>
                 <LeagueList date={"2023-03-19"} sport={sport} />
             </div>
         </div>
