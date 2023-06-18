@@ -21,7 +21,7 @@ public class Team {
     private String name;
     private int externalId;
     @ManyToMany
-    private Set<ContentHolder> leagues = new HashSet<>();
+    private Set<League> leagues = new HashSet<>();
     @ManyToOne
     private Country country;
     private String logo;

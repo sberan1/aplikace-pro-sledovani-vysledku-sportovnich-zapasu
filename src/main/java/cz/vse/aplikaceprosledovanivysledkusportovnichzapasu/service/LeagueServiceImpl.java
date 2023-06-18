@@ -3,7 +3,7 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.LeagueRespDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.ContentHolder;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.ApiSports;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.CountryRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.FixtureRepository;
@@ -44,7 +44,7 @@ public class LeagueServiceImpl implements LeagueService{
 
     private void pridatLigy(JSONArray ligy, String sport) {
         ligy.forEach(o -> {
-            ContentHolder ligaEnt = new ContentHolder();
+            League ligaEnt = new League();
             JSONObject liga = (JSONObject) o;
             if (leagueRepository.findByExternalIdandSport(liga.getInt("id"), sport).isEmpty()) {
                 ligaEnt.setName(liga.getString("name"));
@@ -84,7 +84,7 @@ public class LeagueServiceImpl implements LeagueService{
 
 
     private void pridatLigyBasketbal(JSONObject o) {
-        ContentHolder ligaEnt = new ContentHolder();
+        League ligaEnt = new League();
         ligaEnt.setType(o.getString("type"));
         ligaEnt.setExternalId(o.getInt("id"));
         ligaEnt.setName(o.getString("name"));
@@ -101,13 +101,13 @@ public class LeagueServiceImpl implements LeagueService{
     }
 
     @Override
-    public List<ContentHolder> getLeaguesBySport(String sport) {
+    public List<League> getLeaguesBySport(String sport) {
         return leagueRepository.findBySport(sport);
     }
 
     public List<LeagueRespDto> getLeagueMatchesByDateAndSport(String date, String sport) {
         int [] datumString = Arrays.stream(date.split("-")).mapToInt(Integer::parseInt).toArray();
-        Set<ContentHolder> ligy = new HashSet<>(leagueRepository.findAllByDateAndSport(LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0), LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0).plusDays(1), sport));
+        Set<League> ligy = new HashSet<>(leagueRepository.findAllByDateAndSport(LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0), LocalDateTime.of(datumString[0], datumString[1], datumString[2], 0, 0).plusDays(1), sport));
         Set<LeagueRespDto> ligyDto = new HashSet<>();
         for (League liga : ligy){
             LeagueRespDto ligaDto = LeagueRespDto.builder()

@@ -1,7 +1,7 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.LeagueRespDto;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.ContentHolder;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +36,7 @@ public class LeagueController {
     }
 
     @GetMapping("/getLeagues")
-    public List<ContentHolder> getLeaguesBySport(@RequestParam String sport) {
+    public List<League> getLeaguesBySport(@RequestParam String sport) {
         return leagueService.getLeaguesBySport(sport);
     }
 
