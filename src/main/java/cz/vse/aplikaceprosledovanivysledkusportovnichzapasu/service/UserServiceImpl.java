@@ -62,6 +62,7 @@ public class UserServiceImpl implements UserService{
             sb.append(", ");
         }
         return sb.toString();
+    }
 
     @Override
     public User getUserFromToken(String jwt){

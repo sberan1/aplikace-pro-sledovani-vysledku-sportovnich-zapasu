@@ -60,20 +60,11 @@ public class UserController {
         return ResponseEntity.ok(authService.authenticate(request));
     }
 
-    @GetMapping(value = "/getUserInfo")
-<<<<<<< src/main/java/cz/vse/aplikaceprosledovanivysledkusportovnichzapasu/controller/UserController.java
-    public ResponseEntity<User> getUserInfo(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        User user = userRepository.findByEmail(email).get();
-        return ResponseEntity.ok(user);
-    }
-
     @GetMapping(value = "/OpenAiCall")
     public ResponseEntity<String> OpenAiCall(){
         return ResponseEntity.ok("");
     }
-=======
+    @GetMapping(value = "/getUserInfo")
     public ResponseEntity<User> getUserInfo(HttpServletRequest request){
         String jwt = request.getHeader("Authorization").substring(7);
         return ResponseEntity.ok(userService.getUserFromToken(jwt));
@@ -107,8 +98,4 @@ public class UserController {
         String jwt = request.getHeader("Authorization").substring(7);
         return ResponseEntity.ok(userService.getFavouriteTeams(jwt));
     }
-
-
-
->>>>>>> src/main/java/cz/vse/aplikaceprosledovanivysledkusportovnichzapasu/controller/UserController.java
 }
