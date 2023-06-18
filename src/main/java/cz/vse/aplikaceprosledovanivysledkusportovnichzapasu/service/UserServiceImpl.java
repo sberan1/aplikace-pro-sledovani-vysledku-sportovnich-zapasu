@@ -1,5 +1,6 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
@@ -48,6 +49,21 @@ public class UserServiceImpl implements UserService{
     @Override
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow();
+    }
+
+    @Override
+    public boolean emailExists(String email) {
+        return userRepository.findByEmail(email).isEmpty();
+    }
+
+    @Override
+    public String getTextOfFavTeams(User user) {
+        StringBuilder sb = new StringBuilder();
+        for (Team f : user.getFavouriteTeams()) {
+            sb.append(f.getName());
+            sb.append(", ");
+        }
+        return sb.toString();
     }
 
     @Override
