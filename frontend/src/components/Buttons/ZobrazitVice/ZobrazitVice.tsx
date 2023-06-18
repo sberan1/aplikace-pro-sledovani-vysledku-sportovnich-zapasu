@@ -6,7 +6,7 @@ import chevron from '../../../assets/chevron-right.svg';
 function ZobrazitVice(handleClick: any) {
     return (
         <div onClick={handleClick} className={`flex items-center ${styles.text}`}>
-            <button className={`${styles.text} uppercase pr-4`}>Zobrazit více
+            <button className={`${styles.text} uppercase`}>Zobrazit více
                 <div>
                     <svg width="10" height="16" fill="black" className={`${styles.icon}`}
                          xmlns="http://www.w3.org/2000/svg">

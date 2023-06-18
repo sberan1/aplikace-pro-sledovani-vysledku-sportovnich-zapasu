@@ -58,7 +58,7 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
                         </div>
                     </div>
                 </div>
-                <div className={`flex content-center items-center`}>
+                <div className={`flex justify-end pr-6`}>
                     <div className={`inline-grid`}>
                         <ZobrazitVice className={`flex content-center`}></ZobrazitVice>
                     </div>
@@ -100,7 +100,7 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
                         </div>
                     </div>
                 </div>
-                <div className={`flex content-center items-center`}>
+                <div className={`flex justify-end pr-6`}>
                     <div className={`inline-grid`}>
                         <ZobrazitVice className={`flex content-center`}></ZobrazitVice>
                     </div>
@@ -141,7 +141,7 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
                         </div>
                     </div>
                 </div>
-                <div className={`flex content-center items-center`}>
+                <div className={`flex justify-end pr-6`}>
                     <div className={`inline-grid`}>
                         <ZobrazitVice className={`flex content-center`}></ZobrazitVice>
                     </div>
@@ -182,7 +182,7 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
                         </div>
                     </div>
                 </div>
-                <div className={`flex content-center items-center`}>
+                <div className={`flex justify-end pr-6`}>
                     <div className={`inline-grid`}>
                         <ZobrazitVice className={`flex content-center`}></ZobrazitVice>
                     </div>
