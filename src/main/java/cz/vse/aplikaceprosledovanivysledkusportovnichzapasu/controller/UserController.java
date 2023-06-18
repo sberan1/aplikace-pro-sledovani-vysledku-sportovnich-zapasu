@@ -4,6 +4,7 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthenticationResponse;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.AuthService;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
@@ -16,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -80,6 +82,12 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         userService.deleteUser(userService.getUserFromToken(authentication.getName()).getId());
         return ResponseEntity.ok("User deleted");
+    }
+
+    @GetMapping (value = "/getFavouriteTeams")
+    public ResponseEntity<Set<Team>> getFavouriteTeams(HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        return ResponseEntity.ok(userService.getFavouriteTeams(jwt));
     }
 
 

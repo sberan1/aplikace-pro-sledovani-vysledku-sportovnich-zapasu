@@ -1,6 +1,7 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -56,6 +58,12 @@ public class UserServiceImpl implements UserService{
     public void addFavouriteTeam(long teamId, String jwt) {
         User user= getUserFromToken(jwt);
         user.getFavouriteTeams().add(teamRepository.findById(teamId).get());
+    }
+
+    @Override
+    public Set<Team> getFavouriteTeams(String jwt) {
+        User user= getUserFromToken(jwt);
+        return user.getFavouriteTeams();
     }
 
     @Override
