@@ -38,7 +38,6 @@ public class FixtureServiceImpl implements FixtureService {
     private HockeyScoreRepository hockeyScoreRepository;
     @Autowired
     private VoleyballScoreRepository voleyballScoreRepository;
-    HockeyScoreRepository hockeyScoreRepository;
     @Autowired
     SoccerScoreRepository footballScoreRepository;
     ApiSports apiSports = ApiSports.getInstance();
@@ -84,7 +83,8 @@ public class FixtureServiceImpl implements FixtureService {
     public void fillVolleyballFixture(int leagueExternalId, String season) {
         JSONObject resp = apiSports.hokejZapasy(leagueExternalId, season);
         JSONArray fixtures = resp.getJSONArray("response");
-        fixtures.forEach(o -> pridatZapasy((JSONObject) (o),"Volleyball", resp));
+        fixtures.forEach(o -> pridatZapasy((JSONObject) (o), "Volleyball", resp));
+    }
 
     @Override
     public void fillFootballFixture(int leagueExternalId, String season){
