@@ -25,45 +25,50 @@ import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
 
         if((homeTeamScore === null || awayTeamScore === null) && (homeTeamLogo === null || awayTeamLogo === null)){
             return(
-                <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match} m-1`}>
-                    <div className='columns-1 flex-initial w-64 inline-grid grid-rows-2 pl-6'>
+                <div className={`inline-grid grid-flow-col gap-3 ${styles.match} m-1`}>
+                    <div className='columns-1 inline-grid grid-rows-2 pl-6'>
                         <div className='flex items-end'>
-                            <p className={`${styles.text1Thin}`}>{date}</p>
+                            <p className={`${styles.text1Thin} `}>{date}</p>
                         </div>
                         <div className='items-start'>
                             <p className={`${styles.text1Bold}`}>{time}</p>
                         </div>
                     </div>
-                    <div className="columns-1 grid-flow-col auto-cols-max">
-                        <div className='inline-grid grid-cols-3'>
-                            <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
-                                <div  className={styles.imgTeam}></div>
+                    <div className="columns-1 grid-flow-col">
+                        <div className='flex items-center mt-4 mb-1'>
+                            <div className='flex grow w-60 justify-center'>
+                                {/*<img src={homeTeamLogo} alt="Team" className={`content-center ${styles.imgTeam}`}></img>*/}
                                 <button onClick={teamOnClicked(homeTeamName)} className={`pl-3 content-center ${styles.team}`}>{homeTeamName}</button>
                             </div>
-                            <div className='grid justify-items-center items-center'>
-                                <p className={`${styles.dash} pt-3`}>-</p>
+                            <div className='flex grow-0'>
+                                <p className={`${styles.dash}`}>-</p>
                             </div>
-                            <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
-                                <button onClick={teamOnClicked(awayTeamName)} className={`pl-3 content-center ${styles.team}`}>{awayTeamName}</button>
-                                <div className={styles.imgTeam}></div>
+                            <div className='flex grow w-60 justify-center'>
+                                <button onClick={teamOnClicked(awayTeamName)} className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
+                                {/*<img src={awayTeamLogo} alt="Team" className={`content-center ${styles.imgTeam2}`}></img>*/}
                             </div>
                         </div>
                         <div className={`flex justify-center mb-3`}>
                             <div className={`${styles.score} flex justify-center px-4 pt-0.5`}>
-                                <p className={`${styles.score1} pt-0.5 pb-0.2`}>Nadcházející</p>
+                                <p className={`${styles.score1} pr-4 pt-0.5 pb-0.2`}>Nadcházející</p>
+                                <p className={`${styles.colon}  pt-0.5 pb-0.3`}>:</p>
+                                <p className={`${styles.score2} pl-4 pt-0.5 pb-0.2`}>Nadcházející</p>
                             </div>
                         </div>
                     </div>
-                    <div className={`flex pl-10`}>
-                        <ZobrazitVice className={`justify-self-end`}></ZobrazitVice>
+                    <div className={`flex content-center items-center`}>
+                        <div className={`inline-grid`}>
+                            <ZobrazitVice className={`flex content-center`}></ZobrazitVice>
+                        </div>
+
                     </div>
                 </div>
             )
         }
         else if(homeTeamScore === null || awayTeamScore === null){
             return(
-                <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match} m-1`}>
-                    <div className='columns-1 flex-initial w-64 inline-grid grid-rows-2 pl-6'>
+                <div className={`inline-grid grid-flow-col gap-3 ${styles.match} m-1`}>
+                    <div className='columns-1 inline-grid grid-rows-2 pl-6'>
                         <div className='flex items-end'>
                             <p className={`${styles.text1Thin} `}>{date}</p>
                         </div>
@@ -71,36 +76,40 @@ import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
                             <p className={`${styles.text1Bold}`}>{time}</p>
                         </div>
                     </div>
-                    <div className="columns-1 grid-flow-col auto-cols-max">
-                        <div className='inline-grid grid-cols-3'>
-                            <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
+                    <div className="columns-1 grid-flow-col">
+                        <div className='flex items-center mt-4 mb-1'>
+                            <div className='flex grow w-60 justify-center'>
                                 <img src={homeTeamLogo} alt="Team" className={`content-center ${styles.imgTeam}`}></img>
                                 <button onClick={teamOnClicked(homeTeamName)} className={`pl-3 content-center ${styles.team}`}>{homeTeamName}</button>
                             </div>
-                            <div className='grid justify-items-center items-center'>
-                                <p className={`${styles.dash} pt-3`}>-</p>
+                            <div className='flex grow-0'>
+                                <p className={`${styles.dash}`}>-</p>
                             </div>
-                            <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
+                            <div className='flex grow w-60 justify-center'>
+                                <button onClick={teamOnClicked(awayTeamName)} className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
                                 <img src={awayTeamLogo} alt="Team" className={`content-center ${styles.imgTeam2}`}></img>
-                                <button onClick={teamOnClicked(awayTeamName)} className={`pl-3 content-center ${styles.team}`}>{awayTeamName}</button>
                             </div>
                         </div>
                         <div className={`flex justify-center mb-3`}>
                             <div className={`${styles.score} flex justify-center px-4 pt-0.5`}>
-                                <p className={`${styles.score1} pt-0.5 pb-0.2`}>Nadcházející</p>
+                                <p className={`${styles.score1} pr-4 pt-0.5 pb-0.2`}>Nadcházející</p>
+                                <p className={`${styles.colon}  pt-0.5 pb-0.3`}>:</p>
+                                <p className={`${styles.score2} pl-4 pt-0.5 pb-0.2`}>Nadcházející</p>
                             </div>
                         </div>
                     </div>
-                    <div className={`flex pl-10`}>
-                        <ZobrazitVice className={`justify-self-end`}></ZobrazitVice>
+                    <div className={`flex content-center items-center`}>
+                        <div className={`inline-grid`}>
+                            <ZobrazitVice className={`flex content-center`}></ZobrazitVice>
+                        </div>
                     </div>
                 </div>
             )
         }
         else if((homeTeamScore !== null || awayTeamScore !== null) && (homeTeamLogo === null || awayTeamLogo === null)) {
             return (
-                <div className={`inline-grid grid-flow-col auto-cols-max gap-4 ${styles.match} m-1`}>
-                    <div className='columns-1 flex-initial w-64 inline-grid grid-rows-2 pl-6'>
+                <div className={`inline-grid grid-flow-col gap-3 ${styles.match} m-1`}>
+                    <div className='columns-1 inline-grid grid-rows-2 pl-6'>
                         <div className='flex items-end'>
                             <p className={`${styles.text1Thin} `}>{date}</p>
                         </div>
@@ -108,18 +117,18 @@ import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
                             <p className={`${styles.text1Bold}`}>{time}</p>
                         </div>
                     </div>
-                    <div className="columns-1 grid-flow-col auto-cols-max">
-                        <div className='inline-grid grid-cols-3'>
-                            <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
-                                <div className={styles.imgTeam}></div>
+                    <div className="columns-1 grid-flow-col">
+                        <div className='flex items-center mt-4 mb-1'>
+                            <div className='flex grow w-60 justify-center'>
+                                {/*<img src={homeTeamLogo} alt="Team" className={`content-center ${styles.imgTeam}`}></img>*/}
                                 <button onClick={teamOnClicked(homeTeamName)} className={`pl-3 content-center ${styles.team}`}>{homeTeamName}</button>
                             </div>
-                            <div className='grid justify-items-center items-center'>
-                                <p className={`${styles.dash} pt-3`}>-</p>
+                            <div className='flex grow-0'>
+                                <p className={`${styles.dash}`}>-</p>
                             </div>
-                            <div className='grid-flow-col pr-3 pl-3 pt-3 flex items-center'>
-                                <button onClick={teamOnClicked(awayTeamName)} className={`pl-3 content-center ${styles.team}`}>{awayTeamName}</button>
-                                <div className={styles.imgTeam}></div>
+                            <div className='flex grow w-60 justify-center'>
+                                <button onClick={teamOnClicked(awayTeamName)} className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
+                                {/*<img src={awayTeamLogo} alt="Team" className={`content-center ${styles.imgTeam2}`}></img>*/}
                             </div>
                         </div>
                         <div className={`flex justify-center mb-3`}>
@@ -130,8 +139,10 @@ import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
                             </div>
                         </div>
                     </div>
-                    <div className={`flex pl-10`}>
-                        <ZobrazitVice className={`justify-self-end`}></ZobrazitVice>
+                    <div className={`flex content-center items-center`}>
+                        <div className={`inline-grid`}>
+                            <ZobrazitVice className={`flex content-center`}></ZobrazitVice>
+                        </div>
                     </div>
                 </div>
             )
