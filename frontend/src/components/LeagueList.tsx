@@ -24,7 +24,7 @@ const LeagueList = ({sport, date} : { sport: string; date: string }) =>
 
 
     if(leagues.length === 0) {
-        return <div>Žádné zápasy</div>
+        return <div className={`font-classic text-white`}>Žádné zápasy</div>
     }
 
     return (
