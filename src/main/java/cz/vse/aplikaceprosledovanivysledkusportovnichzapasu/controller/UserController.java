@@ -6,6 +6,9 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDt
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.OpenAI;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.JwtService;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.AuthService;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,10 +45,12 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-
     @PostMapping(value = "/register")
-    public ResponseEntity<AuthenticationResponse> register
+    public ResponseEntity<Object> register
             (@RequestBody RegisterRequest request) {
+        if (userService.emailExists(request.getEmail())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already taken");
+        }
         return ResponseEntity.ok(authService.register(request));
     }
 
@@ -55,6 +60,10 @@ public class UserController {
         return ResponseEntity.ok(authService.authenticate(request));
     }
 
+    @GetMapping(value = "/OpenAiCall")
+    public ResponseEntity<String> OpenAiCall(){
+        return ResponseEntity.ok("");
+    }
     @GetMapping(value = "/getUserInfo")
     public ResponseEntity<User> getUserInfo(HttpServletRequest request){
         String jwt = request.getHeader("Authorization").substring(7);
@@ -89,7 +98,4 @@ public class UserController {
         String jwt = request.getHeader("Authorization").substring(7);
         return ResponseEntity.ok(userService.getFavouriteTeams(jwt));
     }
-
-
-
 }
