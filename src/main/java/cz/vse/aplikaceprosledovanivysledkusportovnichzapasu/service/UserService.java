@@ -20,4 +20,8 @@ public interface UserService {
     Set<Team> getFavouriteTeams(String jwt);
     Set<Fixture> getFavouriteFixtures(String jwt);
     User deleteUser(Long id);
+    void addFavouriteFixture(long id, String jwt);
+
+
+
 }

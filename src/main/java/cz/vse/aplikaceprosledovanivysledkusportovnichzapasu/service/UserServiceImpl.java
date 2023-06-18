@@ -97,4 +97,10 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
+    @Override
+    public void addFavouriteFixture(long id, String jwt) {
+        User user= getUserFromToken(jwt);
+        user.getFavouriteFixtures().add(userRepository.findById(id).get().getFavouriteFixtures().stream().findFirst().get());
+    }
+
 }
