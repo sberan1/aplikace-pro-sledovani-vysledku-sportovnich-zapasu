@@ -76,5 +76,13 @@ public class UserController {
         return ResponseEntity.ok("Team was added");
     }
 
+    @DeleteMapping(value = "/delete")
+    public ResponseEntity<Object> deleteUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        userService.deleteUser(userService.getUserFromToken(authentication.getName()).getId());
+        return ResponseEntity.ok("User deleted");
+    }
+
+
 
 }

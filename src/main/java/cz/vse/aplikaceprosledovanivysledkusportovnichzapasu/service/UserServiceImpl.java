@@ -58,4 +58,11 @@ public class UserServiceImpl implements UserService{
         user.getFavouriteTeams().add(teamRepository.findById(teamId).get());
     }
 
+    @Override
+    public User deleteUser(Long id) {
+        User user = userRepository.findById(id).orElseThrow();
+        userRepository.deleteById(id);
+        return user;
+    }
+
 }

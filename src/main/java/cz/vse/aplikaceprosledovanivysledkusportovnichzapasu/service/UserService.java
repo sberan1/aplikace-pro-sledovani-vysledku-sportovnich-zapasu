@@ -10,8 +10,12 @@ public interface UserService {
     List<User> getAllUsers();
     User getUserById(Long id);
     User getUserFromToken(String jwt);
+ 
 
     void addFavouriteTeam(long teamId, String jwt);
 
 
+ 
+    User deleteUser(Long id);
+ 
 }
