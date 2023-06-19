@@ -10,7 +10,7 @@ const LeagueList = ({sport, date} : { sport: string; date: string }) =>
 
     const fetchLeagues = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/league/getLeaguesByFixturePlayedAtDateInSport?sport=${sport}&date=${date}`);
+            const response = await fetch(`http://localhost:8080/league/getLeaguesByFixturePlayedAtDateInSport?sport=${translatedSport(sport)}&date=${date}`);
             const data = await response.json();
             setLeagues(data);
         } catch (error) {
@@ -21,7 +21,22 @@ const LeagueList = ({sport, date} : { sport: string; date: string }) =>
     useEffect(() => {
         setLeagues([]);
         fetchLeagues();
-    }, [date]);
+    }, [date, sport]);
+
+    const translatedSport = (sport: string) => {
+        switch (sport) {
+            case 'Fotbal':
+                return 'Football';
+            case 'Hokej':
+                return 'Hockey';
+            case 'Basketbal':
+                return 'Basketball';
+            case 'Volejbal':
+                return 'Volleyball';
+            default:
+                return '';
+        }
+    }
 
 
     if(leagues.length === 0) {
@@ -36,7 +51,7 @@ const LeagueList = ({sport, date} : { sport: string; date: string }) =>
                         id={Number(item.id)}
                         name={item.name}
                         flagSource={item.flag}
-                        sport={sport}
+                        sport={translatedSport(sport)}
                         date={date}
                     />
                 ))

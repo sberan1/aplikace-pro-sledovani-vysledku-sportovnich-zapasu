@@ -17,29 +17,30 @@ import MatchList from "./components/MatchList";
 import {MatchType} from "./components/Types";
 import {MatchSourceType} from "./components/Enums";
 import ContentHolder from "./components/ContentHolder/ContentHolder";
+import BrowsingPage from "./components/BrowsingPagePackage/BrowsingPage";
 
 Modal.setAppElement('#root');
 
 const App = () => {
-    /*     return (
-    *   <UserProvider>
-    /Router>
+    return (
+      <UserProvider>
+    <Router>
         <Routes>
             <Route path="/" element={<HomePage HomePage="" PrihlaseniPage="" RegistracePage=""/>}/>
             <Route path="/prihlaseni" element={<PrihlaseniPage PrihlaseniPage="" RegistracePage=""/>}/>
             <Route path="/registrace" element={<RegistracePage  PrihlaseniPage="" RegistracePage=""/>} />
-            <Route path="/fotbal" element={<FotbalPage />}></Route>
+            <Route path="/basketbal" element={<BrowsingPage Sport={"Basketbal"} />}></Route>
+            <Route path="/fotbal" element={<BrowsingPage Sport={"Fotbal"} />}></Route>
+            <Route path="/hokej" element={<BrowsingPage Sport={"Hokej"} />}></Route>
+            <Route path="/volejbal" element={<BrowsingPage Sport={"Volejbal"} />}></Route>
         </Routes>
     </Router>
    </UserProvider>
-   );*/
+   );
 
 
-    // const LocalMatchList : Array<JSX.Element> = MatchList(1, "?sport=Basketball&date=2023-03-19&league=1130");
-    //
-    // return <League id={MatchSourceType.League} name={"Testovací liga"} flagSource={testFlag} matchList={LocalMatchList} />
 
-    return <ContentHolder sport={"Basketball"}/>;
+    //return <ContentHolder sport={"Basketball"}/>;
 }
 
 export default App;
