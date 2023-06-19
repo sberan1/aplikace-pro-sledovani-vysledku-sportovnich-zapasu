@@ -33,7 +33,7 @@ const MatchList = ( {type, webParams} : {
     }, []);
 
     if(matches.length === 0) {
-        return <div>Žádné zápasy</div>
+        return <div className={`font-classic text-white pl-4`}>Žádné zápasy</div>
     }
 
 

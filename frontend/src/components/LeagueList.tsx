@@ -19,6 +19,7 @@ const LeagueList = ({sport, date} : { sport: string; date: string }) =>
     };
 
     useEffect(() => {
+        setLeagues([]);
         fetchLeagues();
     }, [date]);
 
@@ -34,7 +35,7 @@ const LeagueList = ({sport, date} : { sport: string; date: string }) =>
                     <League
                         id={Number(item.id)}
                         name={item.name}
-                        flagSource={item.flagSource}
+                        flagSource={item.flag}
                         sport={sport}
                         date={date}
                     />

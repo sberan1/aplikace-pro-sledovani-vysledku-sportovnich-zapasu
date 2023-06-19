@@ -24,7 +24,7 @@ function League ({ id, name, flagSource, sport, date}: {
     let localMatchList : Array<JSX.Element> = [];
 
     return (
-        <div className={`${styles.league} /*inline-grid*/ py-4`} style={{ height: open ? 'fit-content' : '60px' }}>
+        <div className={`${styles.league} /*inline-grid*/ mb-2.5 pb-4 pt-3`} style={{ height: open ? 'fit-content' : '55px' }}>
             <div className={`${styles.leagueHeader} uppercase px-6 pb-4 flex justify-between`}>
                 <div className={`flex items-center`}>
                     <div>
@@ -48,10 +48,8 @@ function League ({ id, name, flagSource, sport, date}: {
                 </button>
             </div>
             {open && (
-                <div className={`${styles.leagueMatches} px-3 inline-grid justify-items-center justify-center`}>
-
-                        <MatchList type = {MatchSourceType.League} webParams = {`?sport=${sport}&date=${date}&league=${id}`} />
-
+                <div className={`${styles.leagueMatches} px-2.5 inline-grid justify-items-center justify-center`}>
+                    <MatchList type = {MatchSourceType.League} webParams = {`?sport=${sport}&date=${date}&league=${id}`} />
                 </div>
             )}
         </div>
