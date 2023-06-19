@@ -48,7 +48,7 @@ function League ({ id, name, flagSource, sport, date}: {
                 </button>
             </div>
             {open && (
-                <div className={`${styles.leagueMatches} px-2.5 inline-grid justify-items-center justify-center`}>
+                <div className={`${styles.leagueMatches}`}>
                     <MatchList type = {MatchSourceType.League} webParams = {`?sport=${sport}&date=${date}&league=${id}`} />
                 </div>
             )}
