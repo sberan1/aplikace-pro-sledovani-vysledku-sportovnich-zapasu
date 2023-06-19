@@ -2,6 +2,7 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.FixtureRepository;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.FixtureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -57,4 +58,9 @@ public class FixtureController {
     }
 
 
+
+    @GetMapping("/getFixturesById")
+    public Fixture getFixturesById(@RequestParam long id){
+        return fixtureService.getFixtureById(id);
+    }
 }
