@@ -22,6 +22,7 @@ public interface UserService {
     Set<Fixture> getFavouriteFixtures(String jwt);
     User deleteUser(Long id);
     void addFavouriteFixture(long id, String jwt);
+    void removeFavouriteFixture(long id, String jwt);
 
 
 
