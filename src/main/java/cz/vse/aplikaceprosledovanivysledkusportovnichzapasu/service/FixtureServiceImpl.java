@@ -83,7 +83,7 @@ public class FixtureServiceImpl implements FixtureService {
 
     @Override
     public void fillVolleyballFixture(int leagueExternalId, String season) {
-        JSONObject resp = apiSports.hokejZapasy(leagueExternalId, season);
+        JSONObject resp = apiSports.volejbalZapasy(leagueExternalId, season);
         JSONArray fixtures = resp.getJSONArray("response");
         fixtures.forEach(o -> pridatZapasy((JSONObject) (o), "Volleyball", resp));
     }
@@ -119,6 +119,11 @@ public class FixtureServiceImpl implements FixtureService {
             fillScore(fixtureEnt, zapas, "Football");
             fixtureRepository.save(fixtureEnt);
         });
+    }
+
+    @Override
+    public Fixture getFixtureById(long id) {
+        return fixtureRepository.findById(id).get();
     }
 
 
@@ -212,12 +217,15 @@ public class FixtureServiceImpl implements FixtureService {
                 else {
                     footballScore =(SoccerScore) fixtureEnt.getScore();
                 }
-                if (zapas.getJSONObject("score").get("fulltime") != JSONObject.NULL){
+                if (zapas.getJSONObject("score").getJSONObject("fulltime").get("home") != JSONObject.NULL){
                     footballScore.setFirstHalfHomeScore(zapas.getJSONObject("score").getJSONObject("halftime").getInt("home"));
                     footballScore.setFirstHalfAwayScore(zapas.getJSONObject("score").getJSONObject("halftime").getInt("away"));
 
                     footballScore.setSecondHalfHomeScore(zapas.getJSONObject("score").getJSONObject("fulltime").getInt("home"));
                     footballScore.setSecondHalfAwayScore(zapas.getJSONObject("score").getJSONObject("fulltime").getInt("away"));
+
+                    footballScore.setFinalHomeScore(zapas.getJSONObject("goals").getInt("home"));
+                    footballScore.setFinalAwayScore(zapas.getJSONObject("goals").getInt("away"));
                 }
                 else {
                     footballScore.setFirstHalfHomeScore(0);
@@ -315,7 +323,7 @@ public class FixtureServiceImpl implements FixtureService {
                 else {
                     voleyballScore = (VoleyballScore) fixtureEnt.getScore();
                 }
-                if (zapas.getJSONObject("periods").getJSONObject("first")!= JSONObject.NULL) {
+                if (zapas.getJSONObject("periods").getJSONObject("first").get("home") != JSONObject.NULL) {
 
                     voleyballScore.setFirstSetAwayScore(zapas.getJSONObject("periods").getJSONObject("first").getInt("away"));
                     voleyballScore.setFirstSetHomeScore(zapas.getJSONObject("periods").getJSONObject("first").getInt("home"));
@@ -326,12 +334,26 @@ public class FixtureServiceImpl implements FixtureService {
                     voleyballScore.setThirdSetAwayScore(zapas.getJSONObject("periods").getJSONObject("third").getInt("away"));
                     voleyballScore.setThirdSetHomeScore(zapas.getJSONObject("periods").getJSONObject("third").getInt("home"));
 
-                    voleyballScore.setFourthSetAwayScore(zapas.getJSONObject("periods").getJSONObject("fourth").getInt("away"));
-                    voleyballScore.setFourthSetHomeScore(zapas.getJSONObject("periods").getJSONObject("fourth").getInt("home"));
+                    voleyballScore.setFinalAwayScore(zapas.getJSONObject("scores").getInt("away"));
+                    voleyballScore.setFinalHomeScore(zapas.getJSONObject("scores").getInt("home"));
 
-                    voleyballScore.setFifthSetAwayScore(zapas.getJSONObject("periods").getJSONObject("fifth").getInt("away"));
-                    voleyballScore.setFifthSetHomeScore(zapas.getJSONObject("periods").getJSONObject("fifth").getInt("home"));
+                    if (zapas.getJSONObject("periods").getJSONObject("fourth").get("home") != JSONObject.NULL) {
+                        voleyballScore.setFourthSetAwayScore(zapas.getJSONObject("periods").getJSONObject("fourth").getInt("away"));
+                        voleyballScore.setFourthSetHomeScore(zapas.getJSONObject("periods").getJSONObject("fourth").getInt("home"));
                     }
+                    else {
+                        voleyballScore.setFourthSetAwayScore(0);
+                        voleyballScore.setFourthSetHomeScore(0);
+                    }
+                    if (zapas.getJSONObject("periods").getJSONObject("fifth").get("home") != JSONObject.NULL) {
+                        voleyballScore.setFifthSetAwayScore(zapas.getJSONObject("periods").getJSONObject("fifth").getInt("away"));
+                        voleyballScore.setFifthSetHomeScore(zapas.getJSONObject("periods").getJSONObject("fifth").getInt("home"));
+                    }
+                    else {
+                        voleyballScore.setFifthSetAwayScore(0);
+                        voleyballScore.setFifthSetHomeScore(0);
+                    }
+                }
                     else {
                         voleyballScore.setFirstSetAwayScore(0);
                         voleyballScore.setFirstSetHomeScore(0);
@@ -343,6 +365,8 @@ public class FixtureServiceImpl implements FixtureService {
                         voleyballScore.setFourthSetHomeScore(0);
                         voleyballScore.setFifthSetAwayScore(0);
                         voleyballScore.setFifthSetHomeScore(0);
+                        voleyballScore.setFinalAwayScore(0);
+                        voleyballScore.setFinalHomeScore(0);
                     }
                 voleyballScoreRepository.save(voleyballScore);
                 fixtureEnt.setScore(voleyballScore);

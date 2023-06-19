@@ -1,6 +1,7 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDto;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface FixtureService {
     void fillHockeyFixture(int leagueExternalId, String season);
     void fillVolleyballFixture(int leagueExternalId, String season);
     void fillFootballFixture(int leagueExternalId, String season);
+    Fixture getFixtureById(long id);
 }
