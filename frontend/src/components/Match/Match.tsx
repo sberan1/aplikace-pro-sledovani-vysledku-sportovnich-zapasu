@@ -4,6 +4,7 @@ import slavia from '../../assets/slavia.png';
 import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
 import {isVisible} from "@testing-library/user-event/dist/utils";
 import {useState} from "react";
+import {useLocation} from 'react-router-dom';
 
 function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamName, homeTeamScore, awayTeamScore, homeTeamLogo, awayTeamLogo} : {
     id: any,
@@ -18,6 +19,8 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
     homeTeamLogo: string | null,
     awayTeamLogo: string | null
 }) {
+
+    const location = useLocation();
 
     let isVisibleHomeTeamLogo = false;
     let isVisibleAwayTeamLogo = false;
@@ -53,6 +56,10 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
 
     const formateDateToCzech = date.split('-').reverse().join('.');
 
+    const zobrazitViceOnClick = () => {
+        const nextURL = `/matchDetail?id=${id}`; // URL s parametrem
+        window.location.href = nextURL;
+    }
 
     return (
         <div className={`inline-grid grid-flow-col gap-3 ${styles.match} m-1`}>
@@ -112,7 +119,7 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
             </div>
             <div className={`flex justify-end pr-6`}>
                 <div className={`inline-grid`}>
-                    <ZobrazitVice className={`flex content-center`} />
+                    <ZobrazitVice handleClick={zobrazitViceOnClick} />
                 </div>
             </div>
         </div>
