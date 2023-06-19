@@ -55,7 +55,7 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
 
 
     return (
-        <div className={`inline-grid grid-flow-col gap-3 ${styles.match} mx-1 mb-1`}>
+        <div className={`inline-grid grid-flow-col gap-3 ${styles.match} m-1`}>
             <div className='columns-1 inline-grid grid-rows-2 pl-6'>
                 <div className='flex items-end'>
                     <p className={`${styles.text1Thin} `}>{formateDateToCzech}</p>
