@@ -6,6 +6,7 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.FixtureRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepository;
@@ -26,6 +27,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private TeamRepository teamRepository;
+
+    @Autowired
+    private FixtureRepository fixtureRepository;
 
 
     @Override
@@ -106,13 +110,13 @@ public class UserServiceImpl implements UserService{
     @Override
     public void addFavouriteFixture(long id, String jwt) {
         User user= getUserFromToken(jwt);
-        user.getFavouriteFixtures().add(userRepository.findById(id).get().getFavouriteFixtures().stream().findFirst().get());
+        user.getFavouriteFixtures().add(fixtureRepository.findById(id).get());
     }
 
     @Override
     public void removeFavouriteFixture(long id, String jwt) {
         User user= getUserFromToken(jwt);
-        user.getFavouriteFixtures().remove(userRepository.findById(id).get().getFavouriteFixtures().stream().findFirst().get());
+        user.getFavouriteFixtures().remove(fixtureRepository.findById(id));
     }
 
 
