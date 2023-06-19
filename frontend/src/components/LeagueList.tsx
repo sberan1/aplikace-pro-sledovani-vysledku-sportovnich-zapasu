@@ -19,6 +19,7 @@ const LeagueList = ({sport, date} : { sport: string; date: string }) =>
     };
 
     useEffect(() => {
+        setLeagues([]);
         fetchLeagues();
     }, [date]);
 

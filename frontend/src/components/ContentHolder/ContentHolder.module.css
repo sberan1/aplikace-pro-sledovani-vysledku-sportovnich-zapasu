@@ -20,5 +20,29 @@
 
     width: 1020px;
     height: 753px;
+
+    scroll-margin-right: -60px;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #818181 #1c2227;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #1c2227;
+    border-radius: 22px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #818181;
+    border-radius: 22px;
+    border: 0px solid #ffffff;
+}
