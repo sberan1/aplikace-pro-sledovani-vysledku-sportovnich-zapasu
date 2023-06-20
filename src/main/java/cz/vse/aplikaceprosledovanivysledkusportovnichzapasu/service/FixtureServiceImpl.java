@@ -134,7 +134,7 @@ public class FixtureServiceImpl implements FixtureService {
                 .homeTeamId(fixture.getHomeTeam().getId())
                 .awayTeamId(fixture.getAwayTeam().getId())
                 .homeTeamName(fixture.getHomeTeam().getName())
-                .awayTeamName(fixture.getHomeTeam().getName())
+                .awayTeamName(fixture.getAwayTeam().getName())
                 .homeTeamLogo(fixture.getHomeTeam().getLogo())
                 .awayTeamLogo(fixture.getAwayTeam().getLogo())
                 .score(fixture.getScore())
