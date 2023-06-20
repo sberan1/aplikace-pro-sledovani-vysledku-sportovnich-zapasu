@@ -112,7 +112,7 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
         <section className="MainSection">
             <div className={`MainSectionContainer flex justify-center`}>
                 <div className="imgFotbalista"></div>
-                <div className={`placeholder p-4 mx-10 grid gap-4 grid-rows-5 auto-rows-min`}>
+                <div className={`placeholder p-4 mx-10 grid gap-4 grid-rows-5 auto-rows-min mt-9 overflow-auto`}>
                     <div className={`row-span-2 flex justify-around auto-cols-min detailHeader {/*px-20*/}`}>
                         <div className={`flex flex-col place-content-evenly`}>
                             <img className={`object-contain h-32`} src={match.homeTeamLogo} alt="Team" />
