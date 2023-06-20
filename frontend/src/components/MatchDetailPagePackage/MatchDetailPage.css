@@ -110,10 +110,50 @@ h1{
     margin: 1rem 5rem;
 }
 
+/*---------------------------------*/
+
 .placeholder {
     background: #2A2F37;
     border-radius: 22px;
     filter: drop-shadow(0px 4px 10px #D3FC01);
     width: 1080px;
     height: 753px;
+}
+
+.detailHeader {
+    background: #1C2227;
+    border-radius: 22px;
+}
+
+.scorePlaceholder {
+    background: #FFFFFF;
+    border-radius: 25px;
+}
+
+.scorePlaceholderText {
+    font-family: 'AktivGrotesk-Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 120%;
+    /* or 53px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+
+}
+
+.teamButton {
+    font-family: 'AktivGrotesk-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 120%;
+    /* or 43px */
+
+
+    color: #FFFFFF;
 }
