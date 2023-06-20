@@ -29,7 +29,7 @@ function MatchDetailedScore({text, homeScore, awayScore} : {
     isVisibleMap();
 
     return (
-        <div className={`inline-grid gap-3 ${styles.match}`}>
+        <div className={`inline-grid gap-3 ${styles.match} mb-3`}>
             <div className="columns-1 shrink">
                 <div className={`flex justify-center align-items-middle shrink mt-2 mb-1.5 p-1 `}>
                     <p className={`${styles.textBorder} pb-1 pt-1.5 px-3.5`}>{text}</p>

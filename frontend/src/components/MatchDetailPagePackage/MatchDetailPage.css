@@ -205,3 +205,26 @@ h1{
     background: #2A2F37;
     border-radius: 8px;
 }
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #818181 #1c2227;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #1c2227;
+    /*border-radius: 22px;*/
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #818181;
+    border-radius: 22px;
+    border: 0px solid #ffffff;
+}

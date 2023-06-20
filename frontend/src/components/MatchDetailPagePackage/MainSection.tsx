@@ -1,111 +1,24 @@
 import React, {MouseEventHandler, useEffect, useState} from 'react';
 // @ts-ignore
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 import './Navbar.css';
 import './MatchDetailPage.css';
-import ContentHolder from "../BrowsingContentHolder/ContentHolder";
-import styles from "../Match/Match.module.css";
 import sparta from '../../assets/sparta.png';
 import slavia from '../../assets/slavia.png';
-import MatchDetailedScore from "../MatchDetailedScore/MatchDetailedScore";
 import czechFlag from '../../assets/czechRepublicFlag.svg';
-
-interface BasketballMatchData {
-    id: number,
-    date: any,
-    time: any,
-    homeTeamId: number,
-    awayTeamId: number,
-    homeTeamName: string,
-    awayTeamName: string,
-    homeTeamLogo: string | null,
-    awayTeamLogo: string | null,
-    alreadyPlayed: boolean,
-    isFavourite: boolean,
-    score : {
-        finalAwayScore: number,
-        finalHomeScore: number,
-        firstQuarterAwayScore: number,
-        firstQuarterHomeScore: number,
-        secondQuarterAwayScore: number,
-        secondQuarterHomeScore: number,
-        thirdQuarterAwayScore: number,
-        thirdQuarterHomeScore: number,
-        fourthQuarterAwayScore: number,
-        fourthQuarterHomeScore: number,
-        overtimeAwayScore: number,
-        overtimeHomeScore: number
-    },
-    leagueName: string,
-    leagueFlag: string
-
-}
-
-interface HockeyMatchData {
-    id: number,
-    date: any,
-    time: any,
-    homeTeamId: number,
-    awayTeamId: number,
-    homeTeamName: string,
-    awayTeamName: string,
-    homeTeamLogo: string | null,
-    awayTeamLogo: string | null,
-    alreadyPlayed: boolean,
-    isFavourite: boolean,
-    score : {
-        finalAwayScore: number,
-        finalHomeScore: number,
-        firstPeriodAwayScore: number,
-        firstPeriodHomeScore: number,
-        secondPeriodAwayScore: number,
-        secondPeriodHomeScore: number,
-        thirdPeriodAwayScore: number,
-        thirdPeriodHomeScore: number,
-        overtimeAwayScore: number,
-        overtimeHomeScore: number,
-        shootoutAwayScore: number,
-        shootoutHomeScore: number
-    },
-    leagueName: string,
-    leagueFlag: string
-}
-
-interface FootballMatchData {
-    id: number,
-    date: any,
-    time: any,
-    homeTeamId: number,
-    awayTeamId: number,
-    homeTeamName: string,
-    awayTeamName: string,
-    homeTeamLogo: string | null,
-    awayTeamLogo: string | null,
-    alreadyPlayed: boolean,
-    isFavourite: boolean,
-    score : {
-        finalAwayScore: number,
-        finalHomeScore: number,
-        firstHalfAwayScore: number,
-        firstHalfHomeScore: number,
-        secondHalfAwayScore: number,
-        secondHalfHomeScore: number,
-        overtimeAwayScore: number,
-        overtimeHomeScore: number,
-        penaltyAwayScore: number,
-        penaltyHomeScore: number
-    },
-    leagueName: string,
-    leagueFlag: string
-}
+import BasketballDetailScore from "./DetailScoreComponents/BasketballDetailScore";
+import {BasketballMatchData, FootballMatchData, HockeyMatchData} from "./SportInterfaces";
+import HockeyDetailScore from "./DetailScoreComponents/HockeyDetailScore";
+import FotballDetailScore from "./DetailScoreComponents/FotballDetailScore";
 
 
-const MainSection = ({MatchId, SportType} : { MatchId : number; SportType : string;}) => {
+const MainSection = ({MatchId} : { MatchId : number; }) => {
 
 
-    const [match, setMatch] = useState<BasketballMatchData | HockeyMatchData | FootballMatchData | null>(
+    const [match, setMatch] = useState<BasketballMatchData | HockeyMatchData | FootballMatchData>(
         {
             id: 1,
+            sport: "Basketball",
             date: "2021-05-05",
             time: "20:00",
             homeTeamId: 1,
@@ -128,7 +41,7 @@ const MainSection = ({MatchId, SportType} : { MatchId : number; SportType : stri
                 fourthQuarterAwayScore: 0,
                 fourthQuarterHomeScore: 0,
                 overtimeAwayScore: 0,
-                overtimeHomeScore: 0
+                overtimeHomeScore: 0,
             },
             leagueName: "Liga mistrů",
             leagueFlag: czechFlag
@@ -149,6 +62,23 @@ const MainSection = ({MatchId, SportType} : { MatchId : number; SportType : stri
 
     }, []);
 
+    const returnScoreComponent = () => {
+        let scoreComponent : JSX.Element = <div></div>;
+
+        switch (match.sport) {
+            case "Basketball":
+                scoreComponent = <BasketballDetailScore MatchId={MatchId} />;
+                break;
+            case "Football":
+                scoreComponent = <FotballDetailScore MatchId={MatchId} />;
+                break;
+            case "Hockey":
+                scoreComponent = <HockeyDetailScore MatchId={MatchId} />;
+                break;
+        }
+
+        return scoreComponent;
+    }
 
     let isVisibleHomeTeamLogo = false;
     let isVisibleAwayTeamLogo = false;
@@ -221,14 +151,8 @@ const MainSection = ({MatchId, SportType} : { MatchId : number; SportType : stri
                             <button onClick={teamOnClicked(match.homeTeamName)} className={`teamButton`}>{match.homeTeamName}</button>
                         </div>
                     </div>
-                    <div className={`row-span-3 grid grid-flow-row auto-rows-max`}>
-
-                        <MatchDetailedScore text={"Poločas"} homeScore={1} awayScore={0}/>
-
-
-
-
-
+                    <div className={`row-span-3 scrollContainer`}>
+                        {returnScoreComponent()}
                     </div>
 
                 </div>

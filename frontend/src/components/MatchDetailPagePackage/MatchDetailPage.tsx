@@ -18,7 +18,7 @@ const MatchDetailPage = (props) => {
     return (
         <div className="HomePaneContainer">
             <NavBar PrihlaseniPage={""}/>
-            <MainSection MatchId={Number(id)} SportType={sport}/>
+            <MainSection MatchId={Number(id)}/>
             <Footer/>
         </div>
     );
