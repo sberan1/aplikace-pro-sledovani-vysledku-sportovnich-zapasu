@@ -13,8 +13,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-
 @Service @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService{
     private final UserRepository userRepository;
@@ -44,7 +42,7 @@ public class AuthServiceImpl implements AuthService{
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
-                        request.getPassword()
+                        request.getHashedPassword()
                 ));
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow();
