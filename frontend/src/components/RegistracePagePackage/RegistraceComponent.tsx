@@ -5,6 +5,8 @@ import { UserContext } from '../PrihlaseniPagePackage/UserContext';
 import '../PrihlaseniPagePackage/Prihlaseni.css';
 import './Registrace.css';
 import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
+import { Password } from 'primereact/password';
+import { Divider } from 'primereact/divider';
 
 const RegistraceComponent = () => {
     const [firstName, setFirstName] = useState('');
@@ -13,10 +15,24 @@ const RegistraceComponent = () => {
     const [password, setPassword] = useState('');
     const [loginStatus, setLoginStatus] = useState('');
     const { loginUser } = useContext(UserContext);
+    const header = <div className="font-bold mb-3">Pick a password</div>;
+    const footer = (
+        <>
+            <Divider />
+            <p className="mt-2">Suggestions</p>
+            <ul className="pl-2 ml-2 mt-0 line-height-3">
+                <li>At least one lowercase</li>
+                <li>At least one uppercase</li>
+                <li>At least one numeric</li>
+                <li>Minimum 8 characters</li>
+            </ul>
+        </>
+    );
+
 
     const checkEmail = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/user/checkEmail', { email: email });
+            const response = await axios.post('http://localhost:8080/auth/checkEmail', { email: email });
             return response.data.exists;
         } catch (error) {
             console.error('Oj, něco se pokazilo:', error);
@@ -25,10 +41,10 @@ const RegistraceComponent = () => {
     };
 
     const handleRegistration = async () => {
-        if (!await checkEmail()) {
+        if (await checkEmail() === false) {
             try {
                 const hashedPassword = sha256(password);
-                const response = await axios.post('http://localhost:8080/user/register', {
+                const response = await axios.post('http://localhost:8080/auth/register', {
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
@@ -38,7 +54,7 @@ const RegistraceComponent = () => {
                 await loginUser(email, password);
                 setLoginStatus('Registrace proběhla úspěšně. Jste nyní přihlášeni.');
             } catch (error) {
-                console.error('Oj, něco se pokazilo:', error);
+                console.error('Oj, něco se pokazilo:' + error);
                 setLoginStatus('Něco se pokazilo při registraci. Zkuste to prosím znovu.');
                 alert('Něco se pokazilo při registraci. Zkuste to prosím znovu.');
             }
@@ -71,17 +87,27 @@ const RegistraceComponent = () => {
                 </label>
                 <label>
                     <p>Heslo</p>
-                    <input type='password'
-                           placeholder="**********"
-                           value={password} onChange={e => setPassword(e.target.value)}/>
+                    <div className="card flex justify-content-center">
+                    <Password value={password} onChange={(e) => setPassword(e.target.value)}
+                              panelStyle={{backgroundColor: '#1C2227', color: '#ffffffc4'}}
+                              header={header}
+                              footer={footer}
+                              placeholder="**********"
+                              type='password'
+                    />
+                        </div>
                 </label>
-            </div>
+
+
+
+</div>
+            <p className="Chyba">{loginStatus}</p>
+
 
             <div className="buttons">
                 <Link to="/">
                     <button>Zrušit</button>
                 </Link>
-
                 <button onClick={handleRegistration} className="button">Registrovat se</button>
 
             </div>

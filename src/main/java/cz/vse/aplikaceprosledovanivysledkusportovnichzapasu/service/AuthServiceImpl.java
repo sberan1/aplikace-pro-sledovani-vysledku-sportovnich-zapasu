@@ -7,11 +7,17 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Role;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Service @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService{
@@ -64,4 +70,30 @@ public class AuthServiceImpl implements AuthService{
             user.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
         return user;
     }
+
+    @Override
+    public AuthenticationResponse refreshToken(HttpServletRequest request, HttpServletResponse response){
+            final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+            final String userEmail;
+            final String refreshToken;
+            AuthenticationResponse authResponse;
+            if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
+                return null;
+            }
+            refreshToken = authHeader.substring(7);
+            userEmail = jwtService.extractEmail(refreshToken);
+            if (userEmail != null) {
+                var user = userRepository.findByEmail(userEmail)
+                        .orElseThrow();
+                if (jwtService.isTokenValid(refreshToken, user)) {
+                    var accessToken = jwtService.generateToken(user);
+                     authResponse = AuthenticationResponse.builder()
+                            .token(accessToken)
+                            .build();
+                    return authResponse;
+                }
+            }
+            return null;
+    }
 }
+
