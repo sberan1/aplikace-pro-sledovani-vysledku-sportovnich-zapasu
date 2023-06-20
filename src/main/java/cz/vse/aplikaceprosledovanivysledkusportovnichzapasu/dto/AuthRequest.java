@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AuthRequest {
     String email;
-    String password;
+    String hashedPassword;
 }

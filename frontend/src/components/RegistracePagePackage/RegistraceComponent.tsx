@@ -7,8 +7,8 @@ import './Registrace.css';
 import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 
 const RegistraceComponent = () => {
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginStatus, setLoginStatus] = useState('');
@@ -16,7 +16,7 @@ const RegistraceComponent = () => {
 
     const checkEmail = async () => {
         try {
-            const response = await axios.post('/api/checkemail', { email: email });
+            const response = await axios.post('http://localhost:8080/user/checkEmail', { email: email });
             return response.data.exists;
         } catch (error) {
             console.error('Oj, něco se pokazilo:', error);
@@ -28,9 +28,9 @@ const RegistraceComponent = () => {
         if (!await checkEmail()) {
             try {
                 const hashedPassword = sha256(password);
-                const response = await axios.post('/api/register', {
-                    name: name,
-                    surname: surname,
+                const response = await axios.post('http://localhost:8080/user/register', {
+                    firstName: firstName,
+                    lastName: lastName,
                     email: email,
                     password: hashedPassword
                 });
@@ -55,13 +55,13 @@ const RegistraceComponent = () => {
                     <p>Jméno</p>
                     <input type='name'
                            placeholder="Pepa"
-                           value={name} onChange={e => setName(e.target.value)}/>
+                           value={firstName} onChange={e => setFirstName(e.target.value)}/>
                 </label>
                 <label>
                     <p>Příjmení</p>
                     <input type='surname'
                            placeholder="Novák"
-                           value={surname} onChange={e => setSurname(e.target.value)}/>
+                           value={lastName} onChange={e => setLastName(e.target.value)}/>
                 </label>
                 <label>
                     <p>Email</p>

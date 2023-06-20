@@ -16,7 +16,7 @@ const PrihlaseniPage = ({PrihlaseniPage, RegistracePage}: AppProps) => {
                 <div className="PrihlaseniContainer">
                     <h1>Přihlášení</h1>
                     <div className="PrihlaseniComponent">
-                        <PrihlaseniComponent/>
+                        <PrihlaseniComponent />
                     </div>
                 </div>
                 <Footer/>

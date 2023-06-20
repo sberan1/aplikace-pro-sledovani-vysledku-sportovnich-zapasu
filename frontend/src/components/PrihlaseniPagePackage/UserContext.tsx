@@ -16,7 +16,7 @@ export const UserProvider = ({children}) => {
     const loginUser = async (email, password) => {
         try {
             const hashedPassword = sha256(password);
-            const response = await axios.post('/api/login', {
+            const response = await axios.post('http://localhost:8080/user/authenticate', {
                 email: email,
                 password: hashedPassword
             });

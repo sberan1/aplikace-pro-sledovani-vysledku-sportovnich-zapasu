@@ -39,7 +39,8 @@ public class SecurityConfig {
                         "/team/getTeamsBySport",
                         "/user/OpenAiCall",
                         "/fixture/getFixturesById",
-                        "/fixture/fillFixturesVolleyball")
+                        "/fixture/fillFixturesVolleyball",
+                        "/user/checkEmail")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
