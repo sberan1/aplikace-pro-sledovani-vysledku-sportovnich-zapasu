@@ -1,9 +1,6 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthRequest;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthenticationResponse;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.*;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
@@ -13,6 +10,7 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepos
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.AuthService;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
@@ -33,48 +32,9 @@ public class UserController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping(value = "/add")
-    public User createUser(@RequestBody User user) {
-        return userService.saveUser(user);
-    }
-    @GetMapping(value = "/{id}")
-    public User getUser(@PathVariable Long id) {
-       return userService.getUserById(id);
-    }
-    @GetMapping(value = "/getAll")
-    public List<User> getUsers() {
-        return userService.getAllUsers();
-    }
-
-    @PostMapping(value = "/register")
-    public ResponseEntity<Object> register
-            (@RequestBody RegisterRequest request) {
-        if (userService.emailExists(request.getEmail())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already taken");
-        }
-        return ResponseEntity.ok(authService.register(request));
-    }
-
-    @PostMapping(value = "/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate
-            (@RequestBody AuthRequest request) {
-        return ResponseEntity.ok(authService.authenticate(request));
-    }
-
     @PostMapping(value = "/checkEmail")
-    public ResponseEntity<Boolean> checkEmail(@RequestBody String email) {
-        return ResponseEntity.ok(userService.emailExists(email));
-    }
-
-
-    @GetMapping(value = "/OpenAiCall")
-    public ResponseEntity<String> OpenAiCall(){
-        return ResponseEntity.ok("");
-    }
-    @GetMapping(value = "/getUserInfo")
-    public ResponseEntity<User> getUserInfo(HttpServletRequest request){
-        String jwt = request.getHeader("Authorization").substring(7);
-        return ResponseEntity.ok(userService.getUserFromToken(jwt));
+    public ResponseEntity<Boolean> checkEmail(@RequestBody emailBodyDto emailBodyDto){
+        return ResponseEntity.ok(userService.emailExists(emailBodyDto.getEmail()));
     }
 
     @PutMapping( value = "/changePassword")

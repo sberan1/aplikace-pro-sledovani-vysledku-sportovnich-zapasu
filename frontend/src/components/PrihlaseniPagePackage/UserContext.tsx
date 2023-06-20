@@ -1,12 +1,18 @@
 import React, {createContext, useState} from 'react';
 import axios from 'axios';
 import {sha256} from 'js-sha256';
+import Cookies from 'universal-cookie';
+
+
+const cookies = new Cookies();
+var config = {};
 
 export const UserContext = createContext({
     isLoggedIn: false,
     user: null,
     loginUser: (email, password) => {},
-    logoutUser: () => {}
+    logoutUser: () => {},
+    refreshToken: () => {}
 });
 
 export const UserProvider = ({children}) => {
@@ -16,14 +22,16 @@ export const UserProvider = ({children}) => {
     const loginUser = async (email, password) => {
         try {
             const hashedPassword = sha256(password);
-            const response = await axios.post('http://localhost:8080/user/authenticate', {
+            const response = await axios.post('http://localhost:8080/auth/authenticate', {
                 email: email,
-                password: hashedPassword
+                hashedPassword: hashedPassword
             });
 
-            if (response.data.success) {  // kontrola, jestli je 'success' true
+            if (response.status === 200) {  // kontrola, jestli je 'success' true
+                cookies.set('token', response.data.token, { path: '/', expires: new Date(Date.now() + 1000 * 60 * 60 * 10) });
                 setIsLoggedIn(true);
-                setUser(response.data.user); // nastaven 'user' na údaje vrácené z be
+                setUser(axios.get('http://localhost:8080/auth/getUserInfo')); // nastaven 'user' na údaje vrácené z be
+                console.log(cookies.get('token'));
             }
         } catch (error) {
             console.error('A sakra tady jdeme znovu, něco se pokazilo:', error);
@@ -31,13 +39,24 @@ export const UserProvider = ({children}) => {
     };
 
     const logoutUser = () => {
+
         setIsLoggedIn(false); // Odhlásit uživatele
         setUser(null); // Odstraneni dat uživatele
         localStorage.removeItem('user'); // Odstraneni dat uživatele z localStorage
+        cookies.remove('token'); // Odstraneni tokenu z cookies
     };
 
+    const refreshToken =  () => {
+        axios.post('http://localhost:8080/user/refreshToken')
+            .then((response) => {
+            cookies.set('token', response.data.token, { path: '/', expires: new Date(Date.now() + 1000 * 60 * 60 * 10) });})
+            .catch((error) => {
+            console.error('A sakra tady jdeme znovu, něco se pokazilo:', error);
+        });
+    }
+
     return (
-        <UserContext.Provider value={{isLoggedIn, user, loginUser, logoutUser}}>
+        <UserContext.Provider value={{isLoggedIn, user, loginUser, logoutUser, refreshToken}}>
             {children}
         </UserContext.Provider>
     );

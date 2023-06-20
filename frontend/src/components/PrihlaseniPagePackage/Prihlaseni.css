@@ -76,6 +76,10 @@
     color: rgba(255, 255, 255, 0.77);
     box-shadow: #D3FC01 3px 3px 8px 0;
 }
+.Chyba{
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
 
 .InputContainer input:focus{
     outline: none;
