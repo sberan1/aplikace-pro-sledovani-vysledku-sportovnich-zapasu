@@ -61,6 +61,12 @@ public class UserController {
         return ResponseEntity.ok(authService.authenticate(request));
     }
 
+    @PostMapping(value = "/checkEmail")
+    public ResponseEntity<Boolean> checkEmail(@RequestBody String email) {
+        return ResponseEntity.ok(userService.emailExists(email));
+    }
+
+
     @GetMapping(value = "/OpenAiCall")
     public ResponseEntity<String> OpenAiCall(){
         return ResponseEntity.ok("");

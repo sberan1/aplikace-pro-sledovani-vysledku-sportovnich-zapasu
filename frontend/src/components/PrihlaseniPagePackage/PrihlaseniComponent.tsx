@@ -4,23 +4,27 @@ import {sha256} from 'js-sha256';
 import { UserContext } from './UserContext';
 import './Prihlaseni.css';
 import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 const PrihlaseniComponent = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginStatus, setLoginStatus] = useState('');
     const { loginUser } = useContext(UserContext);
+    const cookies = new Cookies();
 
     const handleLogin = async () => {
         try {
             const hashedPassword = sha256(password);
-            const response = await axios.post('/api/login', {
+            const response = await axios.post('http://localhost:8080/user/authenticate', {
                 email: email,
-                password: hashedPassword
+                hashedPassword: hashedPassword
             });
+            cookies.set('token', response.data.token, { path: '/', expires: new Date(Date.now() + 1000 * 60 * 60 * 10) });
             setLoginStatus(response.data.message);
             await loginUser(email, password);
             setLoginStatus('Přihlášení bylo úspěšné.');
+            console.log(cookies.get('token'));
         } catch (error) {
             console.error('Oj, něco se pokazilo:', error);
             setLoginStatus('Něco se pokazilo při přihlašování. Zkuste to prosím znovu.');
