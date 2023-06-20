@@ -13,7 +13,7 @@ const BrowsingPage = ({ Sport }: AppProps) => {
     return (
         <div className="HomePaneContainer">
             <NavBar PrihlaseniPage={""}/>
-            <MainSection Sport={Sport}/>
+            <MainSection Sport={Sport} />
             <Footer/>
         </div>
     );

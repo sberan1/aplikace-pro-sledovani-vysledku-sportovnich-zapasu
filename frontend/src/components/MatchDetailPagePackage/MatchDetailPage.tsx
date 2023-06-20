@@ -13,11 +13,12 @@ const MatchDetailPage = (props) => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get('id');
+    const sport = searchParams.get('sport');
 
     return (
         <div className="HomePaneContainer">
             <NavBar PrihlaseniPage={""}/>
-            <MainSection MatchID={id}/>
+            <MainSection MatchId={Number(id)} SportType={sport}/>
             <Footer/>
         </div>
     );
