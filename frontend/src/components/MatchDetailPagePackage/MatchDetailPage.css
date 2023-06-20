@@ -157,3 +157,51 @@ h1{
 
     color: #FFFFFF;
 }
+
+.teamButton:hover {
+    font-family: 'AktivGrotesk-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 120%;
+    /* or 43px */
+
+    text-decoration-line: underline;
+
+    color: #FFFFFF;
+}
+
+.teamButton:focus {
+    font-family: 'AktivGrotesk-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 120%;
+    /* or 43px */
+
+    text-decoration-line: underline;
+
+    color: #EAEAEB;
+}
+
+.flag {
+    width: 26px;
+    height: 18px;
+}
+
+.countryText {
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    /* or 19px */
+
+
+    color: #FFFFFF;
+}
+
+.country {
+    background: #2A2F37;
+    border-radius: 8px;
+}

@@ -8,6 +8,7 @@ import styles from "../Match/Match.module.css";
 import sparta from '../../assets/sparta.png';
 import slavia from '../../assets/slavia.png';
 import MatchDetailedScore from "../MatchDetailedScore/MatchDetailedScore";
+import czechFlag from '../../assets/czechRepublicFlag.svg';
 
 interface BasketballMatchData {
     id: number,
@@ -34,7 +35,9 @@ interface BasketballMatchData {
         fourthQuarterHomeScore: number,
         overtimeAwayScore: number,
         overtimeHomeScore: number
-    }
+    },
+    leagueName: string,
+    leagueFlag: string
 
 }
 
@@ -63,7 +66,9 @@ interface HockeyMatchData {
         overtimeHomeScore: number,
         shootoutAwayScore: number,
         shootoutHomeScore: number
-    }
+    },
+    leagueName: string,
+    leagueFlag: string
 }
 
 interface FootballMatchData {
@@ -89,7 +94,9 @@ interface FootballMatchData {
         overtimeHomeScore: number,
         penaltyAwayScore: number,
         penaltyHomeScore: number
-    }
+    },
+    leagueName: string,
+    leagueFlag: string
 }
 
 
@@ -122,7 +129,9 @@ const MainSection = ({MatchId, SportType} : { MatchId : number; SportType : stri
                 fourthQuarterHomeScore: 0,
                 overtimeAwayScore: 0,
                 overtimeHomeScore: 0
-            }
+            },
+            leagueName: "Liga mistrů",
+            leagueFlag: czechFlag
         }
     );
 
@@ -179,8 +188,8 @@ const MainSection = ({MatchId, SportType} : { MatchId : number; SportType : stri
                             <img className={`object-contain h-32`} src={match.homeTeamLogo} alt="Team" />
                             <button onClick={teamOnClicked(match.homeTeamName)} className={`teamButton`}>{match.homeTeamName}</button>
                         </div>
-                        <div className={`flex flex-col content-center justify-center`}>
-                            <div className={`scorePlaceholder flex  justify-center px-12 pt-0.5`}>
+                        <div className={`flex flex-col justify-center`}>
+                            <div className={`scorePlaceholder flex justify-center px-12 pt-0.5 mt-8`}>
                                 {isFutureMatch ? (
                                             <p className={`scorePlaceholderText pt-0.5 pb-0.2`}>Nadcházející</p>
                                 ) : (
@@ -199,6 +208,13 @@ const MainSection = ({MatchId, SportType} : { MatchId : number; SportType : stri
                                     </>
                                 )}
                             </div>
+                            <div className={`flex justify-center`}>
+                                <div className={`country flex flex-row justify-center mt-6 py-1.5 px-4`}>
+                                    <img className={`flag mr-4`} src={match.leagueFlag}/>
+                                    <p className={`countryText`}>{match.leagueName}</p>
+                                </div>
+                            </div>
+
                         </div>
                         <div className={`flex flex-col place-content-evenly`}>
                             <img className={`object-contain h-32`} src={match.awayTeamLogo} alt="Team" />
