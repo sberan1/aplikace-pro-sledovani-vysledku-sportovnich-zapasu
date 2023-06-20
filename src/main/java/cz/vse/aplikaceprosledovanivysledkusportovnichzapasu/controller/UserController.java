@@ -95,9 +95,9 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/delete")
-    public ResponseEntity<Object> deleteUser(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        userService.deleteUser(userService.getUserFromToken(authentication.getName()).getId());
+    public ResponseEntity<Object> deleteUser(HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        userService.deleteUser(userService.getUserFromToken(jwt).getId());
         return ResponseEntity.ok("User deleted");
     }
 
