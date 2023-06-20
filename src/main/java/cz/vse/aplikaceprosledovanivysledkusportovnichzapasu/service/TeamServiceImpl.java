@@ -79,7 +79,7 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public TeamRespDto getTeamById(long id, User user) {
+    public TeamRespDto getTeamInfoById(long id, User user) {
         Team team = teamRepository.findTeamById(id);
         TeamRespDto teamDto = TeamRespDto.builder()
                 .id(team.getId())
@@ -89,10 +89,17 @@ public class TeamServiceImpl implements TeamService {
                 .country(team.getCountry().getName())
                 .countryLogo(team.getCountry().getFlag())
                 .build();
-                for (var t : user.getFavouriteTeams()){
-                    if (t.getId() == id){
-                      teamDto.setFavourite(true);
-                  }
+                if (user == null){
+                    teamDto.setFavourite(false);
+                }
+                else {
+                    for (var t : user.getFavouriteTeams()){
+                        if (t.getId() == id){
+                            teamDto.setFavourite(true);
+                        }
+                        teamDto.setFavourite(false);
+                    }
+
                 }
         return teamDto;
     }

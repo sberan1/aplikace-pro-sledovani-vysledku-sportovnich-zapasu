@@ -49,6 +49,8 @@ public class SecurityConfig {
                         "/team/getTeamsBySport",
                         "/fixture/getFixturesById",
                         "/fixture/fillFixturesVolleyball",
+                        "/team/getTeamInfoById",
+                        "/fixture/getFixtureInfoById",
                         "/user/checkEmail")
                 .permitAll()
                 .anyRequest()

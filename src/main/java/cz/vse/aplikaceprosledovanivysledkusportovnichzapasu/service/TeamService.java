@@ -17,6 +17,6 @@ public interface TeamService {
 
     List<Team> getTeamsBySport(String sport);
 
-    public TeamRespDto getTeamById(long id, User user);
+    public TeamRespDto getTeamInfoById(long id, User user);
 
 }
