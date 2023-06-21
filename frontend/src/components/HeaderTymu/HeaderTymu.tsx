@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './HeaderTymu.css';
 import FavoriteTeamBtn from '../Buttons/FavoriteTeamBtn/FavoriteTeamBtn';
 import axios from "axios";
+import FavouriteStar from "../FavouriteStar/FavouriteStar";
 
 const TeamComponent = ({ teamId }) => {
     const [team, setTeam] = useState({
@@ -41,7 +42,7 @@ const TeamComponent = ({ teamId }) => {
                     </div>
                 </div>
                 <div className="middle">
-                    <FavoriteTeamBtn teamId={teamId} type="Team"/>
+                    <FavouriteStar Id={teamId} Type="Team" isFav={team.favourite}/>
                 </div>
             </div>
             <div className="right">

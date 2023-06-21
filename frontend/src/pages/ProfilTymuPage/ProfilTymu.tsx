@@ -7,7 +7,7 @@ import SearchBar from "../../components/SearchBar/SearchBarComponent";
 import '../../components/BodyTymu/BodyTymu.css';
 import {useLocation, useParams} from "react-router-dom";
 
-const ProfilTymu = ({}) => {
+const ProfilTymu = () => {
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -20,7 +20,7 @@ const ProfilTymu = ({}) => {
                 <div className="TymContainer">
                     <div>
                         <HeaderTymu teamId={id}/>
-                        {/* <BodyTymu teamId={id}/> */}
+                        <BodyTymu teamId={id}/>
                     </div>
                 </div>
             <Footer/>

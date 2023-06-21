@@ -4,7 +4,6 @@ import slavia from '../../assets/slavia.png';
 import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
 import {isVisible} from "@testing-library/user-event/dist/utils";
 import {useState} from "react";
-import {useLocation} from 'react-router-dom';
 
 function Match({
                    id,
@@ -32,7 +31,6 @@ function Match({
     awayTeamLogo: string | null
 }) {
 
-    const location = useLocation();
 
     let isVisibleHomeTeamLogo = false;
     let isVisibleAwayTeamLogo = false;
@@ -60,11 +58,10 @@ function Match({
 
     isVisibleMap();
 
-    const location = useLocation();
 
-    const teamOnClicked = (team: number): React.MouseEventHandler<HTMLButtonElement> => {
+    const teamOnClicked = (team : number): React.MouseEventHandler<HTMLButtonElement> => {
         return (event) => {
-            const nextURL = `/teamDetail?teamId=${team}`; // URL s parametrem
+            const nextURL = `/teamDetail?teamId=${id}`; // URL s parametrem
             window.location.href = nextURL;
         };
     };
@@ -92,7 +89,7 @@ function Match({
                         {isVisibleHomeTeamLogo ? (
                             <>
                                 <img className={`content-center object-contain h-9 w-9`} src={homeTeamLogo} alt="Team" />
-                                <button onClick={teamOnClicked(homeTeamName)} className={`pl-3 content-center ${styles.team}`}>{homeTeamName}</button>
+                                <button onClick={teamOnClicked(homeTeamId)} className={`pl-3 content-center ${styles.team}`}>{homeTeamName}</button>
                             </>
                         ) : (
                             <div />
@@ -102,7 +99,7 @@ function Match({
                         <p className={`${styles.dash}`}>-</p>
                     </div>
                     <div className='flex grow w-60 justify-center'>
-                        <button onClick={teamOnClicked(awayTeamName)} className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
+                        <button onClick={teamOnClicked(homeTeamId)} className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
                         {isVisibleAwayTeamLogo ? (
                             <img className={`content-center object-contain h-9 w-9`} src={awayTeamLogo} alt="Team" />
                         ) : (
@@ -135,7 +132,6 @@ function Match({
             <div className={`flex justify-end pr-6`}>
                 <div className={`inline-grid`}>
                     <ZobrazitVice handleClick={zobrazitViceOnClick} />
-                    <ZobrazitVice className={`flex content-center`}/>
                 </div>
             </div>
         </div>
