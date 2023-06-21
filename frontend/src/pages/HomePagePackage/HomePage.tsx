@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import MainSection from './MainSection';
-import Footer from './Footer';
+import Footer from '../../components/footer/Footer';
 import './HomePage.css';
 
 interface AppProps {

@@ -10,13 +10,14 @@ const PrihlaseniComponent = () => {
     const [password, setPassword] = useState('');
     const [loginStatus, setLoginStatus] = useState('');
     const { loginUser } = useContext(UserContext);
+    const {isLoggedIn} = useContext(UserContext);
 
     const handleLogin = async () => {
         try {
             const hashedPassword = sha256(password);
-            const response = await axios.post('/api/login', {
+            const response = await axios.post('http://localhost:8080/auth/authenticate', {
                 email: email,
-                password: hashedPassword
+                hashedPassword: hashedPassword
             });
             setLoginStatus(response.data.message);
             await loginUser(email, password);
@@ -51,9 +52,8 @@ const PrihlaseniComponent = () => {
                 </Link>
 
                 <button className="button" onClick={handleLogin}>Přihlásit se</button>
-                {loginStatus && <p>{loginStatus}</p>}
             </div>
-
+            {loginStatus && <p className={isLoggedIn === true ? "Uspech"  : "Chyba"}>{loginStatus}</p>}
             <div className="NemamUcet">
                 <p className="p1">Nemáte účet?</p>
                 <p>To nevadí, můžete se <span><Link to="/registrace">registrovat zde.</Link></span></p>

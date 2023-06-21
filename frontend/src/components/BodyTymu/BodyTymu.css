@@ -1,0 +1,28 @@
+.BodyTymuContainer{
+    width: 55rem;
+    padding: 25px 40px;
+    border-radius: 20px;
+    margin: 2rem auto 0 auto;
+    background-color: #1C2227;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.BodyTymuContainer .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.TymContainer{
+    margin-top: 2rem;
+}
+
+.TymContainer > div{
+    border-radius: 20px;
+    width: 60rem;
+    margin: auto;
+    padding: 2.5rem;
+    background-color: #2A2F37;
+    box-shadow: #D3FC01 3px 3px 8px 0;
+}

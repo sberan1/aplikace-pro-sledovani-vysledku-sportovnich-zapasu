@@ -1,6 +1,6 @@
 import React from 'react';
-import NavBar from '../NavBar/NavBar';
-import Footer from '../HomePagePackage/Footer';
+import NavBar from '../../components/NavBar/NavBar';
+import Footer from '../../components/footer/Footer';
 import './Prihlaseni.css';
 import PrihlaseniComponent from "./PrihlaseniComponent";
 
@@ -16,7 +16,7 @@ const PrihlaseniPage = ({PrihlaseniPage, RegistracePage}: AppProps) => {
                 <div className="PrihlaseniContainer">
                     <h1>Přihlášení</h1>
                     <div className="PrihlaseniComponent">
-                        <PrihlaseniComponent/>
+                        <PrihlaseniComponent />
                     </div>
                 </div>
                 <Footer/>

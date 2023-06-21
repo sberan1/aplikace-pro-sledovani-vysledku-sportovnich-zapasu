@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useContext} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
 import Match from './components/Match/Match';
@@ -6,11 +6,11 @@ import sparta from './assets/sparta.png';
 import slavia from './assets/slavia.png';
 import testFlag from './assets/czechRepublicFlag.svg';
 import LeagueList from './components/LeagueList';
-import Navbar from './components/HomePagePackage/Navbar';
-import HomePage from './components/HomePagePackage/HomePage';
-import PrihlaseniPage from './components/PrihlaseniPagePackage/PrihlaseniPage';
-import {UserProvider} from "./components/PrihlaseniPagePackage/UserContext";
-import RegistracePage from './components/RegistracePagePackage/RegistracePage';
+import Navbar from './pages/HomePagePackage/Navbar';
+import HomePage from './pages/HomePagePackage/HomePage';
+import PrihlaseniPage from './pages/PrihlaseniPagePackage/PrihlaseniPage';
+import {UserContext, UserProvider} from "./pages/PrihlaseniPagePackage/UserContext";
+import RegistracePage from './pages/RegistracePagePackage/RegistracePage';
 import Modal from 'react-modal';
 import League from "./components/League/League";
 import MatchList from "./components/MatchList";
@@ -19,10 +19,12 @@ import {MatchSourceType} from "./components/Enums";
 import ContentHolder from "./components/BrowsingContentHolder/ContentHolder";
 import BrowsingPage from "./components/BrowsingPagePackage/BrowsingPage";
 import MatchDetailPage from "./components/MatchDetailPagePackage/MatchDetailPage";
+import Dashboard from './pages/DashboardPage/Dashboard';
 
 Modal.setAppElement('#root');
 
 const App = () => {
+    const { user } = useContext(UserContext);
     return (
       <UserProvider>
     <Router>
@@ -35,6 +37,7 @@ const App = () => {
             <Route path="/hokej" element={<BrowsingPage Sport={"Hokej"} />}></Route>
             <Route path="/volejbal" element={<BrowsingPage Sport={"Volejbal"} />}></Route>
             <Route path="/matchDetail" element={<MatchDetailPage/>}></Route>
+            <Route path="/dashboard" element={<Dashboard  userId={user?.userId}/>}></Route>
         </Routes>
     </Router>
    </UserProvider>

@@ -9,7 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AuthRequest {
-    String email;
-    String hashedPassword;
+public class TeamRespDto {
+    private long id;
+    private String name;
+    private String sport;
+    private String teamLogo;
+    private String country;
+    private String countryLogo;
+    private boolean isFavourite;
 }

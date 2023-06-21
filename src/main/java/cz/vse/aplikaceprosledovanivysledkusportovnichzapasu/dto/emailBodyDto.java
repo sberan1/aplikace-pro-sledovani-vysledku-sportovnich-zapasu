@@ -6,10 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class AuthRequest {
-    String email;
-    String hashedPassword;
+public class emailBodyDto {
+    private String email;
 }

@@ -1,16 +1,18 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.TeamRespDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.ApiSports;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.CountryRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.LeagueRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.TeamRepository;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
@@ -23,6 +25,8 @@ public class TeamServiceImpl implements TeamService {
     @Autowired
     LeagueRepository leagueRepository;
     ApiSports apiSports = ApiSports.getInstance();
+
+    User user;
 
     @Override
     public void fillBasketballTeamsByLeagueExternalIdAndSeason(int leagueExternalId, String seasonExternalId) {
@@ -72,6 +76,32 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public List<Team> getTeamsBySport(String sport) {
         return teamRepository.findTeamsBySport(sport);
+    }
+
+    @Override
+    public TeamRespDto getTeamInfoById(long id, User user) {
+        Team team = teamRepository.findTeamById(id);
+        TeamRespDto teamDto = TeamRespDto.builder()
+                .id(team.getId())
+                .name(team.getName())
+                .sport(team.getSport())
+                .teamLogo(team.getLogo())
+                .country(team.getCountry().getName())
+                .countryLogo(team.getCountry().getFlag())
+                .build();
+                if (user == null){
+                    teamDto.setFavourite(false);
+                }
+                else {
+                    for (var t : user.getFavouriteTeams()){
+                        if (t.getId() == id){
+                            teamDto.setFavourite(true);
+                        }
+                        teamDto.setFavourite(false);
+                    }
+
+                }
+        return teamDto;
     }
 
     private void pridatTymy(JSONObject o, String sport, JSONObject resp) {

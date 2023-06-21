@@ -1,14 +1,10 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.FixtureRespDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDto;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.BasketballScore;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.HockeyScore;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.VoleyballScore;
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.SoccerScore;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.*;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.ApiSports;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.*;
-import org.apache.catalina.Store;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,6 +120,45 @@ public class FixtureServiceImpl implements FixtureService {
     @Override
     public Fixture getFixtureById(long id) {
         return fixtureRepository.findById(id).get();
+    }
+
+    @Override
+    public FixtureRespDto getFixtureInfoById(long id, User user) {
+        Fixture fixture = fixtureRepository.findById(id).get();
+        FixtureRespDto fixtureRespDto = FixtureRespDto.builder()
+                .id(fixture.getId())
+                .sport(fixture.getSport())
+                .date(fixture.getDate().format(DateTimeFormatter.ISO_DATE))
+                .time(fixture.getDate().format(DateTimeFormatter.ofPattern("HH:mm")))
+                .homeTeamId(fixture.getHomeTeam().getId())
+                .awayTeamId(fixture.getAwayTeam().getId())
+                .homeTeamName(fixture.getHomeTeam().getName())
+                .awayTeamName(fixture.getAwayTeam().getName())
+                .homeTeamLogo(fixture.getHomeTeam().getLogo())
+                .awayTeamLogo(fixture.getAwayTeam().getLogo())
+                .score(fixture.getScore())
+                .leagueName(fixture.getLeague().getName())
+                .leagueFlag(fixture.getLeague().getLogo())
+                .build();
+        LocalDateTime now = LocalDateTime.now();
+        if (fixture.getDate().isAfter(now)){
+            fixtureRespDto.setAlreadyPlayed(true);
+        }
+        else {
+            fixtureRespDto.setAlreadyPlayed(false);
+        }
+        if (user == null){
+            fixtureRespDto.setFavourite(false);
+        }
+        else {
+            for (var t : user.getFavouriteFixtures()){
+                if (t.getId() == id){
+                    fixtureRespDto.setFavourite(true);
+                }
+                fixtureRespDto.setFavourite(false);
+            }
+        }
+        return fixtureRespDto;
     }
 
 
@@ -375,6 +410,47 @@ public class FixtureServiceImpl implements FixtureService {
 
     }
 
+   @Override
+    public List<MatchListDateDto> getFixturesByTeamIdAndDateBeforeToday(long teamId){
+        List<MatchListDateDto> matchListDateDtoBefore = new ArrayList<>();
+        for ( Fixture fixture : fixtureRepository.findFixturesByTeamIdAndDateBeforeToday(teamId)){
+            MatchListDateDto matchListDateDto = new MatchListDateDto();
+            matchListDateDto.setId(fixture.getId());
+            matchListDateDto.setDate(fixture.getDate().format(DateTimeFormatter.ISO_DATE));
+            matchListDateDto.setTime(fixture.getDate().format(DateTimeFormatter.ofPattern("HH:mm")));
+            matchListDateDto.setHomeTeamId(fixture.getHomeTeam().getId());
+            matchListDateDto.setHomeTeam(fixture.getHomeTeam().getName());
+            matchListDateDto.setAwayTeamId(fixture.getAwayTeam().getId());
+            matchListDateDto.setAwayTeam(fixture.getAwayTeam().getName());
+            matchListDateDto.setHomeTeamScore(fixture.getScore().getFinalHomeScore());
+            matchListDateDto.setAwayTeamScore(fixture.getScore().getFinalAwayScore());
+            matchListDateDto.setHomeTeamLogo(fixture.getHomeTeam().getLogo());
+            matchListDateDto.setAwayTeamLogo(fixture.getAwayTeam().getLogo());
+            matchListDateDtoBefore.add(matchListDateDto);
+        }
+        return matchListDateDtoBefore;
+    }
+
+    @Override
+    public List<MatchListDateDto> getFixturesByTeamIdAndDateFromToday(long teamId) {
+        List<MatchListDateDto> matchListDateDtoFrom = new ArrayList<>();
+        for ( Fixture fixture : fixtureRepository.findFixturesByTeamIdAndDateFromToday(teamId)){
+            MatchListDateDto matchListDateDto = new MatchListDateDto();
+            matchListDateDto.setId(fixture.getId());
+            matchListDateDto.setDate(fixture.getDate().format(DateTimeFormatter.ISO_DATE));
+            matchListDateDto.setTime(fixture.getDate().format(DateTimeFormatter.ofPattern("HH:mm")));
+            matchListDateDto.setHomeTeamId(fixture.getHomeTeam().getId());
+            matchListDateDto.setHomeTeam(fixture.getHomeTeam().getName());
+            matchListDateDto.setAwayTeamId(fixture.getAwayTeam().getId());
+            matchListDateDto.setAwayTeam(fixture.getAwayTeam().getName());
+            matchListDateDto.setHomeTeamScore(fixture.getScore().getFinalHomeScore());
+            matchListDateDto.setAwayTeamScore(fixture.getScore().getFinalAwayScore());
+            matchListDateDto.setHomeTeamLogo(fixture.getHomeTeam().getLogo());
+            matchListDateDto.setAwayTeamLogo(fixture.getAwayTeam().getLogo());
+            matchListDateDtoFrom.add(matchListDateDto);
+        }
+        return matchListDateDtoFrom;
+    }
 
 
 }

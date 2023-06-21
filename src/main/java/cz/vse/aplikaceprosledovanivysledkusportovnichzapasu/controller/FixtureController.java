@@ -1,10 +1,15 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.FixtureRespDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDto;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.FixtureRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.FixtureService;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +18,8 @@ import java.util.List;
 @RequestMapping(value = "/fixture")
 @CrossOrigin
 public class FixtureController {
+    @Autowired
+    UserService userService;
     @Autowired
     FixtureService fixtureService;
 
@@ -45,22 +52,29 @@ public class FixtureController {
     }
 
     @GetMapping("/getFixturesByTeamIdAndDateBeforeToday")
-    public List<MatchListDateDto> getFixturesByTeamIdAndDateBeforeToday( @RequestParam long id)
+    public List<MatchListDateDto> getFixturesByTeamIdAndDateBeforeToday( @RequestParam long teamId)
     {
-        return fixtureRepository.findFixturesByTeamIdAndDateBeforeToday(id);
+        return fixtureService.getFixturesByTeamIdAndDateBeforeToday(teamId);
     }
 
     @GetMapping("/getFixturesByTeamIdAndDateFromToday")
-    public List<MatchListDateDto> getFixturesByTeamIdAndDateFromToday( @RequestParam long id)
+    public List<MatchListDateDto> getFixturesByTeamIdAndDateFromToday( @RequestParam long teamId)
     {
-        return fixtureRepository.findFixturesByTeamIdAndDateFromToday(id);
-
+        return fixtureService.getFixturesByTeamIdAndDateFromToday(teamId);
     }
-
-
 
     @GetMapping("/getFixturesById")
     public Fixture getFixturesById(@RequestParam long id){
         return fixtureService.getFixtureById(id);
+    }
+
+    @GetMapping("/getFixtureInfoById")
+    public ResponseEntity<FixtureRespDto> getFixtureById(@RequestParam Long id, HttpServletRequest request) {
+        if(request.getHeader("Authorization") != null){
+            String jwt = request.getHeader("Authorization").substring(7);
+            User user = userService.getUserFromToken(jwt);
+            return ResponseEntity.ok(fixtureService.getFixtureInfoById(id, user));
+        }
+        return ResponseEntity.ok(fixtureService.getFixtureInfoById(id, null));
     }
 }

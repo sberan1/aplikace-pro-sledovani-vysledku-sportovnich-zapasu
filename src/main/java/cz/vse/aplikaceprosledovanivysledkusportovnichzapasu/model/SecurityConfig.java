@@ -2,6 +2,7 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -10,6 +11,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -18,17 +26,19 @@ public class SecurityConfig {
 
     private final JwtAuthetificationFilter jwtAuthetificationFilter;
     private final AuthenticationProvider authenticationProvider;
+    @Value("${allowed-cors}")
+    public String cors;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
         security
-                .csrf()
-                .disable()
+                .cors().and()
+                .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers(
                         "/fixture/getFixturesBySportAndDate",
-                        "/user/register",
-                        "/user/authenticate",
+                        "/auth/register",
+                        "/auth/authenticate",
                         "/league/getLeaguesByFixturePlayedAtDateInSport",
                         "/team/fillTeamsHockey",
                         "/fixture/fillFixturesHockey",
@@ -37,9 +47,11 @@ public class SecurityConfig {
                         "/league/fillFootballLeagues",
                         "/league/fillVolleyballLeagues",
                         "/team/getTeamsBySport",
-                        "/user/OpenAiCall",
                         "/fixture/getFixturesById",
-                        "/fixture/fillFixturesVolleyball")
+                        "/fixture/fillFixturesVolleyball",
+                        "/team/getTeamInfoById",
+                        "/fixture/getFixtureInfoById",
+                        "/user/checkEmail")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -51,5 +63,16 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthetificationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return security.build();
+    }
+    @Bean
+    public CorsFilter corsFilter() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.setAllowedOrigins(List.of(this.cors.split(",")));
+        config.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization"));
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "OPTIONS", "DELETE", "PATCH"));
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
 }

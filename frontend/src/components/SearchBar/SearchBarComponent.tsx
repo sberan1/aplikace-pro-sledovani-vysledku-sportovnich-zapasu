@@ -1,5 +1,5 @@
 import React, {FormEvent, useState, useEffect} from 'react';
-import '../HomePagePackage/Navbar.css';
+import '../../pages/HomePagePackage/Navbar.css';
 import '../../App.css';
 
 const SearchBar = () => {
