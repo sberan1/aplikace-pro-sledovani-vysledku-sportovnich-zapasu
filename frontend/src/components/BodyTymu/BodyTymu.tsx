@@ -28,10 +28,7 @@ const BodyTymu = ({teamId}) => {
     const [team, setTeam] = useState(null);
     const [error, setError] = useState(null);
     const { formattedDateToReturn, render } = DatePicker();
-
-
     const [date, setDate] = useState([]);
-    const { formattedDateToReturn, render } = DatePicker();
 
     useEffect(() => {
         getTeamData(teamId)
