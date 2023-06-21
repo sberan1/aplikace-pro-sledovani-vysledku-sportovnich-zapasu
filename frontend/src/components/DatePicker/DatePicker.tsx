@@ -10,11 +10,10 @@ const DatePickerComponent = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [items, setItems] = useState([]); // pole se všemi položkami
     const [filteredItems, setFilteredItems] = useState([]); // pole s filtrovanými položkami
-    const [formattedDateToReturn, setFormattedDateToReturn] = useState("");
+    const [formattedDateToReturn, setFormattedDateToReturn] = useState(format(parse(new Date().toLocaleDateString('cs-CZ'), 'd. M. yyyy', new Date()), 'yyyy-MM-dd'));
 
     const handleChange = date => {
         setStartDate(date);
-        sendDate(date);
         filterItems(date);
         formatDateToString(date);
     }
@@ -24,19 +23,6 @@ const DatePickerComponent = () => {
         setFilteredItems(filtered);
     }// Pak byste místo 'items' zobrazovali 'filteredItems' v render metode.
 
-    const sendDate = date => {
-        const formattedDate = date.toISOString().substring(0,10);
-
-        axios.post('API_URL', { selectedDate: formattedDate })
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-
-    }
 
     const formatDateToString = date => {
         let dateString = date.toLocaleDateString('cs-CZ'); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/

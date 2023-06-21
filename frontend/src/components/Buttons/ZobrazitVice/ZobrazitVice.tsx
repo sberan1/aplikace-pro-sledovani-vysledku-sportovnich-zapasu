@@ -3,10 +3,10 @@ import sparta from '../../assets/sparta.png';
 import slavia from '../../assets/slavnia.png';
 import chevron from '../../../assets/chevron-right.svg';
 
-function ZobrazitVice(handleClick: any) {
+function ZobrazitVice({ handleClick }: { handleClick: () => void }) {
     return (
-        <div onClick={handleClick} className={`flex items-center ${styles.text}`}>
-            <button className={`${styles.text} uppercase`}>Zobrazit více
+        <div className={`flex items-center ${styles.text}`}>
+            <button onClick={handleClick} className={`${styles.text} uppercase`}>Zobrazit více
                 <div>
                     <svg width="10" height="16" fill="black" className={`${styles.icon}`}
                          xmlns="http://www.w3.org/2000/svg">

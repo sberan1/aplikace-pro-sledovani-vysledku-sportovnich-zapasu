@@ -1,9 +1,8 @@
-import React from 'react';
-//import Navbar from './Navbar';
+import React, {useEffect} from 'react';
 import MainSection from './MainSection';
-import Footer from './Footer';
+import Footer from "../../components/footer/Footer";
 import './BrowsingPage.css';
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../../components/NavBar/NavBar";
 
 export interface AppProps {
     Sport: string
@@ -13,7 +12,7 @@ const BrowsingPage = ({ Sport }: AppProps) => {
     return (
         <div className="HomePaneContainer">
             <NavBar PrihlaseniPage={""}/>
-            <MainSection Sport={Sport}/>
+            <MainSection Sport={Sport} />
             <Footer/>
         </div>
     );

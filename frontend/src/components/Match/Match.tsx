@@ -32,6 +32,7 @@ function Match({
     awayTeamLogo: string | null
 }) {
 
+    const location = useLocation();
 
     let isVisibleHomeTeamLogo = false;
     let isVisibleAwayTeamLogo = false;
@@ -70,6 +71,10 @@ function Match({
 
     const formateDateToCzech = date.split('-').reverse().join('.');
 
+    const zobrazitViceOnClick = () => {
+        const nextURL = `/matchDetail?id=${id}`; // URL s parametrem
+        window.location.href = nextURL;
+    }
 
     return (
         <div className={`inline-grid grid-flow-col gap-3 ${styles.match} m-1`}>
@@ -86,22 +91,20 @@ function Match({
                     <div className='flex grow w-60 justify-center'>
                         {isVisibleHomeTeamLogo ? (
                             <>
-                                <img className={`content-center object-contain h-9 w-9`} src={homeTeamLogo} alt="Team"/>
-                                <button onClick={teamOnClicked(homeTeamId)}
-                                        className={`pl-3 content-center ${styles.team}`}>{homeTeamName}</button>
+                                <img className={`content-center object-contain h-9 w-9`} src={homeTeamLogo} alt="Team" />
+                                <button onClick={teamOnClicked(homeTeamName)} className={`pl-3 content-center ${styles.team}`}>{homeTeamName}</button>
                             </>
                         ) : (
-                            <div/>
+                            <div />
                         )}
                     </div>
                     <div className='flex grow-0'>
                         <p className={`${styles.dash}`}>-</p>
                     </div>
                     <div className='flex grow w-60 justify-center'>
-                        <button onClick={teamOnClicked(awayTeamId)}
-                                className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
+                        <button onClick={teamOnClicked(awayTeamName)} className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
                         {isVisibleAwayTeamLogo ? (
-                            <img className={`content-center object-contain h-9 w-9`} src={awayTeamLogo} alt="Team"/>
+                            <img className={`content-center object-contain h-9 w-9`} src={awayTeamLogo} alt="Team" />
                         ) : (
                             <div/>
                         )}
@@ -131,6 +134,7 @@ function Match({
             </div>
             <div className={`flex justify-end pr-6`}>
                 <div className={`inline-grid`}>
+                    <ZobrazitVice handleClick={zobrazitViceOnClick} />
                     <ZobrazitVice className={`flex content-center`}/>
                 </div>
             </div>
@@ -138,5 +142,4 @@ function Match({
     );
 
 }
-
 export default Match;

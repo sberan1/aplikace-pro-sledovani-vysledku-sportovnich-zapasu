@@ -53,7 +53,7 @@ public class CountryServiceImpl implements CountryService {
     }
     @Override
     public void fillCountriesVolleyball() {
-        JSONArray zemeVolleyball = apiSports.basketbalZeme().getJSONArray("response");
+        JSONArray zemeVolleyball = apiSports.volejbalZeme().getJSONArray("response");
         zemeVolleyball.forEach(o -> {
             if (!countryRepository.findByExternalIdAndSport(((JSONObject) o).getInt("id"), "Volleyball").isPresent()) {
                 pridatZemi((JSONObject) o, "Volleyball");

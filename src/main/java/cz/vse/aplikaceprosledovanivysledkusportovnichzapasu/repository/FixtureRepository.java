@@ -1,6 +1,6 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository;
 
-import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDto;
+
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -26,8 +26,11 @@ public interface FixtureRepository extends JpaRepository<Fixture, Long> {
 
 
     @Query("SELECT e FROM Fixture e WHERE (e.awayTeam.id = :teamId OR e.homeTeam.id = :teamId) AND e.date < CURRENT_DATE")
-    List<MatchListDateDto> findFixturesByTeamIdAndDateBeforeToday(long teamId);
+    List<Fixture> findFixturesByTeamIdAndDateBeforeToday(long teamId);
 
     @Query("SELECT e FROM Fixture e WHERE (e.awayTeam.id = :teamId OR e.homeTeam.id = :teamId) AND e.date >= CURRENT_DATE")
-    List<MatchListDateDto> findFixturesByTeamIdAndDateFromToday(long teamId);
+    List<Fixture> findFixturesByTeamIdAndDateFromToday(long teamId);
+
+    Fixture findFixtureById(long id);
 }
+
