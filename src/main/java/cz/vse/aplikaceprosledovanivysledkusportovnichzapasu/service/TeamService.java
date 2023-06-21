@@ -1,5 +1,6 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.SearchBarDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.TeamRespDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
@@ -17,6 +18,8 @@ public interface TeamService {
 
     List<Team> getTeamsBySport(String sport);
 
-    public TeamRespDto getTeamInfoById(long id, User user);
+    TeamRespDto getTeamInfoById(long id, User user);
+
+    List<SearchBarDto> searchBar(String name);
 
 }

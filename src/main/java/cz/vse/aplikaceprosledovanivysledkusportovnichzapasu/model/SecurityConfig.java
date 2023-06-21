@@ -50,6 +50,7 @@ public class SecurityConfig {
                         "/fixture/getFixturesById",
                         "/fixture/fillFixturesVolleyball",
                         "/team/getTeamInfoById",
+                        "/team/search",
                         "/fixture/getFixtureInfoById",
                         "/user/checkEmail")
                 .permitAll()
