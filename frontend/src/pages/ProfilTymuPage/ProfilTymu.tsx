@@ -5,9 +5,12 @@ import HeaderTymu from "../../components/HeaderTymu/HeaderTymu";
 import BodyTymu from "../../components/BodyTymu/BodyTymu";
 import SearchBar from "../../components/SearchBar/SearchBarComponent";
 import '../../components/BodyTymu/BodyTymu.css';
+import {useParams} from "react-router-dom";
 
+const ProfilTymu = ({}) => {
 
-const ProfilTymu = ({teamId}) => {
+    const { teamId } = useParams();
+
     return (
         <div className="ProfilTymuContainer BG">
             <NavBar PrihlaseniPage=""/>
@@ -15,7 +18,7 @@ const ProfilTymu = ({teamId}) => {
                 <div className="TymContainer">
                     <div>
                         <HeaderTymu teamId={teamId}/>
-                        <BodyTymu teamId={undefined}/>
+                        <BodyTymu teamId={teamId}/>
                     </div>
                 </div>
             <Footer/>

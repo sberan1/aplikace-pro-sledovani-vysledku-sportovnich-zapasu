@@ -18,7 +18,8 @@ async function getTeamData(teamId) {
         focus: 'Fotbalový tým',
         country: 'Guatemala',
         flagUrl: 'https:\/\/media-3.api-sports.io\/football\/teams\/3640.png',
-        logoUrl: 'https:\/\/media-2.api-sports.io\/football\/teams\/3653.png'
+        logoUrl: 'https:\/\/media-2.api-sports.io\/football\/teams\/3653.png',
+        isFavorite: true
     };
 
     return testovaciData;
@@ -29,9 +30,7 @@ const BodyTymu = ({teamId}) => {
     const [error, setError] = useState(null);
     const { formattedDateToReturn, render } = DatePicker();
 
-
     const [date, setDate] = useState([]);
-    const { formattedDateToReturn, render } = DatePicker();
 
     useEffect(() => {
         getTeamData(teamId)
@@ -56,7 +55,6 @@ const BodyTymu = ({teamId}) => {
                 {/* tady bude komponenta program/vysledky */}
                 {render}
             </div>
-
             {/* komponenta zápasů, ale musí se tam nejak pridat filter/omezeni jen pro tenhle
             dany tym */}
         </div>

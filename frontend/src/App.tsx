@@ -19,6 +19,7 @@ import {MatchSourceType} from "./components/Enums";
 import ContentHolder from "./components/ContentHolder/ContentHolder";
 import BrowsingPage from "./components/BrowsingPagePackage/BrowsingPage";
 import Dashboard from './pages/DashboardPage/Dashboard';
+import ProfilTymu from "./pages/ProfilTymuPage/ProfilTymu";
 
 
 Modal.setAppElement('#root');
@@ -37,6 +38,7 @@ const App = () => {
             <Route path="/hokej" element={<BrowsingPage Sport={"Hokej"} />}></Route>
             <Route path="/volejbal" element={<BrowsingPage Sport={"Volejbal"} />}></Route>
             <Route path="/dashboard" element={<Dashboard  userId={user?.userId}/>}></Route>
+            <Route path="/tym/:teamId" element={<ProfilTymu />}></Route>
         </Routes>
     </Router>
    </UserProvider>

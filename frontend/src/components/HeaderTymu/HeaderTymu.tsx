@@ -14,6 +14,7 @@ async function getTeamData(teamId) {
     */}
 
     const testovaciData = {
+        teamId: 1,
         name: 'Estadio Israel Barrios',
         focus: 'Fotbalový tým',
         country: 'Guatemala',
