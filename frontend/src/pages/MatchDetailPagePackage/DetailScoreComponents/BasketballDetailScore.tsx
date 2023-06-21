@@ -1,15 +1,11 @@
 import React, {MouseEventHandler, useEffect, useState} from 'react';
 // @ts-ignore
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import '../Navbar.css';
 import '../MatchDetailPage.css';
-import ContentHolder from "../../BrowsingContentHolder/ContentHolder";
-import styles from "../../Match/Match.module.css";
 import sparta from '../../../assets/sparta.png';
 import slavia from '../../../assets/slavia.png';
-import MatchDetailedScore from "../../MatchDetailedScore/MatchDetailedScore";
+import MatchDetailedScore from "../../../components/MatchDetailedScore/MatchDetailedScore";
 import czechFlag from '../../../assets/czechRepublicFlag.svg';
-
 import {BasketballMatchData, FootballMatchData, HockeyMatchData} from "../SportInterfaces";
 import axios from "axios";
 
@@ -28,8 +24,9 @@ function BasketballDetailScore ({MatchId}: {MatchId: number}) {
             homeTeamLogo: sparta,
             awayTeamLogo: slavia,
             alreadyPlayed: false,
-            isFavourite: false,
+            favourite: false,
             score : {
+                id: 1,
                 finalAwayScore: 1,
                 finalHomeScore: 2,
                 firstQuarterAwayScore: 1,
@@ -46,22 +43,21 @@ function BasketballDetailScore ({MatchId}: {MatchId: number}) {
             leagueName: "Liga mistrů",
             leagueFlag: czechFlag
         }
-
     );
 
-    useEffect(() => {
-       // fetchMatches();
-    }, []);
 
     const fetchMatches = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/fixtureController/getFixtureById/${MatchId}`);
+            const response = await axios.get(`http://localhost:8080/fixture/getFixtureInfoById?id=${MatchId}`);
             setMatch(response.data);
         } catch (error) {
             console.error('Error fetching match detaiů:', error);
         }
     };
 
+    useEffect(() => {
+        fetchMatches();
+    }, []);
 
     return (
         <div className={`grid grid-flow-row auto-rows-max`}>

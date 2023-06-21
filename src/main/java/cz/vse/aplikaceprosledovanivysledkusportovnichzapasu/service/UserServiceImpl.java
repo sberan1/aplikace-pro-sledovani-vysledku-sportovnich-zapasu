@@ -80,12 +80,14 @@ public class UserServiceImpl implements UserService{
     public void addFavouriteTeam(long teamId, String jwt) {
         User user= getUserFromToken(jwt);
         user.getFavouriteTeams().add(teamRepository.findById(teamId).get());
+        userRepository.save(user);
     }
 
     @Override
     public void removeFavouriteTeam(long teamId, String jwt) {
         User user= getUserFromToken(jwt);
         user.getFavouriteTeams().remove(teamRepository.findById(teamId).get());
+        userRepository.save(user);
     }
 
     @Override
@@ -110,13 +112,16 @@ public class UserServiceImpl implements UserService{
     @Override
     public void addFavouriteFixture(long id, String jwt) {
         User user= getUserFromToken(jwt);
-        user.getFavouriteFixtures().add(fixtureRepository.findById(id).get());
+        Fixture fixture = fixtureRepository.findFixtureById(id);
+        user.getFavouriteFixtures().add(fixture);
+        userRepository.save(user);
     }
 
     @Override
     public void removeFavouriteFixture(long id, String jwt) {
         User user= getUserFromToken(jwt);
-        user.getFavouriteFixtures().remove(fixtureRepository.findById(id));
+        user.getFavouriteFixtures().remove(fixtureRepository.findFixtureById(id));
+        userRepository.save(user);
     }
 
 

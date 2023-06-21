@@ -52,7 +52,8 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
         }
 
         try {
-            const response = await axios.put(`/api/changePassword/${user.id}`, {
+            const response = await axios.put(`http://localhost:8080/user/changePassword`,
+                {
                 oldPassword: sha256(oldPassword),
                 newPassword: sha256(newPassword)
             });
@@ -72,7 +73,7 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
 
     const deleteAccount = async () => {
         try {
-            const response = await axios.delete(`/deleteAccount/${user.id}`);  // Předpokládám, že ID uživatele je dostupné jako 'user.id'
+            const response = await axios.delete(`http://localhost:8080/user/delete`);  // Předpokládám, že ID uživatele je dostupné jako 'user.id'
             console.log(response.data);
             setDeleteModalIsOpen(false);  // Zavřít modální okno po úspěšném smazání
             logoutUser(); // odhlaseni
