@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './BodyTymu.css';
 import DatePicker from "../DatePicker/DatePicker";
+import DatePickerComponent from "../DatePicker/DatePicker";
 
 async function getTeamData(teamId) {
     {/*
@@ -28,6 +29,9 @@ const BodyTymu = ({teamId}) => {
     const [error, setError] = useState(null);
     const { formattedDateToReturn, render } = DatePicker();
 
+
+    const [date, setDate] = useState([]);
+    const { formattedDateToReturn, render } = DatePicker();
 
     useEffect(() => {
         getTeamData(teamId)

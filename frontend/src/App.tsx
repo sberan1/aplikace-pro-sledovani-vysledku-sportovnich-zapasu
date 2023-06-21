@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useContext} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
 import Match from './components/Match/Match';
@@ -9,7 +9,7 @@ import LeagueList from './components/LeagueList';
 import Navbar from './pages/HomePagePackage/Navbar';
 import HomePage from './pages/HomePagePackage/HomePage';
 import PrihlaseniPage from './pages/PrihlaseniPagePackage/PrihlaseniPage';
-import {UserProvider} from "./pages/PrihlaseniPagePackage/UserContext";
+import {UserContext, UserProvider} from "./pages/PrihlaseniPagePackage/UserContext";
 import RegistracePage from './pages/RegistracePagePackage/RegistracePage';
 import Modal from 'react-modal';
 import League from "./components/League/League";
@@ -18,10 +18,13 @@ import {MatchType} from "./components/Types";
 import {MatchSourceType} from "./components/Enums";
 import ContentHolder from "./components/ContentHolder/ContentHolder";
 import BrowsingPage from "./components/BrowsingPagePackage/BrowsingPage";
+import Dashboard from './pages/DashboardPage/Dashboard';
+
 
 Modal.setAppElement('#root');
 
 const App = () => {
+    const { user } = useContext(UserContext);
     return (
       <UserProvider>
     <Router>
@@ -33,6 +36,7 @@ const App = () => {
             <Route path="/fotbal" element={<BrowsingPage Sport={"Fotbal"} />}></Route>
             <Route path="/hokej" element={<BrowsingPage Sport={"Hokej"} />}></Route>
             <Route path="/volejbal" element={<BrowsingPage Sport={"Volejbal"} />}></Route>
+            <Route path="/dashboard" element={<Dashboard  userId={user?.userId}/>}></Route>
         </Routes>
     </Router>
    </UserProvider>

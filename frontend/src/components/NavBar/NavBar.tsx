@@ -85,7 +85,7 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
     return (
         <nav>
             <div className="logo">
-                <Link to="/" className="NavbarLink">
+                <Link to="/dashboard" className="NavbarLink">
                     <span className="navbar-logo"></span>
                 </Link>
             </div>

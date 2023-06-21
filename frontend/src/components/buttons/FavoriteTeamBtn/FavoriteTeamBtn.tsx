@@ -4,7 +4,6 @@ import axios from "axios";
 
 function FavoriteTeamButton({ teamId, type }) {
     const [isFavorite, setIsFavorite] = useState(false);
-
     const handleClick = async () => {
         const newFavoriteStatus = isFavorite;
         setIsFavorite(newFavoriteStatus);

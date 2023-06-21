@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './HeaderTymu.css';
-import FavoriteTeamBtn from "../Buttons/FavoriteTeamBtn/FavoriteTeamBtn";
+import FavoriteTeamBtn from '../Buttons/FavoriteTeamBtn/FavoriteTeamBtn';
 
 async function getTeamData(teamId) {
 
