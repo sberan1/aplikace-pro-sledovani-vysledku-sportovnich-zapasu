@@ -14,7 +14,7 @@ const MatchList = ( {type, webParams} : {
     const fetchMatches = async () => {
         try {
             if(type === MatchSourceType.Team){
-                const response = await fetch('http://localhost:8080/match/getMatchesFromTeam?' + webParams); //není dokončeno
+                const response = await fetch('http://localhost:8080/team/getTeamInfoById' + webParams); //není dokončeno
                 const data = await response.json();
                 setMatches(data);
             }

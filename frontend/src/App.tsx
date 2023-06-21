@@ -38,7 +38,7 @@ const App = () => {
             <Route path="/hokej" element={<BrowsingPage Sport={"Hokej"} />}></Route>
             <Route path="/volejbal" element={<BrowsingPage Sport={"Volejbal"} />}></Route>
             <Route path="/dashboard" element={<Dashboard  userId={user?.userId}/>}></Route>
-            <Route path="/tym/:teamId" element={<ProfilTymu />}></Route>
+            <Route path="/teamDetail?teamId=id" element={<ProfilTymu />}></Route>
         </Routes>
     </Router>
    </UserProvider>

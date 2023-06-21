@@ -4,8 +4,21 @@ import slavia from '../../assets/slavia.png';
 import ZobrazitVice from "../Buttons/ZobrazitVice/ZobrazitVice";
 import {isVisible} from "@testing-library/user-event/dist/utils";
 import {useState} from "react";
+import {useLocation} from 'react-router-dom';
 
-function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamName, homeTeamScore, awayTeamScore, homeTeamLogo, awayTeamLogo} : {
+function Match({
+                   id,
+                   date,
+                   time,
+                   homeTeamId,
+                   awayTeamId,
+                   homeTeamName,
+                   awayTeamName,
+                   homeTeamScore,
+                   awayTeamScore,
+                   homeTeamLogo,
+                   awayTeamLogo
+               }: {
     id: any,
     date: any,
     time: any,
@@ -18,6 +31,7 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
     homeTeamLogo: string | null,
     awayTeamLogo: string | null
 }) {
+
 
     let isVisibleHomeTeamLogo = false;
     let isVisibleAwayTeamLogo = false;
@@ -38,16 +52,19 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
         if (awayTeamScore !== null) {
             isVisibleAwayTeamScore = true;
         }
-        if(homeTeamScore === null && awayTeamScore === null) {
+        if (homeTeamScore === null && awayTeamScore === null) {
             isFutureMatch = true;
         }
     }
 
     isVisibleMap();
 
+    const location = useLocation();
+
     const teamOnClicked = (team: string): React.MouseEventHandler<HTMLButtonElement> => {
         return (event) => {
-            // Obsluha kliknutí na tlačítko pro tým
+            const nextURL = '/teamDetail?teamId=${team}'; // URL s parametrem
+            window.location.href = nextURL;
         };
     };
 
@@ -69,22 +86,24 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
                     <div className='flex grow w-60 justify-center'>
                         {isVisibleHomeTeamLogo ? (
                             <>
-                                <img className={`content-center object-contain h-9 w-9`} src={homeTeamLogo} alt="Team" />
-                                <button onClick={teamOnClicked(homeTeamName)} className={`pl-3 content-center ${styles.team}`}>{homeTeamName}</button>
+                                <img className={`content-center object-contain h-9 w-9`} src={homeTeamLogo} alt="Team"/>
+                                <button onClick={teamOnClicked(homeTeamName)}
+                                        className={`pl-3 content-center ${styles.team}`}>{homeTeamName}</button>
                             </>
                         ) : (
-                            <div />
+                            <div/>
                         )}
                     </div>
                     <div className='flex grow-0'>
                         <p className={`${styles.dash}`}>-</p>
                     </div>
                     <div className='flex grow w-60 justify-center'>
-                        <button onClick={teamOnClicked(awayTeamName)} className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
+                        <button onClick={teamOnClicked(awayTeamName)}
+                                className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
                         {isVisibleAwayTeamLogo ? (
-                            <img className={`content-center object-contain h-9 w-9`} src={awayTeamLogo} alt="Team" />
+                            <img className={`content-center object-contain h-9 w-9`} src={awayTeamLogo} alt="Team"/>
                         ) : (
-                            <div />
+                            <div/>
                         )}
                     </div>
                 </div>
@@ -97,13 +116,13 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
                                 {isVisibleHomeTeamScore ? (
                                     <p className={`${styles.score1} pr-4 pt-0.5 pb-0.2`}>{homeTeamScore}</p>
                                 ) : (
-                                    <div />
+                                    <div/>
                                 )}
                                 <p className={`${styles.colon}  pt-0.5 pb-0.3`}>:</p>
                                 {isVisibleAwayTeamScore ? (
                                     <p className={`${styles.score2} pl-4 pt-0.5 pb-0.2`}>{awayTeamScore}</p>
                                 ) : (
-                                    <div />
+                                    <div/>
                                 )}
                             </>
                         )}
@@ -112,11 +131,12 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
             </div>
             <div className={`flex justify-end pr-6`}>
                 <div className={`inline-grid`}>
-                    <ZobrazitVice className={`flex content-center`} />
+                    <ZobrazitVice className={`flex content-center`}/>
                 </div>
             </div>
         </div>
     );
 
 }
+
 export default Match;

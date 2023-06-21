@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './BodyTymu.css';
 import DatePicker from "../DatePicker/DatePicker";
 import DatePickerComponent from "../DatePicker/DatePicker";
+import {match} from "assert";
+import {MatchSourceType} from "../Enums";
+import MatchList from "../MatchList";
 
 async function getTeamData(teamId) {
     {/*
@@ -55,8 +58,7 @@ const BodyTymu = ({teamId}) => {
                 {/* tady bude komponenta program/vysledky */}
                 {render}
             </div>
-            {/* komponenta zápasů, ale musí se tam nejak pridat filter/omezeni jen pro tenhle
-            dany tym */}
+            {/*   <MatchList type = {MatchSourceType.Team} webParams = {`?id=${match}`} />   původne: {`?id=${match.id}`} */}
         </div>
     );
 }
