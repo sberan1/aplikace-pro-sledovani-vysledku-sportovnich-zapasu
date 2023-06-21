@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './HeaderTymu.css';
-import FavoriteTeamBtn from "../buttons/FavoriteTeamBtn/FavoriteTeamBtn";
+import FavoriteTeamBtn from "../Buttons/FavoriteTeamBtn/FavoriteTeamBtn";
 
 async function getTeamData(teamId) {
 
@@ -24,7 +24,7 @@ async function getTeamData(teamId) {
     return testovaciData;
 }
 
-const TeamComponent = ({ teamId, userId }) => {
+const TeamComponent = ({ teamId }) => {
     const [team, setTeam] = useState(null);
     const [error, setError] = useState(null);
 
@@ -58,7 +58,7 @@ const TeamComponent = ({ teamId, userId }) => {
                     </div>
                 </div>
                 <div className="middle">
-                    <FavoriteTeamBtn teamId={teamId} userId={userId}/>
+                    <FavoriteTeamBtn teamId={teamId} type="Team"/>
                 </div>
             </div>
             <div className="right">

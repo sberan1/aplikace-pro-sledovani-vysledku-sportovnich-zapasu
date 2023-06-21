@@ -14,7 +14,7 @@ const ProfilTymu = ({teamId}) => {
             <SearchBar/>
                 <div className="TymContainer">
                     <div>
-                        <HeaderTymu teamId={undefined} userId={undefined}/>
+                        <HeaderTymu teamId={teamId}/>
                         <BodyTymu teamId={undefined}/>
                     </div>
                 </div>

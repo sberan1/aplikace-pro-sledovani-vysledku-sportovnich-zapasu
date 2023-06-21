@@ -64,8 +64,6 @@ public class FixtureController {
 
     }
 
-
-
     @GetMapping("/getFixturesById")
     public Fixture getFixturesById(@RequestParam long id){
         return fixtureService.getFixtureById(id);

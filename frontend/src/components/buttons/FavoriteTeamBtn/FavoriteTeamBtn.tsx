@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
-import { FaRegStar, FaStar } from 'react-icons/fa';
+import { FaStar, FaRegStar } from "react-icons/fa";
+import axios from "axios";
 
-function FavoriteTeamButton({ teamId, userId }) {
+function FavoriteTeamButton({ teamId, type }) {
     const [isFavorite, setIsFavorite] = useState(false);
 
     const handleClick = async () => {
-        const newFavoriteStatus = !isFavorite;
+        const newFavoriteStatus = isFavorite;
         setIsFavorite(newFavoriteStatus);
+        let response;
+        if (isFavorite && type === "team"){
+            response = axios.delete(`http://localhost:8080/user/removeFavoriteTeam/${teamId}`);
+        }
+        else if (!isFavorite && type === "team"){
+            response = axios.put(`http://localhost:8080/user/addFavoriteTeam/${teamId}`);
+        }
+        else if (isFavorite && type === "fixture"){
+            response = axios.delete(`http://localhost:8080/user/removeFavoriteFixture/${teamId}`);
+        }
+        else if (!isFavorite && type === "fixture"){
+            response = axios.put(`http://localhost:8080/user/addFavoriteFixture/${teamId}`);
+        }
 
-        const url = `http://localhost:3000/favourites/${userId}/${teamId}`;
-        const method = newFavoriteStatus ? 'POST' : 'DELETE';
 
-        const response = await fetch(url, { method });
-
-        if (!response.ok) {
-            console.error(`Něco se nepovedlo na updatu oblibeneho tymu: ${response.status}`);
+        if (response.status !== 200){
+            console.error(`Něco se nepovedlo na updatu oblibeneho tymu: ${response.message}`);
             setIsFavorite(!newFavoriteStatus);
         }
     };

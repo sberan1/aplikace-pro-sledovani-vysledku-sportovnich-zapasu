@@ -26,6 +26,8 @@ async function getTeamData(teamId) {
 const BodyTymu = ({teamId}) => {
     const [team, setTeam] = useState(null);
     const [error, setError] = useState(null);
+    const { formattedDateToReturn, render } = DatePicker();
+
 
     useEffect(() => {
         getTeamData(teamId)
@@ -48,7 +50,7 @@ const BodyTymu = ({teamId}) => {
 
             <div className="header">
                 {/* tady bude komponenta program/vysledky */}
-                <DatePicker/>
+                {render}
             </div>
 
             {/* komponenta zápasů, ale musí se tam nejak pridat filter/omezeni jen pro tenhle
