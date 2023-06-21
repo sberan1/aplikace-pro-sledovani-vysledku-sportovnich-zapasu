@@ -1,11 +1,10 @@
 import React, {FormEvent, useContext, useState} from 'react';
-// @ts-ignore
-import {BrowserRouter as Router, Switch, Route, Link, NavLink, useNavigate} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, NavLink, useNavigate} from 'react-router-dom';
 import Modal from 'react-modal';
 import './NavBar.css';
 import '../../App.css';
 import './Modal.css'
-import {UserContext} from "../PrihlaseniPagePackage/UserContext";
+import {UserContext} from "../../pages/PrihlaseniPagePackage/UserContext";
 import axios from 'axios';
 import {sha256} from "js-sha256";
 
