@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './BodyTymu.css';
 import DatePicker from "../DatePicker/DatePicker";
+import DatePickerComponent from "../DatePicker/DatePicker";
 
 async function getTeamData(teamId) {
     {/*
@@ -27,6 +28,9 @@ const BodyTymu = ({teamId}) => {
     const [team, setTeam] = useState(null);
     const [error, setError] = useState(null);
 
+    const [date, setDate] = useState([]);
+    const { formattedDateToReturn, render } = DatePicker();
+
     useEffect(() => {
         getTeamData(teamId)
             .then(data => {
@@ -48,7 +52,7 @@ const BodyTymu = ({teamId}) => {
 
             <div className="header">
                 {/* tady bude komponenta program/vysledky */}
-                <DatePicker/>
+                {render}
             </div>
 
             {/* komponenta zápasů, ale musí se tam nejak pridat filter/omezeni jen pro tenhle
