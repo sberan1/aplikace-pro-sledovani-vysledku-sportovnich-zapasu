@@ -117,10 +117,8 @@ function Match({id, date, time, homeTeamId, awayTeamId, homeTeamName, awayTeamNa
                     </div>
                 </div>
             </div>
-            <div className={`flex justify-end pr-6`}>
-                <div className={`inline-grid`}>
-                    <ZobrazitVice handleClick={zobrazitViceOnClick} />
-                </div>
+            <div className={`flex justify-end pr-6 py-11`}>
+                <ZobrazitVice handleClick={zobrazitViceOnClick} />
             </div>
         </div>
     );
