@@ -109,7 +109,6 @@ const RegistraceComponent = () => {
                     <button>Zrušit</button>
                 </Link>
                 <button onClick={handleRegistration} className="button">Registrovat se</button>
-
             </div>
 
             <div className="NemamUcet">

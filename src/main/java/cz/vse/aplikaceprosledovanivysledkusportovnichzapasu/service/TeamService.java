@@ -1,6 +1,8 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.TeamRespDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 
 import java.util.List;
 
@@ -14,5 +16,7 @@ public interface TeamService {
     void fillVolleyballTeamsByLeagueExternalIdAndSeason (int leagueExternalId, String seasonExternalId);
 
     List<Team> getTeamsBySport(String sport);
+
+    public TeamRespDto getTeamInfoById(long id, User user);
 
 }

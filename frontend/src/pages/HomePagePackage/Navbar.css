@@ -70,12 +70,21 @@ nav input[type="text"] {
     color: white;
 }
 
+.SearchForm{
+    margin-top: 20px;
+}
+
 .SearchForm button{
     border: 1px solid #1d1f28;
     padding: 0.5rem 1.2rem;
     border-radius: 0 5px 5px 0;
     background-color: #1d1f28;
     margin-left: -15px;
+    color: white;
+}
+
+.SearchForm button:hover{
+    color: #D3FC01;
 }
 
 .button{
