@@ -61,7 +61,7 @@ function Match({
 
     const teamOnClicked = (team : number): React.MouseEventHandler<HTMLButtonElement> => {
         return (event) => {
-            const nextURL = `/teamDetail?teamId=${id}`; // URL s parametrem
+            const nextURL = `/teamDetail?teamId=${team}`; // URL s parametrem
             window.location.href = nextURL;
         };
     };

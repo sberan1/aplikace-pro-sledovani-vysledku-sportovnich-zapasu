@@ -16,7 +16,7 @@ const TeamComponent = ({ teamId }) => {
 
     async function getTeamData(teamId) {
 
-        const response = await axios.get(`http://localhost:8080/team/getTeamInfoById=${teamId}`);
+        const response = await axios.get(`http://localhost:8080/team/getTeamInfoById?id=${teamId}`);
         if (response.status!==200) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

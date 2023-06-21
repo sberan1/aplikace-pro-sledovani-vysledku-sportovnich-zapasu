@@ -13,7 +13,7 @@ const BodyTymu = ({teamId}) => {
     const { formattedDateToReturn, render } = DatePicker();
 
     async function getTeamData(teamId) {
-            const response = await axios.get(`http://localhost:8080/getFixturesByTeamIdAndDateFromToday?id=${teamId}`);
+            const response = await axios.get(`http://localhost:8080/fixture/getFixturesByTeamIdAndDateFromToday/${teamId}`);
             if (response.status !== 200) {
                 setError(response.data.message)
                 throw new Error(`HTTP error! status: ${response.status}`);

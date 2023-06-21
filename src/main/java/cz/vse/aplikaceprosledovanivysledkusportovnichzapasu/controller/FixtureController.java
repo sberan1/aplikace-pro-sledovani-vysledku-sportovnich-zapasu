@@ -51,16 +51,16 @@ public class FixtureController {
         return fixtureService.getFixturesBySportAndDate(sport, date, league);
     }
 
-    @GetMapping("/getFixturesByTeamIdAndDateBeforeToday")
-    public List<MatchListDateDto> getFixturesByTeamIdAndDateBeforeToday( @RequestParam long teamId)
+    @GetMapping("/getFixturesByTeamIdAndDateBeforeToday/{teamId}")
+    public ResponseEntity<List<MatchListDateDto>> getFixturesByTeamIdAndDateBeforeToday(@PathVariable long teamId)
     {
-        return fixtureService.getFixturesByTeamIdAndDateBeforeToday(teamId);
+        return ResponseEntity.ok(fixtureService.getFixturesByTeamIdAndDateBeforeToday(teamId));
     }
 
-    @GetMapping("/getFixturesByTeamIdAndDateFromToday")
-    public List<MatchListDateDto> getFixturesByTeamIdAndDateFromToday( @RequestParam long teamId)
+    @GetMapping("/getFixturesByTeamIdAndDateFromToday/{teamId}")
+    public ResponseEntity<List<MatchListDateDto>> getFixturesByTeamIdAndDateFromToday(@PathVariable long teamId)
     {
-        return fixtureService.getFixturesByTeamIdAndDateFromToday(teamId);
+        return ResponseEntity.ok(fixtureService.getFixturesByTeamIdAndDateFromToday(teamId));
     }
 
     @GetMapping("/getFixturesById")
