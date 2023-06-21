@@ -51,11 +51,6 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
 
     );
 
-    useEffect(() => {
-        fetchMatches();
-    }, []);
-
-
     const fetchMatches = async () => {
         try {
             const response = await axios.get(`http://localhost:8080/fixtureController/getFixtureById/${MatchId}`);
@@ -64,6 +59,10 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
             console.error('Error fetching match detaiů:', error);
         }
     };
+
+    useEffect(() => {
+        fetchMatches();
+    }, []);
 
 
     const returnScoreComponent = () => {
