@@ -146,6 +146,10 @@ h1{
 
 }
 
+.fillSizeComponent {
+    padding-left: 34px;
+}
+
 .teamButton {
     font-family: 'AktivGrotesk-Regular';
     font-style: normal;

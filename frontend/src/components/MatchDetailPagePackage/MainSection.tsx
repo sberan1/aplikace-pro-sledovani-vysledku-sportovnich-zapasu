@@ -10,6 +10,8 @@ import BasketballDetailScore from "./DetailScoreComponents/BasketballDetailScore
 import {BasketballMatchData, FootballMatchData, HockeyMatchData} from "./SportInterfaces";
 import HockeyDetailScore from "./DetailScoreComponents/HockeyDetailScore";
 import FotballDetailScore from "./DetailScoreComponents/FotballDetailScore";
+import FavouriteStar from "../FavouriteStar/FavouriteStar";
+import axios from "axios";
 
 
 const MainSection = ({MatchId} : { MatchId : number; }) => {
@@ -46,21 +48,23 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
             leagueName: "Liga mistrů",
             leagueFlag: czechFlag
         }
+
     );
+
+    useEffect(() => {
+        //fetchMatches();
+    }, []);
+
 
     const fetchMatches = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/`);
-            const data = await response.json();
-            setMatch(data);
+            const response = await axios.get(`http://localhost:8080/fixtureController/getFixtureById/${MatchId}`);
+            setMatch(response.data);
         } catch (error) {
             console.error('Error fetching match detaiů:', error);
         }
     };
 
-    useEffect(() => {
-
-    }, []);
 
     const returnScoreComponent = () => {
         let scoreComponent : JSX.Element = <div></div>;
@@ -113,8 +117,8 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
             <div className={`MainSectionContainer flex justify-center`}>
                 <div className="imgFotbalista"></div>
                 <div className={`placeholder p-4 mx-10 grid gap-4 grid-rows-5 auto-rows-min mt-9 overflow-auto`}>
-                    <div className={`row-span-2 flex justify-around auto-cols-min detailHeader {/*px-20*/}`}>
-                        <div className={`flex flex-col place-content-evenly`}>
+                    <div className={`row-span-2 flex justify-between auto-cols-min detailHeader px-10`}>
+                        <div className={`flex flex-col place-content-evenly fillSizeComponent`}>
                             <img className={`object-contain h-32`} src={match.homeTeamLogo} alt="Team" />
                             <button onClick={teamOnClicked(match.homeTeamName)} className={`teamButton`}>{match.homeTeamName}</button>
                         </div>
@@ -144,24 +148,21 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
                                     <p className={`countryText`}>{match.leagueName}</p>
                                 </div>
                             </div>
-
                         </div>
-                        <div className={`flex flex-col place-content-evenly`}>
-                            <img className={`object-contain h-32`} src={match.awayTeamLogo} alt="Team" />
-                            <button onClick={teamOnClicked(match.homeTeamName)} className={`teamButton`}>{match.homeTeamName}</button>
+                        <div className={`flex flex-row place-content-evenly`}>
+                            <div className={`flex flex-col place-content-evenly`}>
+                                <img className={`object-contain h-32`} src={match.awayTeamLogo} alt="Team" />
+                                <button onClick={teamOnClicked(match.awayTeamName)} className={`teamButton`}>{match.awayTeamName}</button>
+                            </div>
+                            <div className={`place-self-start pt-7 pl-6`}>
+                                <FavouriteStar Id={match.id} Type={"Match"}/>
+                            </div>
                         </div>
                     </div>
                     <div className={`row-span-3 scrollContainer`}>
                         {returnScoreComponent()}
                     </div>
-
                 </div>
-
-
-
-
-
-
             </div>
         </section>
     );

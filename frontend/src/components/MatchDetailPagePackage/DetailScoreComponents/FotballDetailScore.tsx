@@ -16,6 +16,10 @@ function FotballDetailScore ({MatchId}: {MatchId: number}) {
 
     const [match, setMatch] = useState<FootballMatchData>();
 
+    useEffect(() => {
+        fetchMatches();
+    }, []);
+
     const fetchMatches = async () => {
         try {
             const response = await fetch(`http://localhost:8080/`);
@@ -25,10 +29,6 @@ function FotballDetailScore ({MatchId}: {MatchId: number}) {
             console.error('Error fetching match detaiů:', error);
         }
     };
-
-    useEffect(() => {
-        //fetchMatches();
-    }, []);
 
     return (
         <div className={`grid grid-flow-row auto-rows-max`}>

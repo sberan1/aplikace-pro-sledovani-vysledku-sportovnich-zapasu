@@ -11,6 +11,7 @@ import MatchDetailedScore from "../../MatchDetailedScore/MatchDetailedScore";
 import czechFlag from '../../../assets/czechRepublicFlag.svg';
 
 import {BasketballMatchData, FootballMatchData, HockeyMatchData} from "../SportInterfaces";
+import axios from "axios";
 
 function BasketballDetailScore ({MatchId}: {MatchId: number}) {
 
@@ -45,21 +46,22 @@ function BasketballDetailScore ({MatchId}: {MatchId: number}) {
             leagueName: "Liga mistrů",
             leagueFlag: czechFlag
         }
+
     );
+
+    useEffect(() => {
+       // fetchMatches();
+    }, []);
 
     const fetchMatches = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/`);
-            const data = await response.json();
-            setMatch(data);
+            const response = await axios.get(`http://localhost:8080/fixtureController/getFixtureById/${MatchId}`);
+            setMatch(response.data);
         } catch (error) {
             console.error('Error fetching match detaiů:', error);
         }
     };
 
-    useEffect(() => {
-        //fetchMatches();
-    }, []);
 
     return (
         <div className={`grid grid-flow-row auto-rows-max`}>
