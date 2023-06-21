@@ -16,10 +16,10 @@ import League from "./components/League/League";
 import MatchList from "./components/MatchList";
 import {MatchType} from "./components/Types";
 import {MatchSourceType} from "./components/Enums";
-import ContentHolder from "./components/ContentHolder/ContentHolder";
+import ContentHolder from "./components/BrowsingContentHolder/ContentHolder";
 import BrowsingPage from "./components/BrowsingPagePackage/BrowsingPage";
+import MatchDetailPage from "./components/MatchDetailPagePackage/MatchDetailPage";
 import Dashboard from './pages/DashboardPage/Dashboard';
-
 
 Modal.setAppElement('#root');
 
@@ -36,6 +36,7 @@ const App = () => {
             <Route path="/fotbal" element={<BrowsingPage Sport={"Fotbal"} />}></Route>
             <Route path="/hokej" element={<BrowsingPage Sport={"Hokej"} />}></Route>
             <Route path="/volejbal" element={<BrowsingPage Sport={"Volejbal"} />}></Route>
+            <Route path="/matchDetail" element={<MatchDetailPage/>}></Route>
             <Route path="/dashboard" element={<Dashboard  userId={user?.userId}/>}></Route>
         </Routes>
     </Router>
@@ -44,7 +45,7 @@ const App = () => {
 
 
 
-    //return <ContentHolder sport={"Basketball"}/>;
+    //return <BrowsingContentHolder sport={"Basketball"}/>;
 }
 
 export default App;

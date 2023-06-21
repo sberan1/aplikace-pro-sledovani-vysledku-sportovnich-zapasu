@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 //import Navbar from './Navbar';
 import MainSection from './MainSection';
 import Footer from './Footer';
@@ -13,7 +13,7 @@ const BrowsingPage = ({ Sport }: AppProps) => {
     return (
         <div className="HomePaneContainer">
             <NavBar PrihlaseniPage={""}/>
-            <MainSection Sport={Sport}/>
+            <MainSection Sport={Sport} />
             <Footer/>
         </div>
     );
