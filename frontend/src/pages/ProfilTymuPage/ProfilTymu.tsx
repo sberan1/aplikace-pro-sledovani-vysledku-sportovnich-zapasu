@@ -13,8 +13,6 @@ const ProfilTymu = ({}) => {
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get('teamId');
 
-    const { teamId } = useParams();
-
     return (
         <div className="ProfilTymuContainer BG">
             <NavBar PrihlaseniPage=""/>
@@ -22,7 +20,7 @@ const ProfilTymu = ({}) => {
                 <div className="TymContainer">
                     <div>
                         <HeaderTymu teamId={id}/>
-                        <BodyTymu teamId={id}/>
+                        {/* <BodyTymu teamId={id}/> */}
                     </div>
                 </div>
             <Footer/>

@@ -61,7 +61,7 @@ function Match({
 
     const location = useLocation();
 
-    const teamOnClicked = (team: string): React.MouseEventHandler<HTMLButtonElement> => {
+    const teamOnClicked = (team: number): React.MouseEventHandler<HTMLButtonElement> => {
         return (event) => {
             const nextURL = `/teamDetail?teamId=${team}`; // URL s parametrem
             window.location.href = nextURL;
@@ -87,7 +87,7 @@ function Match({
                         {isVisibleHomeTeamLogo ? (
                             <>
                                 <img className={`content-center object-contain h-9 w-9`} src={homeTeamLogo} alt="Team"/>
-                                <button onClick={teamOnClicked(homeTeamName)}
+                                <button onClick={teamOnClicked(homeTeamId)}
                                         className={`pl-3 content-center ${styles.team}`}>{homeTeamName}</button>
                             </>
                         ) : (
@@ -98,7 +98,7 @@ function Match({
                         <p className={`${styles.dash}`}>-</p>
                     </div>
                     <div className='flex grow w-60 justify-center'>
-                        <button onClick={teamOnClicked(awayTeamName)}
+                        <button onClick={teamOnClicked(awayTeamId)}
                                 className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
                         {isVisibleAwayTeamLogo ? (
                             <img className={`content-center object-contain h-9 w-9`} src={awayTeamLogo} alt="Team"/>

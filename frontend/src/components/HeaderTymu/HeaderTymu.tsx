@@ -1,49 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import './HeaderTymu.css';
 import FavoriteTeamBtn from '../Buttons/FavoriteTeamBtn/FavoriteTeamBtn';
-
-async function getTeamData(teamId) {
-
-    {/*
-    const response = await fetch(`https://NASE_API.com/teams/${teamId}`);
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const teamData = await response.json();
-    return teamData;
-    */}
-
-    const testovaciData = {
-        teamId: 1,
-        name: 'Estadio Israel Barrios',
-        focus: 'Fotbalový tým',
-        country: 'Guatemala',
-        flagUrl: 'https:\/\/media-3.api-sports.io\/football\/teams\/3640.png',
-        logoUrl: 'https:\/\/media-2.api-sports.io\/football\/teams\/3653.png'
-    };
-
-    return testovaciData;
-}
+import axios from "axios";
 
 const TeamComponent = ({ teamId }) => {
-    const [team, setTeam] = useState(null);
-    const [error, setError] = useState(null);
+    const [team, setTeam] = useState({
+        id: 3788,
+        name: "Racing Cordoba",
+        sport: "Football",
+        teamLogo: "https://media-3.api-sports.io/football/teams/1957.png",
+        country: "Argentina",
+        countryLogo: "https://media-1.api-sports.io/flags/ar.svg",
+        favourite: false });
+
+    async function getTeamData(teamId) {
+
+        const response = await axios.get(`http://localhost:8080/team/getTeamInfoById=${teamId}`);
+        if (response.status!==200) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        setTeam(response.data);
+    }
 
     useEffect(() => {
-        getTeamData(teamId)
-            .then(data => {
-                setTeam(data);
-            })
-            .catch(error => {
-                setError(error);
-            });
-    }, [teamId]);
+        getTeamData(teamId);
+    }, []);
 
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (team === null) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <div className="team-component">
@@ -51,10 +33,10 @@ const TeamComponent = ({ teamId }) => {
                 <div className="team-info">
                     <div>
                         <h2>{team.name}</h2>
-                        <p className="team-focus">{team.focus}</p>
+                        <p className="team-focus">{team.sport}</p>
                     </div>
                     <div className="team-origin">
-                        <img src={team.flagUrl} alt={`${team.country} flag`} className="team-flag"/>
+                        <img src={team.countryLogo} alt={`${team.country} flag`} className="team-flag"/>
                         <span>{team.country}</span>
                     </div>
                 </div>
@@ -63,7 +45,7 @@ const TeamComponent = ({ teamId }) => {
                 </div>
             </div>
             <div className="right">
-                <img src={team.logoUrl} alt={`${team.name} logo`} className="team-logo"/>
+                <img src={team.teamLogo} alt={`${team.name} logo`} className="team-logo"/>
             </div>
         </div>
     );
