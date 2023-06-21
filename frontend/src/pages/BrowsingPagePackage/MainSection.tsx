@@ -9,7 +9,7 @@ const MainSection = ({ Sport }: AppProps) => {
     return (
         <section className="MainSection">
             <div className={`MainSectionContainer flex justify-center`}>
-                {/*<div className="imgFotbalista"></div>*/}
+                <div className="imgFotbalista"></div>
                 <div className={`${ContentHolder}`}>
                     <ContentHolder sport={Sport}/>
                 </div>

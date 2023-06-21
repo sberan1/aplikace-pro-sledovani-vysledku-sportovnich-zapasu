@@ -21,7 +21,7 @@ function SearchItem({teamId, teamName, teamLogo} : {
 
 
     return (
-        <div className={`flex ${styles.itemPlaceHolder} place-content-between px-7`}>
+        <div className={`flex itemPlaceHolder place-content-between px-7`}>
             <div className={`flex place-items-center`}>
                 <img src={teamLogo} className={`object-contain h-10`}/>
                 <p className={`${styles.teamText} px-5`}>{teamName}</p>

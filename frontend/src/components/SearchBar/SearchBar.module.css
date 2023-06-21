@@ -1,0 +1,110 @@
+.lupa {
+    border-radius: 8px 0px 0px 8px;
+    background: #4E5259;
+}
+
+
+.inputBackground{
+    background: #4E5259;
+
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+
+
+    /* Foundation/Odstíny šedé/O75 */
+
+    color: #A8AAAD;
+
+    width: 701px;
+    height: 38px;
+}
+
+.inputBackground:focus{
+    background: #4E5259;
+
+    outline: none;
+
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+
+
+    /* Foundation/Odstíny šedé/O75 */
+
+    color: #FFFFFF;
+
+    width: 701px;
+    height: 38px;
+}
+
+.vyhledatPlaceholder {
+    background: #2A2F37;
+    border-radius: 0px 8px 8px 0px;
+    width: 151px;
+
+    height: 38px;
+
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+
+
+    /* Paleta/Bílá */
+
+    color: #FFFFFF;
+
+}
+
+.vyhledatPlaceholder:hover {
+    background: #2A2F37;
+    border-radius: 0px 8px 8px 0px;
+    width: 151px;
+
+    height: 38px;
+
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+
+
+    /* Paleta/Bílá */
+
+    color: #D3FC01;
+
+}
+
+.vyhledatPlaceholder:focus {
+    background: #D3FC01;
+    border-radius: 0px 8px 8px 0px;
+    width: 151px;
+
+    height: 38px;
+
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+
+
+    /* Paleta/Bílá */
+
+    color: #000000;
+
+}
+
+
