@@ -10,7 +10,7 @@ const DatePickerComponent = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [items, setItems] = useState([]); // pole se všemi položkami
     const [filteredItems, setFilteredItems] = useState([]); // pole s filtrovanými položkami
-    const [formattedDateToReturn, setFormattedDateToReturn] = useState("");
+    const [formattedDateToReturn, setFormattedDateToReturn] = useState(format(parse(new Date().toLocaleDateString('cs-CZ'), 'd. M. yyyy', new Date()), 'yyyy-MM-dd'));
 
     const handleChange = date => {
         setStartDate(date);

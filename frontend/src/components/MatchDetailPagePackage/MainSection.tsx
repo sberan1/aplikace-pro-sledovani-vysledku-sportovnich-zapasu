@@ -52,7 +52,7 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
     );
 
     useEffect(() => {
-        //fetchMatches();
+        fetchMatches();
     }, []);
 
 

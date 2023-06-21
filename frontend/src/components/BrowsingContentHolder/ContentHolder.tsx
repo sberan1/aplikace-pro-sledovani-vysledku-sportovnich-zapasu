@@ -16,8 +16,6 @@ function ContentHolder({ sport }: {
     sport: string;
 })
 {
-    const [date, setDate] = useState([]);
-
     const { formattedDateToReturn, render } = DatePicker();
 
     return (
