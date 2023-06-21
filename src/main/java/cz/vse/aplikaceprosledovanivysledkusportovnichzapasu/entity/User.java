@@ -15,7 +15,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @ToString
-@Builder
 @Entity
 public class User implements UserDetails{
     @Id @GeneratedValue private Long id;
@@ -25,12 +24,8 @@ public class User implements UserDetails{
     @Column(unique = true)
     private String email;
     @ManyToMany
-    @Builder.Default
-    @ToString.Exclude
     private Set<Team> favouriteTeams = new HashSet<>();
     @ManyToMany
-    @Builder.Default
-    @ToString.Exclude
     private Set<Fixture> favouriteFixtures = new HashSet<>();
     @Enumerated
     private Role role;

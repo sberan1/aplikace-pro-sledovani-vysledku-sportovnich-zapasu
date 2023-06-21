@@ -30,5 +30,7 @@ public interface FixtureRepository extends JpaRepository<Fixture, Long> {
 
     @Query("SELECT e FROM Fixture e WHERE (e.awayTeam.id = :teamId OR e.homeTeam.id = :teamId) AND e.date >= CURRENT_DATE")
     List<Fixture> findFixturesByTeamIdAndDateFromToday(long teamId);
+
+    Fixture findFixtureById(long id);
 }
 
