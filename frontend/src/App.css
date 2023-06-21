@@ -8,6 +8,11 @@
 }
 
 @font-face {
+  font-family: 'AktivGrotesk-Regular';
+  src: local('AktivGrotesk-Regular'), url(./fonts/aktivGrotesk/AktivGrotesk-Regular.ttf) format('opentype');
+}
+
+@font-face {
   font-family: 'AktivGrotesk-Thin';
   src: local('AktivGrotesk-Thin'), url(./fonts/aktivGrotesk/AktivGrotesk-Thin.ttf) format('opentype');
 }

@@ -1,5 +1,6 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,10 +13,21 @@ import java.util.Optional;
 
 @Repository
 public interface FixtureRepository extends JpaRepository<Fixture, Long> {
-    @Query("SELECT e FROM Fixture e WHERE e.date >= :startDate AND e.date < :endDate AND e.sport = :sport")
-    List<Fixture> findAllByDateAndSport(LocalDateTime startDate, LocalDateTime endDate, String sport);
+    List<Fixture> findByDateBetweenAndSport(LocalDateTime dateStart, LocalDateTime dateEnd, String sport);
+    @Query("SELECT e FROM Fixture e WHERE e.date >= :startDate AND e.date < :endDate AND e.sport = :sport AND e.league.id = :leagueId AND e.league.sport = :sport")
+    List<Fixture> findAllByDateAndSport(LocalDateTime startDate, LocalDateTime endDate, String sport, long leagueId);
 
     Optional<Object> findByExternalIdAndSport(int id, String sport);
 
     Fixture findFixtureByExternalIdAndSport(int id, String sport);
+
+    @Override
+    Optional<Fixture> findById(Long id);
+
+
+    @Query("SELECT e FROM Fixture e WHERE (e.awayTeam.id = :teamId OR e.homeTeam.id = :teamId) AND e.date < CURRENT_DATE")
+    List<MatchListDateDto> findFixturesByTeamIdAndDateBeforeToday(long teamId);
+
+    @Query("SELECT e FROM Fixture e WHERE (e.awayTeam.id = :teamId OR e.homeTeam.id = :teamId) AND e.date >= CURRENT_DATE")
+    List<MatchListDateDto> findFixturesByTeamIdAndDateFromToday(long teamId);
 }

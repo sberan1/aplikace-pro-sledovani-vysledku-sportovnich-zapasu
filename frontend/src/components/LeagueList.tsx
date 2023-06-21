@@ -1,32 +1,64 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import League from "./League/League";
+import MatchList from "./MatchList";
+import {MatchSourceType} from "./Enums";
+import Match from "./Match/Match";
 
-const LeagueList = () => {
+const LeagueList = ({sport, date} : { sport: string; date: string }) =>
+{
     const [leagues, setLeagues] = useState([]);
 
-    useEffect(() => {
-        const fetchLeagues = async () => {
-            try {
-                const response = await fetch('http://localhost:8080/league/getLeagues?sport=Hockey');
-                const data = await response.json();
-                setLeagues(data);
-            } catch (error) {
-                console.error('Error fetching leagues:', error);
-            }
-        };
+    const fetchLeagues = async () => {
+        try {
+            const response = await fetch(`http://localhost:8080/league/getLeaguesByFixturePlayedAtDateInSport?sport=${translatedSport(sport)}&date=${date}`);
+            const data = await response.json();
+            setLeagues(data);
+        } catch (error) {
+            console.error('Error fetching leagues:', error);
+        }
+    };
 
+    useEffect(() => {
+        setLeagues([]);
         fetchLeagues();
-    }, []);
+    }, [date, sport]);
+
+    const translatedSport = (sport: string) => {
+        switch (sport) {
+            case 'Fotbal':
+                return 'Football';
+            case 'Hokej':
+                return 'Hockey';
+            case 'Basketbal':
+                return 'Basketball';
+            case 'Volejbal':
+                return 'Volleyball';
+            default:
+                return '';
+        }
+    }
+
+
+    if(leagues.length === 0) {
+        return <div className={`font-classic text-white`}>Žádné zápasy</div>
+    }
 
     return (
         <div>
-            <h1 className="text-5xl">Leagues</h1>
-            <ul>
-                {leagues.map(league => (
-                    <li key={league.id}>{league.name} {league.type}</li>
-                ))}
-            </ul>
+            {
+                leagues.map(item => (
+                    <League
+                        id={Number(item.id)}
+                        name={item.name}
+                        flagSource={item.flag}
+                        sport={translatedSport(sport)}
+                        date={date}
+                    />
+                ))
+            }
         </div>
-    );
+    )
+
 };
 
 export default LeagueList;
