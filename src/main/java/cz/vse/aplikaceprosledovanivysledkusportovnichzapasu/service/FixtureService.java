@@ -8,10 +8,15 @@ import java.util.List;
 public interface FixtureService {
 
     List<MatchListDateDto> getFixturesBySportAndDate(String sport, String date, long league);
+    List<MatchListDateDto> getFixturesByTeamIdAndDateBeforeToday(long teamId);
+    List<MatchListDateDto> getFixturesByTeamIdAndDateFromToday(long teamId);
+
 
     void fillBasketballFixture(int leagueExternalId, String season);
     void fillHockeyFixture(int leagueExternalId, String season);
     void fillVolleyballFixture(int leagueExternalId, String season);
     void fillFootballFixture(int leagueExternalId, String season);
     Fixture getFixtureById(long id);
+
+
 }
