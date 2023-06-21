@@ -3,6 +3,7 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto;
 import lombok.Data;
 
 @Data
+
 public class MatchListDateDto {
     private long id;
     private String date;
