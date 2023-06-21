@@ -3,7 +3,6 @@ import { FaRegStar, FaStar } from 'react-icons/fa';
 
 function FavoriteTeamButton({ teamId, userId }) {
     const [isFavorite, setIsFavorite] = useState(false);
-
     const handleClick = async () => {
         const newFavoriteStatus = !isFavorite;
         setIsFavorite(newFavoriteStatus);
