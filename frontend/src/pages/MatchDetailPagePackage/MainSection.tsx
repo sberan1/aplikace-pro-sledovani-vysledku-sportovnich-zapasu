@@ -1,23 +1,24 @@
 import React, {MouseEventHandler, useEffect, useState} from 'react';
 // @ts-ignore
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
-import './Navbar.css';
-import './MatchDetailPage.css';
 import sparta from '../../assets/sparta.png';
 import slavia from '../../assets/slavia.png';
 import czechFlag from '../../assets/czechRepublicFlag.svg';
+import './MatchDetailPage.css';
 import BasketballDetailScore from "./DetailScoreComponents/BasketballDetailScore";
-import {BasketballMatchData, FootballMatchData, HockeyMatchData} from "./SportInterfaces";
+import {BasketballMatchData, FootballMatchData, HockeyMatchData, matchData} from "./SportInterfaces";
 import HockeyDetailScore from "./DetailScoreComponents/HockeyDetailScore";
 import FotballDetailScore from "./DetailScoreComponents/FotballDetailScore";
-import FavouriteStar from "../FavouriteStar/FavouriteStar";
+import VolleyballDetailScore from "./DetailScoreComponents/VolleyballDetailScore";
+import FavouriteStar from "../../components/FavouriteStar/FavouriteStar";
 import axios from "axios";
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 
 const MainSection = ({MatchId} : { MatchId : number; }) => {
 
 
-    const [match, setMatch] = useState<BasketballMatchData | HockeyMatchData | FootballMatchData>(
+    const [match, setMatch] = useState<matchData>(
         {
             id: 1,
             sport: "Basketball",
@@ -29,31 +30,23 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
             awayTeamName: "Real Madrid",
             homeTeamLogo: sparta,
             awayTeamLogo: slavia,
-            alreadyPlayed: false,
-            isFavourite: false,
             score : {
+                id: 1,
                 finalAwayScore: 1,
                 finalHomeScore: 2,
-                firstQuarterAwayScore: 1,
-                firstQuarterHomeScore: 1,
-                secondQuarterAwayScore: 0,
-                secondQuarterHomeScore: 1,
-                thirdQuarterAwayScore: 0,
-                thirdQuarterHomeScore: 0,
-                fourthQuarterAwayScore: 0,
-                fourthQuarterHomeScore: 0,
-                overtimeAwayScore: 0,
-                overtimeHomeScore: 0,
             },
             leagueName: "Liga mistrů",
-            leagueFlag: czechFlag
-        }
+            leagueFlag: czechFlag,
+            favourite: false
+}
 
     );
+    const [loading, setLoading] = useState(true);
 
     const fetchMatches = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/fixtureController/getFixtureById/${MatchId}`);
+            const response = await axios.get(`http://localhost:8080/fixture/getFixtureInfoById?id=${MatchId}`);
+            setLoading(false);
             setMatch(response.data);
         } catch (error) {
             console.error('Error fetching match detaiů:', error);
@@ -77,6 +70,9 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
                 break;
             case "Hockey":
                 scoreComponent = <HockeyDetailScore MatchId={MatchId} />;
+                break;
+                case "Volleyball":
+                scoreComponent = <VolleyballDetailScore MatchId={MatchId} />;
                 break;
         }
 
@@ -109,6 +105,11 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
 
     const teamOnClicked = (teamName : string) : MouseEventHandler<HTMLButtonElement> => {
         return undefined;
+    }
+
+
+    if (!match) {
+        return <ProgressSpinner />
     }
 
     return (
@@ -154,7 +155,7 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
                                 <button onClick={teamOnClicked(match.awayTeamName)} className={`teamButton`}>{match.awayTeamName}</button>
                             </div>
                             <div className={`place-self-start pt-7 pl-6`}>
-                                <FavouriteStar Id={match.id} Type={"Match"}/>
+                                <FavouriteStar Id={match.id} Type={"Match"} isFav={match.favourite}/>
                             </div>
                         </div>
                     </div>

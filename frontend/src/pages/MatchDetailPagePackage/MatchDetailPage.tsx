@@ -1,9 +1,9 @@
 import React from 'react';
 //import Navbar from './Navbar';
 import MainSection from './MainSection';
-import Footer from './Footer';
+import Footer from "../../components/footer/Footer";
 import './MatchDetailPage.css';
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../../components/NavBar/NavBar";
 import { useLocation } from 'react-router-dom';
 
 
