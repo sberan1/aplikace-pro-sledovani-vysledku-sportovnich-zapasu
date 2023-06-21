@@ -53,6 +53,7 @@ public class SecurityConfig {
                         "/fixture/getFixturesByTeamIdAndDateFromToday",
                         "/fixture/getFixturesByTeamIdAndDateBeforeToday",
                         "/fixture/getFixtureInfoById",
+                        "/team/search",
                         "/user/checkEmail")
                 .permitAll()
                 .anyRequest()

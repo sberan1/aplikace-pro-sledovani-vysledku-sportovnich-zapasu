@@ -1,50 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import './BodyTymu.css';
-import DatePicker from "../DatePicker/DatePicker";
-import DatePickerComponent from "../DatePicker/DatePicker";
-import {match} from "assert";
 import {MatchSourceType} from "../Enums";
 import MatchList from "../MatchList";
 import axios from "axios";
+import {SelectButton} from "primereact/selectbutton";
 
 const BodyTymu = ({teamId}) => {
-    const [team, setTeam] = useState(null);
-    const [error, setError] = useState(null);
-    const { formattedDateToReturn, render } = DatePicker();
+    const options = ['PROGRAM', 'VÝSLEDKY'];
+    const [value, setValue] = useState(options[0]);
 
-    async function getTeamData(teamId) {
-            const response = await axios.get(`http://localhost:8080/fixture/getFixturesByTeamIdAndDateFromToday/${teamId}`);
-            if (response.status !== 200) {
-                setError(response.data.message)
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            setTeam(response.data);
-        }
-
-        useEffect(() => {
-            getTeamData(teamId);
-        }, [teamId]);
-
-        if (error) {
-            return <div>Error: {error.message}</div>;
-        } else if (team === null) {
-            return <div>Loading...</div>;
-        }
-
+    if (value === options[0]) {
         return (
             <div className="BodyTymuContainer">
 
                 <div className="header">
-                    {/* tady bude komponenta program/vysledky */}
-                    {render}
+                    <SelectButton value={value}
+                                  onChange={(e) => setValue(e.value) }
+                                  options={options}
+                                  style={{height: '5px', width: '200px'}}
+                    />
+                    <div className="select-container">
+                        <div className="select-button" id="myButton">
+                            <span className="option selected">Option 1</span>
+                            <span className="option">Option 2</span>
+                        </div>
+                    </div>
                 </div>
-                {/*   <MatchList type = {MatchSourceType.Team} webParams = {`?id=${match}`} />   původne: {`?id=${match.id}`} */}
+                <MatchList type={MatchSourceType.TeamPast} webParams={teamId}/>
             </div>
         );
     }
-  export default BodyTymu;
+    else {
+        return (
+            <div className="BodyTymuContainer">
 
-
-
-
-
+                <div className="header">
+                    <SelectButton value={value} onChange={(e) => setValue(e.value)} options={options}/>
+                </div>
+                <MatchList type={MatchSourceType.TeamFuture} webParams={teamId}/>
+            </div>
+        );
+    }
+}
+export default BodyTymu;
