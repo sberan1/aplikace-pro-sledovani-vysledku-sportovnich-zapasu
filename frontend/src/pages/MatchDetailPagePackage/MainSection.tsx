@@ -117,12 +117,14 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
             <div className={`MainSectionContainer flex justify-center`}>
                 <div className="imgFotbalista"></div>
                 <div className={`placeholder p-4 mx-10 grid gap-4 grid-rows-5 auto-rows-min mt-9 overflow-auto`}>
-                    <div className={`row-span-2 flex justify-between auto-cols-min detailHeader px-10`}>
-                        <div className={`flex flex-col place-content-evenly fillSizeComponent`}>
+                    <div className={`row-span-2 grid grid-cols-11 auto-cols-min
+                    /*flex justify-between auto-cols-min detailHeader px-10*/
+                    `}>
+                        <div className={`col-span-4 flex flex-col place-content-evenly`}>
                             <img className={`object-contain h-32`} src={match.homeTeamLogo} alt="Team" />
                             <button onClick={teamOnClicked(match.homeTeamName)} className={`teamButton`}>{match.homeTeamName}</button>
                         </div>
-                        <div className={`flex flex-col justify-center`}>
+                        <div className={`col-span-3 flex flex-col justify-center px-5`}>
                             <div className={`scorePlaceholder flex justify-center px-12 pt-0.5 mt-8`}>
                                 {isFutureMatch ? (
                                             <p className={`scorePlaceholderText pt-0.5 pb-0.2`}>Nadcházející</p>
@@ -143,19 +145,21 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
                                 )}
                             </div>
                             <div className={`flex justify-center`}>
-                                <div className={`country flex flex-row justify-center mt-6 py-1.5 px-4`}>
-                                    <img className={`flag mr-4`} src={match.leagueFlag}/>
-                                    <p className={`countryText`}>{match.leagueName}</p>
+                                <div className={`country flex flex-row justify-center mt-6 py-1 px-3.5`}>
+                                    <img className={`mr-2.5 object-contain h-7 w-7`} src={match.leagueFlag}/>
+                                    <p className={`countryText self-center pt-0.5`}>{match.leagueName}</p>
                                 </div>
                             </div>
                         </div>
-                        <div className={`flex flex-row place-content-evenly`}>
+                        <div className={` col-span-4 flex flex-row place-content-evenly`}>
                             <div className={`flex flex-col place-content-evenly`}>
-                                <img className={`object-contain h-32`} src={match.awayTeamLogo} alt="Team" />
+                                <div className={`flex place-self-center`}>
+                                    <img className={`object-contain h-32 w-40 fillSizeComponent`} src={match.awayTeamLogo} alt="Team" />
+                                    <div className={`flex pl-8`}>
+                                        <FavouriteStar Id={match.id} Type={"Match"} isFav={match.favourite}/>
+                                    </div>
+                                </div>
                                 <button onClick={teamOnClicked(match.awayTeamName)} className={`teamButton`}>{match.awayTeamName}</button>
-                            </div>
-                            <div className={`place-self-start pt-7 pl-6`}>
-                                <FavouriteStar Id={match.id} Type={"Match"} isFav={match.favourite}/>
                             </div>
                         </div>
                     </div>

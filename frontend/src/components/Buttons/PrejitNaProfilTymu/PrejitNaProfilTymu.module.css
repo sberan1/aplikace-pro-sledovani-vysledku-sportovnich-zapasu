@@ -1,0 +1,92 @@
+.text {
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    /* or 19px */
+    cursor: pointer;
+
+    color: #FFFFFF;
+}
+
+.text:hover {
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    /* or 19px */
+
+    uppercase: true;
+
+
+
+    /* Paleta/Main */
+
+    color: #D3FC01;
+}
+
+.text:focus {
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    /* or 19px */
+
+    uppercase: true;
+
+    color: #94B001;
+
+}
+
+.text:disabled {
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    /* or 19px */
+
+    uppercase: true;
+
+    color: #818181;
+}
+
+.icon {
+    fill: #FFFFFF;
+
+}
+.icon:hover {
+    fill: #D3FC01;
+
+}
+.icon:focus {
+    fill: #94B001;
+}
+
+.icon:disabled {
+    fill: #818181;
+}
+
+.text:hover {
+    color: #D3FC01;
+}
+
+.text:hover .icon {
+    fill: #D3FC01;
+}
+
+.text div:hover .text{
+    color: #D3FC01;
+}
+
+.text button{
+    display: flex;
+}
+
+.text button div{
+    margin-left: 15px;
+}
+
