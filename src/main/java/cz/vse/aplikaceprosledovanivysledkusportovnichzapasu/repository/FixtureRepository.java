@@ -25,10 +25,10 @@ public interface FixtureRepository extends JpaRepository<Fixture, Long> {
     Optional<Fixture> findById(Long id);
 
 
-    @Query("SELECT e FROM Fixture e WHERE (e.awayTeam.id = :teamId OR e.homeTeam.id = :teamId) AND e.date < CURRENT_DATE")
+    @Query("SELECT e FROM Fixture e WHERE (e.awayTeam.id = :teamId OR e.homeTeam.id = :teamId) AND e.date < CURRENT_DATE ORDER BY e.date DESC")
     List<Fixture> findFixturesByTeamIdAndDateBeforeToday(long teamId);
 
-    @Query("SELECT e FROM Fixture e WHERE (e.awayTeam.id = :teamId OR e.homeTeam.id = :teamId) AND e.date >= CURRENT_DATE")
+    @Query("SELECT e FROM Fixture e WHERE (e.awayTeam.id = :teamId OR e.homeTeam.id = :teamId) AND e.date >= CURRENT_DATE ORDER BY e.date ASC")
     List<Fixture> findFixturesByTeamIdAndDateFromToday(long teamId);
 
     Fixture findFixtureById(long id);

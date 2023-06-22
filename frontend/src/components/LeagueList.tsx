@@ -3,6 +3,7 @@ import League from "./League/League";
 import MatchList from "./MatchList";
 import {MatchSourceType} from "./Enums";
 import Match from "./Match/Match";
+import axios from "axios";
 
 const LeagueList = ({sport, date} : { sport: string; date: string }) =>
 {
@@ -10,9 +11,8 @@ const LeagueList = ({sport, date} : { sport: string; date: string }) =>
 
     const fetchLeagues = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/league/getLeaguesByFixturePlayedAtDateInSport?sport=${translatedSport(sport)}&date=${date}`);
-            const data = await response.json();
-            setLeagues(data);
+            const response = await axios.get(`http://localhost:8080/league/getLeaguesByFixturePlayedAtDateInSport?sport=${translatedSport(sport)}&date=${date}`);
+            setLeagues(response.data);
         } catch (error) {
             console.error('Error fetching leagues:', error);
         }

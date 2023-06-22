@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import {sha256} from 'js-sha256';
 import Cookies from 'universal-cookie';
@@ -29,6 +29,7 @@ export const UserProvider = ({children}) => {
 
             if (response.status === 200) {  // kontrola, jestli je 'success' true
                 cookies.set('token', response.data.token, { path: '/', expires: new Date(Date.now() + 1000 * 60 * 60 * 10) });
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
                 setIsLoggedIn(true);
                 setUser(axios.get('http://localhost:8080/auth/getUserInfo')); // nastaven 'user' na údaje vrácené z be
                 console.log(cookies.get('token'));
@@ -39,7 +40,6 @@ export const UserProvider = ({children}) => {
     };
 
     const logoutUser = () => {
-
         setIsLoggedIn(false); // Odhlásit uživatele
         setUser(null); // Odstraneni dat uživatele
         localStorage.removeItem('user'); // Odstraneni dat uživatele z localStorage
@@ -54,6 +54,12 @@ export const UserProvider = ({children}) => {
             console.error('A sakra tady jdeme znovu, něco se pokazilo:', error);
         });
     }
+
+    useEffect(() => {
+        setIsLoggedIn(cookies.get('token') !== undefined);
+        refreshToken();
+        }, [user]
+    )
 
     return (
         <UserContext.Provider value={{isLoggedIn, user, loginUser, logoutUser, refreshToken}}>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {MatchType} from "./Types";
 import {MatchSourceType} from "./Enums";
 import Match from "./Match/Match";
-
+import axios from "axios";
 
 const MatchList = ( {type, webParams} : {
     type: MatchSourceType;
@@ -13,15 +13,21 @@ const MatchList = ( {type, webParams} : {
 
     const fetchMatches = async () => {
         try {
-            if(type === MatchSourceType.Team){
-                const response = await fetch('http://localhost:8080/match/getMatchesFromTeam?' + webParams); //není dokončeno
-                const data = await response.json();
-                setMatches(data);
+            if(type === MatchSourceType.TeamPast){
+                const response = await axios.get('http://localhost:8080/fixture/getFixturesByTeamIdAndDateBeforeToday/' + webParams); //není dokončeno
+                setMatches(response.data);
+            }
+            if(type === MatchSourceType.TeamFuture){
+                const response = await axios.get('http://localhost:8080/fixture/getFixturesByTeamIdAndDateFromToday/' + webParams); //není dokončeno
+                setMatches(response.data);
             }
             if(type === MatchSourceType.League) {
-                const response = await fetch('http://localhost:8080/fixture/getFixturesBySportAndDate' + webParams);
-                const data = await response.json();
-                setMatches(data);
+                const response = await axios.get('http://localhost:8080/fixture/getFixturesBySportAndDate' + webParams);
+                setMatches(response.data);
+            }
+            if (type === MatchSourceType.User) {
+                const response = await axios.get('http://localhost:8080/user/getFavouriteFixtures');
+                setMatches(response.data);
             }
         } catch (error) {
             console.error('Error fetching team of league:', error);
@@ -30,12 +36,11 @@ const MatchList = ( {type, webParams} : {
 
     useEffect(() => {
         fetchMatches();
-    }, []);
+    }, [type, webParams]);
 
     if(matches.length === 0) {
         return <div className={`font-classic text-white pl-4`}>Žádné zápasy</div>
     }
-
 
     return (
         <div>
