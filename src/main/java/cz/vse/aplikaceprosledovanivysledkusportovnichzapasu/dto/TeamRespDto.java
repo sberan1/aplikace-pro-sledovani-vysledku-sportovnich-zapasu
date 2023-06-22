@@ -5,6 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Trieda TeamRespDto - slúži k formátovaniu dát v endpointoch.
+ *
+ * @author  Zuzana Hadzimová
+ * @version LS 2022/2023
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

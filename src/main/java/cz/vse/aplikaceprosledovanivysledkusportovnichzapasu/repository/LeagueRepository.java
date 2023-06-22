@@ -9,6 +9,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Dependency Injection Interface BasketballScoreRepository - rozširuje JpaRepository a slúži k manipulácií s databázou pre entitu League.
+ *
+ * @author Štepán Beran, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
 @Repository
 public interface LeagueRepository extends JpaRepository<League, Long>{
 

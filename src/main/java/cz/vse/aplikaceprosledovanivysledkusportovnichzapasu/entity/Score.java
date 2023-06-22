@@ -4,6 +4,13 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * Trieda Score - táto entita reprezentuje tabuľku v databáze, ktorá uchováva informácie o skóre.
+ *
+ * @author Štepán Beran
+ * @version LS 2022/2023
+ */
+
 @Entity
 @Getter
 @Setter

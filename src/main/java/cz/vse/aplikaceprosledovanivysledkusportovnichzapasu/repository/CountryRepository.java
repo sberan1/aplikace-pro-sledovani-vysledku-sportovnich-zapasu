@@ -8,6 +8,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Dependency Injection Interface CountryRepository - rozširuje JpaRepository a slúži k manipulácií s databázou pre entitu Country.
+ *
+ * @author Štepán Beran, Sabína Hrabáriková
+ * @version LS 2022/2023
+ */
+
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Long> {
     Country findCountryByExternalIdAndSport(int externalId, String sport);

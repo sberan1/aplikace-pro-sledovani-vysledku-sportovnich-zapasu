@@ -6,6 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Trieda FixtureRespDto - slúži k formátovaniu dát v endpointoch.
+ *
+ * @author Zuzana Hadzimová
+ * @version LS 2022/2023
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

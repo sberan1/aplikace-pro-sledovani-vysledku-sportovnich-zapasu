@@ -2,6 +2,13 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto;
 
 import lombok.Data;
 
+/**
+ * Trieda MatchListDateDto - slúži k formátovaniu dát v endpointoch.
+ *
+ * @author Štepán Beran
+ * @version LS 2022/2023
+ */
+
 @Data
 
 public class MatchListDateDto {

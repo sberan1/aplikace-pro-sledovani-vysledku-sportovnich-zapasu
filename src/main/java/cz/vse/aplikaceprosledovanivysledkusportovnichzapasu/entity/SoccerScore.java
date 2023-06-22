@@ -3,6 +3,13 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity;
 import jakarta.persistence.Entity;
 import lombok.*;
 
+/**
+ * Trieda SoccerScore - táto entita reprezentuje tabuľku v databáze, ktorá uchováva skóre pri futbale.
+ *
+ * @author Štepán Beran
+ * @version LS 2022/2023
+ */
+
 @Entity
 @Getter
 @Setter

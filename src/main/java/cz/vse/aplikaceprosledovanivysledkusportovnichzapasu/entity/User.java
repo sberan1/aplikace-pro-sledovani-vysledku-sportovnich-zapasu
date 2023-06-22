@@ -11,6 +11,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Trieda User - táto entita reprezentuje tabuľku v databáze, ktorá uchováva informácie o používateľovi.
+ *
+ * @author Štepán Beran
+ * @version LS 2022/2023
+ */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

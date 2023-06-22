@@ -8,6 +8,13 @@ import lombok.NoArgsConstructor;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 
+/**
+ * Trieda Fixture - táto entita reprezentuje tabuľku v databáze, ktorá uchováva informácie o zápase .
+ *
+ * @author Štepán Beran, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
 @Data @AllArgsConstructor
 @NoArgsConstructor
 @Entity
