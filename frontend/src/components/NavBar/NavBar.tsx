@@ -7,6 +7,7 @@ import './Modal.css'
 import {UserContext} from "../../pages/PrihlaseniPagePackage/UserContext";
 import axios from 'axios';
 import {sha256} from "js-sha256";
+import Cookies from "universal-cookie";
 
 interface NavbarProps {
     PrihlaseniPage: unknown
@@ -20,6 +21,7 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const navigate = useNavigate();
+    var cookies = new Cookies();
     const logout = () => {
         logoutUser();
         navigate("/");
@@ -73,7 +75,7 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
 
     const deleteAccount = async () => {
         try {
-            const response = await axios.delete(`http://localhost:8080/user/delete`);  // Předpokládám, že ID uživatele je dostupné jako 'user.id'
+            const response = await axios.delete(`http://localhost:8080/user/delete`);
             console.log(response.data);
             setDeleteModalIsOpen(false);  // Zavřít modální okno po úspěšném smazání
             logoutUser(); // odhlaseni
@@ -86,9 +88,13 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
     return (
         <nav>
             <div className="logo">
+                {isLoggedIn || cookies.get('token') !== undefined ? (
                 <Link to="/dashboard" className="NavbarLink">
                     <span className="navbar-logo"></span>
-                </Link>
+                </Link>) : (
+                <Link to="/" className="NavbarLink">
+                            <span className="navbar-logo"></span>
+                </Link>)}
             </div>
 
             <div className="menu-items">
@@ -113,7 +119,7 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
                     </NavLink>
                 </div>
             </div>
-            {isLoggedIn ? (
+            {isLoggedIn || cookies.get('token') !== undefined ? (
                 <div className="UserPrihlasen">
                     <button className="UserIco" onClick={toggleDropdown}>
                     </button>

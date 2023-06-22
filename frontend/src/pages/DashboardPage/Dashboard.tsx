@@ -10,25 +10,23 @@ import OblibenyTym from "../../components/OblibenyTym/OblibenyTym";
 import Footer from "../../components/footer/Footer";
 import Modal from "react-modal";
 import '../../components/NavBar/Modal.css'
+import FavoriteTeamBtn from "../../components/Buttons/FavoriteTeamBtn/FavoriteTeamBtn";
+import axios from "axios";
 
 
-const Dashboard = ({userId}: {
-                       userId: number
-                   }
-) => {
-
-    const [date, setDate] = useState([]);
-    const {formattedDateToReturn, render} = DatePicker();
+const Dashboard = () => {
 
     const [ModalIsOpen, setModalIsOpen] = useState(false);
 
     const [favoriteTeams, setFavoriteTeams] = useState([]);
 
+    const fetchFavTeams = async () => {
+        const response = await axios.get(`http://localhost:8080/user/getFavouriteTeams`);
+        setFavoriteTeams(response.data);
+    }
     useEffect(() => {
-        fetch(`http://localhost:3000/favourites/${userId}`)
-            .then(response => response.json())
-            .then(favoriteTeams => setFavoriteTeams(favoriteTeams));
-    }, [userId]);
+       fetchFavTeams();
+    }, []);
 
     const openModal = () => {
         setModalIsOpen(true);
@@ -53,11 +51,9 @@ const Dashboard = ({userId}: {
                         <h2>Sledované zápasy</h2>
                         <div className="header">
                             <div>Program/výsledky</div>
-                            <div>{render}</div>
                         </div>
                         <div className="MatchListContainer">
-                            {/* jak to udělat aby se zobrazili jen zápasy týmů, které uživatel sleduje? */}
-                            <MatchList type={MatchSourceType.League} webParams={`&date=${date}&league=${id}`}/>
+                            <MatchList type={MatchSourceType.User} webParams={""}/>
                         </div>
                     </div>
 
@@ -69,9 +65,9 @@ const Dashboard = ({userId}: {
                                     key={team.teamId}
                                     teamId={team.teamId}
                                     teamName={team.teamName}
-                                    userId={userId}
                                     isFavorite={true}
-                                />
+                                    teamLogo={team.teamLogo
+                                }/>
                             ))}
                         </div>
                         <button onClick={openModal}>Chci doporučit týmy na míru</button>
@@ -91,8 +87,8 @@ const Dashboard = ({userId}: {
                                             key={team.teamId}
                                             teamId={team.teamId}
                                             teamName={team.teamName}
-                                            userId={userId}
                                             isFavorite={false}
+                                            teamLogo={team.teamLogo}
                                         />
                                     ))}
                                 </div>

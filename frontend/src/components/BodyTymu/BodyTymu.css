@@ -26,3 +26,43 @@
     background-color: #2A2F37;
     box-shadow: #D3FC01 3px 3px 8px 0;
 }
+.select-container {
+    display: flex;
+    align-items: center;
+}
+
+.select-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #4CAF50;
+    color: white;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 14px;
+    transition: width 0.5s;
+}
+
+.option {
+    flex: 1;
+    padding: 10px 20px;
+    text-align: center;
+    transition: transform 0.5s;
+}
+
+.select-button .option.selected {
+    transform: translateX(0);
+}
+
+.select-button .option:not(.selected) {
+    transform: translateX(100%);
+}
+
+.select-button:hover {
+    width: 200px;
+}
+
+.select-button:hover .option:not(.selected) {
+    transform: translateX(0);
+}

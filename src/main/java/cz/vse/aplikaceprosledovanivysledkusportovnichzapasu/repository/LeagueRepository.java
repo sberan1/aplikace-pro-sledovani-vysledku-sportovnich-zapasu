@@ -11,6 +11,8 @@ import java.util.Optional;
 
 @Repository
 public interface LeagueRepository extends JpaRepository<League, Long>{
+    @Query("select l from League l where l.name like concat('%', ?1, '%')")
+    List<League> findByNameContains(String name);
 
     @Query("""
     SELECT DISTINCT l

@@ -1,63 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import './BodyTymu.css';
-import DatePicker from "../DatePicker/DatePicker";
-import DatePickerComponent from "../DatePicker/DatePicker";
-
-async function getTeamData(teamId) {
-    {/*
-    const response = await fetch(`https://NASE_API.com/teams/${teamId}`);
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const teamData = await response.json();
-    return teamData;
-    */}
-
-    const testovaciData = {
-        name: 'Estadio Israel Barrios',
-        focus: 'Fotbalový tým',
-        country: 'Guatemala',
-        flagUrl: 'https:\/\/media-3.api-sports.io\/football\/teams\/3640.png',
-        logoUrl: 'https:\/\/media-2.api-sports.io\/football\/teams\/3653.png'
-    };
-
-    return testovaciData;
-}
+import {MatchSourceType} from "../Enums";
+import MatchList from "../MatchList";
+import axios from "axios";
+import {SelectButton} from "primereact/selectbutton";
 
 const BodyTymu = ({teamId}) => {
-    const [team, setTeam] = useState(null);
-    const [error, setError] = useState(null);
-    const { formattedDateToReturn, render } = DatePicker();
-    const [date, setDate] = useState([]);
+    const options = ['PROGRAM', 'VÝSLEDKY'];
+    const [value, setValue] = useState(options[0]);
 
-    useEffect(() => {
-        getTeamData(teamId)
-            .then(data => {
-                setTeam(data);
-            })
-            .catch(error => {
-                setError(error);
-            });
-    }, [teamId]);
+    if (value === options[0]) {
+        return (
+            <div className="BodyTymuContainer">
 
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (team === null) {
-        return <div>Loading...</div>;
-    }
-
-    return (
-        <div className="BodyTymuContainer">
-
-            <div className="header">
-                {/* tady bude komponenta program/vysledky */}
-                {render}
+                <div className="header">
+                    <SelectButton value={value}
+                                  onChange={(e) => setValue(e.value) }
+                                  options={options}
+                                  style={{height: '5px', width: '200px'}}
+                    />
+                    <div className="select-container">
+                        <div className="select-button" id="myButton">
+                            <span className="option selected">Option 1</span>
+                            <span className="option">Option 2</span>
+                        </div>
+                    </div>
+                </div>
+                <MatchList type={MatchSourceType.TeamPast} webParams={teamId}/>
             </div>
+        );
+    }
+    else {
+        return (
+            <div className="BodyTymuContainer">
 
-            {/* komponenta zápasů, ale musí se tam nejak pridat filter/omezeni jen pro tenhle
-            dany tym */}
-        </div>
-    );
+                <div className="header">
+                    <SelectButton value={value} onChange={(e) => setValue(e.value)} options={options}/>
+                </div>
+                <MatchList type={MatchSourceType.TeamFuture} webParams={teamId}/>
+            </div>
+        );
+    }
 }
-
 export default BodyTymu;

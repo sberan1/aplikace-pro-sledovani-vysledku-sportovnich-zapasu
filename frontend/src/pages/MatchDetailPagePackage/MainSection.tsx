@@ -1,4 +1,4 @@
-import React, {MouseEventHandler, useEffect, useState} from 'react';
+import React, {MouseEventHandler, useContext, useEffect, useState} from 'react';
 // @ts-ignore
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 import sparta from '../../assets/sparta.png';
@@ -13,6 +13,8 @@ import VolleyballDetailScore from "./DetailScoreComponents/VolleyballDetailScore
 import FavouriteStar from "../../components/FavouriteStar/FavouriteStar";
 import axios from "axios";
 import { ProgressSpinner } from 'primereact/progressspinner';
+import Cookies from "universal-cookie";
+import {UserContext} from "../PrihlaseniPagePackage/UserContext";
 
 
 const MainSection = ({MatchId} : { MatchId : number; }) => {
@@ -42,6 +44,8 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
 
     );
     const [loading, setLoading] = useState(true);
+    var cookies = new Cookies();
+    const {isLoggedIn} = useContext(UserContext);
 
     const fetchMatches = async () => {
         try {
@@ -103,14 +107,13 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
     isVisibleMap();
 
 
-    const teamOnClicked = (teamName : string) : MouseEventHandler<HTMLButtonElement> => {
-        return undefined;
-    }
+    const teamOnClicked = (team : number): React.MouseEventHandler<HTMLButtonElement> => {
+        return (event) => {
+            const nextURL = `/teamDetail?teamId=${team}`; // URL s parametrem
+            window.location.href = nextURL;
+        };
+    };
 
-
-    if (!match) {
-        return <ProgressSpinner />
-    }
 
     return (
         <section className="MainSection">
@@ -122,7 +125,7 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
                     `}>
                         <div className={`col-span-4 flex flex-col place-content-evenly`}>
                             <img className={`object-contain h-32`} src={match.homeTeamLogo} alt="Team" />
-                            <button onClick={teamOnClicked(match.homeTeamName)} className={`teamButton`}>{match.homeTeamName}</button>
+                            <button onClick={teamOnClicked(match.homeTeamId)} className={`teamButton`}>{match.homeTeamName}</button>
                         </div>
                         <div className={`col-span-3 flex flex-col justify-center px-5`}>
                             <div className={`scorePlaceholder flex justify-center px-12 pt-0.5 mt-8`}>
@@ -153,13 +156,15 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
                         </div>
                         <div className={` col-span-4 flex flex-row place-content-evenly`}>
                             <div className={`flex flex-col place-content-evenly`}>
-                                <div className={`flex place-self-center`}>
-                                    <img className={`object-contain h-32 w-40 fillSizeComponent`} src={match.awayTeamLogo} alt="Team" />
-                                    <div className={`flex pl-8`}>
-                                        <FavouriteStar Id={match.id} Type={"Match"} isFav={match.favourite}/>
-                                    </div>
-                                </div>
-                                <button onClick={teamOnClicked(match.awayTeamName)} className={`teamButton`}>{match.awayTeamName}</button>
+                                <img className={`object-contain h-32`} src={match.awayTeamLogo} alt="Team" />
+                                <button onClick={teamOnClicked(match.awayTeamId)} className={`teamButton`}>{match.awayTeamName}</button>
+                            </div>
+                            <div className={`place-self-start pt-7 pl-6`}>
+                                {isLoggedIn || cookies.get('token') !== undefined ?(
+                                    <FavouriteStar Id={match.id} Type={"Match"} isFav={match.favourite}/>
+                                ) : (
+                                    <div />
+                                )}
                             </div>
                         </div>
                     </div>
