@@ -1,5 +1,5 @@
 import './FavouriteStar.module.css';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {el} from "date-fns/locale";
 import "../../pages/DashboardPage/Dashboard.css"
@@ -11,8 +11,10 @@ function FavouriteStar ({Type, Id, isFav} : {Type : string; Id : number; isFav :
 
     const [isFavourite, setFavourite] = useState(isFav)
 
+    useEffect(() => {
+        setFavourite(isFav)
+    },[isFav])
     const handleClickOn = () : void => {
-        setFavourite(false);
         if (Type === "Team")
         {
             axios.put(`http://localhost:8080/user/addFavouriteTeam/${Id}`);
@@ -24,7 +26,6 @@ function FavouriteStar ({Type, Id, isFav} : {Type : string; Id : number; isFav :
     }
 
     const handleClickOff = () : void => {
-        setFavourite(true);
         if (Type === "Team") {
             axios.delete(`http://localhost:8080/user/removeFavouriteTeam/${Id}`);
         } else if (Type === "Match") {

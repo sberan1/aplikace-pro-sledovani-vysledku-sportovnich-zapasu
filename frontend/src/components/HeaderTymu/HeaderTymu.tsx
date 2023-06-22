@@ -14,7 +14,8 @@ const TeamComponent = ({ teamId }) => {
         teamLogo: "https://media-3.api-sports.io/football/teams/1957.png",
         country: "Argentina",
         countryLogo: "https://media-1.api-sports.io/flags/ar.svg",
-        favourite: false });
+        favourite: true
+    });
     var cookies = new Cookies();
     const {isLoggedIn} = useContext(UserContext);
 
