@@ -62,11 +62,12 @@ public class AuthServiceImpl implements AuthService{
     @Override
     public User changePassword(ChangePasswordDto changePasswordDto, String jwt) {
         User user = userService.getUserFromToken(jwt);
-        if(!user.getPassword().equals( passwordEncoder.encode(changePasswordDto.getOldPassword())))
+        if(!passwordEncoder.matches(changePasswordDto.getOldPassword(), user.getPassword()))
         {
             return null;
         }
-            user.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
+        user.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
+        userRepository.save(user);
         return user;
     }
 

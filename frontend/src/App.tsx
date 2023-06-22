@@ -20,11 +20,14 @@ import BrowsingPage from "./pages/BrowsingPagePackage/BrowsingPage";
 import MatchDetailPage from "./pages/MatchDetailPagePackage/MatchDetailPage";
 import Dashboard from './pages/DashboardPage/Dashboard';
 import ProfilTymu from "./pages/ProfilTymuPage/ProfilTymu";
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 Modal.setAppElement('#root');
 
 const App = () => {
-    const { isLoggedIn } = useContext(UserContext);
+
+
     return (
       <UserProvider>
     <Router>
