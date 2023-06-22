@@ -52,15 +52,15 @@ public class FixtureController {
     }
 
     @GetMapping("/getFixturesByTeamIdAndDateBeforeToday/{teamId}")
-    public ResponseEntity<List<MatchListDateDto>> getFixturesByTeamIdAndDateBeforeToday(@PathVariable long teamId)
+    public List<MatchListDateDto> getFixturesByTeamIdAndDateBeforeToday(@PathVariable long teamId)
     {
-        return ResponseEntity.ok(fixtureService.getFixturesByTeamIdAndDateBeforeToday(teamId));
+        return fixtureService.getFixturesByTeamIdAndDateBeforeToday(teamId);
     }
 
     @GetMapping("/getFixturesByTeamIdAndDateFromToday/{teamId}")
-    public ResponseEntity<List<MatchListDateDto>> getFixturesByTeamIdAndDateFromToday(@PathVariable long teamId)
+    public List<MatchListDateDto> getFixturesByTeamIdAndDateFromToday(@PathVariable long teamId)
     {
-        return ResponseEntity.ok(fixtureService.getFixturesByTeamIdAndDateFromToday(teamId));
+        return fixtureService.getFixturesByTeamIdAndDateFromToday(teamId);
     }
 
     @GetMapping("/getFixturesById")
