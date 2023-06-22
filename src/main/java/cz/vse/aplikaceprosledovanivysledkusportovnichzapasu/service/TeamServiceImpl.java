@@ -98,6 +98,7 @@ public class TeamServiceImpl implements TeamService {
                     for (var t : user.getFavouriteTeams()){
                         if (t.getId() == id){
                             teamDto.setFavourite(true);
+                            break;
                         }
                         teamDto.setFavourite(false);
                     }
