@@ -4,7 +4,7 @@ import {sha256} from 'js-sha256';
 import { UserContext } from '../PrihlaseniPagePackage/UserContext';
 import '../PrihlaseniPagePackage/Prihlaseni.css';
 import './Registrace.css';
-import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Route, Routes, useNavigate} from 'react-router-dom';
 import { Password } from 'primereact/password';
 import { Divider } from 'primereact/divider';
 
@@ -15,6 +15,7 @@ const RegistraceComponent = () => {
     const [password, setPassword] = useState('');
     const [loginStatus, setLoginStatus] = useState('');
     const { loginUser } = useContext(UserContext);
+    const navigate = useNavigate();
     const header = <div className="font-bold mb-3">Pick a password</div>;
     const footer = (
         <>
@@ -66,6 +67,7 @@ const RegistraceComponent = () => {
                 await loginUser(email, password);
                 setLoginStatus('Registrace proběhla úspěšně. Jste nyní přihlášeni.');
                 const nextURL = `/dashboard`;
+                navigate("/dashboard");
                 window.location.href = nextURL;
             } catch (error) {
                 console.error('Oj, něco se pokazilo:' + error);

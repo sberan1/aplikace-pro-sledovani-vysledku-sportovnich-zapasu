@@ -3,7 +3,7 @@ import axios from 'axios';
 import {sha256} from 'js-sha256';
 import { UserContext } from './UserContext';
 import './Prihlaseni.css';
-import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Route, Routes, useNavigate} from 'react-router-dom';
 
 const PrihlaseniComponent = () => {
     const [email, setEmail] = useState('');
@@ -11,6 +11,7 @@ const PrihlaseniComponent = () => {
     const [loginStatus, setLoginStatus] = useState('');
     const { loginUser } = useContext(UserContext);
     const {isLoggedIn} = useContext(UserContext);
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
@@ -28,6 +29,7 @@ const PrihlaseniComponent = () => {
             await loginUser(email, password);
             setLoginStatus('Přihlášení bylo úspěšné.');
             const nextURL = `/dashboard`;
+            navigate("/dashboard");
             window.location.href = nextURL;
         } catch (error) {
             console.error('Oj, něco se pokazilo:', error);
