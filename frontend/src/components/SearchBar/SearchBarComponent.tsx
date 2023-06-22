@@ -6,11 +6,12 @@ import '../../App.css';
 import styles from './SearchBar.module.css';
 import {InputText} from "primereact/inputtext";
 import SearchItem from "../SearchItem/SearchItem";
+import axios from "axios";
 
 interface ResultItem {
-    teamId: number;
-    teamName: string;
-    teamLogo: string;
+    id: number;
+    name: string;
+    logo: string;
 }
 
 const SearchBar = () => {
@@ -19,6 +20,7 @@ const SearchBar = () => {
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
+        fetchData();
     };
 
     const handleSubmit = (event: FormEvent) => {
@@ -28,26 +30,8 @@ const SearchBar = () => {
     };
 
     const fetchData = async () => {
-        // Fiktivní získání dat
-        const fakeData: ResultItem[] = [
-            {
-                teamId: 1,
-                teamName: "Sparta Praha",
-                teamLogo: `${sparta}`,
-            },
-            {
-                teamId: 2,
-                teamName: "Slavia Praha",
-                teamLogo: `${slavia}`,
-            },
-            // Další fiktivní záznamy
-        ];
-
-        // Simulace zpoždění
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        // Nastavení výsledků
-        setResults(fakeData);
+        const result = await axios.get('http://localhost:8080/team/search?name=' + searchTerm);
+        setResults(result.data);
     };
 
     return (
@@ -77,9 +61,9 @@ const SearchBar = () => {
             </div>
             {searchTerm.length > 0 && results.length > 0 && (
                 <div className={`${styles.searchResults} mt-4 pl-2.5 pt-2 pb-3`}>
-                    {results.map((result, index) => (
-                        <SearchItem key={index} teamId={result.teamId} teamName={result.teamName}
-                                    teamLogo={result.teamLogo}/>
+                    {results.map((result) => (
+                        <SearchItem key={result.id} teamId={result.id} teamName={result.name}
+                                    teamLogo={result.logo}/>
                     ))}
                 </div>
             )}
