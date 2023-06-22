@@ -11,7 +11,7 @@
 
 .inputBackground {
     background: #4E5259;
-    font-family: 'AktivGrotesk-Light', serif;
+    font-family: 'AktivGrotesk-Regular', serif;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -24,7 +24,7 @@
 .inputBackground:hover
 {
     background: #4E5259;
-    font-family: 'AktivGrotesk-Light', serif;
+    font-family: 'AktivGrotesk-Regular', serif;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -34,7 +34,7 @@
 }
 .inputBackground:hover:focus {
     background: #4E5259;
-    font-family: 'AktivGrotesk-Light', serif;
+    font-family: 'AktivGrotesk-Regular', serif;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -46,7 +46,7 @@
 .inputBackground:focus {
     background: #4E5259;
     outline: none;
-    font-family: 'AktivGrotesk-Light', serif;
+    font-family: 'AktivGrotesk-Regular', serif;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -56,16 +56,17 @@
 }
 
 .vyhledatPlaceholder{
-    font-family: 'AktivGrotesk-Regular', serif;
+    font-family: 'AktivGrotesk-Medium', serif;
     font-style: normal;
     line-height: 120%;
+    background: #2A2F37;
 }
 
 .vyhledatPlaceholder:focus {
     background: #D3FC01;
     border: 1px;
     border-radius: 0px 8px 8px 0px;
-    font-family: 'AktivGrotesk-Regular', serif;
+    font-family: 'AktivGrotesk-Medium', serif;
     font-style: normal;
     line-height: 120%;
     color: #000000;
