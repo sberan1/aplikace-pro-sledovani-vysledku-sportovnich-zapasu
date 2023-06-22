@@ -78,4 +78,5 @@
   background-image: url("./assets/BG.png");
   background-repeat: no-repeat;
   background-size: cover;
+  padding-bottom: 5rem;
 }
