@@ -5,8 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Blob;
-
+/**
+ * Trieda HockejScore - táto entita reprezentuje tabuľku v databáze, ktorá uchováva informácie o lige.
+ *
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
+ * @version LS 2022/2023
+ */
 
 @Entity @AllArgsConstructor
 @NoArgsConstructor
@@ -14,11 +18,11 @@ import java.sql.Blob;
 public class League {
     @Id @GeneratedValue
     private Long id;
-    @Column(unique = true)
     private String name;
     private String type;
-    private String season;
+    private String sport;
     private int externalId;
-    @Lob
-    private Blob flag;
+    private String logo;
+    @ManyToOne
+    private Country country;
 }

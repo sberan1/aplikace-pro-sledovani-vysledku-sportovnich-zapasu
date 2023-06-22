@@ -6,6 +6,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * Trieda VoleyballScore - táto entita reprezentuje tabuľku v databáze, ktorá uchováva skóre pri volejbale.
+ *
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
 @EqualsAndHashCode(callSuper = true)
 @Entity @Data
 @AllArgsConstructor

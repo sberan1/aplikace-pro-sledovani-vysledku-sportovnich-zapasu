@@ -2,6 +2,45 @@
   text-align: center;
 }
 
+#root{
+  overflow-y: scroll;
+  height: auto;
+}
+
+@font-face {
+  font-family: 'AktivGrotesk-Medium';
+  src: local('AktivGrotesk-Medium'), url(./fonts/aktivGrotesk/AktivGrotesk-Medium.ttf) format('opentype');
+}
+
+@font-face {
+  font-family: 'AktivGrotesk-Regular';
+  src: local('AktivGrotesk-Regular'), url(./fonts/aktivGrotesk/AktivGrotesk-Regular.ttf) format('opentype');
+}
+
+@font-face {
+  font-family: 'AktivGrotesk-Thin';
+  src: local('AktivGrotesk-Thin'), url(./fonts/aktivGrotesk/AktivGrotesk-Thin.ttf) format('opentype');
+}
+
+@font-face {
+  font-family: 'AktivGrotesk-Light';
+  src: local('AktivGrotesk-Thin'), url(./fonts/aktivGrotesk/AktivGrotesk-Light.ttf) format('opentype');
+}
+
+@font-face {
+  font-family: 'AktivGrotesk-Bold';
+  src: local('AktivGrotesk-Bold'), url(./fonts/aktivGrotesk/AktivGrotesk-Bold.ttf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Staatliches-Regular';
+  src: local('Staatliches-Regular'), url(./fonts/Staatliches-Regular.ttf) format('opentype');
+}
+
+*{
+  font-family: AktivGrotesk-Regular, serif;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +74,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.BG{
+  height: auto;
+  min-height: 100vh;
+  background-color: #1C2227;
+  background-image: url("./assets/BG.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 5rem;
 }

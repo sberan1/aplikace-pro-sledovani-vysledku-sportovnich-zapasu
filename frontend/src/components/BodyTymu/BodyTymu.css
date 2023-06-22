@@ -1,0 +1,69 @@
+.BodyTymuContainer{
+    width: 55rem;
+    padding: 25px 40px;
+    border-radius: 20px;
+    margin: 2rem auto 0 auto;
+    background-color: #1C2227;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.BodyTymuContainer .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.TymContainer{
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.TymContainer > div{
+    border-radius: 20px;
+    width: 60rem;
+    margin: 6rem auto 0 auto;
+    padding: 2.5rem;
+    background-color: #2A2F37;
+    box-shadow: #D3FC01 3px 3px 8px 0;
+}
+.select-container {
+    display: flex;
+    align-items: center;
+}
+
+.select-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #4CAF50;
+    color: white;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 14px;
+    transition: width 0.5s;
+}
+
+.option {
+    flex: 1;
+    padding: 10px 20px;
+    text-align: center;
+    transition: transform 0.5s;
+}
+
+.select-button .option.selected {
+    transform: translateX(0);
+}
+
+.select-button .option:not(.selected) {
+    transform: translateX(100%);
+}
+
+.select-button:hover {
+    width: 200px;
+}
+
+.select-button:hover .option:not(.selected) {
+    transform: translateX(0);
+}

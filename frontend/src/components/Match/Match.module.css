@@ -1,0 +1,188 @@
+.match {
+
+    width: 900px;
+    max-width: 100%;
+
+    /* Paleta/Tmavě šedá */
+
+    background: #2A2F37;
+    border-radius: 20px;
+
+}
+
+.block1 {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+.text1Thin {
+
+    /* Text1 - Thin */
+
+    font-family: AktivGrotesk-Thin;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    margin: 0;
+
+
+
+    /* identical to box height, or 24px */
+
+
+    /* Paleta/Bílá */
+
+    color: #FFFFFF;
+}
+
+.text1Bold{
+
+    /* Text1 - Bold */
+
+    font-family: 'AktivGrotesk-Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+
+
+
+    /* Paleta/Bílá */
+
+    color: #FFFFFF;
+}
+
+.imgTeam{
+
+    /*width: 34px;*/
+    /*height: 34px;*/
+
+}
+
+.team {
+
+    /* Text1 */
+
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+
+
+
+    /* Paleta/Bílá */
+
+    color: #FFFFFF;
+}
+
+.team:hover {
+    /* Text1 - Underline */
+
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+
+    text-decoration-line: underline;
+}
+
+.team:focus {
+    /* Text1 - Underline */
+
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+
+    text-decoration-line: underline;
+
+    color: #EAEAEB;
+}
+
+.dash {
+
+    /* Text1 */
+
+    font-family: 'AktivGrotesk-Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+
+
+
+    /* Paleta/Bílá */
+
+    color: #FFFFFF;
+}
+
+.score {
+
+
+    /* Paleta/Bílá */
+
+    background: #FFFFFF;
+    border-radius: 25px;
+}
+
+.score1 {
+
+
+    font-family: 'AktivGrotesk-Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* or 24px */
+
+
+
+
+    color: #000000;
+}
+
+.score2 {
+
+
+    /* Text1 - Bold */
+
+    font-family: 'AktivGrotesk-Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* or 24px */
+
+
+
+
+    color: #000000;
+}
+
+.colon {
+
+
+    font-family: 'AktivGrotesk-Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* or 24px */
+
+
+
+
+    color: #000000;
+}
+

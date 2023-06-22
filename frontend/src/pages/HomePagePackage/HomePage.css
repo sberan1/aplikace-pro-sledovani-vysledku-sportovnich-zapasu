@@ -1,0 +1,112 @@
+.HomePaneContainer {
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    background-color: #1C2227;
+    color: white;
+}
+
+.MainSectionContainer{
+    margin: 1rem 5rem;
+}
+
+.MainSection{
+    margin-top: -1rem;
+    height: 100%;
+    min-height: 100vh;
+    background-image: url("../../assets/BG.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1{
+    font-family: Staatliches-Regular, serif;
+    font-size: 4.5rem;
+    padding: 3rem 0;
+    line-height: 5rem;
+}
+
+.perex{
+    font-family: AktivGrotesk-Thin, serif;
+    font-size: 1.4rem;
+    padding: 0 0 2rem 0;
+}
+
+.imgFotbalista{
+    position: absolute;
+    right: 0;
+    top: 10rem;
+    width: 650px;
+    height: 650px;
+    background-image: url("../../assets/FotbalistaHomePage.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.MainSectionContainer .button{
+    margin-bottom: 3rem;
+}
+
+.sport-items{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 5rem;
+}
+
+.sport-items .space{
+    width: 100rem;
+    background: none;
+    height: 1px;
+    margin: 0;
+}
+
+.sport-items .space:hover{
+    box-shadow: none;
+}
+
+.sport-item{
+    width: 30rem;
+    height: 15rem;
+    background-color: #2A2F37;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.sport-item:hover{
+    box-shadow: #D3FC01 0 4px 12px;
+}
+
+.fotbal-item{
+    width: 40rem;
+}
+
+.sport-item h3{
+    font-size: 2rem;
+    padding-left: .5rem;
+}
+
+.sport-item p {
+    font-size: 1.2rem;
+    font-family: AktivGrotesk-Thin, serif;
+    padding-left: .5rem;
+
+}
+
+.footer{
+    color: white;
+    background-color: #1C2227;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.footer div{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 5rem;
+}

@@ -4,7 +4,6 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
-import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -33,13 +32,15 @@ public class ApiSports {
     public JSONObject basketbalZapasy(LocalDateTime datum){
         return new JSONObject(authentikace(API_HOST_BASKETBAL, "games?date=" + datum.format(formatter)).getBody());
     }
+    public JSONObject basketbalZapasy(int ExternalIdLigy, String seasonString){
+        return new JSONObject(authentikace(API_HOST_BASKETBAL, "games?league="+ ExternalIdLigy +"&season=" + seasonString).getBody());
+    }
     public JSONObject basketbalTymy(int idLigy, String seasonString){
         return new JSONObject(authentikace(API_HOST_BASKETBAL, "teams?league="+ idLigy +"&season=" + seasonString).getBody());
     }
     public JSONObject basketbalZeme(){
         return new JSONObject(authentikace(API_HOST_BASKETBAL, "countries").getBody());
     }
-
     public JSONObject fotbalLigy(String idZeme){
         return new JSONObject(authentikace(API_HOST_FOTBAL, "leagues?country="+idZeme).getBody());
     }
@@ -48,6 +49,9 @@ public class ApiSports {
     }
     public JSONObject fotbalZapasy(LocalDateTime datum){
         return new JSONObject(authentikace(API_HOST_FOTBAL, "fixtures?date=" + datum.format(formatter)).getBody());
+    }
+    public JSONObject fotbalZapasy(int ExternalIdLigy, String seasonString){
+        return new JSONObject(authentikace(API_HOST_FOTBAL, "fixtures?league="+ ExternalIdLigy +"&season=" + seasonString).getBody());
     }
     public JSONObject fotbalTymy(int idLigy, String seasonString){
         return new JSONObject(authentikace(API_HOST_FOTBAL, "teams?league="+ idLigy +"&season=" + seasonString).getBody());
@@ -62,7 +66,10 @@ public class ApiSports {
         return new JSONObject(authentikace(API_HOST_HOKEJ, "leagues").getBody());
     }
     public JSONObject hokejZapasy(LocalDateTime datum){
-        return new JSONObject(authentikace(API_HOST_HOKEJ, "fixtures?date=" + datum.format(formatter)).getBody());
+        return new JSONObject(authentikace(API_HOST_HOKEJ, "games?date=" + datum.format(formatter)).getBody());
+    }
+    public JSONObject hokejZapasy(int ExternalIdLigy, String seasonString){
+        return new JSONObject(authentikace(API_HOST_HOKEJ, "games?league="+ ExternalIdLigy +"&season=" + seasonString).getBody());
     }
     public JSONObject hokejTymy(int idLigy, String seasonString){
         return new JSONObject(authentikace(API_HOST_HOKEJ, "teams?league="+ idLigy +"&season=" + seasonString).getBody());
@@ -85,7 +92,9 @@ public class ApiSports {
     public JSONObject volejbalZeme(){
         return new JSONObject(authentikace(API_HOST_VOLEJBAL, "countries").getBody());
     }
-
+    public JSONObject volejbalZapasy(int ExternalIdLigy, String seasonString){
+        return new JSONObject(authentikace(API_HOST_VOLEJBAL, "games?league="+ ExternalIdLigy +"&season=" + seasonString).getBody());
+    }
 
 
 

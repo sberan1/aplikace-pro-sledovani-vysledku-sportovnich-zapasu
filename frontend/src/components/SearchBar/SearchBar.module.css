@@ -1,0 +1,95 @@
+.lupa {
+    border-radius: 8px 0px 0px 8px;
+    background: #4E5259;
+    height: 38px;
+}
+
+.divec {
+    height: 38px;
+
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+
+}
+
+.inputBackground {
+    background: #4E5259;
+    font-family: 'AktivGrotesk-Regular', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    color: #A8AAAD;
+    width: 660px;
+    height: 38px;
+}
+
+.inputBackground:hover
+{
+    background: #4E5259;
+    font-family: 'AktivGrotesk-Regular', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    color: #A8AAAD;
+    width: 660px;
+}
+.inputBackground:hover:focus {
+    background: #4E5259;
+    font-family: 'AktivGrotesk-Regular', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    color: #FFFFFF;
+    width: 660px;
+}
+
+.inputBackground:focus {
+    background: #4E5259;
+    outline: none;
+    font-family: 'AktivGrotesk-Regular', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    color: #FFFFFF;
+    width: 660px;
+}
+
+.vyhledatPlaceholder{
+    font-family: 'AktivGrotesk-Medium', serif;
+    font-style: normal;
+    line-height: 120%;
+    background: #2A2F37;
+}
+
+.vyhledatPlaceholder:focus {
+    background: #D3FC01;
+    border: 1px;
+    border-radius: 0px 8px 8px 0px;
+    font-family: 'AktivGrotesk-Medium', serif;
+    font-style: normal;
+    line-height: 120%;
+    color: #000000;
+}
+
+.vyhledatPlaceholder:focus:hover{
+    color: #1d1f28;
+}
+
+.searchResults {
+    background: #4E5259;
+    border-radius: 8px;
+    width: 852px;
+    position: absolute;
+    top: 130%;
+    right: 50%;
+    z-index: 999;
+    transform: translateX(50%);
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
