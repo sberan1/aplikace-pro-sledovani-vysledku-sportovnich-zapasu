@@ -2,6 +2,7 @@ import './FavouriteStar.module.css';
 import React, {useState} from "react";
 import axios from "axios";
 import {el} from "date-fns/locale";
+import "../../pages/DashboardPage/Dashboard.css"
 
 
 
@@ -33,7 +34,7 @@ function FavouriteStar ({Type, Id, isFav} : {Type : string; Id : number; isFav :
     }
 
     return (
-        <div>
+        <div className="FavStarContainer">
             {isFavourite ?
                 (
                 <button className={`isOn`} onClick={handleClickOff}>
