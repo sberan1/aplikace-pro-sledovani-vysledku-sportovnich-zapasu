@@ -3,6 +3,7 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthRequest;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.AuthenticationResponse;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.RegisterRequest;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.SearchBarDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.OpenAI;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.AuthService;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 /**
  * Trieda AuthController - slúží k spracovaniu požiadaviek súvisiacich s autentifikáciou a autorizáciou používateľa.
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Štepán Beran
  * @version LS 2022/2023
  */
+
 
 @RestController
 @CrossOrigin
@@ -84,8 +87,9 @@ public class AuthController {
     }
 
     @GetMapping(value = "/OpenAiCall")
-    public ResponseEntity<String> OpenAiCall(@RequestParam long id){
-        return ResponseEntity.ok(OpenAI.useMessages(userService.getUserById(id)));
+    public ResponseEntity<List<SearchBarDto>> OpenAiCall(HttpServletRequest request){
+        String jwt = request.getHeader("Authorization").substring(7);
+        return ResponseEntity.ok(userService.callFavouriteTeamsOpenAi(jwt));
     }
 
 }

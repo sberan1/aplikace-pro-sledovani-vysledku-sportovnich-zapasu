@@ -21,7 +21,6 @@ function FavoriteTeamButton({ teamId, type }) {
             response = axios.put(`http://localhost:8080/user/addFavoriteFixture/${teamId}`);
         }
 
-
         if (response.status !== 200){
             console.error(`Něco se nepovedlo na updatu oblibeneho tymu: ${response.message}`);
             setIsFavorite(!newFavoriteStatus);

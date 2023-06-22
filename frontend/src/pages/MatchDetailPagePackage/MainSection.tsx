@@ -1,4 +1,4 @@
-import React, {MouseEventHandler, useEffect, useState} from 'react';
+import React, {MouseEventHandler, useContext, useEffect, useState} from 'react';
 // @ts-ignore
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 import sparta from '../../assets/sparta.png';
@@ -13,6 +13,8 @@ import VolleyballDetailScore from "./DetailScoreComponents/VolleyballDetailScore
 import FavouriteStar from "../../components/FavouriteStar/FavouriteStar";
 import axios from "axios";
 import { ProgressSpinner } from 'primereact/progressspinner';
+import Cookies from "universal-cookie";
+import {UserContext} from "../PrihlaseniPagePackage/UserContext";
 
 
 const MainSection = ({MatchId} : { MatchId : number; }) => {
@@ -42,6 +44,8 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
 
     );
     const [loading, setLoading] = useState(true);
+    var cookies = new Cookies();
+    const {isLoggedIn} = useContext(UserContext);
 
     const fetchMatches = async () => {
         try {
@@ -103,26 +107,27 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
     isVisibleMap();
 
 
-    const teamOnClicked = (teamName : string) : MouseEventHandler<HTMLButtonElement> => {
-        return undefined;
-    }
+    const teamOnClicked = (team : number): React.MouseEventHandler<HTMLButtonElement> => {
+        return (event) => {
+            const nextURL = `/teamDetail?teamId=${team}`; // URL s parametrem
+            window.location.href = nextURL;
+        };
+    };
 
-
-    if (!match) {
-        return <ProgressSpinner />
-    }
 
     return (
         <section className="MainSection">
             <div className={`MainSectionContainer flex justify-center`}>
                 <div className="imgFotbalista"></div>
                 <div className={`placeholder p-4 mx-10 grid gap-4 grid-rows-5 auto-rows-min mt-9 overflow-auto`}>
-                    <div className={`row-span-2 flex justify-between auto-cols-min detailHeader px-10`}>
-                        <div className={`flex flex-col place-content-evenly fillSizeComponent`}>
+                    <div className={`row-span-2 grid grid-cols-11 auto-cols-min
+                    /*flex justify-between auto-cols-min detailHeader px-10*/
+                    `}>
+                        <div className={`col-span-4 flex flex-col place-content-evenly`}>
                             <img className={`object-contain h-32`} src={match.homeTeamLogo} alt="Team" />
-                            <button onClick={teamOnClicked(match.homeTeamName)} className={`teamButton`}>{match.homeTeamName}</button>
+                            <button onClick={teamOnClicked(match.homeTeamId)} className={`teamButton`}>{match.homeTeamName}</button>
                         </div>
-                        <div className={`flex flex-col justify-center`}>
+                        <div className={`col-span-3 flex flex-col justify-center px-5`}>
                             <div className={`scorePlaceholder flex justify-center px-12 pt-0.5 mt-8`}>
                                 {isFutureMatch ? (
                                             <p className={`scorePlaceholderText pt-0.5 pb-0.2`}>Nadcházející</p>
@@ -143,19 +148,23 @@ const MainSection = ({MatchId} : { MatchId : number; }) => {
                                 )}
                             </div>
                             <div className={`flex justify-center`}>
-                                <div className={`country flex flex-row justify-center mt-6 py-1.5 px-4`}>
-                                    <img className={`flag mr-4`} src={match.leagueFlag}/>
-                                    <p className={`countryText`}>{match.leagueName}</p>
+                                <div className={`country flex flex-row justify-center mt-6 py-1 px-3.5`}>
+                                    <img className={`mr-2.5 object-contain h-7 w-7`} src={match.leagueFlag}/>
+                                    <p className={`countryText self-center pt-0.5`}>{match.leagueName}</p>
                                 </div>
                             </div>
                         </div>
-                        <div className={`flex flex-row place-content-evenly`}>
+                        <div className={` col-span-4 flex flex-row place-content-evenly`}>
                             <div className={`flex flex-col place-content-evenly`}>
                                 <img className={`object-contain h-32`} src={match.awayTeamLogo} alt="Team" />
-                                <button onClick={teamOnClicked(match.awayTeamName)} className={`teamButton`}>{match.awayTeamName}</button>
+                                <button onClick={teamOnClicked(match.awayTeamId)} className={`teamButton`}>{match.awayTeamName}</button>
                             </div>
                             <div className={`place-self-start pt-7 pl-6`}>
-                                <FavouriteStar Id={match.id} Type={"Match"} isFav={match.favourite}/>
+                                {isLoggedIn || cookies.get('token') !== undefined ?(
+                                    <FavouriteStar Id={match.id} Type={"Match"} isFav={match.favourite}/>
+                                ) : (
+                                    <div />
+                                )}
                             </div>
                         </div>
                     </div>

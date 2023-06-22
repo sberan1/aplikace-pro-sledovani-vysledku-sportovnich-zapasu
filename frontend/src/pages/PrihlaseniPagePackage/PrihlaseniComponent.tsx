@@ -3,7 +3,7 @@ import axios from 'axios';
 import {sha256} from 'js-sha256';
 import { UserContext } from './UserContext';
 import './Prihlaseni.css';
-import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Route, Routes, useNavigate} from 'react-router-dom';
 
 const PrihlaseniComponent = () => {
     const [email, setEmail] = useState('');
@@ -11,17 +11,26 @@ const PrihlaseniComponent = () => {
     const [loginStatus, setLoginStatus] = useState('');
     const { loginUser } = useContext(UserContext);
     const {isLoggedIn} = useContext(UserContext);
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
+            const emailRegex = new RegExp('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$');
+            if (emailRegex.test(email) === false){
+                throw new Error('Email není ve správném formátu.')
+            }
             const hashedPassword = sha256(password);
             const response = await axios.post('http://localhost:8080/auth/authenticate', {
                 email: email,
                 hashedPassword: hashedPassword
             });
+
             setLoginStatus(response.data.message);
             await loginUser(email, password);
             setLoginStatus('Přihlášení bylo úspěšné.');
+            const nextURL = `/dashboard`;
+            navigate("/dashboard");
+            window.location.href = nextURL;
         } catch (error) {
             console.error('Oj, něco se pokazilo:', error);
             setLoginStatus('Něco se pokazilo při přihlašování. Zkuste to prosím znovu.');

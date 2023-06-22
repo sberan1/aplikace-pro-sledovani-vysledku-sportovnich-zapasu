@@ -3,6 +3,7 @@ import MainSection from './MainSection';
 import Footer from "../../components/footer/Footer";
 import './BrowsingPage.css';
 import NavBar from "../../components/NavBar/NavBar";
+import SearchBarComponent from "../../components/SearchBar/SearchBarComponent";
 
 export interface AppProps {
     Sport: string
@@ -10,7 +11,7 @@ export interface AppProps {
 
 const BrowsingPage = ({ Sport }: AppProps) => {
     return (
-        <div className="HomePaneContainer">
+        <div className={`HomePaneContainer`}>
             <NavBar PrihlaseniPage={""}/>
             <MainSection Sport={Sport} />
             <Footer/>

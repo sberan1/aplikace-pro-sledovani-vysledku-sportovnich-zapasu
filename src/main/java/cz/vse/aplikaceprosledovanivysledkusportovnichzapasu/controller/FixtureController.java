@@ -98,8 +98,8 @@ public class FixtureController {
      * @return List s informáciami o zápaspch
      */
 
-    @GetMapping("/getFixturesByTeamIdAndDateBeforeToday")
-    public List<MatchListDateDto> getFixturesByTeamIdAndDateBeforeToday( @RequestParam long teamId)
+    @GetMapping("/getFixturesByTeamIdAndDateBeforeToday/{teamId}")
+    public List<MatchListDateDto> getFixturesByTeamIdAndDateBeforeToday(@PathVariable long teamId)
     {
         return fixtureService.getFixturesByTeamIdAndDateBeforeToday(teamId);
     }
@@ -110,8 +110,8 @@ public class FixtureController {
      * @return List s informáciami o zápasoch
      */
 
-    @GetMapping("/getFixturesByTeamIdAndDateFromToday")
-    public List<MatchListDateDto> getFixturesByTeamIdAndDateFromToday( @RequestParam long teamId)
+    @GetMapping("/getFixturesByTeamIdAndDateFromToday/{teamId}")
+    public List<MatchListDateDto> getFixturesByTeamIdAndDateFromToday(@PathVariable long teamId)
     {
         return fixtureService.getFixturesByTeamIdAndDateFromToday(teamId);
     }

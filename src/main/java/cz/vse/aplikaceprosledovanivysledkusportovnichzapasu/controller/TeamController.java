@@ -1,5 +1,6 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.controller;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.SearchBarDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.TeamRespDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
@@ -80,5 +81,10 @@ public class TeamController {
             return ResponseEntity.ok(teamService.getTeamInfoById(id, user));
         }
         return ResponseEntity.ok(teamService.getTeamInfoById(id, null));
+    }
+
+    @GetMapping(value = "/search")
+    public  ResponseEntity<List<SearchBarDto>> searchBar(@RequestParam String name){
+        return ResponseEntity.ok(teamService.searchBar(name));
     }
 }

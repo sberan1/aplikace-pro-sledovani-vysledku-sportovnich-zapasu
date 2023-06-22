@@ -10,32 +10,37 @@ import OblibenyTym from "../../components/OblibenyTym/OblibenyTym";
 import Footer from "../../components/footer/Footer";
 import Modal from "react-modal";
 import '../../components/NavBar/Modal.css'
+import FavoriteTeamBtn from "../../components/Buttons/FavoriteTeamBtn/FavoriteTeamBtn";
+import axios from "axios";
+import {ProgressSpinner} from "primereact/progressspinner";
 
 
-const Dashboard = ({userId}: {
-                       userId: number
-                   }
-) => {
-
-    const [date, setDate] = useState([]);
-    const {formattedDateToReturn, render} = DatePicker();
+const Dashboard = () => {
 
     const [ModalIsOpen, setModalIsOpen] = useState(false);
-
+    const [suggestedTeams, setSuggestedTeams] = useState(null);
     const [favoriteTeams, setFavoriteTeams] = useState([]);
 
+    const fetchFavTeams = async () => {
+        const response = await axios.get(`http://localhost:8080/user/getFavouriteTeams`);
+        setFavoriteTeams(response.data);
+    }
+    const fetchSuggestedTeams = async () => {
+        const response = await axios.get(`http://localhost:8080/auth/OpenAiCall`);
+        setSuggestedTeams(response.data);
+    }
     useEffect(() => {
-        fetch(`http://localhost:3000/favourites/${userId}`)
-            .then(response => response.json())
-            .then(favoriteTeams => setFavoriteTeams(favoriteTeams));
-    }, [userId]);
+       fetchFavTeams();
+    }, []);
 
     const openModal = () => {
         setModalIsOpen(true);
+        fetchSuggestedTeams();
     }
 
     const closeModal = () => {
         setModalIsOpen(false);
+        setSuggestedTeams(null);
     }
 
 
@@ -53,11 +58,9 @@ const Dashboard = ({userId}: {
                         <h2>Sledované zápasy</h2>
                         <div className="header">
                             <div>Program/výsledky</div>
-                            <div>{render}</div>
                         </div>
                         <div className="MatchListContainer">
-                            {/* jak to udělat aby se zobrazili jen zápasy týmů, které uživatel sleduje? */}
-                            <MatchList type={MatchSourceType.League} webParams={`&date=${date}&league=${id}`}/>
+                            <MatchList type={MatchSourceType.User} webParams={""}/>
                         </div>
                     </div>
 
@@ -66,15 +69,15 @@ const Dashboard = ({userId}: {
                         <div className="tymy">
                             {favoriteTeams.map(team => (
                                 <OblibenyTym
-                                    key={team.teamId}
-                                    teamId={team.teamId}
-                                    teamName={team.teamName}
-                                    userId={userId}
-                                    isFavorite={true}
-                                />
+                                    key={team.id}
+                                    teamId={team.id}
+                                    teamName={team.name}
+                                    isFavourite={true}
+                                    teamLogo={team.logo
+                                }/>
                             ))}
                         </div>
-                        <button onClick={openModal}>Chci doporučit týmy na míru</button>
+                        <button onClick={openModal} className="BtnDoporuceni">Chci doporučit týmy na míru</button>
                         <Modal
                             isOpen={ModalIsOpen}
                             onRequestClose={closeModal}
@@ -84,24 +87,27 @@ const Dashboard = ({userId}: {
                         >
                             <div className="ModalContainer modalOblibene">
                                 <h2>Podle Vašich oblíbených týmů, pro Vás máme doporučení na tyto týmy:</h2>
+
+                            {suggestedTeams !== null ?(
                                 <div className="tymy">
-                                    {/* jak sem napojit AI??? */}
-                                    {favoriteTeams.map(team => (
-                                        <OblibenyTym
-                                            key={team.teamId}
-                                            teamId={team.teamId}
-                                            teamName={team.teamName}
-                                            userId={userId}
-                                            isFavorite={false}
-                                        />
-                                    ))}
+                                        {suggestedTeams.map((team, id)=> (
+                                            <OblibenyTym
+                                                key={team.id}
+                                                teamId={team.id}
+                                                teamName={team.name}
+                                                isFavourite={false}
+                                                teamLogo={team.logo}
+                                            />
+                                        ))}
                                 </div>
-                                <button onClick={closeModal} className="">ZAVŘÍT</button>
+                            ) : (
+                                        <ProgressSpinner/>
+                            )}
                             </div>
+                            <button onClick={closeModal} className="">ZAVŘÍT</button>
                         </Modal>
                     </div>
                 </div>
-
             </div>
             <Footer/>
         </div>

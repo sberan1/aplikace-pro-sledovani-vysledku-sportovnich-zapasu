@@ -1,11 +1,14 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDto;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.SearchBarDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.OpenAI;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.FixtureRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +16,12 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.UserRepos
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Trieda UserServiceImpl - implementuje rozhranie UserServiceImpl a poskytuje konkrétnu implementáciu metód pre operácie súvisiace s používateľom.
@@ -37,12 +44,13 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private FixtureRepository fixtureRepository;
-
     /**
      * Implementácia metódy z UserService pre uloženie používateľa do systému.
      * @param user
      * @return uložený používateľ alebo null
      */
+    @Autowired
+    private TeamService teamService;
 
     @Override
     public User saveUser(User user) {
@@ -150,9 +158,17 @@ public class UserServiceImpl implements UserService{
      */
 
     @Override
-    public Set<Team> getFavouriteTeams(String jwt) {
+    public Set<SearchBarDto> getFavouriteTeams(String jwt) {
         User user= getUserFromToken(jwt);
-        return user.getFavouriteTeams();
+        Set<SearchBarDto> formatovaneTymy = new HashSet<>();
+        for (Team team : user.getFavouriteTeams()) {
+            SearchBarDto searchBarDTO = new SearchBarDto();
+            searchBarDTO.setId(team.getId());
+            searchBarDTO.setName(team.getName());
+            searchBarDTO.setLogo(team.getLogo());
+            formatovaneTymy.add(searchBarDTO);
+        }
+        return formatovaneTymy;
     }
 
     /**
@@ -162,9 +178,25 @@ public class UserServiceImpl implements UserService{
      */
 
     @Override
-    public Set<Fixture> getFavouriteFixtures(String jwt) {
+    public Set<MatchListDateDto> getFavouriteFixtures(String jwt) {
         User user= getUserFromToken(jwt);
-        return user.getFavouriteFixtures();
+        Set<MatchListDateDto> formatovaneZapasy = new HashSet<>();
+        for (Fixture fixture : user.getFavouriteFixtures()) {
+            MatchListDateDto matchListDateDTO = new MatchListDateDto();
+            matchListDateDTO.setId(fixture.getId());
+            matchListDateDTO.setDate(fixture.getDate().format(DateTimeFormatter.ISO_DATE));
+            matchListDateDTO.setTime(fixture.getDate().format(DateTimeFormatter.ofPattern("HH:mm")));
+            matchListDateDTO.setHomeTeamId(fixture.getHomeTeam().getId());
+            matchListDateDTO.setHomeTeam(fixture.getHomeTeam().getName());
+            matchListDateDTO.setAwayTeamId(fixture.getAwayTeam().getId());
+            matchListDateDTO.setAwayTeam(fixture.getAwayTeam().getName());
+            matchListDateDTO.setHomeTeamScore(fixture.getScore().getFinalHomeScore());
+            matchListDateDTO.setAwayTeamScore(fixture.getScore().getFinalAwayScore());
+            matchListDateDTO.setHomeTeamLogo(fixture.getHomeTeam().getLogo());
+            matchListDateDTO.setAwayTeamLogo(fixture.getAwayTeam().getLogo());
+            formatovaneZapasy.add(matchListDateDTO);
+        }
+        return formatovaneZapasy;
     }
 
     /**
@@ -207,6 +239,15 @@ public class UserServiceImpl implements UserService{
         userRepository.save(user);
     }
 
+    @Override
+    public List<SearchBarDto> callFavouriteTeamsOpenAi(String jwt) {
+        String[] tymy = OpenAI.useMessages(getUserFromToken(jwt)).split(",.");
+        List<SearchBarDto> value = new ArrayList<>();
+        for (String tym : tymy) {
+            value.addAll(teamService.searchBar(tym));
+        }
+    return value.stream().limit(6).collect(Collectors.toList());
+    }
 
 
 }

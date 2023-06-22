@@ -25,4 +25,7 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
     Team findTeamById(long id);
 
     Optional<Object> findByExternalIdAndSportAndName(int anInt, String sport, String name);
+
+    List<Team> findTeamsByNameContains(String name);
+
 }
