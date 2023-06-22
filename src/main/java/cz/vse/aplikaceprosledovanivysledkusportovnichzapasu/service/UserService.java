@@ -25,7 +25,5 @@ public interface UserService {
     User deleteUser(Long id);
     void addFavouriteFixture(long id, String jwt);
     void removeFavouriteFixture(long id, String jwt);
-
-
-
+    List<SearchBarDto> callFavouriteTeamsOpenAi(String jwt);
 }

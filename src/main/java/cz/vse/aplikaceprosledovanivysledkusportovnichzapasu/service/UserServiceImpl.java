@@ -8,6 +8,7 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.League;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.OpenAI;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.FixtureRepository;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -34,7 +37,8 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private FixtureRepository fixtureRepository;
-
+    @Autowired
+    private TeamService teamService;
 
     @Override
     public User saveUser(User user) {
@@ -152,6 +156,15 @@ public class UserServiceImpl implements UserService{
         userRepository.save(user);
     }
 
+    @Override
+    public List<SearchBarDto> callFavouriteTeamsOpenAi(String jwt) {
+        String[] tymy = OpenAI.useMessages(getUserFromToken(jwt)).split(",.");
+        List<SearchBarDto> value = new ArrayList<>();
+        for (String tym : tymy) {
+            value.addAll(teamService.searchBar(tym));
+        }
+    return value.stream().limit(6).collect(Collectors.toList());
+    }
 
 
 }

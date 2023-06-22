@@ -12,17 +12,22 @@ import Modal from "react-modal";
 import '../../components/NavBar/Modal.css'
 import FavoriteTeamBtn from "../../components/Buttons/FavoriteTeamBtn/FavoriteTeamBtn";
 import axios from "axios";
+import {ProgressSpinner} from "primereact/progressspinner";
 
 
 const Dashboard = () => {
 
     const [ModalIsOpen, setModalIsOpen] = useState(false);
-
+    const [suggestedTeams, setSuggestedTeams] = useState(null);
     const [favoriteTeams, setFavoriteTeams] = useState([]);
 
     const fetchFavTeams = async () => {
         const response = await axios.get(`http://localhost:8080/user/getFavouriteTeams`);
         setFavoriteTeams(response.data);
+    }
+    const fetchSuggestedTeams = async () => {
+        const response = await axios.get(`http://localhost:8080/auth/OpenAiCall`);
+        setSuggestedTeams(response.data);
     }
     useEffect(() => {
        fetchFavTeams();
@@ -30,10 +35,12 @@ const Dashboard = () => {
 
     const openModal = () => {
         setModalIsOpen(true);
+        fetchSuggestedTeams();
     }
 
     const closeModal = () => {
         setModalIsOpen(false);
+        setSuggestedTeams(null);
     }
 
 
@@ -65,7 +72,7 @@ const Dashboard = () => {
                                     key={team.id}
                                     teamId={team.id}
                                     teamName={team.name}
-                                    isFavorite={true}
+                                    isFavourite={true}
                                     teamLogo={team.logo
                                 }/>
                             ))}
@@ -80,24 +87,27 @@ const Dashboard = () => {
                         >
                             <div className="ModalContainer modalOblibene">
                                 <h2>Podle Vašich oblíbených týmů, pro Vás máme doporučení na tyto týmy:</h2>
+
+                            {suggestedTeams !== null ?(
                                 <div className="tymy">
-                                    {/* jak sem napojit AI??? */}
-                                    {favoriteTeams.map(team => (
-                                        <OblibenyTym
-                                            key={team.teamId}
-                                            teamId={team.teamId}
-                                            teamName={team.teamName}
-                                            isFavorite={false}
-                                            teamLogo={team.teamLogo}
-                                        />
-                                    ))}
+                                        {suggestedTeams.map((team, id)=> (
+                                            <OblibenyTym
+                                                key={team.id}
+                                                teamId={team.id}
+                                                teamName={team.name}
+                                                isFavourite={false}
+                                                teamLogo={team.logo}
+                                            />
+                                        ))}
                                 </div>
-                                <button onClick={closeModal} className="">ZAVŘÍT</button>
+                            ) : (
+                                        <ProgressSpinner/>
+                            )}
                             </div>
+                            <button onClick={closeModal} className="">ZAVŘÍT</button>
                         </Modal>
                     </div>
                 </div>
-
             </div>
             <Footer/>
         </div>

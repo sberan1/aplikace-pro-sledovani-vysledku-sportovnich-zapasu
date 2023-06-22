@@ -7,19 +7,19 @@ import "../../pages/DashboardPage/Dashboard.css";
 import * as url from "url";
 
 
-function OblibenyTym({teamId, teamName, teamLogo}: {
+function OblibenyTym({teamId, teamName, teamLogo, isFavourite}: {
     teamId: number,
     teamName: string,
-    isFavorite: boolean,
+    isFavourite: boolean,
     teamLogo: string
 }) {
 
     const navigate = useNavigate();
 
-    const [isFavorite, setIsFavorite] = useState(true);
+    const [isFavorite, setIsFavorite] = useState(isFavourite);
 
     function teamOnClicked() {
-        const nextURL = `/team/` + {teamId};
+        const nextURL = `/teamDetail?teamId=${teamId}`;
         window.location.href = nextURL;
     }
 
