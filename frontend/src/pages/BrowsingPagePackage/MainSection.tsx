@@ -9,11 +9,13 @@ import SearchBarComponent from "../../components/SearchBar/SearchBarComponent";
 const MainSection = ({ Sport }: AppProps) => {
     return (
         <section className="MainSection">
-            <div className={`MainSectionContainer`}>
+            <div className={`MainSectionContainer flex justify-center`}>
                 <div className="imgFotbalista"></div>
                 <SearchBarComponent/>
 
-                <ContentHolder sport={Sport}/>
+                <div className={`${ContentHolder}`}>
+                    <ContentHolder sport={Sport}/>
+                </div>
 
 
             </div>

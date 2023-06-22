@@ -6,19 +6,8 @@
 
 .divec {
     height: 38px;
+    position: absolute;
 }
-
-/*
-.divec:hover,
-.divec:hover .inputBackground,
-.divec:hover .vyhledatPlaceholder,
-.divec .inputBackground:focus,
-.divec .vyhledatPlaceholder:focus {
-    height: 46px;
-}
-
- */
-
 
 .inputBackground {
     background: #4E5259;
@@ -65,34 +54,6 @@
     color: #FFFFFF;
     width: 660px;
 }
-
-/*
-.vyhledatPlaceholder {
-    background: #2A2F37;
-    border-radius: 0px 8px 8px 0px;
-    width: 151px;
-    height: 38px;
-    font-family: 'AktivGrotesk-Medium';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 120%;
-    color: #FFFFFF;
-}
-
-
-.vyhledatPlaceholder:hover {
-    background: #2A2F37;
-    border-radius: 0px 8px 8px 0px;
-    width: 151px;
-    height: 46px;
-    font-family: 'AktivGrotesk-Medium';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 120%;
-    color: #D3FC01;
-} */
 
 .vyhledatPlaceholder{
     font-family: 'AktivGrotesk-Regular', serif;
