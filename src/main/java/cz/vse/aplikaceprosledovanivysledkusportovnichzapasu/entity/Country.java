@@ -3,6 +3,13 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+/**
+ * Trieda Country - táto entita reprezentuje tabuľku v databáze, ktorá uchováva informácie o krajine .
+ *
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
 @Entity @Data
 public class Country {
     @Id

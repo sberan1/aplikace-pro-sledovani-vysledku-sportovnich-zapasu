@@ -10,6 +10,13 @@ import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Interface UserService - rozhranie definuje metódy pre operácie súvisiace s používateľmi.
+ *
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
 public interface UserService {
 
     User saveUser(User user);

@@ -17,6 +17,13 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Trieda TeamServiceImpl - implementuje rozhranie TeamService a poskytuje konkrétnu implementáciu metód pre prácu s týmami.
+ *
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
 @Service
 public class TeamServiceImpl implements TeamService {
 
@@ -30,6 +37,11 @@ public class TeamServiceImpl implements TeamService {
 
     User user;
 
+    /**
+     * Implementácia metódy z TeamService pre plnenie týmov pre basketbal na základe Id ligy a Id sezóny a  pomocou API volania.
+     * @param leagueExternalId
+     * @param seasonExternalId
+     */
     @Override
     public void fillBasketballTeamsByLeagueExternalIdAndSeason(int leagueExternalId, String seasonExternalId) {
         JSONObject resp = apiSports.basketbalTymy(leagueExternalId, seasonExternalId);
@@ -37,12 +49,25 @@ public class TeamServiceImpl implements TeamService {
         teams.forEach(o -> pridatTymy((JSONObject) o, "Basketball", resp));
     }
 
+    /**
+     * Implementácia metódy z TeamService pre plnenie týmov pre hokej na základe Id ligy a Id sezóny a  pomocou API volania.
+     * @param leagueExternalId
+     * @param seasonExternalId
+     */
+
     @Override
     public void fillHockeyTeamsByLeagueExternalIdAndSeason(int leagueExternalId, String seasonExternalId) {
         JSONObject resp = apiSports.hokejTymy(leagueExternalId, seasonExternalId);
         JSONArray teams = resp.getJSONArray("response");
         teams.forEach(o -> pridatTymy((JSONObject) o, "Hockey", resp));
     }
+
+    /**
+     * Implementácia metódy z TeamService pre plnenie týmov pre futbal na základe Id ligy a Id sezóny a  pomocou API volania.
+     * @param leagueExternalId
+     * @param seasonExternalId
+     */
+
     @Override
     public void fillFootballTeamsByLeagueExternalIdAndSeason (int leagueExternalId, String seasonExternalId){
         JSONObject resp = apiSports.fotbalTymy(leagueExternalId, seasonExternalId);
@@ -68,6 +93,12 @@ public class TeamServiceImpl implements TeamService {
         } );
     }
 
+    /**
+     * Implementácia metódy z TeamService pre plnenie týmov pre volejbal na základe Id ligy a Id sezóny a  pomocou API volania.
+     * @param leagueExternalId
+     * @param seasonExternalId
+     */
+
     @Override
     public void fillVolleyballTeamsByLeagueExternalIdAndSeason(int leagueExternalId, String seasonExternalId) {
         JSONObject resp = apiSports.volejbalTymy(leagueExternalId, seasonExternalId);
@@ -75,11 +106,22 @@ public class TeamServiceImpl implements TeamService {
         teams.forEach(o -> pridatTymy((JSONObject) o, "Volleyball", resp));
     }
 
+    /**
+     * Implementácia listu z TeamService slúžiaceho na získanie týmov daného športu.
+     * @param sport
+     * @return list týmov
+     */
     @Override
     public List<Team> getTeamsBySport(String sport) {
         return teamRepository.findTeamsBySport(sport);
     }
 
+    /**
+     * Implementácia metódy z TeamService pre získanie informácií o týme podľa identifikačného čísla a používateľa.
+     * @param id
+     * @param user
+     * @return informácie o týme alebo null
+     */
     @Override
     public TeamRespDto getTeamInfoById(long id, User user) {
         Team team = teamRepository.findTeamById(id);
@@ -107,6 +149,12 @@ public class TeamServiceImpl implements TeamService {
         return teamDto;
     }
 
+    /**
+     * Metóda pre pridanie nového týmu do databáze.
+     * @param o
+     * @param sport
+     * @param resp
+     */
     @Override
     public List<SearchBarDto> searchBar(String name) {
         List<Team> tymy = teamRepository.findTeamsByNameContains(name);

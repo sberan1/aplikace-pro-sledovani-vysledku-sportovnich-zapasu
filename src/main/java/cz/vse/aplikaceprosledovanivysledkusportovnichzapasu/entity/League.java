@@ -5,6 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Trieda HockejScore - táto entita reprezentuje tabuľku v databáze, ktorá uchováva informácie o lige.
+ *
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
 @Entity @AllArgsConstructor
 @NoArgsConstructor
 @Data

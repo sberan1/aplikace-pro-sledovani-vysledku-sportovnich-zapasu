@@ -3,6 +3,13 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity;
 import jakarta.persistence.Entity;
 import lombok.*;
 
+/**
+ * Trieda HockejScore - táto entita reprezentuje tabuľku v databáze, ktorá uchováva skóre pri hokeji.
+ *
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
 @Entity
 @Getter
 @Setter

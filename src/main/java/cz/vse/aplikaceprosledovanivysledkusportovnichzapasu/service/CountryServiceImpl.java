@@ -14,11 +14,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Trieda CountryServiceImpl - implementuje rozhranie CountryService a poskytuje konkrétnu implementáciu metód pre prácu s krajinami.
+ *
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
 @Service
 public class CountryServiceImpl implements CountryService {
     ApiSports apiSports = ApiSports.getInstance();
     @Autowired
     private CountryRepository countryRepository;
+
+    /**
+     * Implementácia metódy z CountryService pre plnenie krajín pre basketbal pomocou API volania.
+     */
 
     @Override
     public void fillCountriesBasketball() {
@@ -30,6 +41,10 @@ public class CountryServiceImpl implements CountryService {
         });
     }
 
+    /**
+     * Implementácia metódy z CountryService pre plnenie krajín pre hokej pomocou API volania.
+     */
+
     @Override
     public void fillCountriesHockey() {
         JSONArray zemeHokej = apiSports.hokejZeme().getJSONArray("response");
@@ -39,6 +54,10 @@ public class CountryServiceImpl implements CountryService {
             }
         });
     }
+
+    /**
+     * Implementácia metódy z CountryService pre plnenie krajín pre futbal pomocou API volania.
+     */
 
     @Override
     public void fillCountriesFootball() {
@@ -51,6 +70,11 @@ public class CountryServiceImpl implements CountryService {
             }
         });
     }
+
+    /**
+     * Implementácia metódy z CountryService pre plnenie krajín pre volejbal pomocou API volania.
+     */
+
     @Override
     public void fillCountriesVolleyball() {
         JSONArray zemeVolleyball = apiSports.volejbalZeme().getJSONArray("response");
@@ -61,13 +85,22 @@ public class CountryServiceImpl implements CountryService {
         });
     }
 
-
+    /**
+     * Implementácia listu z CountryService pre získanie všetkých krajín pre zvolený šport.
+     * @param sport
+     * @return list krajín
+     */
 
     @Override
     public List<Country> findAllBySport(String sport) {
         return countryRepository.findBySport(sport);
 }
 
+    /**
+     * Metóda pre pridanie novej krajiny do databázy.
+     * @param o
+     * @param sport
+     */
 
 
     private void pridatZemi(JSONObject o, String sport) {
@@ -78,6 +111,12 @@ public class CountryServiceImpl implements CountryService {
         country.setSport(sport);
         countryRepository.save(country);
     }
+
+    /**
+     * Metóda pre pridanie novej krajiny do databázy pri futbale.
+     * @param o
+     * @param sport
+     */
 
     private void pridatZemiFotbal(JSONObject o, String sport) {
         Country country = new Country();

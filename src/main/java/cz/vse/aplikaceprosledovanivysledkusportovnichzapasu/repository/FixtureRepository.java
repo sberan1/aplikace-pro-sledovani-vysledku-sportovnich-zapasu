@@ -11,6 +11,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Dependency Injection Interface BasketballScoreRepository - rozširuje JpaRepository a slúži k manipulácií s databázou pre entitu Fixture.
+ *
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
+
 @Repository
 public interface FixtureRepository extends JpaRepository<Fixture, Long> {
     List<Fixture> findByDateBetweenAndSport(LocalDateTime dateStart, LocalDateTime dateEnd, String sport);
