@@ -72,7 +72,7 @@ const Dashboard = ({userId}: {
                                     teamName={team.teamName}
                                     userId={userId}
                                     isFavorite={true}
-                                />
+                                 teamLogo={team.teamLogo}/>
                             ))}
                         </div>
                         <button onClick={openModal}>Chci doporučit týmy na míru</button>
@@ -94,6 +94,7 @@ const Dashboard = ({userId}: {
                                             teamName={team.teamName}
                                             userId={userId}
                                             isFavorite={false}
+                                            teamLogo={team.teamLogo}
                                         />
                                     ))}
                                 </div>

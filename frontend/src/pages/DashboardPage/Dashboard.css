@@ -73,10 +73,34 @@
 }
 
 .OblibenyTym{
+    width: 245px;
+    height: 65px;
+    background-color: #2A2F37;
+    border-radius: 15px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+}
+
+.TeamContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.TeamLogo{
+    display: block;
+    width: 30px;
+    height: 40px;
+    background-color: #D3FC01;
+    margin-right: 20px;
+}
+
+.OblibenyTym .FavStarContainer{
+    scale: .8;
+    margin-top: 3px;
 }
 
 .TymyContainer button{
@@ -125,3 +149,4 @@
     text-decoration: underline;
     color: #D3FC01;
 }
+
