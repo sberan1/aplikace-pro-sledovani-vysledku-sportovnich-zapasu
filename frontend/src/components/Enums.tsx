@@ -1,3 +1,8 @@
-enum MatchSourceType { TeamPast, League, TeamFuture, User}
+enum MatchSourceType {
+    Team, League,
+    TeamFuture,
+    TeamPast,
+    User
+}
 
 export {MatchSourceType};
