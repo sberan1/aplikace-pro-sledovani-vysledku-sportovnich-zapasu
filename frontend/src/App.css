@@ -23,6 +23,11 @@
 }
 
 @font-face {
+  font-family: 'AktivGrotesk-Light';
+  src: local('AktivGrotesk-Thin'), url(./fonts/aktivGrotesk/AktivGrotesk-Light.ttf) format('opentype');
+}
+
+@font-face {
   font-family: 'AktivGrotesk-Bold';
   src: local('AktivGrotesk-Bold'), url(./fonts/aktivGrotesk/AktivGrotesk-Bold.ttf) format('opentype');
 }
