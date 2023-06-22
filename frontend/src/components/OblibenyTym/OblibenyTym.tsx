@@ -20,7 +20,8 @@ function OblibenyTym({teamId, teamName, teamLogo}: {
 
     function teamOnClicked() {
         const nextURL = `/team/` + {teamId};
-        window.location.href = nextURL;    }
+        window.location.href = nextURL;
+    }
 
     return (
         <div className="OblibenyTym">

@@ -21,6 +21,9 @@
     width: 1040px;
     height: 753px;
 
+    scroll-margin-right: -60px;
+
+    margin-bottom: 3rem;
 }
 
 /* ===== Scrollbar CSS ===== */
