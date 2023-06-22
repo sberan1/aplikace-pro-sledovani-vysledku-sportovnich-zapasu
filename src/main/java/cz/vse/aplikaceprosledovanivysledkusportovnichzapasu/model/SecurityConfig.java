@@ -50,8 +50,8 @@ public class SecurityConfig {
                         "/fixture/getFixturesById",
                         "/fixture/fillFixturesVolleyball",
                         "/team/getTeamInfoById",
-                        "/fixture/getFixturesByTeamIdAndDateFromToday",
-                        "/fixture/getFixturesByTeamIdAndDateBeforeToday",
+                        "/fixture/getFixturesByTeamIdAndDateFromToday/*",
+                        "/fixture/getFixturesByTeamIdAndDateBeforeToday/*",
                         "/fixture/getFixtureInfoById",
                         "/team/search",
                         "/user/checkEmail")

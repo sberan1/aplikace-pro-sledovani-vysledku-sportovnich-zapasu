@@ -24,7 +24,7 @@ import ProfilTymu from "./pages/ProfilTymuPage/ProfilTymu";
 Modal.setAppElement('#root');
 
 const App = () => {
-    const { user } = useContext(UserContext);
+    const { isLoggedIn } = useContext(UserContext);
     return (
       <UserProvider>
     <Router>
@@ -37,7 +37,7 @@ const App = () => {
             <Route path="/hokej" element={<BrowsingPage Sport={"Hokej"} />}></Route>
             <Route path="/volejbal" element={<BrowsingPage Sport={"Volejbal"} />}></Route>
             <Route path="/matchDetail" element={<MatchDetailPage/>}></Route>
-            <Route path="/dashboard" element={<Dashboard  userId={user?.userId}/>}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/teamDetail" element={<ProfilTymu />}></Route>
         </Routes>
     </Router>

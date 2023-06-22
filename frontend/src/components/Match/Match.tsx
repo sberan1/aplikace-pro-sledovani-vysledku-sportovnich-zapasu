@@ -99,7 +99,7 @@ function Match({
                         <p className={`${styles.dash}`}>-</p>
                     </div>
                     <div className='flex grow w-60 justify-center'>
-                        <button onClick={teamOnClicked(homeTeamId)} className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
+                        <button onClick={teamOnClicked(awayTeamId)} className={`pr-3 content-center ${styles.team}`}>{awayTeamName}</button>
                         {isVisibleAwayTeamLogo ? (
                             <img className={`content-center object-contain h-9 w-9`} src={awayTeamLogo} alt="Team" />
                         ) : (
@@ -129,10 +129,8 @@ function Match({
                     </div>
                 </div>
             </div>
-            <div className={`flex justify-end pr-6`}>
-                <div className={`inline-grid`}>
-                    <ZobrazitVice handleClick={zobrazitViceOnClick} />
-                </div>
+            <div className={`flex justify-end pr-6 py-11`}>
+                <ZobrazitVice handleClick={zobrazitViceOnClick} />
             </div>
         </div>
     );

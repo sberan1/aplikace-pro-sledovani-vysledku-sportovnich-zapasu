@@ -1,5 +1,6 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.SearchBarDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.TeamRespDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Team;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.model.ApiSports;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -96,12 +98,28 @@ public class TeamServiceImpl implements TeamService {
                     for (var t : user.getFavouriteTeams()){
                         if (t.getId() == id){
                             teamDto.setFavourite(true);
+                            break;
                         }
                         teamDto.setFavourite(false);
                     }
 
                 }
         return teamDto;
+    }
+
+    @Override
+    public List<SearchBarDto> searchBar(String name) {
+        List<Team> tymy = teamRepository.findTeamsByNameContains(name);
+        List<SearchBarDto> vysledek = new ArrayList<>();
+        for (var t : tymy) {
+            SearchBarDto tym = SearchBarDto.builder()
+                    .id(t.getId())
+                    .name(t.getName())
+                    .logo(t.getLogo())
+                    .build();
+            vysledek.add(tym);
+        }
+        return vysledek;
     }
 
     private void pridatTymy(JSONObject o, String sport, JSONObject resp) {

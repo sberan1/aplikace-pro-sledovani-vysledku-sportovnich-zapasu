@@ -21,7 +21,7 @@ public class OpenAI{
         List<Message> messages = new ArrayList<>();
         messages.add(Message.builder()
                 .role("system")
-                .content("You are a tool for suggesting teams to follow based on preferences of our users, our users will give you list of their favourite teams and you will just list some other teams the person might want to follow and you'll separate the team names with a ,")
+                .content("You are a tool for suggesting teams to follow based on preferences of our users, our users will give you list of their favourite teams and you will just list some other teams the person might want to follow. Format them like teamName,teamName,t... and leave out the rest of the message, send just the team list without other text.")
                 .build());
 
         messages.add(Message.builder()

@@ -4,7 +4,6 @@ import {MatchSourceType} from "./Enums";
 import Match from "./Match/Match";
 import axios from "axios";
 
-
 const MatchList = ( {type, webParams} : {
     type: MatchSourceType;
     webParams: String;
@@ -26,6 +25,10 @@ const MatchList = ( {type, webParams} : {
                 const response = await axios.get('http://localhost:8080/fixture/getFixturesBySportAndDate' + webParams);
                 setMatches(response.data);
             }
+            if (type === MatchSourceType.User) {
+                const response = await axios.get('http://localhost:8080/user/getFavouriteFixtures');
+                setMatches(response.data);
+            }
         } catch (error) {
             console.error('Error fetching team of league:', error);
         }
@@ -38,7 +41,6 @@ const MatchList = ( {type, webParams} : {
     if(matches.length === 0) {
         return <div className={`font-classic text-white pl-4`}>Žádné zápasy</div>
     }
-
 
     return (
         <div>

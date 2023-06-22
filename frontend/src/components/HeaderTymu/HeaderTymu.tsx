@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import './HeaderTymu.css';
 import FavoriteTeamBtn from '../Buttons/FavoriteTeamBtn/FavoriteTeamBtn';
 import axios from "axios";
 import FavouriteStar from "../FavouriteStar/FavouriteStar";
+import Cookies from "universal-cookie";
+import {UserContext} from "../../pages/PrihlaseniPagePackage/UserContext";
 
 const TeamComponent = ({ teamId }) => {
     const [team, setTeam] = useState({
@@ -12,7 +14,10 @@ const TeamComponent = ({ teamId }) => {
         teamLogo: "https://media-3.api-sports.io/football/teams/1957.png",
         country: "Argentina",
         countryLogo: "https://media-1.api-sports.io/flags/ar.svg",
-        favourite: false });
+        favourite: true
+    });
+    var cookies = new Cookies();
+    const {isLoggedIn} = useContext(UserContext);
 
     async function getTeamData(teamId) {
 
@@ -41,8 +46,12 @@ const TeamComponent = ({ teamId }) => {
                         <span>{team.country}</span>
                     </div>
                 </div>
-                <div className="middle">
+                <div className="middle">{isLoggedIn || cookies.get('token') !== undefined ?(
                     <FavouriteStar Id={teamId} Type="Team" isFav={team.favourite}/>
+                ) : (
+                    <div />
+                )}
+
                 </div>
             </div>
             <div className="right">
