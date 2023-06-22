@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * Trieda User - táto entita reprezentuje tabuľku v databáze, ktorá uchováva informácie o používateľovi.
  *
- * @author Štepán Beran
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

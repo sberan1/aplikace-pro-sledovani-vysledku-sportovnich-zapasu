@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Interface CountryService - rozhranie definuje metódy pre prácu s krajinami.
  *
- * @author Štepán Beran, Zuzana Hadzimová, Sabína Hrabáriková
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

@@ -11,7 +11,7 @@ import java.util.Optional;
 /**
  * Dependency Injection Interface CountryRepository - rozširuje JpaRepository a slúži k manipulácií s databázou pre entitu Country.
  *
- * @author Štepán Beran, Sabína Hrabáriková
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

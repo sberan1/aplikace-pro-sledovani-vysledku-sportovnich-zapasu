@@ -6,6 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Trieda SearchBarDto - slúži k formátovaniu dát v endpointoch.
+ *
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
 @Data
 @Builder
 @NoArgsConstructor

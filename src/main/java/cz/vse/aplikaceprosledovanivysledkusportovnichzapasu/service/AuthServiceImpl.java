@@ -22,7 +22,7 @@ import java.io.IOException;
 /**
  * Trieda AuthServiceImpl - implementuje rozhranie AuthService a poskytuje konkrétnu implementáciu metód pre autentifikáciu a autorizáciu.
  *
- * @author Štepán Beran, Zuzana Hadzimová
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

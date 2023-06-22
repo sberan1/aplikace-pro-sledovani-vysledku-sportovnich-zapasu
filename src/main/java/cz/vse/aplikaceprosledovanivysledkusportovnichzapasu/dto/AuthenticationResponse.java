@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 /**
  * Trieda AuthenticationResponse - slúži k formátovaniu dát v endpointoch.
  *
- * @author Štepán Beran
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

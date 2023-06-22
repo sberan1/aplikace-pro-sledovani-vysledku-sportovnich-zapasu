@@ -18,7 +18,7 @@ import java.util.*;
 /**
  * Trieda FixtureServiceImpl - implementuje rozhranie FixtureService a poskytuje konkrétnu implementáciu metód pre prácu so zápasmi.
  *
- * @author Štepán Beran, Zuzana Hadzimová, Sabína Hrabáriková
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 /**
  * Trieda UserServiceImpl - implementuje rozhranie UserServiceImpl a poskytuje konkrétnu implementáciu metód pre operácie súvisiace s používateľom.
  *
- * @author Štepán Beran, Zuzana Hadzimová, Sabína Hrabáriková
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

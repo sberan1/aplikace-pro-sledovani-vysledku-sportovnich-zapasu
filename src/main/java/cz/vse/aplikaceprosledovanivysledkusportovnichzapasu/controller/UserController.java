@@ -25,7 +25,7 @@ import java.util.Set;
 /**
  * Trieda UserController - slúži pre manipuláciu s databázou obsahujúcou rôzne informácie o jednotlivých používateľoch.
  *
- * @author Štepán Beran, Zuzana Hadzimová, Sabína Hrabáriková
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

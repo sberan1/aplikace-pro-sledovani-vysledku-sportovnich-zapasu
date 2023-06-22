@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 /**
  * Trieda Fixture - táto entita reprezentuje tabuľku v databáze, ktorá uchováva informácie o zápase .
  *
- * @author Štepán Beran, Adam Škarvada
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

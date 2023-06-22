@@ -6,7 +6,7 @@ import lombok.*;
 /**
  * Trieda SoccerScore - táto entita reprezentuje tabuľku v databáze, ktorá uchováva skóre pri futbale.
  *
- * @author Štepán Beran
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

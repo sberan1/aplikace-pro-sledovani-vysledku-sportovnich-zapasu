@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 /**
  * Trieda LeagueServiceImpl - implementuje rozhranie LeagueService a poskytuje konkrétnu implementáciu metód pre prácu s ligami.
  *
- * @author Štepán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Adam Škarvada
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

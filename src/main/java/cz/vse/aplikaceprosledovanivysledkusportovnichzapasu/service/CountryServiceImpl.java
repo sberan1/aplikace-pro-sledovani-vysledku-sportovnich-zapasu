@@ -17,7 +17,7 @@ import java.util.Optional;
 /**
  * Trieda CountryServiceImpl - implementuje rozhranie CountryService a poskytuje konkrétnu implementáciu metód pre prácu s krajinami.
  *
- * @author Štepán Beran, Zuzana Hadzimová, Sabína Hrabáriková
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

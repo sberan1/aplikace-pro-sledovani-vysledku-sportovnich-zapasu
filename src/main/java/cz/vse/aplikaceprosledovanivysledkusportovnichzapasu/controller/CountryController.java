@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Trieda CountryController - slúži pre manipuláciu s databázou obsahujúcou informácie o jednotlivých krajinách.
  *
- * @author Štepán Beran, Zuzana Hadzimová, Sabína Hrabáriková
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

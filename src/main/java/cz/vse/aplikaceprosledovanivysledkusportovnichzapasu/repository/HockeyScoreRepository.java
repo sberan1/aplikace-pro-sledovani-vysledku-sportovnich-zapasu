@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Dependency Injection Interface BasketballScoreRepository - rozširuje JpaRepository a slúži k manipulácií s databázou pre entitu HockeyScore.
  *
- * @author Štepán Beran
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

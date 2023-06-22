@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 /**
  * Trieda FixtureRespDto - slúži k formátovaniu dát v endpointoch.
  *
- * @author Zuzana Hadzimová
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

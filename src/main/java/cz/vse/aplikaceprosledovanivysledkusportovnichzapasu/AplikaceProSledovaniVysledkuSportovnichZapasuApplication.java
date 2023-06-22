@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Trieda AplikaceProSledovaniVysledkuSportovnichZapasuApplication - hlavná trieda aplikácie.
  *
- * @author Štepán Beran
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

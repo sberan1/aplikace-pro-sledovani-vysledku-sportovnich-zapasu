@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Trieda LeagueController - slúži pre manipuláciu s databázou obsahujúcou informácie o jednotlivých ligách.
  *
- * @author Štepán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Adam Škarvada
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 

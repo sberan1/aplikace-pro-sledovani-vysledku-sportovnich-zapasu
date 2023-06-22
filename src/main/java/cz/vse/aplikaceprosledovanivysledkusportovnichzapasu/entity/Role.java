@@ -3,7 +3,7 @@ package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity;
 /**
  * Trieda Role
  *
- * @author Štepán Beran
+ * @author Štěpán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Julie Sanetrníková, Adam Škarvada
  * @version LS 2022/2023
  */
 
