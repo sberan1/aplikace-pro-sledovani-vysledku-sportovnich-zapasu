@@ -52,8 +52,8 @@ const SearchBar = () => {
 
     return (
         <div className={`${styles.divec} flex flex-col justify-center pt-8 grow h-52`}>
-              <div className={`items-start`}>
-                    <form onSubmit={handleSubmit} className={`flex justify-center `}>
+            <div className={`items-start`}>
+                <form onSubmit={handleSubmit} className={`flex justify-center SearchForm`}>
                           <span className={`${styles.lupa} flex items-center pl-5`}>
                             <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -62,19 +62,19 @@ const SearchBar = () => {
                                   fill="#A8AAAD"/>
                             </svg>
                           </span>
-                          <input
-                              type="text"
-                              placeholder="Vyhledejte konkrétní tým nebo zápas"
-                              value={searchTerm}
-                              onChange={handleSearchChange}
-                              className={`${styles.inputBackground} pl-6`}
-                          />
-                          <span className={`${styles.vyhledatPlaceholder}`}>
+                    <input
+                        type="text"
+                        placeholder="Vyhledejte konkrétní tým nebo zápas"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        className={`${styles.inputBackground} pl-6`}
+                    />
+                    <span className={`${styles.vyhledatPlaceholder}`}>
                             <button className={`${styles.vyhledatPlaceholder}`} type="submit"
                                     value="hledej">VYHLEDAT</button>
                           </span>
-                    </form>
-              </div>
+                </form>
+            </div>
             {searchTerm.length > 0 && results.length > 0 && (
                 <div className={`${styles.searchResults} mt-4 pl-2.5 pt-2 pb-3`}>
                     {results.map((result, index) => (
