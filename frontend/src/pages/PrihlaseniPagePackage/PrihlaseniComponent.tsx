@@ -14,11 +14,16 @@ const PrihlaseniComponent = () => {
 
     const handleLogin = async () => {
         try {
+            const emailRegex = new RegExp('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$');
+            if (emailRegex.test(email) === false){
+                throw new Error('Email není ve správném formátu.')
+            }
             const hashedPassword = sha256(password);
             const response = await axios.post('http://localhost:8080/auth/authenticate', {
                 email: email,
                 hashedPassword: hashedPassword
             });
+
             setLoginStatus(response.data.message);
             await loginUser(email, password);
             setLoginStatus('Přihlášení bylo úspěšné.');

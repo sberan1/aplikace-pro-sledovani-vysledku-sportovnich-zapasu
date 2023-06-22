@@ -58,7 +58,7 @@ export const UserProvider = ({children}) => {
     useEffect(() => {
         setIsLoggedIn(cookies.get('token') !== undefined);
         refreshToken();
-        }, []
+        }, [user]
     )
 
     return (

@@ -11,6 +11,7 @@ import Footer from "../../components/footer/Footer";
 import Modal from "react-modal";
 import '../../components/NavBar/Modal.css'
 import FavoriteTeamBtn from "../../components/Buttons/FavoriteTeamBtn/FavoriteTeamBtn";
+import axios from "axios";
 
 
 const Dashboard = () => {
@@ -19,10 +20,12 @@ const Dashboard = () => {
 
     const [favoriteTeams, setFavoriteTeams] = useState([]);
 
+    const fetchFavTeams = async () => {
+        const response = await axios.get(`http://localhost:8080/user/getFavouriteTeams`);
+        setFavoriteTeams(response.data);
+    }
     useEffect(() => {
-       // const response = axios.get(`http://localhost:3000/favourites/${userId}`)
-       //      .then(response => response.json())
-       //      .then(favoriteTeams => setFavoriteTeams(favoriteTeams));
+       fetchFavTeams();
     }, []);
 
     const openModal = () => {
@@ -62,9 +65,9 @@ const Dashboard = () => {
                                     key={team.teamId}
                                     teamId={team.teamId}
                                     teamName={team.teamName}
-                                    userId={1}
                                     isFavorite={true}
-                                 teamLogo={team.teamLogo}/>
+                                    teamLogo={team.teamLogo
+                                }/>
                             ))}
                         </div>
                         <button onClick={openModal}>Chci doporučit týmy na míru</button>
@@ -84,7 +87,6 @@ const Dashboard = () => {
                                             key={team.teamId}
                                             teamId={team.teamId}
                                             teamName={team.teamName}
-                                            userId={1}
                                             isFavorite={false}
                                             teamLogo={team.teamLogo}
                                         />

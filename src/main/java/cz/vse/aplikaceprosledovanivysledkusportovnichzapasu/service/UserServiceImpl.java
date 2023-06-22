@@ -1,6 +1,7 @@
 package cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service;
 
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.MatchListDateDto;
+import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.SearchBarDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.dto.ChangePasswordDto;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.Fixture;
@@ -94,9 +95,17 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Set<Team> getFavouriteTeams(String jwt) {
+    public Set<SearchBarDto> getFavouriteTeams(String jwt) {
         User user= getUserFromToken(jwt);
-        return user.getFavouriteTeams();
+        Set<SearchBarDto> formatovaneTymy = new HashSet<>();
+        for (Team team : user.getFavouriteTeams()) {
+            SearchBarDto searchBarDTO = new SearchBarDto();
+            searchBarDTO.setId(team.getId());
+            searchBarDTO.setName(team.getName());
+            searchBarDTO.setLogo(team.getLogo());
+            formatovaneTymy.add(searchBarDTO);
+        }
+        return formatovaneTymy;
     }
 
     @Override

@@ -24,6 +24,7 @@ const RegistraceComponent = () => {
                 <li>At least one lowercase</li>
                 <li>At least one uppercase</li>
                 <li>At least one numeric</li>
+                <li>At least one special character</li>
                 <li>Minimum 8 characters</li>
             </ul>
         </>
@@ -43,6 +44,17 @@ const RegistraceComponent = () => {
     const handleRegistration = async () => {
         if (await checkEmail() === false) {
             try {
+                const emailRegex = new RegExp('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$');
+                const passwRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$');
+                if (firstName === '' || lastName === '' || email === '' || password === '') {
+                    throw new Error('Některé pole nebylo vyplněno.')
+                }
+                if (emailRegex.test(email) === false){
+                    throw new Error('Email není ve správném formátu.')
+                }
+                if (passwRegex.test(password) === false){
+                    throw new Error('Heslo není ve správném formátu.')
+                }
                 const hashedPassword = sha256(password);
                 const response = await axios.post('http://localhost:8080/auth/register', {
                     firstName: firstName,
@@ -53,10 +65,11 @@ const RegistraceComponent = () => {
                 setLoginStatus(response.data.message);
                 await loginUser(email, password);
                 setLoginStatus('Registrace proběhla úspěšně. Jste nyní přihlášeni.');
+                const nextURL = `/dashboard`;
+                window.location.href = nextURL;
             } catch (error) {
                 console.error('Oj, něco se pokazilo:' + error);
-                setLoginStatus('Něco se pokazilo při registraci. Zkuste to prosím znovu.');
-                alert('Něco se pokazilo při registraci. Zkuste to prosím znovu.');
+                setLoginStatus(error.message);
             }
         } else {
             setLoginStatus('Tento e-mail je již v systému zaregistrován.');

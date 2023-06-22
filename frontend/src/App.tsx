@@ -21,12 +21,11 @@ import BrowsingPage from "./pages/BrowsingPagePackage/BrowsingPage";
 import MatchDetailPage from "./pages/MatchDetailPagePackage/MatchDetailPage";
 import Dashboard from './pages/DashboardPage/Dashboard';
 import ProfilTymu from "./pages/ProfilTymuPage/ProfilTymu";
-import FotbalPage from "./components/ZkusebniPageFotbalu/FotbalPage";
 
 Modal.setAppElement('#root');
 
 const App = () => {
-    const { user } = useContext(UserContext);
+    const { isLoggedIn } = useContext(UserContext);
     return (
       <UserProvider>
     <Router>
@@ -41,7 +40,6 @@ const App = () => {
             <Route path="/matchDetail" element={<MatchDetailPage/>}></Route>
             <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/teamDetail" element={<ProfilTymu />}></Route>
-            <Route path="/test" element={<FotbalPage />}></Route>
         </Routes>
     </Router>
    </UserProvider>

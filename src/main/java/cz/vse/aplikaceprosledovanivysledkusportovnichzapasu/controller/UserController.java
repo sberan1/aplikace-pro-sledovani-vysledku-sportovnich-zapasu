@@ -68,7 +68,7 @@ public class UserController {
     }
 
     @GetMapping (value = "/getFavouriteTeams")
-    public ResponseEntity<Set<Team>> getFavouriteTeams(HttpServletRequest request){
+    public ResponseEntity<Set<SearchBarDto>> getFavouriteTeams(HttpServletRequest request){
         String jwt = request.getHeader("Authorization").substring(7);
         return ResponseEntity.ok(userService.getFavouriteTeams(jwt));
     }
