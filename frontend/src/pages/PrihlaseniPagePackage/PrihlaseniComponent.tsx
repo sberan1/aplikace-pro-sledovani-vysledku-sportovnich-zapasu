@@ -22,6 +22,8 @@ const PrihlaseniComponent = () => {
             setLoginStatus(response.data.message);
             await loginUser(email, password);
             setLoginStatus('Přihlášení bylo úspěšné.');
+            const nextURL = `/dashboard`;
+            window.location.href = nextURL;
         } catch (error) {
             console.error('Oj, něco se pokazilo:', error);
             setLoginStatus('Něco se pokazilo při přihlašování. Zkuste to prosím znovu.');

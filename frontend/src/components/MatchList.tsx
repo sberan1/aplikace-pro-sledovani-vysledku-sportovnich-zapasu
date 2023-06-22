@@ -26,6 +26,10 @@ const MatchList = ( {type, webParams} : {
                 const response = await axios.get('http://localhost:8080/fixture/getFixturesBySportAndDate' + webParams);
                 setMatches(response.data);
             }
+            if (type === MatchSourceType.User) {
+                const response = await axios.get('http://localhost:8080/user/getFavouriteFixtures');
+                setMatches(response.data);
+            }
         } catch (error) {
             console.error('Error fetching team of league:', error);
         }
