@@ -11,8 +11,6 @@ import League from "../League/League";
 import leagueList from "../LeagueList";
 import DatePicker from "../DatePicker/DatePicker";
 import { parse, format } from 'date-fns';
-import SearchItem from "../SearchItem/SearchItem";
-import SearchBarComponent from "../SearchBar/SearchBarComponent";
 
 function ContentHolder({ sport }: {
     sport: string;
@@ -21,20 +19,17 @@ function ContentHolder({ sport }: {
     const { formattedDateToReturn, render } = DatePicker();
 
     return (
-        // <div className={`${styles.placeHolder} ${styles.scrollContainer} p-4 grid grid-flow-row auto-rows-max overflow-auto`}>
-        //     <div className={`flex justify-between`}>
-        //         <h2 className={`${styles.sportName} pl-10 pt-10 pb-11`}>{sport}</h2>
-        //         <div className={`pr-10 pt-10 pb-11`}>
-        //             {render}
-        //         </div>
-        //     </div>
-        //     <div className={`grid grid-flow-row auto-rows-max place-items-center`}>
-        //         <LeagueList date={formattedDateToReturn} sport={sport} />
-        //     </div>
-        // </div>
-      <div>
-
-      </div>
+        <div className={`${styles.placeHolder} p-4 grid grid-flow-row auto-rows-max overflow-auto mt-10 ml-80`}>
+            <div className={`flex justify-between`}>
+                <h2 className={`${styles.sportName} pl-10 pt-10 pb-11`}>{sport}</h2>
+                <div className={`pr-10 pt-10 pb-11`}>
+                    {render}
+                </div>
+            </div>
+            <div className={`grid grid-flow-row auto-rows-max place-items-center`}>
+                <LeagueList date={formattedDateToReturn} sport={sport} />
+            </div>
+        </div>
     )
 }
 

@@ -11,10 +11,9 @@ export interface AppProps {
 
 const BrowsingPage = ({ Sport }: AppProps) => {
     return (
-        <div className="HomePaneContainer">
+        <div className={`HomePaneContainer`}>
             <NavBar PrihlaseniPage={""}/>
-            <SearchBarComponent/>
-            {/*<MainSection Sport={Sport} />*/}
+            <MainSection Sport={Sport} />
             <Footer/>
         </div>
     );

@@ -23,7 +23,7 @@
     font-size: 20px;
     line-height: 120%;
     color: #A8AAAD;
-    width: 701px;
+    width: 660px;
     height: 38px;
 }
 
@@ -36,7 +36,7 @@
     font-size: 20px;
     line-height: 120%;
     color: #A8AAAD;
-    width: 701px;
+    width: 660px;
     height: 46px;
 }
 .inputBackground:hover:focus {
@@ -47,7 +47,7 @@
     font-size: 20px;
     line-height: 120%;
     color: #FFFFFF;
-    width: 701px;
+    width: 660px;
     height: 46px;
 }
 
@@ -60,7 +60,7 @@
     font-size: 20px;
     line-height: 120%;
     color: #FFFFFF;
-    width: 701px;
+    width: 660px;
     height: 46px;
 }
 
@@ -101,4 +101,10 @@
     font-size: 20px;
     line-height: 120%;
     color: #000000;
+}
+
+.searchResults {
+    background: #4E5259;
+    border-radius: 8px;
+    width: 852px;
 }
