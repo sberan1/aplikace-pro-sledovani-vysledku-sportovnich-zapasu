@@ -62,15 +62,15 @@ const Dashboard = () => {
                         <div className="tymy">
                             {favoriteTeams.map(team => (
                                 <OblibenyTym
-                                    key={team.teamId}
-                                    teamId={team.teamId}
-                                    teamName={team.teamName}
+                                    key={team.id}
+                                    teamId={team.id}
+                                    teamName={team.name}
                                     isFavorite={true}
-                                    teamLogo={team.teamLogo
+                                    teamLogo={team.logo
                                 }/>
                             ))}
                         </div>
-                        <button onClick={openModal}>Chci doporučit týmy na míru</button>
+                        <button onClick={openModal} className="BtnDoporuceni">Chci doporučit týmy na míru</button>
                         <Modal
                             isOpen={ModalIsOpen}
                             onRequestClose={closeModal}

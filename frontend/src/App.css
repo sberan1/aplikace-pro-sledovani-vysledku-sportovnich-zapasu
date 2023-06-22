@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+#root{
+  overflow-y: scroll;
+  height: auto;
+}
+
 @font-face {
   font-family: 'AktivGrotesk-Medium';
   src: local('AktivGrotesk-Medium'), url(./fonts/aktivGrotesk/AktivGrotesk-Medium.ttf) format('opentype');
@@ -67,7 +72,7 @@
 }
 
 .BG{
-  height: 100%;
+  height: auto;
   min-height: 100vh;
   background-color: #1C2227;
   background-image: url("./assets/BG.png");
