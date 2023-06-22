@@ -18,7 +18,7 @@ const BodyTymu = ({teamId}) => {
         }
     }
 
-    if (value === options[0]) {
+    if (value === options[1]) {
 
         return (
             <div className="BodyTymuContainer">
