@@ -3,7 +3,7 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import './BrowsingPage.css';
 import {AppProps} from './BrowsingPage';
-import ContentHolder from "../../components/BrowsingContentHolder/ContentHolder";
+import ContentHolder from '../../components/BrowsingContentHolder/ContentHolder';
 
 const MainSection = ({ Sport }: AppProps) => {
     return (

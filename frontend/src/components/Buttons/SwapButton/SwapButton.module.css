@@ -1,0 +1,131 @@
+.placeHolder {
+    width: 353px;
+    height: 41px;
+    flex-shrink: 0;
+
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    border-radius: 20px;
+    background: #2A2F37;
+}
+
+.programOn {
+    border-radius: 20px;
+    border: 2px solid #D3FC01;
+    background: #D3FC01;
+
+    color: #1C2227;
+    text-align: center;
+
+    /* Text1 */
+    font-size: 20px;
+    font-family: AktivGrotesk-Medium;
+    line-height: 120%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    padding-inline: 41px;
+}
+
+.programOff {
+    color: #FFF;
+    text-align: center;
+
+    /* Text1 */
+    font-size: 20px;
+    font-family: AktivGrotesk-Medium;
+    line-height: 120%;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    margin-inline: 32px;
+
+}
+
+.programOff:hover {
+    color: #D3FC01;
+    text-align: center;
+
+    /* Text1 */
+    font-size: 20px;
+    font-family: AktivGrotesk-Medium;
+    line-height: 120%;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    margin-inline: 32px;
+
+}
+
+.vysledkyOn {
+    border-radius: 20px;
+    border: 2px solid #D3FC01;
+    background: #D3FC01;
+
+    color: #1C2227;
+    text-align: center;
+
+    /* Text1 */
+    font-size: 20px;
+    font-family: AktivGrotesk-Medium;
+    line-height: 120%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    padding-inline: 41px;
+}
+
+.vysledkyOff {
+    color: #FFF;
+    text-align: center;
+
+    /* Text1 */
+    font-size: 20px;
+    font-family: AktivGrotesk-Medium;
+    line-height: 120%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    padding-left: 27px;
+}
+
+.vysledkyOff:hover {
+    color: #D3FC01;
+    text-align: center;
+
+    /* Text1 */
+    font-size: 20px;
+    font-family: AktivGrotesk-Medium;
+    line-height: 120%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    padding-left: 27px;
+}
+
