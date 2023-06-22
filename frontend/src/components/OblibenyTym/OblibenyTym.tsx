@@ -30,16 +30,27 @@ function OblibenyTym({teamId, teamName, userId, isFavorite: initialIsFavorite } 
     };
 
     function teamOnClicked() {
-        navigate('/teams/${teamName}');
+        navigate('/tym/${teamId}');
     }
 
     return (
-        <div className="OblibenyTym">
-            <button onClick={teamOnClicked} className={`pr-3 content-center ${styles.team}`}>{teamName}</button>
+        /*   <div className="OblibenyTym">
+            <button onClick={teamOnClicked} className={`pr-3 content-center ${styles.team}`}>
+                {teamName}
+            </button>
             <button onClick={handleClick}>
                 {isFavorite ? <FaStar color={"#D3FC01"}/> : <FaRegStar color={"#D3FC01"}/>}
             </button>
-        </div>
+        </div> */
+
+    <div className="OblibenyTym">
+        <button onClick={teamOnClicked} className={`pr-3 content-center ${styles.team}`}>
+            Sparta
+        </button>
+        <button onClick={handleClick}>
+            {isFavorite ? <FaStar color={"#D3FC01"}/> : <FaRegStar color={"#D3FC01"}/>}
+        </button>
+    </div>
 
     );
 }

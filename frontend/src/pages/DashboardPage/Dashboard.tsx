@@ -10,6 +10,7 @@ import OblibenyTym from "../../components/OblibenyTym/OblibenyTym";
 import Footer from "../../components/footer/Footer";
 import Modal from "react-modal";
 import '../../components/NavBar/Modal.css'
+import FavoriteTeamBtn from "../../components/Buttons/FavoriteTeamBtn/FavoriteTeamBtn";
 
 
 const Dashboard = ({userId}: {

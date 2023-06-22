@@ -5,17 +5,22 @@ import HeaderTymu from "../../components/HeaderTymu/HeaderTymu";
 import BodyTymu from "../../components/BodyTymu/BodyTymu";
 import SearchBar from "../../components/SearchBar/SearchBarComponent";
 import '../../components/BodyTymu/BodyTymu.css';
+import {useLocation, useParams} from "react-router-dom";
 
+const ProfilTymu = () => {
 
-const ProfilTymu = ({teamId}) => {
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const id = searchParams.get('teamId');
+
     return (
         <div className="ProfilTymuContainer BG">
             <NavBar PrihlaseniPage=""/>
             <SearchBar/>
                 <div className="TymContainer">
                     <div>
-                        <HeaderTymu teamId={teamId}/>
-                        <BodyTymu teamId={undefined}/>
+                        <HeaderTymu teamId={id}/>
+                        <BodyTymu teamId={id}/>
                     </div>
                 </div>
             <Footer/>
