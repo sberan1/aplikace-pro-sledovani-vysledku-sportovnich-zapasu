@@ -37,7 +37,7 @@ const Navbar = ({ HomePage, PrihlaseniPage, RegistracePage }: NavbarProps) => {
             <div className="logo">
                 <span className="navbar-logo"></span>
             </div>
-
+            {/*
             <form onSubmit={handleSubmit} className="SearchForm">
                 <input
                     type="text"
@@ -47,6 +47,7 @@ const Navbar = ({ HomePage, PrihlaseniPage, RegistracePage }: NavbarProps) => {
                 />
                 <button type="submit" value="hledej">VYHLEDAT</button>
             </form>
+            */}
 
             <div className="buttons">
                 <Link to="/registrace">

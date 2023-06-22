@@ -69,6 +69,7 @@ nav input {
 nav input[type="text"] {
     color: white;
 }
+/*
 
 .HomePaneContainer .SearchForm{
     margin-top: 0;
@@ -90,6 +91,8 @@ nav input[type="text"] {
     right: 50%;
     transform: translateX(50%);
 }
+
+ */
 
 .SearchForm button{
     border: 1px solid #1d1f28;
