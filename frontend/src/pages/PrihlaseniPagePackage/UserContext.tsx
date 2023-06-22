@@ -44,6 +44,7 @@ export const UserProvider = ({children}) => {
         setUser(null); // Odstraneni dat uživatele
         localStorage.removeItem('user'); // Odstraneni dat uživatele z localStorage
         cookies.remove('token'); // Odstraneni tokenu z cookies
+        axios.defaults.headers.common['Authorization'] = ''; // Odstraneni tokenu z axiosu
     };
 
     const refreshToken =  () => {

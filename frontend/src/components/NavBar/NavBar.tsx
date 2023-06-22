@@ -61,7 +61,7 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
                 newPassword: sha256(newPassword)
             });
 
-            if (response.data.success) {
+            if (response.status === 200) {
                 console.log("Heslo bylo úspěšně změněno.");
                 setChangePasswordStatus('Heslo bylo úspěšně změněno.');
                 closePasswordModal();
