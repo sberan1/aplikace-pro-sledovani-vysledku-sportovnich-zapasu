@@ -11,7 +11,6 @@ const MainSection = ({ Sport }: AppProps) => {
         <section className="MainSection">
             <div className={'MainSectionContainer flex justify-center'}>
                 <div className="imgFotbalista"></div>
-                <SearchBarComponent/>
 
                 <ContentHolder sport={Sport}/>
 
