@@ -19,6 +19,13 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+/**
+ * Trieda AuthServiceImpl - implementuje rozhranie AuthService a poskytuje konkrétnu implementáciu metód pre autentifikáciu a autorizáciu.
+ *
+ * @author Štepán Beran, Zuzana Hadzimová
+ * @version LS 2022/2023
+ */
+
 @Service @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService{
     private final UserRepository userRepository;
@@ -26,6 +33,12 @@ public class AuthServiceImpl implements AuthService{
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
+
+    /**
+     * Metóda slúžiaca k registrácii používateľa pomocou jednotlivých požiadavok.
+     * @param request
+     * @return login token
+     */
     @Override
     public AuthenticationResponse register(RegisterRequest request) {
         User user = new User();
@@ -41,6 +54,12 @@ public class AuthServiceImpl implements AuthService{
                 .token(jwt)
                 .build();
     }
+
+    /**
+     * Metóda pre autentifikáciu používateľa pomocou jednotlivých požiadavok.
+     * @param request
+     * @return token
+     */
 
     @Override
     public AuthenticationResponse authenticate(AuthRequest request) {
@@ -58,6 +77,12 @@ public class AuthServiceImpl implements AuthService{
                 .build();
     }
 
+    /**
+     * Metóda pre zmenu hesla.
+     * @param changePasswordDto
+     * @param jwt
+     * @return aktualizácia hesla alebo null
+     */
 
     @Override
     public User changePassword(ChangePasswordDto changePasswordDto, String jwt) {
@@ -69,6 +94,13 @@ public class AuthServiceImpl implements AuthService{
             user.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
         return user;
     }
+
+    /**
+     * Metóda pre aktualizáciu tokenu.
+     * @param request
+     * @param response
+     * @return nový vygenerovaný token alebo null
+     */
 
     @Override
     public AuthenticationResponse refreshToken(HttpServletRequest request, HttpServletResponse response){

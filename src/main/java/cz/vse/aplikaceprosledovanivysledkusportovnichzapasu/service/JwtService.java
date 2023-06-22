@@ -13,6 +13,13 @@ import java.util.Date;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * Trieda JwtService - trieda pre generovanie tokenu pre login a operácie s ním.
+ *
+ * @author Štepán Beran
+ * @version LS 2022/2023
+ */
+
 @Service
 public class JwtService {
     private static final String SECRET_KEY = "3A8F5427F03B2D901E3A96860BC9A0C3D9E3BFE1F548F8FC789BC4E911A6510C";

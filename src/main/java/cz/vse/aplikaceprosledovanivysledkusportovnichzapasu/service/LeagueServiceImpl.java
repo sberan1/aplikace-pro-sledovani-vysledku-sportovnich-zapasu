@@ -19,6 +19,13 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Trieda LeagueServiceImpl - implementuje rozhranie LeagueService a poskytuje konkrétnu implementáciu metód pre prácu s ligami.
+ *
+ * @author Štepán Beran, Zuzana Hadzimová, Sabína Hrabáriková, Adam Škarvada
+ * @version LS 2022/2023
+ */
+
 @Service @Primary
 public class LeagueServiceImpl implements LeagueService{
 
@@ -29,6 +36,9 @@ public class LeagueServiceImpl implements LeagueService{
 
     private ApiSports apiSports = ApiSports.getInstance();
 
+    /**
+     * Implementácia metódy z LeagueService pre vyplnenie údajov o lige pre basketbal pomocou API volania.
+     */
 
     public void fillBasketballLeagues() {
         JSONObject parentFile = apiSports.basketbalLigy();
@@ -36,11 +46,21 @@ public class LeagueServiceImpl implements LeagueService{
         ligy.forEach(o -> pridatLigyBasketbal((JSONObject) o));
     }
 
+    /**
+     * Implementácia metódy z LeagueService pre vyplnenie údajov o lige pre hokej pomocou API volania.
+     */
+
     public void fillHockeyLeagues() {
         JSONArray ligy = apiSports.hokejLigy().getJSONArray("response");
         pridatLigy(ligy, "Hockey");
 
     }
+
+    /**
+     * Metóda pre pridanie novel ligy do databáze.
+     * @param ligy
+     * @param sport
+     */
 
     private void pridatLigy(JSONArray ligy, String sport) {
         ligy.forEach(o -> {
@@ -58,6 +78,10 @@ public class LeagueServiceImpl implements LeagueService{
         });
     }
 
+    /**
+     * Implementácia metódy z LeagueService pre vyplnenie údajov o lige pre fotbal pomocou API volania.
+     */
+
     public void fillFootballLeagues() {
         JSONArray ligy = apiSports.fotbalLigy().getJSONArray("response");
         ligy.forEach(o -> {
@@ -74,14 +98,19 @@ public class LeagueServiceImpl implements LeagueService{
             }
         });
     }
+
+    /**
+     * Implementácia metódy z LeagueService pre vyplnenie údajov o lige pre volejbal pomocou API volania.
+     */
     public void fillVolleyballLeagues(){
         JSONArray ligy = apiSports.volejbalLigy().getJSONArray("response");
         pridatLigy(ligy, "Volleyball");
     }
 
-
-
-
+    /**
+     * Metóda pre pridanie novej ligy basketbalu do databáze.
+     * @param o
+     */
 
     private void pridatLigyBasketbal(JSONObject o) {
         League ligaEnt = new League();
@@ -96,14 +125,32 @@ public class LeagueServiceImpl implements LeagueService{
             leagueRepository.save(ligaEnt);
         }
     }
+
+    /**
+     * Implementácia listu z LeagueService slúžiaceho na získanie všetkých líg.
+     * @return List líg
+     */
     public List<League> getLeagues() {
         return leagueRepository.findAll();
     }
+
+    /**
+     * Implementácia listu z LeagueService slúžiaceho na získanie líg na základe športu.
+     * @param sport
+     * @return
+     */
 
     @Override
     public List<League> getLeaguesBySport(String sport) {
         return leagueRepository.findBySport(sport);
     }
+
+    /**
+     * Implementácia metódy z LeagueService pre získanie líg na základe dátumu a športu.
+     * @param date
+     * @param sport
+     * @return List líg
+     */
 
     public List<LeagueRespDto> getLeagueMatchesByDateAndSport(String date, String sport) {
         int [] datumString = Arrays.stream(date.split("-")).mapToInt(Integer::parseInt).toArray();

@@ -15,6 +15,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+ * Trieda FixtureServiceImpl - implementuje rozhranie FixtureService a poskytuje konkrétnu implementáciu metód pre prácu so zápasmi.
+ *
+ * @author Štepán Beran, Zuzana Hadzimová, Sabína Hrabáriková
+ * @version LS 2022/2023
+ */
+
 @Service
 public class FixtureServiceImpl implements FixtureService {
 
@@ -38,6 +45,13 @@ public class FixtureServiceImpl implements FixtureService {
     SoccerScoreRepository footballScoreRepository;
     ApiSports apiSports = ApiSports.getInstance();
 
+    /**
+     * Implementácia metódy z FixtureService pre získanie zápasov na základe športu, dátumu a ligy.
+     * @param sport
+     * @param date
+     * @param league
+     * @return List s informáciami o zápasoch
+     */
 
     @Override
     public List<MatchListDateDto> getFixturesBySportAndDate(String sport, String date, long league) {
@@ -62,6 +76,12 @@ public class FixtureServiceImpl implements FixtureService {
         return DTOList;
     }
 
+    /**
+     * Implementácia metódy z FixtureService pre vyplnenie údajov o zápase pre basketbal pomocou API volania.
+     * @param leagueExternalId
+     * @param season
+     */
+
     @Override
     public void fillBasketballFixture(int leagueExternalId, String season) {
         JSONObject resp = apiSports.basketbalZapasy(leagueExternalId, season);
@@ -70,6 +90,13 @@ public class FixtureServiceImpl implements FixtureService {
 
     }
 
+    /**
+     * Implementácia metódy z FixtureService pre vyplnenie údajov o zápase pre hokej pomocou API volania.
+     * @param leagueExternalId
+     * @param season
+     */
+
+
     @Override
     public void fillHockeyFixture(int leagueExternalId, String season) {
         JSONObject resp = apiSports.hokejZapasy(leagueExternalId, season);
@@ -77,12 +104,25 @@ public class FixtureServiceImpl implements FixtureService {
         fixtures.forEach(o -> pridatZapasy((JSONObject) (o),"Hockey", resp));
     }
 
+    /**
+     * Implementácia metódy z FixtureService pre vyplnenie údajov o zápase pre volejbal pomocou API volania.
+     * @param leagueExternalId
+     * @param season
+     */
+
+
     @Override
     public void fillVolleyballFixture(int leagueExternalId, String season) {
         JSONObject resp = apiSports.volejbalZapasy(leagueExternalId, season);
         JSONArray fixtures = resp.getJSONArray("response");
         fixtures.forEach(o -> pridatZapasy((JSONObject) (o), "Volleyball", resp));
     }
+
+    /**
+     * Implementácia metódy z FixtureService pre vyplnenie údajov o zápase pre futbal pomocou API volania.
+     * @param leagueExternalId
+     * @param season
+     */
 
     @Override
     public void fillFootballFixture(int leagueExternalId, String season){
@@ -117,10 +157,21 @@ public class FixtureServiceImpl implements FixtureService {
         });
     }
 
+    /**
+     * Implementácia metódy z FixtureService pre získanie zápasu na základe identifikačného čísla
+     */
+
     @Override
     public Fixture getFixtureById(long id) {
         return fixtureRepository.findById(id).get();
     }
+
+    /**
+     * Implementácia metódy z FixtureService pre získanie informácie o zápase na základe identifikačného čísla a užívateľa
+     * @param id
+     * @param user
+     * @return informácie o zápase
+     */
 
     @Override
     public FixtureRespDto getFixtureInfoById(long id, User user) {
@@ -161,6 +212,13 @@ public class FixtureServiceImpl implements FixtureService {
         return fixtureRespDto;
     }
 
+    /**
+     * Metóda pre spracovanie údajov o zápase a jeho pridanie.
+     * @param zapas
+     * @param sport
+     * @param resp
+     */
+
 
     private void pridatZapasy(JSONObject zapas, String sport, JSONObject resp) {
         Fixture fixtureEnt;
@@ -195,6 +253,13 @@ public class FixtureServiceImpl implements FixtureService {
         fillScore(fixtureEnt, zapas, sport);
         fixtureRepository.save(fixtureEnt);
     }
+
+    /**
+     * Metóda pre vyplnenie údajov o skóre zápasu v závislosti od športu.
+     * @param fixtureEnt
+     * @param zapas
+     * @param sport
+     */
 
     private void fillScore(Fixture fixtureEnt, JSONObject zapas, String sport) {
         switch (sport){
@@ -410,6 +475,12 @@ public class FixtureServiceImpl implements FixtureService {
 
     }
 
+    /**
+     * Implementácia metódy z CountryService pre zíkanie už odohratých zápasov podľa identifikačného čísla týmu.
+     * @param teamId
+     * @return informácie o zápasoch
+     */
+
    @Override
     public List<MatchListDateDto> getFixturesByTeamIdAndDateBeforeToday(long teamId){
         List<MatchListDateDto> matchListDateDtoBefore = new ArrayList<>();
@@ -430,6 +501,12 @@ public class FixtureServiceImpl implements FixtureService {
         }
         return matchListDateDtoBefore;
     }
+
+    /**
+     * Implementácia metódy z CountryService pre zíkanie budúcich zápasov podľa identifikačného čísla týmu.
+     * @param teamId
+     * @return informácie o zápasoch
+     */
 
     @Override
     public List<MatchListDateDto> getFixturesByTeamIdAndDateFromToday(long teamId) {

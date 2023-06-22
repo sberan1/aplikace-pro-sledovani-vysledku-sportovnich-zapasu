@@ -10,6 +10,13 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+/**
+ * Interface AuthService  - rozhranie pre autentifikáciu a autorizáciu.
+ *
+ * @author Štepán Beran, Zuzana Hadzimová
+ * @version LS 2022/2023
+ */
+
 public interface AuthService {
     AuthenticationResponse register(RegisterRequest request);
     AuthenticationResponse authenticate(AuthRequest request);

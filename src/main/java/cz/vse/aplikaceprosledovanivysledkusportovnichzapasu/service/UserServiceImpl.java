@@ -16,6 +16,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Trieda UserServiceImpl - implementuje rozhranie UserServiceImpl a poskytuje konkrétnu implementáciu metód pre operácie súvisiace s používateľom.
+ *
+ * @author Štepán Beran, Zuzana Hadzimová, Sabína Hrabáriková
+ * @version LS 2022/2023
+ */
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -31,6 +38,11 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private FixtureRepository fixtureRepository;
 
+    /**
+     * Implementácia metódy z UserService pre uloženie používateľa do systému.
+     * @param user
+     * @return uložený používateľ alebo null
+     */
 
     @Override
     public User saveUser(User user) {
@@ -45,20 +57,43 @@ public class UserServiceImpl implements UserService{
         return userRepository.save(user);
     }
 
+    /**
+     * Implementácia listu z UserService slúžiaceho na získanie všetkých používateľov.
+     * @return List všetkých používateľov
+     */
+
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    /**
+     * Implementácia metódy z UserService pre získanie používateľa podľa identifikačného čísla.
+     * @param id
+     * @return user alebo vyhodenie výnimky
+     */
 
     @Override
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow();
     }
 
+    /**
+     * Implementácia metódy z UserService pre overenie prítomnosti emailu.
+     * @param email
+     * @return true alebo false
+     */
+
     @Override
     public boolean emailExists(String email) {
         return userRepository.findByEmail(email).isPresent();
     }
+
+    /**
+     * Implementácia metódy z UserService pre získanie textového reťazca s obľúbenými týmami.
+     * @param user
+     * @return zoznam obľúbených týmov
+     */
 
     @Override
     public String getTextOfFavTeams(User user) {
@@ -70,11 +105,23 @@ public class UserServiceImpl implements UserService{
         return sb.toString();
     }
 
+    /**
+     * Implementácia metódy z UserService pre získanie užívateľa na základe tokena.
+     * @param jwt
+     * @return user
+     */
+
     @Override
     public User getUserFromToken(String jwt){
         String email = jwtService.extractEmail(jwt);
         return userRepository.findByEmail(email).get();
     }
+
+    /**
+     * Implementácia metódy z UserService pre pridanie týmu medzi oblúbené na základe teamId a tokenu.
+     * @param teamId
+     * @param jwt
+     */
 
     @Override
     public void addFavouriteTeam(long teamId, String jwt) {
@@ -83,6 +130,12 @@ public class UserServiceImpl implements UserService{
         userRepository.save(user);
     }
 
+    /**
+     * Implementácia metódy z UserService pre odstránenie týmu z oblúbených na základe teamId a tokenu.
+     * @param teamId
+     * @param jwt
+     */
+
     @Override
     public void removeFavouriteTeam(long teamId, String jwt) {
         User user= getUserFromToken(jwt);
@@ -90,17 +143,35 @@ public class UserServiceImpl implements UserService{
         userRepository.save(user);
     }
 
+    /**
+     * Implementácia metódy z UserService pre získanie obľúbených týmov.
+     * @param jwt
+     * @return obľúbené tímy
+     */
+
     @Override
     public Set<Team> getFavouriteTeams(String jwt) {
         User user= getUserFromToken(jwt);
         return user.getFavouriteTeams();
     }
 
+    /**
+     * Implementácia metódy z UserService pre získanie obľúbených zápasov.
+     * @param jwt
+     * @return obľúbené zápasy
+     */
+
     @Override
     public Set<Fixture> getFavouriteFixtures(String jwt) {
         User user= getUserFromToken(jwt);
         return user.getFavouriteFixtures();
     }
+
+    /**
+     * Metóda pre zmazanie používateľa na základe identifikačného čísla.
+     * @param id
+     * @return user
+     */
 
     @Override
     public User deleteUser(Long id) {
@@ -109,6 +180,12 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
+    /**
+     * Implementácia metódy z UserService pre pridanie oblúbeného zápasu.
+     * @param id
+     * @param jwt
+     */
+
     @Override
     public void addFavouriteFixture(long id, String jwt) {
         User user= getUserFromToken(jwt);
@@ -116,6 +193,12 @@ public class UserServiceImpl implements UserService{
         user.getFavouriteFixtures().add(fixture);
         userRepository.save(user);
     }
+
+    /**
+     * Implementácia metódy z UserService pre odstránenie oblúbeného zápasu.
+     * @param id
+     * @param jwt
+     */
 
     @Override
     public void removeFavouriteFixture(long id, String jwt) {
