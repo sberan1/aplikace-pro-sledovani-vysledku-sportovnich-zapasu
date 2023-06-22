@@ -20,6 +20,7 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
+    const [changePasswordStatus, setChangePasswordStatus] = useState('');
     const navigate = useNavigate();
     var cookies = new Cookies();
     const logout = () => {
@@ -62,10 +63,12 @@ const NavBar = ({PrihlaseniPage}: NavbarProps) => {
 
             if (response.data.success) {
                 console.log("Heslo bylo úspěšně změněno.");
+                setChangePasswordStatus('Heslo bylo úspěšně změněno.');
                 closePasswordModal();
             } else if (response.data.error) {
                 console.log(response.data.error);
                 alert(response.data.error);
+                setChangePasswordStatus('Nastala chyba při změně hesla.');
             }
         } catch (error) {
             console.error('Nastala chyba při změně hesla:', error);
