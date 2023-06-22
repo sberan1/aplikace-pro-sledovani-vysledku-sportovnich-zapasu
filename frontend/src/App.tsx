@@ -16,7 +16,6 @@ import League from "./components/League/League";
 import MatchList from "./components/MatchList";
 import {MatchType} from "./components/Types";
 import {MatchSourceType} from "./components/Enums";
-import ContentHolder from "./components/BrowsingContentHolder/ContentHolder";
 import BrowsingPage from "./pages/BrowsingPagePackage/BrowsingPage";
 import MatchDetailPage from "./pages/MatchDetailPagePackage/MatchDetailPage";
 import Dashboard from './pages/DashboardPage/Dashboard';
