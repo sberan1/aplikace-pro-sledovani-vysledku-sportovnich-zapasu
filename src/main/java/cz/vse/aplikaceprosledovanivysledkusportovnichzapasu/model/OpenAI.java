@@ -5,7 +5,7 @@ import com.lilittlecat.chatgpt.offical.entity.Message;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.entity.User;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserService;
 import cz.vse.aplikaceprosledovanivysledkusportovnichzapasu.service.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,8 @@ import java.util.List;
 
 public class OpenAI{
 
-    private static final String API_KEY = "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";
+    @Value("${openai.apiKey}")
+    private static String API_KEY;
     private static ChatGPT chatGPT = new ChatGPT(API_KEY);
     private static UserService userService = new UserServiceImpl();
 
